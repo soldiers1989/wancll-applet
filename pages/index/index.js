@@ -1,38 +1,45 @@
-import { ajax } from '../../api/ajax.js';
-import { api } from '../../api/api.js';
+const APP = getApp();
+import { getOtherData, getGoodsData} from './data.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 轮播参数
     indicatorDots: true,
     vertical: false,
-    autoplay: false,
+    autoplay: true,
     circular: false,
     interval: 2000,
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    imgUrls:[]
+    // 数据参数
+    imgUrls: [], // 轮播图片
+    smallImg: APP.imgs.smallImg,
+    title: ['新品', '精品', '热销', '折扣', '清仓'],
+    noticeImg: APP.imgs.notice,
+    notice: [],
+    goods: [],
+    // 控制参数
+    pageNum:1,
+    loading:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(){
-    app.globalData.hasLogin = wx.getStorageSync('token') ? true : false;
-    ajax({
-      url: api.banners,
-      data: {
-        'type': "wap首页轮播"
-      },
-      success: (res) => {
-        console.log(res)
-      }
-    })
-  },
+  onLoad() {
+    APP.globalData.hasLogin = wx.getStorageSync('token') ? true : false;
+    // 获取所有数据
+    getOtherData(this);
+    getGoodsData(this);
 
+  },
+  // 获取商品数据
+  
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -71,8 +78,8 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom () {
+    getGoodsData(this);
   },
 
   /**

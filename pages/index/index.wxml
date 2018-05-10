@@ -1,32 +1,64 @@
 <!--index.wxml-->
-<view class="container">
+<view class="">
   <view class='search_box'>
-    <view class='category_button'>
-      <zan-icon class='icon' type="wap-nav"></zan-icon>
-      <!-- <view class='text'>分类</view>     -->
-    </view>
     <view class='search_input'>
-      <zan-icon class='icon' type="search"></zan-icon>
-      <input class='input' placeholder='请输入关键字'>test</input>
-    </view>
-    <view class='massage_button'>
-      <zan-icon class='icon' type="chat"></zan-icon>
-      <!-- <view class='text'>消息</view> -->
+      <icon class='icon' type='sousuo'></icon>
+      <view class='input'>搜索商品</view>
     </view>
   </view>
 
   <view class='banner'>
-    <swiper
-    class='banner_swiper'
-    indicator-dots="{{indicatorDots}}" 
-    autoplay="{{autoplay}}" 
-    interval="{{interval}}" 
-    duration="{{duration}}">
+    <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="key">
         <swiper-item>
-          <image src="{{item.img}}" class="slide-image" mode="widthFix"/>
+          <image src="{{item.img}}" class="slide-image" mode="widthFix" />
         </swiper-item>
       </block>
     </swiper>
+  </view>
+
+  <view class='banner-list'>
+    <view class='list' wx:for="{{smallImg}}" wx:key="index">
+      <view class='img'>
+        <image mode="widthFix" src='{{item}}'></image>
+      </view>
+      <view class='text'>{{title[index]}}</view>
+    </view>
+  </view>
+
+  <view class='notice'>
+    <view class='notice-img'>
+      <image mode="widthFix" src='{{noticeImg}}'></image>
+    </view>
+    <view class='notice-list'>
+      <view class='list' wx:for="{{notice}}" wx:key="index">• {{item.title}}</view>
+    </view>
+  </view>
+
+  <view class='discount'>
+    <zan-cell is-link>限时折扣 限时折扣活动 21天 03: 38: 38</zan-cell>
+    <scroll-view class='scroll-items' scroll-x="true">
+      <!--  display: inline-block-->
+      <view class='item'>1</view>
+      <view class='item'>2</view>
+      <view class='item'>3</view>
+      <view class='item'>4</view>
+    </scroll-view>
+  </view>
+  <view class='goods-list'>
+    <view class='goods' wx:for="{{goods}}" wx:key="index">
+      <view class='lay'>
+        <view class='image'>
+          <image mode="widthFix" src='{{item.thum}}'></image>
+        </view>
+        <view class='info'>
+          <view class='title'>{{item.name}}</view>
+          <view class='price'>￥{{item.sell_price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='loading' wx:if="{{loading}}">
+    <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
   </view>
 </view>

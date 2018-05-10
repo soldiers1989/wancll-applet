@@ -3,6 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/carts/carts",
+    "pages/home/home",
+    "pages/login/login",
     "pages/category/category",
     "pages/user/user",
     "pages/userSubPage/order/order",

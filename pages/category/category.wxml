@@ -1,2 +1,26 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view>
+  <zan-tab 
+  id="tab"
+  list="{{ tabList }}" 
+  selected-id="{{ tabListSelectedId }}"
+  scroll="{{ tabListScroll }}" 
+  height="{{ tabListHeight }}" 
+  bindtap='changeNav'
+  fixed/>
+  <view class='goods-list'>
+    <view class='goods' wx:for="{{goods}}" wx:key="index">
+      <view class='lay'>
+        <view class='image'>
+          <image mode="widthFix" src='{{item.thum}}'></image>
+        </view>
+        <view class='info'>
+          <view class='title'>{{item.name}}</view>
+          <view class='price'>￥{{item.sell_price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='loading' wx:if="{{loading}}">
+    <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
+  </view>
+</view>

@@ -9,5 +9,4 @@ page{
   overflow: hidden;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 15px 0;
 }
