@@ -1,0 +1,88 @@
+<view class='panel'>
+  <zan-panel>
+    <view class='user'>
+      <view class='avatar'>
+        <image></image>
+      </view>
+      <view class='nickname'>昵称</view>
+    </view>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="我的订单" value="查看全部订单" is-link url="/pages/userSubPage/order/order"></zan-cell>
+      <zan-panel>
+        <view class='pending-list'>
+          <view class='pending' catchtap='goOrderList' data-target="topay">
+            <view class='icon-badge'>
+              <zan-badge>9</zan-badge>
+              <zan-icon class='icon' type="pending-payment"></zan-icon>
+            </view>
+            <view class='text'>待付款</view>
+          </view>
+          <view class='pending' catchtap='goOrderList' data-target="tosend">
+            <view class='icon-badge'>
+              <zan-badge>9</zan-badge>
+              <zan-icon class='icon' type="pending-deliver"></zan-icon>
+            </view>
+            <view class='text'>待发货</view>
+          </view>
+          <view class='pending' catchtap='goOrderList' data-target="send">
+            <view class='icon-badge'>
+              <zan-badge>9</zan-badge>
+              <zan-icon class='icon' type="logistics"></zan-icon>
+            </view>
+            <view class='text'>待收货</view>
+          </view>
+          <view class='pending' catchtap='goOrderList' data-target="estimate">
+            <view class='icon-badge'>
+              <zan-badge>9</zan-badge>
+              <zan-icon class='icon' type="pending-evaluate"></zan-icon>
+            </view>
+            <view class='text'>待评价</view>
+          </view>
+          <view class='pending' catchtap='goService'>
+            <view class='icon-badge'>
+              <zan-badge>9</zan-badge>
+              <zan-icon class='icon' type="after-sale"></zan-icon>
+            </view>
+            <view class='text'>售后服务</view>
+          </view>
+        </view>
+      </zan-panel>
+    </zan-cell-group>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell title="收货地址" is-link url="/pages/userSubPage/address/address"></zan-cell>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell title="全部评价" is-link url="/pages/userSubPage/estimate/estimate"></zan-cell>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="钱包" is-link url="/pages/userSubPage/wallet/wallet"></zan-cell>
+      <zan-cell title="银行卡" is-link url="/pages/userSubPage/card/card"></zan-cell>
+      <zan-cell title="优惠券" is-link url="/pages/userSubPage/discount/discount"></zan-cell>
+    </zan-cell-group>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell title="实名认证" is-link url="/pages/userSubPage/attestation/attestation"></zan-cell>
+  </zan-panel>
+</view>
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="我的收藏" is-link url="/pages/userSubPage/collect/collect"></zan-cell>
+      <zan-cell title="我的足迹" is-link></zan-cell>
+    </zan-cell-group>
+  </zan-panel>
+</view>

@@ -1,0 +1,29 @@
+/* components/address/index.wxss */
+.item{
+  margin-bottom: 20rpx;
+}
+.item .line{
+  display: flex;
+  line-height: 60rpx;
+}
+.item .line .name{
+  flex: 100px 0 0;
+}
+.item .line .number{
+  flex: 1;
+  text-align: right;
+}
+.bottom{
+  display: flex;
+}
+.bottom .default-address{
+  flex: 100px 0 0;
+  line-height: 60rpx;
+}
+.bottom .click-button{
+  flex: 1;
+  text-align: right
+}
+.bottom .click-button .zan-button{
+  margin-left: 20rpx;
+}

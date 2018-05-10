@@ -1,0 +1,30 @@
+<view class='item'>
+  <zan-panel>
+    <view class='item-content'>
+      <view class='top-info'>
+        <view class='left'>订单编号：E2018050717387776552</view>
+        <view class='right'>等待买家付款</view>
+      </view>
+      <view class='center-info'>
+        <view class='image-warpper'>
+          <image class='image'></image>
+        </view>
+        <view class='title-warpper'>
+          <view class='title zan-ellipsis--l2'>女式条纹提花短袖针织衫女式条纹提花短袖针织衫女式条纹提花短袖针织衫</view>
+          <view class='sku'>规格: 白色条纹_M</view>
+        </view>
+        <view class='price-warpper'>
+          <view class='price'>￥9269.00</view>
+          <view class='count'>x2</view>
+        </view>
+      </view>
+      <view class='bottom-info'>
+        <view class='all-price'>共1件商品 合计：<text>￥9269.00</text> (含运费：￥0.00)</view>
+        <view class='click-button'>
+          <zan-button class='zan-button' size="small">取消订单</zan-button>
+          <zan-button class='zan-button' size="small" type="primary">确认付款</zan-button>
+        </view>
+      </view>
+    </view>
+  </zan-panel>
+</view>

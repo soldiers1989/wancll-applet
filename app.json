@@ -1,16 +1,26 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/goods_list/goods_list",
-    "pages/cart_index/cart_index",
-    "pages/home/home",
-    "pages/login/login"
+    "pages/logs/logs",
+    "pages/carts/carts",
+    "pages/category/category",
+    "pages/user/user",
+    "pages/userSubPage/order/order",
+    "pages/userSubPage/address/address",
+    "pages/userSubPage/wallet/wallet",
+    "pages/userSubPage/discount/discount",
+    "pages/userSubPage/card/card",
+    "pages/userSubPage/collect/collect",
+    "pages/userSubPage/attestation/attestation",
+    "pages/userSubPage/estimate/estimate",
+    "pages/userSubPage/service/service"
   ],
   "window": {
-    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "网开小程序",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#f9f9f9"
   },
   "tabBar": {
     "color": "#757575",
@@ -25,22 +35,21 @@
       {
         "iconPath": "static/images/cate.png",
         "selectedIconPath": "static/images/cate-2.png",
-        "pagePath": "pages/goods_list/goods_list",
+        "pagePath": "pages/category/category",
         "text": "商品"
       },
       {
         "iconPath": "static/images/cart.png",
         "selectedIconPath": "static/images/cart-2.png",
-        "pagePath": "pages/cart_index/cart_index",
+        "pagePath": "pages/carts/carts",
         "text": "购物车"
       },
       {
         "iconPath": "static/images/people.png",
         "selectedIconPath": "static/images/people-2.png",
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/user/user",
         "text": "我的"
       }
     ]
-  },
-  "debug": false
+  }
 }

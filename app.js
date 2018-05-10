@@ -1,38 +1,58 @@
 //app.js
 App({
-  onLaunch: () => {
+  onLaunch: function () {
+  //   // 展示本地存储能力
+  //   var logs = wx.getStorageSync('logs') || []
+  //   logs.unshift(Date.now())
+  //   wx.setStorageSync('logs', logs)
 
-  },
-  // 封装网络请求
-  httpRequest(router, params = {}, callback, headers = {}) {
-    headers['auth'] = 'Basic_Ivj6eZRxMTx2yiyunZvnG8R69';
-    headers['client-type'] = 'applet';
-    wx.request({
-      url: this.globalData.host + router,
-      header: headers,
-      data: params,
-      success(resp) {
-        if (resp.data.code == 1) {
-          callback(resp.data);
-        } else {
-          wx.showToast({
-            title: resp.data.msg,
-            icon: 'none',
-          })
-        }
-      },
-      fail(err) {
-        wx.showToast({
-          title: '哎呀，网络粗错了',
-          icon: 'none',
-        });
-        console.log(err);
-      }
-    })
-  },
-  // 全局变量
-  globalData: {
-    hasLogin: false,
-    host: 'http://wancllshop.wx.wygoo.com/index.php/',
+
+
+  //   // 验证登录态
+  //   wx.checkSession({
+  //     // 登录态没过期
+  //     success: () => {
+  //       console.log('登录态没过期 -> 获取本地rdsession')
+  //     },
+  //     //登录态已过期
+  //     fail: () => {
+  //       console.log('登录态已经过期 -> 重新登录')
+  //       wx.login({
+  //         success: res => {
+  //           // 发送 res.code 到后台换取 openId, sessionKey, unionId
+  //           console.log(res.code)
+
+            
+  //         }
+  //       })
+  //     }
+  //   })
+
+
+  //   // 登录
+    
+  //   // 获取用户信息
+  //   wx.getSetting({
+  //     success: res => {
+  //       if (res.authSetting['scope.userInfo']) {
+  //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+  //         wx.getUserInfo({
+  //           success: res => {
+  //             // 可以将 res 发送给后台解码出 unionId
+  //             this.globalData.userInfo = res.userInfo
+
+  //             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+  //             // 所以此处加入 callback 以防止这种情况
+  //             if (this.userInfoReadyCallback) {
+  //               this.userInfoReadyCallback(res)
+  //             }
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
+  // globalData: {
+  //   userInfo: null
   }
 })

@@ -1,0 +1,17 @@
+<!--pages/userSubPage/order/order.wxml-->
+<view>
+  <zan-tab 
+  class="tab"
+  bindtap="tabchange" 
+  list="{{ tabList }}" 
+  selected-id="{{ tabSelectedId }}" 
+  data-target="{{ tabSelectedId }}"
+  fixed
+  >
+    <order-item></order-item>
+    <order-item></order-item>
+    <order-item></order-item>
+    <order-item></order-item>
+  </zan-tab>
+  
+</view>

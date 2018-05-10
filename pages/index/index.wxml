@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='search_box'>
+    <view class='category_button'>
+      <zan-icon class='icon' type="wap-nav"></zan-icon>
+      <!-- <view class='text'>分类</view>     -->
+    </view>
+    <view class='search_input'>
+      <zan-icon class='icon' type="search"></zan-icon>
+      <input class='input' placeholder='请输入关键字'>test</input>
+    </view>
+    <view class='massage_button'>
+      <zan-icon class='icon' type="chat"></zan-icon>
+      <!-- <view class='text'>消息</view> -->
+    </view>
+  </view>
+
+  <view class='banner'>
+    <swiper
+    class='banner_swiper'
+    indicator-dots="{{indicatorDots}}" 
+    autoplay="{{autoplay}}" 
+    interval="{{interval}}" 
+    duration="{{duration}}">
+      <block wx:for="{{imgUrls}}" wx:key="key">
+        <swiper-item>
+          <image src="{{item.img}}" class="slide-image" mode="widthFix"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

@@ -1,0 +1,46 @@
+/**index.wxss**/
+.search_box{
+  display: flex;
+  height: 80rpx;
+  line-height:80rpx;
+  background: #fff;
+}
+.search_box .category_button{
+  flex: 80rpx 0 0;
+  text-align: center;
+}
+.search_box .search_input{
+  flex: 1;
+  height: 50rpx;
+  margin: 15rpx 0rpx;
+  background: #f0f0f0; 
+  border-radius: 25px;
+  padding:0 15rpx;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+.search_box .search_input .icon{
+  flex: 50rpx 0 0;
+  font-size: 25rpx;
+  color: #666;
+}
+.search_box .search_input .input{
+  width: auto;
+  flex: 1;
+}
+.search_box .massage_button{
+  flex: 80rpx 0 0;
+  text-align: center;
+}
+
+.search_box .icon{
+  font-size: 35rpx;
+}
+.banner_swiper{
+  width: 100%;
+  height:432rpx;
+}
+image{
+  width: 100%;
+}

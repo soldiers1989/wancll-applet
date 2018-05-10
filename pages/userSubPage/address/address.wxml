@@ -1,0 +1,12 @@
+<view class='address-list'>
+  <address></address>
+  <address></address>
+  <address></address>
+  <address></address>
+  <address></address>
+  <address></address>
+    <zan-panel class='add-address'>
+      
+      <zan-button><zan-icon type="add"></zan-icon> 添加新地址</zan-button>
+    </zan-panel>
+</view>

@@ -1,5 +1,8 @@
 {
 	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
@@ -8,8 +11,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.94",
-	"appid": "touristappid",
+	"libVersion": "1.9.98",
+	"appid": "wx52581b0db255061b",
 	"projectname": "wancll-applet",
 	"condition": {
 		"search": {

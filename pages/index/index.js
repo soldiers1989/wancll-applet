@@ -1,14 +1,83 @@
-//index.js
-//获取应用实例
-const app = getApp();
-
-
+import { ajax } from '../../api/ajax.js';
+import { api } from '../../api/api.js';
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
+    indicatorDots: true,
+    vertical: false,
+    autoplay: false,
+    circular: false,
+    interval: 2000,
+    duration: 500,
+    previousMargin: 0,
+    nextMargin: 0,
+    imgUrls:[]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(){
+    ajax({
+      url: api.banners,
+      data: {
+        'type': "wap首页轮播"
+      },
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
   },
-  onLoad() {
-    // 判断是否登陆
-    app.globalData.hasLogin = wx.getStorageSync('token') ? true : false;
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

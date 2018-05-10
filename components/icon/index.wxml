@@ -1,0 +1,2 @@
+<!--components/icon/index.wxml-->
+<view class="zan-icon zan-icon-{{ type }}"></view>

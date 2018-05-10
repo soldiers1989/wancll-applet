@@ -1,0 +1,12 @@
+/* pages/userSubPage/address/address.wxss */
+.address-list{
+  padding-bottom: 120rpx;
+}
+.add-address{
+  padding: 20rpx;
+  background: #fafafa;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
