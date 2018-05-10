@@ -2,9 +2,15 @@
   <zan-panel>
     <view class='user'>
       <view class='avatar'>
-        <image></image>
+        <image src=''></image>
       </view>
-      <view class='nickname'>昵称</view>
+      <view class='info'>
+        <view class="name">昵称</view>
+        <view class="phone"></view>
+        <view class="other">
+          
+        </view>        
+      </view>
     </view>
   </zan-panel>
 </view>

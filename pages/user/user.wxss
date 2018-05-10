@@ -4,7 +4,12 @@
 }
 .user{
   text-align: center;
-  padding: 20rpx 0;
+  /* padding: 20rpx 0; */
+  height: 262rpx;
+  background-image: url('http://wancllshop.wx.wygoo.com/public/static/wap/images/home.png');
+  /* background-position: 0 10rpx; */
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .user .avatar{
   width: 150rpx;
