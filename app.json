@@ -6,6 +6,7 @@
     "pages/home/home",
     "pages/login/login",
     "pages/category/category",
+    "pages/detail/detail",
     "pages/user/user",
     "pages/userSubPage/order/order",
     "pages/userSubPage/address/address",

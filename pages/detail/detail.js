@@ -1,5 +1,6 @@
-const APP = getApp();
-import { getOtherData, getGoodsData} from './index-data.js';
+// pages/detail/detail.js
+const APP = getApp()
+import { getDetailData} from './detail-data.js'
 Page({
 
   /**
@@ -9,88 +10,87 @@ Page({
     // 轮播参数
     indicatorDots: true,
     vertical: false,
-    autoplay: true,
+    autoplay: false,
     circular: false,
     interval: 2000,
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    // 数据参数
-    imgUrls: [], // 轮播图片
-    smallImg: APP.imgs.smallImg,
-    title: ['新品', '精品', '热销', '折扣', '清仓'],
-    noticeImg: APP.imgs.notice,
-    notice: [],
-    goods: [],
-    // 控制参数
-    pageNum:1,
-    loading:true
+    // tab组件参数
+    tabList: [{ id: 1, title: '详情' }, { id: 2, title: '评价' }],
+    tabListSelectedId: 1,
+    tabListScroll: true,
+    tabListHeight: 45,
+
+    detailInfo:[],
+    skuInfo:[],
+    comments:[],
+    // 控制
+    show:1,
+    showBottomPopup: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-    APP.globalData.hasLogin = wx.getStorageSync('token') ? true : false;
-    // 获取所有数据
-    getOtherData(this);
-    getGoodsData(this);
-
+  onLoad(options) {
+    getDetailData(this,options.id);
   },
-  // 获取商品数据
-  goDetail(e) {
-    let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `/pages/detail/detail?id=${id}`,
-    })
+  changeTab(){
+    let id = this.selectComponent("#tab").data.selectedId
+    this.setData({show:id})
   },
-  
+  toggleBottomPopup() {
+    this.setData({
+      showBottomPopup: !this.data.showBottomPopup
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+  
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom () {
-    getGoodsData(this);
+  onReachBottom: function () {
+  
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+  
   }
 })

@@ -1,17 +1,18 @@
 // pages/category/category.js
 const APP = getApp();
-import { getGoodsTree } from './data.js';
-import { getGoodsData } from '../index/data.js';
+import { getGoodsTree } from './category-data.js';
+import { getGoodsData } from '../index/index-data.js';
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    // tab组件参数
     tabList: [],
     tabListSelectedId: '',
     tabListScroll: true,
     tabListHeight: 45,
-
+    // 数据参数
     goods: [],
     childNav: [],
     // 控制参数
@@ -27,7 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options){
     getGoodsTree(this)
     getGoodsData(this)
   },
@@ -59,7 +60,7 @@ Page({
     }
     // 得到子分类
     let child = this.data.tabList.filter(item=>item.id == id)
-    console.log(child)
+    // console.log(child)
     if (id) {
       this.setData({ 
         popupNav: true,
@@ -68,8 +69,8 @@ Page({
     } else {
       this.setData({ popupNav: false })
     }
-    // 设置数据
 
+    // 设置数据
     this.setData({
       goods: [],
       pageNum: 1,
@@ -77,7 +78,14 @@ Page({
       changeIdFNav: id
     }, () => { getGoodsData(this, id)})
   },
-
+  // 跳转到商品详情页
+  goDetail(e){
+    let id = e.currentTarget.dataset.id
+    // console.log(id);
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

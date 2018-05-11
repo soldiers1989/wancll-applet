@@ -2,7 +2,7 @@ const APP = getApp();
 export function getOtherData(that){
   // 获取首页轮播图
   APP.ajax({
-    url: APP.api.banners,
+    url: APP.api.indexBanners,
     data: { type: "wap首页轮播" },
     success: (res) => {
       that.setData({
@@ -11,14 +11,14 @@ export function getOtherData(that){
     }
   })
   APP.ajax({
-    url: APP.api.configs,
+    url: APP.api.indexConfigs,
     success: (res) => {
       console.log(res)
     }
   })
   // 获取首页公告
   APP.ajax({
-    url: APP.api.annoncements,
+    url: APP.api.indexAnnoncements,
     data: { type: "wap首页公告" },
     success: (res) => {
       that.setData({
@@ -27,13 +27,13 @@ export function getOtherData(that){
     }
   })
   APP.ajax({
-    url: APP.api.market,
+    url: APP.api.indexMarket,
     success: (res) => {
       console.log(res)
     }
   })
   APP.ajax({
-    url: APP.api.advertisements,
+    url: APP.api.indexAdvertisements,
     data: { type: "wap首页广告" },
     success: (res) => {
       console.log(res)

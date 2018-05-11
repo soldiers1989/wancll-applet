@@ -13,7 +13,7 @@ export function getGoodsTree(that){
         id:'',
         title:'全部'
       })
-      console.log('tree', list)
+      // console.log('tree', list)
       that.setData({
         tabList: list
       })

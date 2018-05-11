@@ -1,0 +1,75 @@
+/* pages/detail/detail.wxss */
+.detail-swiper{
+  height: 750rpx;
+}
+.detail-swiper .slide-image{
+  width: 100%;
+  height: 750rpx;
+}
+
+.detail-info{
+  padding: 15px;
+  background: #fff;
+}
+
+.detail-info .price{
+  font-size: 36rpx;
+  color: #df0303;
+  margin-bottom: 10rpx;
+}
+
+.detail-info .sales-info{
+  display: flex;
+  color: rgb(179, 179, 179)
+}
+.detail-info .name{
+  font-size: 30rpx;
+  line-height: 50rpx;
+
+}
+.detail-info .intro{
+  line-height: 50rpx;
+  color: #757575
+
+}
+.detail-info .sales-info .sales-stock{
+  flex: 1;
+
+}
+.detail-info .sales-info .sales-number{
+  flex: 1;
+  text-align: right
+}
+.select-sku{
+  margin-bottom: 30rpx;
+}
+.select-sku .go-select{
+  padding: 15px;
+  font-size:30rpx;
+}
+
+
+.pop-example--top {
+  width: 100vw;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+.pop-example__container {
+  overflow: hidden;
+  background: #fff;
+}
+
+.pop-example__container--bottom {
+  width: 100vw;
+}
+
+.pop-example__container--left, .pop-example__container--right {
+  height: 100vh;
+}
+.top-close{
+  padding: 15px;
+}

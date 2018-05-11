@@ -25,7 +25,13 @@
   <!-- </scroll-view> -->
   </view>  
   <view class='goods-list'>
-    <view class='goods' wx:for="{{goods}}" wx:key="index">
+    <view 
+    class='goods' 
+    wx:for="{{goods}}" 
+    wx:key="index"
+    data-id='{{item.id}}'
+    bindtap='goDetail'
+    >
       <view class='lay'>
         <view class='image'>
           <image mode="widthFix" src='{{item.thum}}'></image>

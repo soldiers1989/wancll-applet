@@ -1,0 +1,110 @@
+<!--pages/detail/detail.wxml-->
+<view class='content'>
+  <swiper class='detail-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{detailInfo.imgs}}" wx:key="key">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='detail-info'>
+    <view class='price'>￥{{detailInfo.sell_price}}</view>
+    <view class='name'>{{detailInfo.name}}</view>
+    <view class='intro'>{{detailInfo.intro}}</view>
+    <view class='sales-info'>
+      <view class='sales-stock'>库存: {{detailInfo.stock}}</view>
+      <view class='sales-number'>销量: {{detailInfo.sell_num}}</view>
+    </view>
+
+  </view>
+  <view class='select-sku'>
+    <zan-panel>
+      <view class='go-select' bindtap='toggleBottomPopup'>选择商品规格</view>
+    </zan-panel>
+    <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="toggleBottomPopup">
+      <view class="pop-example__container pop-example__container--bottom">
+        <view class="zan-btns">
+          <zan-panel>
+            <view class='top-close'>
+              <text>请选择规格</text>
+              <icon></icon>
+            </view>
+          </zan-panel>
+          <view class='image-warpper'>
+            <view class='image'>
+              <image src=''></image>
+            </view>
+            <view class='price-warpper'>
+              <view class='price'></view>
+              <view class='stock'></view>
+            </view>
+          </view>
+          <view class='sku'>
+            <view class='title'></view>
+            <view class='lists'>
+              <text></text>
+            </view>
+          </view>
+          <view class='sku'>
+            <view class='title'></view>
+            <view class='lists'>
+              <text></text>
+            </view>
+          </view>
+
+          <view class='send'>
+
+          </view>
+        </view>
+      </view>
+    </zan-popup>
+  </view>
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <view wx:if="{{show === 1}}" class='particulars'>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>ifparticulars</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+  </view>
+  <view wx:if="{{show === 2}}" class='commonts'>
+    <zan-panel>
+      <view class='comment' wx:for="{{comments}}" wx:key="key">
+        <view class='user'>
+          <view class='avatar'>
+            <image src='{{item.user_info.avatar}}'></image>
+          </view>
+          <view class='name'>{{item.user_info.nick_name}}</view>
+          <view class='time'>{{item.create_time}}</view>
+        </view>
+        <view class='star'>
+          {{item.score}}
+        </view>
+        <view class='text'>{{item.content}}</view>
+        <view class='images'>
+          <image wx:for="{{imgs}}" wx:key="key" src='{{item}}'></image>
+        </view>
+      </view>
+    </zan-panel>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>ifcommonts</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+    <view>if</view>
+  </view>
+</view>
