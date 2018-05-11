@@ -5,7 +5,6 @@ export function getOtherData(that){
     url: APP.api.banners,
     data: { type: "wap首页轮播" },
     success: (res) => {
-      console.log('wap首页轮播',res.data)
       that.setData({
         imgUrls: res.data
       })
@@ -22,7 +21,6 @@ export function getOtherData(that){
     url: APP.api.annoncements,
     data: { type: "wap首页公告" },
     success: (res) => {
-      console.log('wap首页公告',res.data)
       that.setData({
         notice: res.data
       })
@@ -43,9 +41,7 @@ export function getOtherData(that){
   })
 }
 // 获取商品参数 并控制 loading显示
-export function getGoodsData(that,id='') {
-  let prevId = id;
-  
+export function getGoodsData(that,id='') {  
   const pageLimit = 10;
   let data = that.data.goods;
   APP.ajax({
@@ -57,7 +53,6 @@ export function getGoodsData(that,id='') {
     },
     success: (res) => {
       if (res.data.length) {
-        console.log('商品列表', res)
         that.setData({
           goods: data.concat(res.data)
         }, () => { that.data.pageNum++; })

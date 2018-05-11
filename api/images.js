@@ -10,7 +10,5 @@ export const imgs = {
     `${imageHost.upload}/20180227/5a9559dcafae3.png`
   ],
   notice: `${imageHost.wap}/wangkaikuaibao.png`
-    
-  
 }
   

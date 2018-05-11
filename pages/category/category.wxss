@@ -25,3 +25,25 @@
   color: #df0303;
   margin-bottom: 20rpx;
 }
+.popup-nav{
+  position: fixed;
+  display: flex;
+  width: 100%;
+  top: 45px;
+  padding-bottom:20rpx; 
+  background: #fff;
+}
+.popup-nav .list{
+  flex: 1;
+  text-align: center;
+}
+.popup-nav .list .image{
+  width: 100%;
+  height: 100rpx;
+  text-align: center
+}
+.popup-nav .list .image image{
+  width: 100rpx;
+  height: 100rpx;
+}
+

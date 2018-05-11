@@ -4,7 +4,6 @@ export function getGoodsTree(that){
   APP.ajax({
     url: APP.api.goodsTree,
     success: (res) => {
-      console.log('tree', res.data);
       let list = []
       res.data.forEach((item,index)=>{
         item.title = item.name;
@@ -14,7 +13,7 @@ export function getGoodsTree(that){
         id:'',
         title:'全部'
       })
-      console.log(list)
+      console.log('tree', list)
       that.setData({
         tabList: list
       })

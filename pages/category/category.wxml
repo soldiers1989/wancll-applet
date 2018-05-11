@@ -7,6 +7,23 @@
   height="{{ tabListHeight }}" 
   bindtap='changeNav'
   fixed/>
+  <!-- 弹出的 -->
+  <view class='popup-nav' wx:if="{{popupNav}}">
+  <!-- <scroll-view class='scroll-items' scroll-x="true"> -->
+    <view 
+    class='list'
+    wx:for="{{childNav}}" 
+    wx:key="{{index}}" 
+    bindtap='changeSubNav'
+    data-id='{{item.id}}'
+    >
+      <view class='image'>
+        <image wx:if="{{item.thum}}" src='{{item.thum}}'></image>
+      </view>
+      <view class='text'>{{item.name}}</view>
+    </view>
+  <!-- </scroll-view> -->
+  </view>  
   <view class='goods-list'>
     <view class='goods' wx:for="{{goods}}" wx:key="index">
       <view class='lay'>
