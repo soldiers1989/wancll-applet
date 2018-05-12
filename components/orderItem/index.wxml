@@ -2,29 +2,73 @@
   <zan-panel>
     <view class='item-content'>
       <view class='top-info'>
-        <view class='left'>订单编号：E2018050717387776552</view>
-        <view class='right'>等待买家付款</view>
+        <view class='left'>订单编号：{{data.order_no}}</view>
+        <template is="pay-actions" data="{{...data}}"/>
       </view>
-      <view class='center-info'>
+      <view class='center-info' wx:for="{{data.order_goods_info}}" wx:key="key">
         <view class='image-warpper'>
-          <image class='image'></image>
+          <image class='image' src='{{item.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title zan-ellipsis--l2'>女式条纹提花短袖针织衫女式条纹提花短袖针织衫女式条纹提花短袖针织衫</view>
-          <view class='sku'>规格: 白色条纹_M</view>
+          <view class='title zan-ellipsis--l2'>{{item.name}}</view>
+          <view class='sku'>规格: {{item.spec_group_info}}</view>
         </view>
         <view class='price-warpper'>
-          <view class='price'>￥9269.00</view>
-          <view class='count'>x2</view>
+          <view class='price'>
+            <view class='real_price'>￥{{item.real_price}}</view>
+            <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view>
+          </view>
+          <view class='count'>x{{item.num}}</view>
+          <template is="send-actions"  data="{{...data}}"/>
         </view>
       </view>
       <view class='bottom-info'>
-        <view class='all-price'>共1件商品 合计：<text>￥9269.00</text> (含运费：￥0.00)</view>
-        <view class='click-button'>
-          <zan-button class='zan-button' size="small">取消订单</zan-button>
-          <zan-button class='zan-button' size="small" type="primary">确认付款</zan-button>
-        </view>
+        <view class='all-price'>共 {{data.order_goods_info.length}} 件商品 合计:
+          <text>￥{{data.total_money}}</text> (含运费：￥{{data.freight_money}})</view>
+        <template is="finsh-actions"  data="{{...data}}"/>
       </view>
     </view>
   </zan-panel>
 </view>
+
+<!-- 大按钮模板 -->
+<template name="finsh-actions">
+  <view wx:if="{{status === 1}}" class='click-button' >
+    <zan-button catchtap='cancelOrder' data-id="{{id}}"  class='zan-button' size="small">取消订单</zan-button>
+    <zan-button catchtap='payOrder' data-id="{{id}}" class='zan-button' size="small">确认付款</zan-button>
+  </view>
+  <view wx:if="{{status === 2}}" class='click-button'>
+    <zan-button class='zan-button' size="small">退款</zan-button>
+    <zan-button catchtap="tipOrder" data-id="{{id}}" class='zan-button' size="small">提醒发货</zan-button>
+  </view>
+  <view wx:if="{{status === 3}}" class='click-button'>
+    <zan-button class='zan-button' size="small">退款</zan-button>
+    <zan-button class='zan-button' size="small">查看物流</zan-button>
+    <zan-button class='zan-button' size="small">确认收货</zan-button>
+  </view>
+  <view wx:if="{{status === 4}}" class='click-button'>
+    <zan-button class='zan-button' size="small">查看物流</zan-button>
+    <zan-button class='zan-button' size="small">评价</zan-button>
+  </view>
+  <view wx:if="{{status === 9}}" class='click-button'>
+    <zan-button class='zan-button' size="small">删除订单</zan-button>
+  </view>
+</template>
+
+<!-- 小退款评价按钮 -->
+<template name="send-actions">
+  <view class='action'>
+    <zan-button wx:if="{{status === 2}}" class='zan-button' size="mini"> 退款 </zan-button>
+    <zan-button wx:if="{{status === 3}}" class='zan-button' size="mini"> 退款 </zan-button>
+    <zan-button wx:if="{{status === 4}}" class='zan-button' size="mini"> 评价 </zan-button>
+  </view>
+</template>
+
+<!-- 付款状态 -->
+<template name="pay-actions">
+   <view wx:if="{{status === 1}}" class='right'>待付款</view>
+   <view wx:if="{{status === 2}}" class='right'>待发货</view>
+   <view wx:if="{{status === 3}}" class='right'>待收货</view>
+   <view wx:if="{{status === 4}}" class='right'>待评价</view>
+   <view wx:if="{{status === 9}}" class='right'>交易关闭</view>
+</template>

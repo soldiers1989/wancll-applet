@@ -9,6 +9,7 @@ export const imgs = {
     `${imageHost.upload}/20180227/5a9559db2e958.png`,
     `${imageHost.upload}/20180227/5a9559dcafae3.png`
   ],
-  notice: `${imageHost.wap}/wangkaikuaibao.png`
+  notice: `${imageHost.wap}/wangkaikuaibao.png`,
+  logo: `${imageHost.wap}/wap_logo.png`
 }
   

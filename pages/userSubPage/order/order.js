@@ -1,4 +1,6 @@
 // pages/userSubPage/order/order.js
+const APP = getApp();
+import {getOrderData} from './order-data.js'
 Page({
 
   /**
@@ -6,37 +8,50 @@ Page({
    */
   data: {
     tabList: [{
-      id: 'all',
+      id: '',
       title: '全部'
     }, {
-      id: 'topay',
+      id: 1,
       title: '待付款'
     }, {
-      id: 'tosend',
+      id: 2,
       title: '待发货'
     }, {
-      id: 'send',
+      id: 3,
       title: '待收货'
     }, {
-      id: 'estimate',
+      id: 4,
       title: '待评价'
     }],
-    tabSelectedId: 'all'
+    tabSelectedId: '',
+    orderList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 设置跳转目标
+    // 设置跳转目标并对应请求
     if (options.target) {
       this.setData({
         tabSelectedId: options.target
+      },()=>{
+        getOrderData(this, options.target);
       })
     }
   },
+  //子组件派发的事件
+  cancelOrder(){
+    getOrderData(this, this.data.tabSelectedId);
+  },
+  // 点击切换顶部的标签
   tabchange(e){
-    console.log(e);
+    let id = this.selectComponent("#tab").data.selectedId
+    this.setData({ 
+      tabSelectedId:id
+    },()=>{
+      getOrderData(this, id);
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

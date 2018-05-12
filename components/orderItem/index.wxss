@@ -4,6 +4,7 @@
 }
 .item .item-content{
   padding: 10px;
+  background: #fff;
 }
 .top-info{
   display: flex;
@@ -22,13 +23,14 @@
   background: #fafafa;
   padding: 10rpx;
   display: flex;
+  margin-bottom: 10rpx;
 }
 .center-info .image-warpper{
-  flex: 170rpx 0 0;  
+  flex: 180rpx 0 0;  
 }
 .center-info .image{
-  width: 150rpx;
-  height: 150rpx;
+  width: 160rpx;
+  height: 160rpx;
   background: #ccc;
   display: block;
 }
@@ -57,13 +59,18 @@
   height: 70rpx;
   margin-bottom: 5rpx;
 }
-
+.center-info .price-warpper .price .real_price{
+  color: #f44;
+}
+.center-info .price-warpper .price .sell_price{
+  text-decoration: line-through;
+  color: #999;
+} 
 .center-info .price-warpper .count{
-  height: 70rpx;
+  height: 40rpx;
+  line-height: 1;
 }
-.bottom-info{
-  
-}
+
 .bottom-info .all-price{
   line-height: 70rpx;
   text-align: right;

@@ -3,23 +3,20 @@
   margin-bottom: 20rpx;
 }
 .user{
-  text-align: center;
-  /* padding: 20rpx 0; */
-  height: 262rpx;
+  position: relative;
+  height: 300rpx;
   background-image: url('http://wancllshop.wx.wygoo.com/public/static/wap/images/home.png');
-  /* background-position: 0 10rpx; */
-  background-size: 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  display: flex;
 }
 .user .avatar{
+  flex: 250rpx 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150rpx;
-  height: 150rpx;
-  border:1px solid #ccc;
   border-radius: 50%;
-  padding: 5rpx;
-  margin: 0rpx auto;
-  margin-bottom: 20rpx;
-  box-shadow: 0px 0px 5px #eee;
 }
 .user .avatar image{
   width: 150rpx;
@@ -27,8 +24,36 @@
   background: #eee;
   border-radius: 50%;
 }
-.user .nickname{
-  color: #000;
+.user .info{
+  flex: 1;
+  color: #fff;
+  padding: 80rpx 0;
+}
+.user .info .icon{
+  font-size: 30rpx;
+}
+.user .info .name{
+  font-size: 36rpx;
+  /* margin-bottom: 15rpx; */
+}
+.user .info .phone{
+  line-height: 50rpx;
+}
+.user .info .other{
+  display: flex;
+}
+.user .info .other .vip{
+  margin-right: 50rpx;
+}
+
+.user .setting{
+  position: absolute;
+  right: 30rpx;
+  top:30rpx;
+}
+.user .setting .icon{
+  font-size: 45rpx;
+  color: #fff;
 }
 .pending-list{
   padding: 20px 0 15px 0;
@@ -42,11 +67,16 @@
   margin: 0rpx 40rpx;
 }
 .pending-list .pending .icon{
-  font-size: 40rpx;
+  font-size: 50rpx;
+}
+.pending-list .pending .color-y{
+  color: rgb(235, 197, 46);
+ 
+}
+.pending-list .pending .color-r{
+  color: rgb(236, 128, 62);
 }
 .pending-list .pending .text{
-  font-size: 20rpx;
-}
-.list-icon{
-  font-size: 35rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
 }

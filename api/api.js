@@ -20,4 +20,18 @@ export const api = {
   detailCollect: `${defaultHost}/api_query/goods/is_collect`,
   detailComments: `${defaultHost}/api_query/goods/comments`,
   detailTemplate: `${defaultHost}/api_query/goods_cates/template`,
+
+  // 登录相关
+  loginUser: `${defaultHost}/api_users/user_accounts/login`,
+
+  // 个人中心
+  userCount: `${defaultHost}/api_query/orders/count`,
+  userAsset: `${defaultHost}/api_query/users/asset`,
+  
+  // 订单相关
+  orderAll: `${defaultHost}/api_orders/orders/lists`,
+  orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,
+  orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
+  
+  
 }

@@ -1,6 +1,7 @@
 <!--pages/userSubPage/order/order.wxml-->
 <view>
   <zan-tab 
+  id="tab"
   class="tab"
   bindtap="tabchange" 
   list="{{ tabList }}" 
@@ -8,10 +9,10 @@
   data-target="{{ tabSelectedId }}"
   fixed
   >
-    <order-item></order-item>
-    <order-item></order-item>
-    <order-item></order-item>
-    <order-item></order-item>
+    <block wx:for="{{orderList}}" wx:key="key">
+      <order-item data="{{item}}" bindcancelOrder="cancelOrder"></order-item>
+    </block>
+  
   </zan-tab>
   
 </view>

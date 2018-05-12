@@ -1,5 +1,5 @@
 import { headers} from './config.js';
-
+const APP = getApp();
 // 封装原来的请求 添加公共请求头的配置
 export function ajax(option){
   // 配置header

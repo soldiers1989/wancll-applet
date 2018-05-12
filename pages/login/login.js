@@ -1,7 +1,7 @@
-const app = getApp();
+const APP = getApp();
 Page({
   data: {
-    logo: 'http://wancllshop.wx.wygoo.com/public/static/wap/images/wap_logo.png',
+    logo: APP.imgs.logo,
     mobile: '',
     password: ''
   },
@@ -36,11 +36,38 @@ Page({
       })
       return;
     }
-    app.httpRequest('api_users/user_accounts/login', {
-      mobile: this.data.mobile,
-      password: this.data.password,
-    }, (resp) => {
-      console.log(resp)
+    APP.ajax({
+      url: APP.api.loginUser,
+      data:{
+        mobile: this.data.mobile,
+        password: this.data.password,
+      },
+      success(res){
+        wx.showToast({
+          title: '登录成功',
+          icon: 'none',
+        })
+        // 存储到local
+        new Promise((resolve,reject)=>{
+          APP.globalData.hasLogin = true
+          APP.globalData.token = res.data.token.token
+          APP.globalData.user = res.data.user
+          wx.setStorage({
+            key: "token",
+            data: res.data.token
+          })
+          wx.setStorage({
+            key: "user",
+            data: res.data.user
+          })
+          resolve(true);
+        }).then(()=>{
+          // 跳转
+          wx.switchTab({
+            url: '/pages/user/user',
+          })
+        })
+      }
     });
   },
   // 微信登陆监听

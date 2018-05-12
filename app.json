@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/carts/carts",
-    "pages/home/home",
     "pages/login/login",
     "pages/category/category",
     "pages/detail/detail",

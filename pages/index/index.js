@@ -31,7 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    APP.globalData.hasLogin = wx.getStorageSync('token') ? true : false;
     // 获取所有数据
     getOtherData(this);
     getGoodsData(this);
