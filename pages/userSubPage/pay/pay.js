@@ -6,8 +6,7 @@ Page({
    */
   data: {
     showPopup: false,
-    num: 0,
-    money: 0,
+    orderInfo: {},
     password: "",
     items: [
       {
@@ -38,21 +37,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      num: options.num,
-      money: options.money
+    // 获取本地存储的订单列表
+    APP.utils.getOrderById(options.id, (res) => {
+      this.setData({
+        orderInfo: res
+      })
     })
   },
+  // 数据绑定
   passwordInput(e) {
     this.setData({
       password: e.detail.value
     })
   },
+  // 切换弹出层隐显
   togglePopup() {
     this.setData({
       showPopup: !this.data.showPopup
     });
   },
+  // 选择
   handleSelectChange(e) {
     let type = APP.utils.getDataSet(e, 'type');
     let value = e.detail.value;
@@ -60,16 +64,17 @@ Page({
       [`checked.${type}`]: value
     });
   },
+  
   payMoney() {
     // 钱包支付
-    let _this = this;
+    let that = this;
     if (this.data.checked.color == 1) {
       APP.ajax({
         url: APP.api.orderPassword,
         header: { token: APP.globalData.token },
         success(res) {
           if (res.code == 1) {
-            _this.togglePopup()
+            that.togglePopup()
           }
         }
       })
@@ -78,6 +83,7 @@ Page({
 
     // 支付宝支付
   },
+  // 
   sendMoney() {
     if (!this.data.password) {
       wx.showToast({
@@ -86,13 +92,13 @@ Page({
       })
       return;
     }
-    let _this = this
+    let that = this
     APP.ajax({
       url: APP.api.orderMoney,
       header: { token: APP.globalData.token },
       data: {
-        order_no: _this.data.num,
-        pay_password: _this.data.password
+        order_no: that.data.orderInfo.order_no,
+        pay_password: that.data.password
       },
       success(res) {
         // 暂无支付密码

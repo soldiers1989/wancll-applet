@@ -8,7 +8,7 @@ Page({
    */
   data: {
     tabList: [{
-      id: '',
+      id: 0,
       title: '全部'
     }, {
       id: 1,
@@ -23,14 +23,14 @@ Page({
       id: 4,
       title: '待评价'
     }],
-    tabSelectedId: '',
+    tabSelectedId: 0,
     orderList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     // 设置跳转目标并对应请求
     if (options.target) {
       this.setData({
@@ -41,7 +41,7 @@ Page({
     }
   },
   //重新加载数据
-  cancelOrder(){
+  refreshGet(){
     getOrderData(this, this.data.tabSelectedId);
   },
   // 点击切换顶部的标签

@@ -1,9 +1,9 @@
 <view>
 <zan-panel>
   <zan-panel>
-    <view class='padding'>订单编号：{{orderNum}}</view>
+    <view class='padding'>订单编号：{{orderInfo.order_no}}</view>
   </zan-panel>
-  <view class='padding'>退款金额：{{orderMoney}}</view>
+  <view class='padding'>退款金额：{{orderInfo.total_money}}</view>
   <zan-panel>
     <view class='padding'>
       <view class='title'>退款原因：</view>

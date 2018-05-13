@@ -39,5 +39,7 @@ export const api = {
   orderAliPayApp: `${defaultHost}/api_orders/pay/ali_pay_app`,
   orderWechatPayApp: `${defaultHost}/api_orders/pay/wechat_pay_app`,
   orderRefound: `${defaultHost}/api_orders/return_goods/save`,
+  orderUserSing: `${defaultHost}/api_orders/sign_orders/user_sign`,
+  
   
 }

@@ -19,22 +19,37 @@
 // }
 
 // 获取点击参数
-function getDataSet(e,field){
-  if (e.currentTarget.dataset[field]){
+function getDataSet(e, field) {
+  if (e.currentTarget.dataset[field]) {
     return e.currentTarget.dataset[field]
-  }else{
+  } else {
     return e.target.dataset[field]
   }
 }
 // 组装传递的参数
-function paramsJoin(paramsObj){
+function paramsJoin(paramsObj) {
   let arr = [];
   for (let name in paramsObj) {
     arr.push(`${name}=${paramsObj[name]}`);
   }
   return arr.join('&');
 }
+
+// 获取本地存储订单Id
+function getOrderById(id,fn) {
+  wx.getStorage({
+    key: 'orderList',
+    success(res) {
+      let obj = res.data.filter((item) => {
+        return item.id == id;
+      })
+      fn(obj[0])
+    },
+  })
+}
+
 module.exports = {
   getDataSet,
-  paramsJoin
+  paramsJoin,
+  getOrderById
 }

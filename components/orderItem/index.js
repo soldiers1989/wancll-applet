@@ -23,9 +23,9 @@ Component({
   methods: {
     // ----------------- 待付款
     // 取消订单
-    cancelOrder(e) {
+    cancelOrder() {
       let id = this.data.data.id;
-      let _this = this;
+      let that = this;
       let itemList = ['不想买了', '信息填写错误，重新下单', '商家缺货', '其他原因']
       wx.showActionSheet({
         itemList: itemList,
@@ -42,17 +42,15 @@ Component({
                 title: res.msg,
                 icon: 'none',
               })
-              _this.triggerEvent('cancelOrder')
+              that.triggerEvent('refreshGet')
             }
           })
         }
       })
     },
     // 预支付
-    payOrder(e) {
+    payOrder() {
       let id = this.data.data.id;
-      let num = this.data.data.order_no;
-      let money = this.data.data.total_money;
       APP.ajax({
         url: APP.api.orderPrePay,
         header: { token: APP.globalData.token },
@@ -61,7 +59,7 @@ Component({
           if (res.code == 1) {
             // 前往支付页面
             wx.navigateTo({
-              url: `/pages/userSubPage/pay/pay?num=${num}&money=${money}`,
+              url: `/pages/userSubPage/pay/pay?id=${id}`,
             })
           }
         }
@@ -69,7 +67,7 @@ Component({
     },
     // ----------------- 待发货
     // 提醒发货
-    tipOrder(e) {
+    tipOrder() {
       let id = this.data.data.id;
       APP.ajax({
         url: APP.api.orderTip,
@@ -85,14 +83,42 @@ Component({
     },
     // 进入退款
     refundOrder() {
-      let that = this
-      let params = APP.utils.paramsJoin({
-        num: that.data.data.order_no,
-        money: that.data.data.total_money,
-        id: that.data.data.id
-      })
+      let id = this.data.data.id;      
       wx.navigateTo({
-        url: `/pages/userSubPage/refound/refound?${params}`,
+        url: `/pages/userSubPage/refound/refound?id=${id}`,
+      })
+    },
+    // ----------------- 待收货
+    // 确认收货
+    userSing(){
+      let id = this.data.data.id;
+      let that = this;
+      wx.showModal({
+        title: '提示',
+        content: '确定货物已经收到，再点击确定收货按钮，',
+        success: function (res) {
+          if (res.confirm) {
+            APP.ajax({
+              url: APP.api.orderUserSing,
+              header: { token: APP.globalData.token },
+              data: { order_id: id },
+              success(res) {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none',
+                })
+                that.triggerEvent('refreshGet')
+              }
+            })
+          }
+        }
+      })
+    },
+    // 查看物流
+    goExpress(){
+      let id = this.data.data.id
+      wx.navigateTo({
+        url: `/pages/userSubPage/express/express?id=${id}`,
       })
     }
 

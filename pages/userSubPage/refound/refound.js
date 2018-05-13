@@ -5,10 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderId:'',
-    orderGoodsId:'',
-    orderNum:'',
-    orderMoney:0,
+    orderInfo: {},
     tempFilePaths:[],
     refoundTexts:''
   },
@@ -17,10 +14,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.setData({
-      orderNum:options.num,
-      orderMoney:options.money,
-      orderId: options.id,
+    // 获取本地存储的订单列表
+    APP.utils.getOrderById(options.id, (res) => {
+      this.setData({
+        orderInfo: res
+      })
     })
   },
   // 输入绑定
@@ -31,7 +29,7 @@ Page({
   },
   // 添加图片
   addImage(){
-    let that= this;
+    let that = this;
     let paths = this.data.tempFilePaths;
     wx.chooseImage({
       count: 4, // 默认9
@@ -78,7 +76,7 @@ Page({
       url: APP.api.orderRefound,
       header: { token: APP.globalData.token },
       data: {
-        order_id: that.data.orderId,
+        order_id: that.data.orderInfo.order_id,
         imgs: that.data.tempFilePaths,
         return_reason: that.data.refoundTexts,
         return_type:1

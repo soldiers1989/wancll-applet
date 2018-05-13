@@ -12,7 +12,7 @@
     <block wx:for="{{orderList}}" wx:key="key">
       <order-item 
         data="{{item}}" 
-        bindcancelOrder="cancelOrder"
+        bind:refreshGet="refreshGet"
       ></order-item>
     </block>
   

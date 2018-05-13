@@ -17,7 +17,8 @@
     "pages/userSubPage/estimate/estimate",
     "pages/userSubPage/service/service",
     "pages/userSubPage/pay/pay",
-    "pages/userSubPage/refound/refound"
+    "pages/userSubPage/refound/refound",
+    "pages/userSubPage/express/express"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

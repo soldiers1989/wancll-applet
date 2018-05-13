@@ -1,9 +1,9 @@
 <view class="top">
   <zan-panel>
     <view class='title'>
-      <view>订单编号：{{num}}</view>
+      <view>订单编号：{{orderInfo.order_no}}</view>
       <view>订单金额：
-        <text class='money'>￥{{money}}</text>
+        <text class='money'>￥{{orderInfo.total_money}}</text>
       </view>
     </view>
   </zan-panel>
@@ -14,7 +14,7 @@
   </zan-panel>
 </view>
 <view class="bottom">
-  <zan-button type="primary" catchtap='payMoney'>确认付款 ￥{{money}}</zan-button>
+  <zan-button type="primary" catchtap='payMoney'>确认付款 ￥{{orderInfo.total_money}}</zan-button>
 </view>
 
 <zan-popup show="{{ showPopup }}" bindclose="togglePopup">

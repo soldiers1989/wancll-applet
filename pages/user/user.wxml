@@ -30,7 +30,7 @@
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
-      <zan-cell title="我的订单" value="查看全部订单" is-link catchtap='goOrderList' data-target="">
+      <zan-cell title="我的订单" value="查看全部订单" is-link catchtap='goOrderList' data-target="0">
       </zan-cell>
       <zan-panel>
         <view class='pending-list'>
