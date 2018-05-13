@@ -18,6 +18,7 @@
 //   formatTime: formatTime
 // }
 
+// 获取点击参数
 function getDataSet(e,field){
   if (e.currentTarget.dataset[field]){
     return e.currentTarget.dataset[field]
@@ -25,7 +26,15 @@ function getDataSet(e,field){
     return e.target.dataset[field]
   }
 }
-
+// 组装传递的参数
+function paramsJoin(paramsObj){
+  let arr = [];
+  for (let name in paramsObj) {
+    arr.push(`${name}=${paramsObj[name]}`);
+  }
+  return arr.join('&');
+}
 module.exports = {
-  getDataSet
+  getDataSet,
+  paramsJoin
 }

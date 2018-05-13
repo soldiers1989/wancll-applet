@@ -16,15 +16,20 @@
         <view class='price-warpper'>
           <view class='price'>
             <view class='real_price'>￥{{item.real_price}}</view>
-            <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view>
+            <view 
+              wx:if="{{data.market_activity_type != 0}}" 
+              class='sell_price'>￥{{item.sell_price}}</view>
           </view>
           <view class='count'>x{{item.num}}</view>
           <template is="send-actions"  data="{{...data}}"/>
         </view>
       </view>
       <view class='bottom-info'>
-        <view class='all-price'>共 {{data.order_goods_info.length}} 件商品 合计:
-          <text>￥{{data.total_money}}</text> (含运费：￥{{data.freight_money}})</view>
+        <view class='all-price'>
+          <text>共 {{data.order_goods_info.length}} 件商品 合计: </text>
+          <text class='text-price'>￥{{data.total_money}}</text>
+          <text> (含运费：￥{{data.freight_money}})</text>
+        </view>
         <template is="finsh-actions"  data="{{...data}}"/>
       </view>
     </view>
@@ -34,15 +39,27 @@
 <!-- 大按钮模板 -->
 <template name="finsh-actions">
   <view wx:if="{{status === 1}}" class='click-button' >
-    <zan-button catchtap='cancelOrder' data-id="{{id}}"  class='zan-button' size="small">取消订单</zan-button>
-    <zan-button catchtap='payOrder' data-id="{{id}}" class='zan-button' size="small">确认付款</zan-button>
+    <zan-button 
+      catchtap='cancelOrder' 
+      class='zan-button' 
+      size="small">取消订单</zan-button>
+    <zan-button 
+      catchtap='payOrder' 
+      class='zan-button' 
+      size="small">确认付款</zan-button>
   </view>
   <view wx:if="{{status === 2}}" class='click-button'>
-    <zan-button class='zan-button' size="small">退款</zan-button>
-    <zan-button catchtap="tipOrder" data-id="{{id}}" class='zan-button' size="small">提醒发货</zan-button>
+    <zan-button 
+      class='zan-button' 
+      size="small"
+      catchtap='refundOrder'>退款</zan-button>
+    <zan-button 
+      catchtap="tipOrder" 
+      class='zan-button' 
+      size="small">提醒发货</zan-button>
   </view>
   <view wx:if="{{status === 3}}" class='click-button'>
-    <zan-button class='zan-button' size="small">退款</zan-button>
+    <zan-button class='zan-button' catchtap='refundOrder' size="small">退款</zan-button>
     <zan-button class='zan-button' size="small">查看物流</zan-button>
     <zan-button class='zan-button' size="small">确认收货</zan-button>
   </view>
@@ -58,8 +75,8 @@
 <!-- 小退款评价按钮 -->
 <template name="send-actions">
   <view class='action'>
-    <zan-button wx:if="{{status === 2}}" class='zan-button' size="mini"> 退款 </zan-button>
-    <zan-button wx:if="{{status === 3}}" class='zan-button' size="mini"> 退款 </zan-button>
+    <zan-button wx:if="{{status === 2}}" catchtap='refundOrder' class='zan-button' size="mini"> 退款 </zan-button>
+    <zan-button wx:if="{{status === 3}}" catchtap='refundOrder' class='zan-button' size="mini"> 退款 </zan-button>
     <zan-button wx:if="{{status === 4}}" class='zan-button' size="mini"> 评价 </zan-button>
   </view>
 </template>

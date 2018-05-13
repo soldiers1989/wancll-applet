@@ -32,6 +32,12 @@ export const api = {
   orderAll: `${defaultHost}/api_orders/orders/lists`,
   orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,
   orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
-  
+  orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
+  orderPrePay: `${defaultHost}/api_orders/pay/pre_pay`,
+  orderPassword: `${defaultHost}/api_query/users/is_set_pay_password`,
+  orderMoney: `${defaultHost}/api_orders/pay/money`,
+  orderAliPayApp: `${defaultHost}/api_orders/pay/ali_pay_app`,
+  orderWechatPayApp: `${defaultHost}/api_orders/pay/wechat_pay_app`,
+  orderRefound: `${defaultHost}/api_orders/return_goods/save`,
   
 }

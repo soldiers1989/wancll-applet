@@ -1,0 +1,43 @@
+.top{
+  margin-bottom: 10px;
+}
+.top .title{
+  padding: 15px;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+.top .title .money{
+  color: #df0303
+}
+
+.center{
+  margin-bottom: 10px;
+}
+.bottom{
+  padding:15px;
+  margin-bottom: 10px;
+}
+.popup-warpper{
+  width: 600rpx;
+  background: #fff;
+}
+.popup-warpper .title{
+  padding: 15px;
+  font-size: 30rpx;
+  text-align: center;
+}
+.popup-warpper input{
+  width: 80%;
+  margin: 0 auto;
+  height: 100rpx;
+  text-align: center;
+}
+.popup-warpper .select{
+  display: flex;
+}
+.popup-warpper .select .yes{
+  flex: 1;
+}
+.popup-warpper .select .no{
+    flex: 1;
+}

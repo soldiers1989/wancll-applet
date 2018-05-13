@@ -31,7 +31,7 @@ App({
   api: api,
   // 图片
   imgs: imgs,
-  // 获得点击参数
-  getDataSet: Utils.getDataSet,
+  // 工具函数
+  utils: Utils,
   
 })

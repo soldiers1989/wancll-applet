@@ -40,7 +40,7 @@ Page({
       })
     }
   },
-  //子组件派发的事件
+  //重新加载数据
   cancelOrder(){
     getOrderData(this, this.data.tabSelectedId);
   },

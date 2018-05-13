@@ -75,7 +75,7 @@
   line-height: 70rpx;
   text-align: right;
 }
-.bottom-info .all-price text{
+.bottom-info .all-price .text-price{
   color: #f44;
 }
 .bottom-info .click-button{

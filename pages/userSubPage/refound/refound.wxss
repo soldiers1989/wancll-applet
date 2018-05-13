@@ -1,0 +1,33 @@
+/* pages/userSubPage/refound/refound.wxss */
+.padding{
+  padding: 15px;
+  font-size: 28rpx;
+}
+.padding .title{
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+}
+.text-input textarea{
+  height: 150rpx;
+}
+.image-input{
+  display: flex;
+  flex-wrap: wrap
+}
+.image-input .image-list{
+  margin-right: 20rpx;
+}
+.image-input .up-img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.image-input .add-image{
+  width: 100rpx;
+  height: 100rpx;
+  padding: 5rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px
+}

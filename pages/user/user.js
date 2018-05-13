@@ -30,21 +30,21 @@ Page({
   },
   // 跳转到订单状态页面
   goOrderList(e) {
-    let target = APP.getDataSet(e, 'target')
+    let target = APP.utils.getDataSet(e, 'target')
     wx.navigateTo({
       url: `/pages/userSubPage/order/order?target=${target}`,
     })
   },
   // 跳转到子页面
   goSubPages(e) {
-    let target = APP.getDataSet(e, 'target')
+    let target = APP.utils.getDataSet(e, 'target')
     wx.navigateTo({
       url: `/pages/userSubPage/${target}/${target}`,
     })
   },
   // 跳转到购物车页面 这个有问题，多余
   goCarts(e) {
-    let target = APP.getDataSet(e, 'target')
+    let target = APP.utils.getDataSet(e, 'target')
     wx.switchTab({
       url: `/pages/${target}/${target}`,
     })

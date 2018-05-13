@@ -10,7 +10,10 @@
   fixed
   >
     <block wx:for="{{orderList}}" wx:key="key">
-      <order-item data="{{item}}" bindcancelOrder="cancelOrder"></order-item>
+      <order-item 
+        data="{{item}}" 
+        bindcancelOrder="cancelOrder"
+      ></order-item>
     </block>
   
   </zan-tab>
