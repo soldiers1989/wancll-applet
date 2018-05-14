@@ -32,7 +32,6 @@ Component({
         success(res) {
           APP.ajax({
             url: APP.api.orderCancel,
-            header: { token: APP.globalData.token },
             data: {
               order_id: id,
               cancel_reason: itemList[res.tapIndex]
@@ -53,13 +52,12 @@ Component({
       let id = this.data.data.id;
       APP.ajax({
         url: APP.api.orderPrePay,
-        header: { token: APP.globalData.token },
         data: { order_id: id },
         success(res) {
           if (res.code == 1) {
             // 前往支付页面
             wx.navigateTo({
-              url: `/pages/userSubPage/pay/pay?id=${id}`,
+              url: `/pages/userSubPage/orderPay/pay?id=${id}`,
             })
           }
         }
@@ -71,7 +69,6 @@ Component({
       let id = this.data.data.id;
       APP.ajax({
         url: APP.api.orderTip,
-        header: { token: APP.globalData.token },
         data: { order_id: id },
         success(res) {
           wx.showToast({
@@ -82,15 +79,18 @@ Component({
       })
     },
     // 进入退款
-    refundOrder() {
-      let id = this.data.data.id;      
+    refundOrder(e) {
+      let params = APP.utils.paramsJoin({
+        orderId: this.data.data.id,
+        goodsId: APP.utils.getDataSet(e, 'id'),
+      })
       wx.navigateTo({
-        url: `/pages/userSubPage/refound/refound?id=${id}`,
+        url: `/pages/userSubPage/orderRefound/refound?${params}`,
       })
     },
     // ----------------- 待收货
     // 确认收货
-    userSing(){
+    userSing() {
       let id = this.data.data.id;
       let that = this;
       wx.showModal({
@@ -100,7 +100,6 @@ Component({
           if (res.confirm) {
             APP.ajax({
               url: APP.api.orderUserSing,
-              header: { token: APP.globalData.token },
               data: { order_id: id },
               success(res) {
                 wx.showToast({
@@ -115,13 +114,46 @@ Component({
       })
     },
     // 查看物流
-    goExpress(){
+    goExpress() {
       let id = this.data.data.id
       wx.navigateTo({
-        url: `/pages/userSubPage/express/express?id=${id}`,
+        url: `/pages/userSubPage/orderExpress/express?id=${id}`,
       })
+    },
+    // 评价
+    estimateGoods(e) {
+      let params = APP.utils.paramsJoin({
+        orderId: this.data.data.id,
+        goodsId: APP.utils.getDataSet(e, 'id'),
+      })
+      wx.navigateTo({
+        url: `/pages/userSubPage/orderEstimate/estimate?${params}`,
+      })
+    },
+    // 删除订单
+    deleteOrder() {
+      // let id = this.data.data.id;
+      // let that = this;
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '确定要删除订单吗？',
+      //   success: function (res) {
+      //     if (res.confirm) {
+      //       APP.ajax({
+      //         url: APP.api.orderDelete,
+      //         data: { order_id: id },
+      //         success(res) {
+      //           wx.showToast({
+      //             title: res.msg,
+      //             icon: 'none',
+      //           })
+      //           that.triggerEvent('refreshGet')
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
     }
-
   },
   attached() {
   }

@@ -13,7 +13,6 @@ App({
       Token.getToken(this)
       Token.getUser(this)
     }
-
   },
 
   // 全局变量

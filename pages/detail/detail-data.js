@@ -28,17 +28,17 @@ export function getDetailData(that,id=''){
     })
   })
   
-  // 需要token !!!
-  // APP.ajax({
-  //   url: APP.api.detailCollect,
-  //   data: { goods_id: id },
-  //   success: (res) => {
-  //     console.log(res.data)
-  //     // that.setData({
-  //     //   imgUrls: res.data
-  //     // })
-  //   }
-  // })
+  // 需要token !!! 待定
+  APP.ajax({
+    url: APP.api.detailCollect,
+    data: { goods_id: id },
+    success: (res) => {
+      console.log(res.data)
+      // that.setData({
+      //   imgUrls: res.data
+      // })
+    }
+  })
   APP.ajax({
     url: APP.api.detailComments,
     data: { goods_id: id },

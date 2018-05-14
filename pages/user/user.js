@@ -1,5 +1,5 @@
 const APP = getApp()
-import { getUserData} from './user-data.js';
+import { getUserData } from './user-data.js';
 Page({
 
   /**
@@ -23,7 +23,6 @@ Page({
     }else{
       // 发起请求
       this.setData({ user: APP.globalData.user })
-      
       getUserData(this);
     }
 

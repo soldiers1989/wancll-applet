@@ -1,0 +1,23 @@
+<zan-panel>
+  <view class='item'>
+    <view class='image'>
+      <image src='{{orderInfo.order_goods_info[0].thum}}' widthFix></image>
+    </view>
+    <view class='order-info'>
+      <view class='list'>订单号码：{{orderInfo.order_no}}</view>
+      <view class='list'>{{logisticsMap[orderInfo.express_type]}}：{{orderInfo.express_no}}</view>
+      <view class='list'>官方电话：</view>
+    </view>
+  </view>
+</zan-panel>
+
+<zan-panel>
+  <view class=''>
+    <zan-panel>
+      <view class='express-title'>物流详情</view>
+    </zan-panel>
+    <view class='express-list'>
+      暂时无详情......
+    </view>
+  </view>
+</zan-panel>

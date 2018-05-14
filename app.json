@@ -16,9 +16,10 @@
     "pages/userSubPage/attestation/attestation",
     "pages/userSubPage/estimate/estimate",
     "pages/userSubPage/service/service",
-    "pages/userSubPage/pay/pay",
-    "pages/userSubPage/refound/refound",
-    "pages/userSubPage/express/express"
+    "pages/userSubPage/orderPay/pay",
+    "pages/userSubPage/orderRefound/refound",
+    "pages/userSubPage/orderExpress/express",
+    "pages/userSubPage/orderEstimate/estimate"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

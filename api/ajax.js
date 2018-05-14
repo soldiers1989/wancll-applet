@@ -1,18 +1,27 @@
-import { headers} from './config.js';
+import { headers } from './config.js';
 const APP = getApp();
+
 // 封装原来的请求 添加公共请求头的配置
-export function ajax(option){
+export function ajax(option) {
   // 配置header
-  let headerConfig = {
+  let headerMust = {
     'auth': headers.auth,
     'client-type': headers.clientType,
   }
-  let header = {}
-  if (option.header){
-    header = Object.assign(option.header, headerConfig)
+  // 合并header参数
+  let header = option.header ? Object.assign(option.header, headerMust) : headerMust
+
+  //判断本地是否有token
+  let has = wx.getStorageSync('token');
+  if (has){
+    let token = { 'token': has.token }
+    let tokenHeader = Object.assign(token, header)
+    runAjax(option, tokenHeader)
   }else{
-    header = headerConfig;
+    runAjax(option, header)
   }
+}
+function runAjax(option, header) {
   // 其他参数
   let options = option || {};
   let url = options.url || '';

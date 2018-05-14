@@ -21,7 +21,12 @@
               class='sell_price'>￥{{item.sell_price}}</view>
           </view>
           <view class='count'>x{{item.num}}</view>
-          <template is="send-actions"  data="{{...data}}"/>
+          <block wx:if="{{data.status ==2 || data.status ==3 }}">
+            <template is="refound" data="{{...item}}"/>
+          </block>
+          <block wx:if="{{data.status == 4 }}">
+            <template is="estimate" data="{{...item}}"/>
+          </block>
         </view>
       </view>
       <view class='bottom-info'>
@@ -51,10 +56,6 @@
   <block wx:if="{{is_has_return_goods===0}}">
     <view wx:if="{{status === 2}}" class='click-button'>
       <zan-button 
-        class='zan-button' 
-        size="small"
-        catchtap='refundOrder'>退款</zan-button>
-      <zan-button 
         catchtap="tipOrder" 
         class='zan-button' 
         size="small">提醒发货</zan-button>
@@ -77,8 +78,9 @@
   <block wx:if="{{is_has_return_goods===1}}">
     <view wx:if="{{status === 2}}" class='click-button'>
       <zan-button 
+        catchtap="tipOrder" 
         class='zan-button' 
-        size="small">取消退款</zan-button>
+        size="small">提醒发货</zan-button>
     </view>
     <view wx:if="{{status === 3}}" class='click-button'>
       <zan-button
@@ -92,16 +94,11 @@
     </view>
   </block>
 
-
   <view wx:if="{{status === 4}}" class='click-button'>
     <zan-button 
       class='zan-button' 
       size="small" 
       catchtap='goExpress'>查看物流</zan-button>
-    <zan-button
-      class='zan-button'
-      size="small"
-      catchtap='estimateGoods'>评价</zan-button>
   </view>
   <view wx:if="{{status === 9}}" class='click-button'>
     <zan-button 
@@ -111,30 +108,42 @@
   </view>
 </template>
 
-<!-- 小退款评价按钮 -->
-<template name="send-actions">
+<!-- 小退款按钮 -->
+<template name="refound">
   <view class='action'>
-    <block wx:if="{{is_has_return_goods===0}}">
-      <zan-button 
-        wx:if="{{status === 2 || status === 3}}" 
-        catchtap='refundOrder' 
-        class='zan-button' 
-        size="mini"> 退款 </zan-button>
-    </block>
-    <block wx:if="{{is_has_return_goods===1}}">
-      <zan-button 
-        wx:if="{{status === 2 || status === 3}}" 
-        class='zan-button' 
-        size="mini"> 退款中... </zan-button>
-    </block>
     <zan-button 
-      wx:if="{{status === 4}}" 
+      wx:if="{{return_goods_status===0}}"
+      catchtap='refundOrder'
+      data-id="{{goods_id}}" 
+      class='zan-button' 
+      size="mini"> 退款 </zan-button>
+    <zan-button 
+      wx:if="{{return_goods_status===1}}"
+      class='zan-button' 
+      size="mini"> 退款中... </zan-button>
+    <zan-button 
+      wx:if="{{return_goods_status===2}}"
+      class='zan-button' 
+      size="mini"> 退款成功 </zan-button>
+  </view>
+</template>
+<!-- 评价按钮 -->
+<template name="estimate">
+  <view class='action'>
+    <zan-button
+      wx:if="{{is_comment===0}}"
+      data-id="{{goods_id}}" 
       class='zan-button' 
       size="mini"
       catchtap='estimateGoods'> 评价 </zan-button>
+      <zan-button
+      wx:if="{{is_comment===1}}"
+      data-id="{{goods_id}}" 
+      class='zan-button' 
+      size="mini"> 已评论 </zan-button>
   </view>
-
 </template>
+
 
 <!-- 付款状态 -->
 <template name="pay-actions">

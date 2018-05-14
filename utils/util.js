@@ -34,7 +34,6 @@ function paramsJoin(paramsObj) {
   }
   return arr.join('&');
 }
-
 // 获取本地存储订单Id
 function getOrderById(id,fn) {
   wx.getStorage({
@@ -47,9 +46,17 @@ function getOrderById(id,fn) {
     },
   })
 }
+// 获取本地存储订单Id下的某个商品
+function getGoodsById(goodsArr, goodsId) {
+  let obj = goodsArr.filter((item) => {
+    return item.goods_id == goodsId;
+  })
+  return obj[0]
+}
 
 module.exports = {
   getDataSet,
   paramsJoin,
-  getOrderById
+  getOrderById,
+  getGoodsById  
 }

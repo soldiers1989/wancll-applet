@@ -71,7 +71,6 @@ Page({
     if (this.data.checked.color == 1) {
       APP.ajax({
         url: APP.api.orderPassword,
-        header: { token: APP.globalData.token },
         success(res) {
           if (res.code == 1) {
             that.togglePopup()
@@ -95,13 +94,25 @@ Page({
     let that = this
     APP.ajax({
       url: APP.api.orderMoney,
-      header: { token: APP.globalData.token },
       data: {
         order_no: that.data.orderInfo.order_no,
         pay_password: that.data.password
       },
       success(res) {
-        // 暂无支付密码
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          success() {
+            let params = APP.utils.paramsJoin({
+              target: wx.getStorageSync('thisOrderList')
+            })
+            setTimeout(() => {
+              wx.navigateTo({
+                url: `/pages/userSubPage/order/order?${params}`,
+              })
+            }, 1000)
+          }
+        })
       }
     })
   },

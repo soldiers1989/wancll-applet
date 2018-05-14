@@ -5,7 +5,7 @@ Page({
     mobile: '',
     password: ''
   },
-  onLoad: function (options) {
+  onLoad(options){
 
   },
   // 手机号码监听
@@ -36,6 +36,7 @@ Page({
       })
       return;
     }
+    // 登录逻辑
     APP.ajax({
       url: APP.api.loginUser,
       data:{
@@ -49,20 +50,16 @@ Page({
         })
         // 存储到local
         new Promise((resolve,reject)=>{
+          // 登录之后先全部存入本地
+          wx.setStorageSync("token", res.data.token)
+          wx.setStorageSync("user", res.data.user)
+          // 然后再存入全局变量中
           APP.globalData.hasLogin = true
           APP.globalData.token = res.data.token.token
           APP.globalData.user = res.data.user
-          wx.setStorage({
-            key: "token",
-            data: res.data.token
-          })
-          wx.setStorage({
-            key: "user",
-            data: res.data.user
-          })
+          // 再跳转
           resolve(true);
         }).then(()=>{
-          // 跳转
           wx.switchTab({
             url: '/pages/user/user',
           })

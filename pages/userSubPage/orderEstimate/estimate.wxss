@@ -1,4 +1,21 @@
-/* pages/userSubPage/refound/refound.wxss */
+.item{  
+  padding: 15px;
+  display: flex;
+}
+.item .image{
+  flex: 180rpx 0 0;
+}
+.item .image image{
+  width: 160rpx;
+  height: 160rpx;
+}
+.item .order-info{
+  flex: 1
+}
+.item .order-info .text textarea{
+  height: 200rpx;
+}
+
 .padding{
   padding: 15px;
   font-size: 28rpx;
@@ -7,9 +24,8 @@
   margin-bottom: 20rpx;
   font-size: 28rpx;
 }
-.text-input textarea{
-  height: 150rpx;
-}
+
+
 .image-input{
   display: flex;
   flex-wrap: wrap
@@ -30,4 +46,17 @@
   align-items: center;
   border: 1px solid #ccc;
   border-radius: 10px
+}
+
+.star-cent{
+  padding: 15px;
+  display: flex;
+  line-height: 60rpx;
+}
+.star-cent .star-title{
+  font-size: 28rpx;
+  
+}
+.star-cent .star{
+  font-size: 40rpx;
 }

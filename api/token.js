@@ -1,3 +1,4 @@
+// 获取本地的token 给全局变量使用
 function getToken(that) {
   wx.getStorage({
     key: 'token',
@@ -6,12 +7,8 @@ function getToken(that) {
     },
   })
 }
-
-function checkToken(){
-
-}
-
-function getUser(that){
+// 获取本地的用户信息
+function getUser(that) {
   wx.getStorage({
     key: 'user',
     success(res) {
@@ -21,6 +18,5 @@ function getUser(that){
 }
 module.exports = {
   getToken,
-  checkToken,
   getUser
 }

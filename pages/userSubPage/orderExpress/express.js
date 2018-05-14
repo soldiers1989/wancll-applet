@@ -1,11 +1,11 @@
-const APP =getApp();
+const APP = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    logisticsMap:{
+    logisticsMap: {
       huitongkuaidi: '百世汇通',
       ems: 'EMS',
       shentong: '申通快递',
@@ -30,11 +30,27 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad (options) {
+  onLoad(options) {
     // 获取本地存储的订单列表
     APP.utils.getOrderById(options.id, (res) => {
       this.setData({
         orderInfo: res
+      }, () => {
+        APP.ajax({
+          url: APP.api.orderExpress100,
+          data: {
+            express_type: this.data.orderInfo.express_type,
+            express_no: this.data.orderInfo.express_no
+          },
+          success(res){
+            if(res.data.status == 0){
+              wx.showToast({
+                title: res.data.message,
+                icon:'none'
+              })
+            }
+          }
+        })
       })
     })
   },
@@ -43,48 +59,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

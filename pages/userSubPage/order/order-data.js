@@ -5,10 +5,8 @@ export function getOrderData(that, status) {
   APP.ajax({
     url: APP.api.orderAll,
     data: data,
-    header: {
-      token: APP.globalData.token
-    },
     success(res) {
+      console.log(res.data)
       that.setData({ orderList: res.data})
       wx.setStorageSync('orderList', res.data)
     }

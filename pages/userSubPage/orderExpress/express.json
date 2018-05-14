@@ -2,7 +2,6 @@
   "navigationBarTitleText": "查看物流",
   "usingComponents": {
     "zan-tab": "../../../dist/tab/index",
-    "zan-icon": "../../../dist/icon/index",
-    "order-item": "../../../components/orderItem/index"
+    "zan-panel": "../../../dist/panel/index"
   }
 }

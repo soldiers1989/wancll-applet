@@ -1,3 +1,0 @@
-<!--pages/userSubPage/express/express.wxml-->
-<view>订单号码：{{orderInfo.order_no}}</view>
-<view>{{logisticsMap[orderInfo.express_type]}}：{{orderInfo.express_no}}</view>

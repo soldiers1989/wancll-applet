@@ -33,6 +33,7 @@ Page({
   onLoad(options) {
     // 设置跳转目标并对应请求
     if (options.target) {
+      wx.setStorageSync('thisOrderList', Number(options.target))
       this.setData({
         tabSelectedId: options.target
       },()=>{
@@ -47,6 +48,11 @@ Page({
   // 点击切换顶部的标签
   tabchange(e){
     let id = this.selectComponent("#tab").data.selectedId
+    // 禁止重复点击
+    if (id == this.data.tabSelectedId){
+      return;
+    }
+    wx.setStorageSync('thisOrderList', id)
     this.setData({ 
       tabSelectedId:id
     },()=>{

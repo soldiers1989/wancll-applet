@@ -1,9 +1,22 @@
 <view>
 <zan-panel>
   <zan-panel>
-    <view class='padding'>订单编号：{{orderInfo.order_no}}</view>
+    <view class='padding'>
+      <view class='center-info' wx:key="key">
+        <view class='image-warpper'>
+          <image class='image' src='{{goodsInfo.thum}}' mode="widthFix"></image>
+        </view>
+        <view class='title-warpper'>
+          <view class='title zan-ellipsis--l2'>{{goodsInfo.name}}</view>
+          <view class='sku'>规格: {{goodsInfo.spec_group_info}}</view>
+        </view>
+        <view class='price-warpper'>
+          <view class='count'>x{{goodsInfo.num}}</view>
+        </view>
+      </view>
+    </view>
   </zan-panel>
-  <view class='padding'>退款金额：{{orderInfo.total_money}}</view>
+  <view class='padding'>退款金额：{{goodsInfo.real_price}}</view>
   <zan-panel>
     <view class='padding'>
       <view class='title'>退款原因：</view>

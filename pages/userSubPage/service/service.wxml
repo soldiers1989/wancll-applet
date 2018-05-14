@@ -1,2 +1,5 @@
-<!--pages/userSubPage/service/service.wxml-->
-<text>pages/userSubPage/service/service.wxml</text>
+<view>
+  <block wx:for="{{orderList}}" wx:key="key">
+    <order-item data="{{item}}"></order-item>
+  </block>
+</view>

@@ -1,18 +1,28 @@
 // pages/userSubPage/service/service.js
+const APP = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    orderList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad(options) {
+    let that = this;
+    APP.ajax({
+      url: APP.api.orderAll,
+      data: { is_has_return_goods:1},
+      success(res) {
+        console.log(res.data)
+        that.setData({ orderList: res.data })
+        wx.setStorageSync('orderList', res.data)
+      }
+    })
   },
 
   /**

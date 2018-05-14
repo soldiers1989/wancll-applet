@@ -36,10 +36,11 @@ export const api = {
   orderPrePay: `${defaultHost}/api_orders/pay/pre_pay`,
   orderPassword: `${defaultHost}/api_query/users/is_set_pay_password`,
   orderMoney: `${defaultHost}/api_orders/pay/money`,
-  orderAliPayApp: `${defaultHost}/api_orders/pay/ali_pay_app`,
-  orderWechatPayApp: `${defaultHost}/api_orders/pay/wechat_pay_app`,
+  // orderAliPayApp: `${defaultHost}/api_orders/pay/ali_pay_app`,
+  // orderWechatPayApp: `${defaultHost}/api_orders/pay/wechat_pay_app`,
   orderRefound: `${defaultHost}/api_orders/return_goods/save`,
   orderUserSing: `${defaultHost}/api_orders/sign_orders/user_sign`,
-  
-  
+  orderExpress100: `${defaultHost}/api_query/transport/read_by_kd100`,
+  orderComments: `${defaultHost}/api_goods/goods_comments/save`,
+  orderDelete: `${defaultHost}/api_orders/orders/delete`
 }
