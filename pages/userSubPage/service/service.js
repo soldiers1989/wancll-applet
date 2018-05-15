@@ -1,14 +1,12 @@
 // pages/userSubPage/service/service.js
 const APP = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     orderList: []
   },
-
   /**
    * 生命周期函数--监听页面加载
    */

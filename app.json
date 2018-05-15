@@ -19,7 +19,8 @@
     "pages/userSubPage/orderPay/pay",
     "pages/userSubPage/orderRefound/refound",
     "pages/userSubPage/orderExpress/express",
-    "pages/userSubPage/orderEstimate/estimate"
+    "pages/userSubPage/orderEstimate/estimate",
+    "pages/userSubPage/addressEidt/addressEidt"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

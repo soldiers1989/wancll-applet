@@ -42,5 +42,18 @@ export const api = {
   orderUserSing: `${defaultHost}/api_orders/sign_orders/user_sign`,
   orderExpress100: `${defaultHost}/api_query/transport/read_by_kd100`,
   orderComments: `${defaultHost}/api_goods/goods_comments/save`,
-  orderDelete: `${defaultHost}/api_orders/orders/delete`
+  orderDelete: `${defaultHost}/api_orders/orders/delete`,
+
+  // 收藏夹
+  collections: `${defaultHost}/api_goods/goods_collections/lists`,
+  collectionsDelete: `${defaultHost}/api_goods/goods_collections/delete`,
+  
+  // 地址 
+  addressList: `${defaultHost}/api_users/addresses/lists`,
+  addressSetDefault: `${defaultHost}/api_users/addresses/set_default`,
+  addressDelete: `${defaultHost}/api_users/addresses/delete`,
+  addressRead: `${defaultHost}/api_users/addresses/read`,
+  addressRegions: `${defaultHost}/api_systems/regions/index`,
+  addressSave: `${defaultHost}/api_users/addresses/save`,
+  addressUpdate: `${defaultHost}/api_users/addresses/update`
 }
