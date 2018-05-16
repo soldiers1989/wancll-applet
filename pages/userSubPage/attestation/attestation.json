@@ -3,7 +3,6 @@
   "usingComponents": {
     "zan-icon": "../../../dist/icon/index",
     "zan-panel": "../../../dist/panel/index",
-    "zan-button": "../../../dist/btn/index",
-    "address": "../../../components/address/index"
+    "zan-button": "../../../dist/btn/index"
   }
 }

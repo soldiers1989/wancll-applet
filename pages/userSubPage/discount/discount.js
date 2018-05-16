@@ -1,66 +1,127 @@
-// pages/userSubPage/discount/discount.js
+const APP = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    pageNum: 1,
+    pageLimit: 10,
+    tabList: [{
+      id: 1,
+      title: '未使用'
+    }, {
+      id: 2,
+      title: '已使用'
+    }, {
+      id: 3,
+      title: '已过期'
+    }],
+    tabSelectedId: 1,
+    loading: true,
+    discountList: [],
+    enterConvert:''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this.getList(this.data.tabSelectedId);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  getList(status) {
+    let that = this
+    let data = {}
+    if (status == 3) {
+      data = { expiry_time: "" }
+    } else {
+      data = { status: status }
+    }
+    let pageNum = this.data.pageNum;
+    let discountList = this.data.discountList
+    APP.ajax({
+      url: APP.api.myDiscount,
+      header: {
+        'page-limit': that.data.pageLimit,
+        'page-num': pageNum,
+      },
+      data: data,
+      success(res) {
+        if (res.data.length) {
+          console.log(res.data)
+          that.setData({
+            discountList: res.data,
+            pageNum: ++pageNum
+          })
+        } else {
+          that.setData({
+            loading: false
+          })
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  tabchange(e) {
+    let id = this.selectComponent("#tab").data.selectedId
+    // 禁止重复点击
+    if (id == this.data.tabSelectedId) {
+      return;
+    }
+    this.setData({
+      tabSelectedId: id,
+      pageNum: 1,
+    }, () => {
+      this.getList(id);
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  enterConvert(e) {
+    this.setData({
+      enterConvert: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  goCenter() {
+    wx.navigateTo({ url: `/pages/userSubPage/discountCenter/diecountCenter` })
   },
-
+  convert() {
+    let that = this
+    if (!this.data.enterConvert) {
+      wx.showToast({
+        title: '输入兑换码',
+        icon: 'none',
+      })
+      return
+    }
+    APP.ajax({
+      url: APP.api.myDiscountReceive,
+      data: {
+        coupon_no: that.data.enterConvert
+      },
+      success(res) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+        })
+        setTimeout(()=>{
+          that.getList(that.datatabSelectedId)
+        },1000)
+      }
+    })
+  },
+  goBuy(){
+    wx.switchTab({ url: `/pages/category/category` })
+  },
+  onShow(){
+    this.setData({
+      discountList: [],
+      pageNum: 1
+    },()=>{
+      this.getList(this.data.tabSelectedId)
+    })
+    
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+  },
 })

@@ -1,2 +1,44 @@
-<!--pages/userSubPage/discount/discount.wxml-->
-<text>pages/userSubPage/discount/discount.wxml</text>
+<view class='conten'>
+  <zan-tab 
+    id="tab"
+    class="tab"
+    bindtap="tabchange" 
+    list="{{ tabList }}" 
+    selected-id="{{ tabSelectedId }}" 
+    data-target="{{ tabSelectedId }}"
+    fixed>
+  </zan-tab>
+  <view class='convert'>
+    <input class='convert-input' bindinput='enterConvert' placeholder='请输入兑换码'></input>
+    <view class='convert-btn'>
+      <zan-button size='small' catchtap='convert'>兑换</zan-button>
+    </view>
+  </view>
+  <view class='discount-list'>
+    <view class='discount' wx:for="{{discountList}}" wx:key="{{key}}">
+      <view class='left'>
+        <view>{{item.change_value}} {{item.coupon_type =='full'?'元':'折'}}</view>
+        <view>优惠券</view>
+      </view>
+      <view class='center'>
+        <view>购物满{{item.reach_money}}元可以使用</view>
+        <view>过期时间：{{item.expiry_time}}</view>
+      </view>
+      <view class='right'>
+        <template is="see"  data="{{...item}}"/>
+      </view>
+    </view>
+  </view>
+  <zan-panel>
+    <view class='fix-bottom'>
+      <zan-button catchtap='goCenter' type="primary">领券中心</zan-button>
+    </view>
+  </zan-panel>
+</view>
+
+<template name="see">
+  <view class='see' wx:if="{{is_expiry==true && status==2}}">已过期</view>
+  <view class='see' wx:if="{{is_expiry==true && status==1}}">已过期</view>
+  <view class='see' catchtap='goBuy'  wx:if="{{is_expiry==false && status==1}}">立即使用</view>
+  <view class='see' wx:if="{{is_expiry==false && status==2}}">已使用</view>
+</template>

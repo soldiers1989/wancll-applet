@@ -70,5 +70,11 @@ export const api = {
   myBankCardSave: `${defaultHost}/api_users/bank_cards/save`,
   myBankCardDelete: `${defaultHost}/api_users/bank_cards/delete`,
   
+  // 优惠券
+  myDiscount: `${defaultHost}/api_users/user_coupons/lists`,  
+  myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,  
+  myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,  
+  myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,  
+  
   
 }

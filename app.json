@@ -22,7 +22,8 @@
     "pages/userSubPage/orderEstimate/estimate",
     "pages/userSubPage/addressEidt/addressEidt",
     "pages/userSubPage/walletLog/walletLog",
-    "pages/userSubPage/cardEdit/cardEdit"
+    "pages/userSubPage/cardEdit/cardEdit",
+    "pages/userSubPage/discountCenter/diecountCenter"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
