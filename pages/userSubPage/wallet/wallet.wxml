@@ -1,2 +1,11 @@
-<!--pages/userSubPage/wallet/wallet.wxml-->
-<text>pages/userSubPage/wallet/wallet.wxml</text>
+<view class='info'>
+  <view class='title'>钱包余额 (元)</view>
+  <view class='money'>￥{{walletInfo.money}}</view>
+</view>
+<zan-panel>
+  <zan-cell-group>
+    <zan-cell title="充值" is-link></zan-cell>
+    <zan-cell title="提现" is-link></zan-cell>
+    <zan-cell title="明细" is-link url="/pages/userSubPage/walletLog/walletLog"></zan-cell>
+  </zan-cell-group>
+</zan-panel>

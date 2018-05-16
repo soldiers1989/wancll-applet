@@ -1,2 +1,34 @@
-<!--pages/userSubPage/estimate/estimate.wxml-->
-<text>pages/userSubPage/estimate/estimate.wxml</text>
+<view class='item' wx:for="{{goodsComments}}" wx:key="key">
+  <view class='center-info'>
+    <view class='image-warpper'>
+      <image class='image' src='{{item.order_goods_info.thum}}' mode="widthFix"></image>
+    </view>
+    <view class='title-warpper'>
+      <view class='title zan-ellipsis--l2'>{{item.order_goods_info.name}}</view>
+      <view class='sku'>规格: {{item.order_goods_info.intro}}</view>
+    </view>
+    <view class='price-warpper'>
+      <view class='price'>
+        <view class='real_price'>￥{{item.order_goods_info.real_price}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom-info'>
+    <zan-panel>
+      <view class='star-cent'>
+        <view class='star-title'>服务评价：</view>
+        <view class='star-list'>
+          <icon class='star' type="{{item.score>=1?'shoucang':'star'}}"></icon>
+          <icon class='star' type="{{item.score>=2?'shoucang':'star'}}"></icon>
+          <icon class='star' type="{{item.score>=3?'shoucang':'star'}}"></icon>
+          <icon class='star' type="{{item.score>=4?'shoucang':'star'}}"></icon>
+          <icon class='star' type="{{item.score>=5?'shoucang':'star'}}"></icon>
+        </view>
+      </view>
+      <view class='star-cent'>
+        <view class='star-title'>评价内容：</view>
+        <view class='star-list'>{{item.content}}</view>
+      </view>
+    </zan-panel>
+  </view>
+</view>

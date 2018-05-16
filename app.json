@@ -20,7 +20,9 @@
     "pages/userSubPage/orderRefound/refound",
     "pages/userSubPage/orderExpress/express",
     "pages/userSubPage/orderEstimate/estimate",
-    "pages/userSubPage/addressEidt/addressEidt"
+    "pages/userSubPage/addressEidt/addressEidt",
+    "pages/userSubPage/walletLog/walletLog",
+    "pages/userSubPage/cardEdit/cardEdit"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

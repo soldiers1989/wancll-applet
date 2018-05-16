@@ -1,12 +1,11 @@
 const APP = getApp();
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    goodsComments:[],
+    logs:[],
     pageNum: 1,
     pageLimit: 10,
     loading: true,
@@ -16,23 +15,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad (options) {
-    this.getData();
+    
+    this.getData()
   },
-  getData(){
+  getData() {
     let that = this
     let pageNum = this.data.pageNum;
-    let goodsComments = this.data.goodsComments
+    let logs = this.data.logs
     APP.ajax({
-      url: APP.api.itemComments,
+      url: APP.api.myWalletLog,
       header: {
         'page-limit': that.data.pageLimit,
         'page-num': pageNum,
       },
       success(res) {
-        that.setData({
-          goodsComments: res.data,
-          pageNum: ++pageNum
-        })
+        if(res.data.length){
+          that.setData({
+            logs: res.data,
+            pageNum: ++pageNum
+          })
+        }else{
+          that.setData({
+            loading: false
+          })
+        }
       }
     })
   },
@@ -75,7 +81,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getData();
+    this.getData()
   },
 
   /**

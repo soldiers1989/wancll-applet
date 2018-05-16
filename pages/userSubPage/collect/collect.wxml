@@ -1,24 +1,16 @@
 <view class='goods-list'>
-    <view 
-    class='goods' 
-    wx:for="{{conlectList}}" 
-    wx:key="index">
-      <view class='lay'>
-        <view class='image' data-id='{{item.goods_info.id}}'  catchtap='goDetail'>
-          <image mode="widthFix" src='{{item.goods_info.thum}}'></image>
-        </view>
-        <view class='info'>
-          <view class='title'>{{item.goods_info.name}}</view>
-          <view class='price'>
-            <text>￥{{item.goods_info.sell_price}}</text>
-            <icon 
-              class='delete'
-              catchtap='deleteItem' 
-              data-id='{{item.id}}'
-              type='shanchu'
-              ></icon>
-          </view>
+  <view class='goods' wx:for="{{conlectList}}" wx:key="index">
+    <view class='lay'>
+      <view class='image' data-id='{{item.goods_info.id}}' catchtap='goDetail'>
+        <image mode="widthFix" src='{{item.goods_info.thum}}'></image>
+      </view>
+      <view class='info'>
+        <view class='title'>{{item.goods_info.name}}</view>
+        <view class='price'>
+          <text>￥{{item.goods_info.sell_price}}</text>
+          <icon class='delete' catchtap='deleteItem' data-id='{{item.id}}' type='shanchu'></icon>
         </view>
       </view>
     </view>
   </view>
+</view>

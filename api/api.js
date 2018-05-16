@@ -32,7 +32,6 @@ export const api = {
   orderAll: `${defaultHost}/api_orders/orders/lists`,
   orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,
   orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
-  orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
   orderPrePay: `${defaultHost}/api_orders/pay/pre_pay`,
   orderPassword: `${defaultHost}/api_query/users/is_set_pay_password`,
   orderMoney: `${defaultHost}/api_orders/pay/money`,
@@ -55,5 +54,21 @@ export const api = {
   addressRead: `${defaultHost}/api_users/addresses/read`,
   addressRegions: `${defaultHost}/api_systems/regions/index`,
   addressSave: `${defaultHost}/api_users/addresses/save`,
-  addressUpdate: `${defaultHost}/api_users/addresses/update`
+  addressUpdate: `${defaultHost}/api_users/addresses/update`,
+
+  // 我的评论
+  itemComments: `${defaultHost}/api_goods/goods_comments/lists`,
+
+  // 我的钱包
+  myWallet: `${defaultHost}/api_query/users/asset`,
+  myWalletLog: `${defaultHost}/api_users/user_asset_logs/lists`,
+
+  // 我的银行卡
+  myBankCard: `${defaultHost}/api_users/bank_cards/lists`,
+  myBankCardRead: `${defaultHost}/api_users/bank_cards/read`,
+  myBankCardUpdate: `${defaultHost}/api_users/bank_cards/update`,
+  myBankCardSave: `${defaultHost}/api_users/bank_cards/save`,
+  myBankCardDelete: `${defaultHost}/api_users/bank_cards/delete`,
+  
+  
 }

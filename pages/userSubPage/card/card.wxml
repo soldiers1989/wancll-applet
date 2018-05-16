@@ -1,2 +1,25 @@
-<!--pages/userSubPage/card/card.wxml-->
-<text>pages/userSubPage/card/card.wxml</text>
+<view class='items'>
+  <view 
+    class="item" 
+    wx:for="{{lists}}" 
+    wx:key="key" 
+    data-id='{{item.id}}' 
+    catchtap='editBankCard'>
+    <view class='logo'>
+
+    </view>
+    <view class='info'>
+      <view class='intro'>{{item.bank_name}}</view>
+      <view class='change'>{{item.card_holder}}</view>
+      <view class='change'>{{item.card_number}}</view>
+    </view>
+  </view>
+  <view class='loading' wx:if="{{loading}}">
+    <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
+  </view>
+  <zan-panel>
+    <view class='addCard' data-id='new' catchtap='editBankCard'>
+      <zan-button>新增银行卡</zan-button>
+    </view>
+  </zan-panel>
+</view>
