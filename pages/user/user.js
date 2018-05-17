@@ -1,19 +1,11 @@
 const APP = getApp()
 import { getUserData } from './user-data.js';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     user: {},
     count:{},
     asset:{},
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     // 判断登录状态
     if (!APP.globalData.hasLogin){
@@ -25,7 +17,6 @@ Page({
       this.setData({ user: APP.globalData.user })
       getUserData(this);
     }
-
   },
   // 跳转到订单状态页面
   goOrderList(e) {
@@ -48,17 +39,16 @@ Page({
       url: `/pages/${target}/${target}`,
     })
   },
-  // 显示成长值记录
+  // 跳转成长值记录
   showGrow(){
-    wx.showToast({
-      title: '显示成长值记录，开发中....',
-      icon: 'none',
+    wx.navigateTo({
+      url: `/pages/userSubPage/grow/grow`,
     })
   },
+  // 跳转到设置页面
   settingInfo(){
-    wx.showToast({
-      title: '显示成长打开设置弹窗，开发中....',
-      icon: 'none',
+    wx.navigateTo({
+      url: `/pages/userSubPage/setting/setting`,
     })
   },
   /**

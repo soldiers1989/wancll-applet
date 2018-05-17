@@ -27,6 +27,12 @@ export const api = {
   // 个人中心
   userCount: `${defaultHost}/api_query/orders/count`,
   userAsset: `${defaultHost}/api_query/users/asset`,
+  userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
+  
+  // 个人中心设置
+  userSettingCode: `${defaultHost}/api_systems/helper/send_code`,
+  userSettingPass: `${defaultHost}/api_users/user_accounts/reset_password`,
+  userSettingPayPass: `${defaultHost}/api_users/user_accounts/reset_pay_password`,
   
   // 订单相关
   orderAll: `${defaultHost}/api_orders/orders/lists`,
@@ -42,6 +48,7 @@ export const api = {
   orderExpress100: `${defaultHost}/api_query/transport/read_by_kd100`,
   orderComments: `${defaultHost}/api_goods/goods_comments/save`,
   orderDelete: `${defaultHost}/api_orders/orders/delete`,
+  orderDetail: `${defaultHost}/api_orders/orders/read`,
 
   // 收藏夹
   collections: `${defaultHost}/api_goods/goods_collections/lists`,
@@ -75,6 +82,5 @@ export const api = {
   myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,  
   myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,  
   myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,  
-  
   
 }

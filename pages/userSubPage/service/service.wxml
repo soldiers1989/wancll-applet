@@ -1,5 +1,5 @@
 <view>
   <block wx:for="{{orderList}}" wx:key="key">
-    <order-item data="{{item}}"></order-item>
+    <order-item data="{{item}}" haveinfo></order-item>
   </block>
 </view>

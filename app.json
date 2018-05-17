@@ -23,7 +23,11 @@
     "pages/userSubPage/addressEidt/addressEidt",
     "pages/userSubPage/walletLog/walletLog",
     "pages/userSubPage/cardEdit/cardEdit",
-    "pages/userSubPage/discountCenter/diecountCenter"
+    "pages/userSubPage/discountCenter/diecountCenter",
+    "pages/userSubPage/grow/grow",
+    "pages/userSubPage/setting/setting",
+    "pages/userSubPage/settingPassword/settingPassword",
+    "pages/userSubPage/orderDetail/orderDetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

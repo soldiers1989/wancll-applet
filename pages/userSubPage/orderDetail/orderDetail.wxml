@@ -1,0 +1,41 @@
+
+<view class="order-top">{{orderStaus}}</view>
+<view class="order-address">
+  <view class="address">
+    <view class="right">
+      {{orderData.province}}{{orderData.city}}{{orderData.area}}{{orderData.address}}
+    </view>
+  </view>
+  <view class="info">
+    <view class="right">{{orderData.consignee_name}} {{orderData.mobile}}</view>
+  </view>
+</view>
+<order-item data="{{orderData}}"></order-item>
+
+<zan-panel>
+  <zan-cell-group>
+    <zan-cell title="运费">
+      <view slot="footer">{{orderData.freight_money}}</view>
+    </zan-cell>
+    <block wx:if="{{orderData.market_reduce_money}}">
+      <zan-cell title="有优惠活动">
+        <view slot="footer">{{orderData.market_reduce_money}}</view>
+      </zan-cell>
+    </block>
+    <zan-cell title="订单总价（含运费）">
+      <view slot="footer">{{orderData.total_money}}</view>
+    </zan-cell>
+  </zan-cell-group>
+</zan-panel>
+
+
+<zan-panel>
+  <view class="order-bottom">
+    <view class="line">
+      订单创建时间：{{orderData.create_time}}
+    </view>
+    <view class="line">
+      订单付款时间：{{orderData.pay_time}}
+    </view>
+  </view>
+</zan-panel>

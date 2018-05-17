@@ -3,7 +3,8 @@ import { ajax } from 'api/ajax.js';   // 封装请求
 import { api } from 'api/api.js';     // 请求连接
 import { imgs } from 'api/images.js'; // 静态图片url
 import Utils from 'utils/util.js';   // 工具函数
-import Token from 'api/token.js';
+import Token from 'api/token.js';    // 获取token
+import Validator from './utils/validator.js' // 数据验证层
 App({
   onLaunch() {
     // 判断当前token是否存在
@@ -32,5 +33,6 @@ App({
   imgs: imgs,
   // 工具函数
   utils: Utils,
-  
+  // 数据验证
+  validator:Validator
 })

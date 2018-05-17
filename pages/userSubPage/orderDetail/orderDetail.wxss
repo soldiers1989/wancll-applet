@@ -1,0 +1,20 @@
+.order-top{
+  padding: 20px;
+  font-size: 36rpx;
+  color: #fff;
+  background: #06f
+}
+
+.order-address{
+  padding: 10px;
+  background: #fff;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.order-bottom{
+  background: #fff;
+  padding: 15px;
+}
+.order-bottom .line{
+  font-size: 26rpx;
+}

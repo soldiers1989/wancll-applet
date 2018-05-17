@@ -1,26 +1,25 @@
-// components/orderItem/index.js
 const APP = getApp();
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     data: {
       type: Object,
       description: '数据列表'
+    },
+    haveinfo:{
+      type: Boolean,
+      description: '是否显示价格栏位'
     }
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
+    // 进入订单详情
+    goDetail(){
+      let id = this.data.data.id;
+      wx.navigateTo({
+        url:`/pages/userSubPage/orderDetail/orderDetail?id=${id}`
+      })
+    },
     // ----------------- 待付款
     // 取消订单
     cancelOrder() {
@@ -154,7 +153,5 @@ Component({
       //   }
       // })
     }
-  },
-  attached() {
   }
 })

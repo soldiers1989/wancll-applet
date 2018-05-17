@@ -1,6 +1,6 @@
 <view class='item'>
   <zan-panel>
-    <view class='item-content'>
+    <view class='item-content' catchtap="goDetail">
       <view class='top-info'>
         <view class='left'>订单编号：{{data.order_no}}</view>
         <template is="pay-actions" data="{{...data}}"/>
@@ -30,7 +30,7 @@
         </view>
       </view>
       <view class='bottom-info'>
-        <view class='all-price'>
+        <view class='all-price' wx:if="{{haveinfo}}">
           <text>共 {{data.order_goods_info.length}} 件商品 合计: </text>
           <text class='text-price'>￥{{data.total_money}}</text>
           <text> (含运费：￥{{data.freight_money}})</text>

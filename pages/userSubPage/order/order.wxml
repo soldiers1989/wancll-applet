@@ -11,7 +11,8 @@
   >
     <block wx:for="{{orderList}}" wx:key="key">
       <order-item 
-        data="{{item}}" 
+        data="{{item}}"
+        haveinfo
         bind:refreshGet="refreshGet"
       ></order-item>
     </block>
