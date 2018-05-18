@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "商品详情",
+  "navigationBarTitleText": "确认订单",
   "usingComponents": {
     "zan-panel": "../../dist/panel/index",
     "zan-cell": "../../dist/cell/index",
@@ -9,4 +9,3 @@
     "zan-button": "../../dist/btn/index"
   }
 }
-

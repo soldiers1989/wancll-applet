@@ -27,7 +27,8 @@
     "pages/userSubPage/grow/grow",
     "pages/userSubPage/setting/setting",
     "pages/userSubPage/settingPassword/settingPassword",
-    "pages/userSubPage/orderDetail/orderDetail"
+    "pages/userSubPage/orderDetail/orderDetail",
+    "pages/detailOrderAffirm/detailOrderAffim"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

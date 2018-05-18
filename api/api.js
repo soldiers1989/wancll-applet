@@ -18,8 +18,19 @@ export const api = {
   // 商品的详情页 
   detailRead: `${defaultHost}/api_goods/goods/read`,
   detailCollect: `${defaultHost}/api_query/goods/is_collect`,
+  detailCollectCancel: `${defaultHost}/api_goods/goods_collections/cancel`,
+  detailCollectSave: `${defaultHost}/api_goods/goods_collections/save`,
   detailComments: `${defaultHost}/api_query/goods/comments`,
   detailTemplate: `${defaultHost}/api_query/goods_cates/template`,
+  detailCartsSave: `${defaultHost}/api_goods/carts/save`,
+  
+  // 确认订单
+  orderAffimAddress:`${defaultHost}/api_query/users/default_address`,
+  orderAffimView:`${defaultHost}/api_orders/orders/view`,
+  orderAffimUser:`${defaultHost}/api_query/market/user`,
+
+  // 购物车
+
 
   // 登录相关
   loginUser: `${defaultHost}/api_users/user_accounts/login`,

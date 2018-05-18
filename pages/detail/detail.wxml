@@ -7,7 +7,6 @@
       </swiper-item>
     </block>
   </swiper>
-
   <view class='detail-info'>
     <view class='price'>￥{{detailInfo.sell_price}}</view>
     <view class='name'>{{detailInfo.name}}</view>
@@ -16,50 +15,73 @@
       <view class='sales-stock'>库存: {{detailInfo.stock}}</view>
       <view class='sales-number'>销量: {{detailInfo.sell_num}}</view>
     </view>
-
   </view>
   <view class='select-sku'>
     <zan-panel>
-      <view class='go-select' bindtap='toggleBottomPopup'>选择商品规格</view>
+      <view class='go-select' bindtap='openBottomPopup'>
+        <view>选择商品规格</view>
+        <view wx:if="{{findSku}}">{{findSku.spec_option_group}}</view>
+      </view>
     </zan-panel>
-    <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="toggleBottomPopup">
+    <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="closeBottomPopup">
       <view class="pop-example__container pop-example__container--bottom">
         <view class="zan-btns">
           <zan-panel>
             <view class='top-close'>
               <text>请选择规格</text>
-              <icon></icon>
+              <text class="icon" data-type="icon" bindtap="closeBottomPopup">关闭</text>
             </view>
           </zan-panel>
           <view class='image-warpper'>
-            <view class='image'>
-              <image src=''></image>
-            </view>
-            <view class='price-warpper'>
-              <view class='price'></view>
-              <view class='stock'></view>
-            </view>
+            <image src='{{detailInfo.thum}}' widthFix></image>
+            <block wx:if="{{findSku}}">
+              <template is="findSkuPrice" data="{{...findSku}}"/>
+            </block>
+            <block wx:else="{{findSku}}">
+              <template is="defaultPrice" data="{{...goodsGroupInfo[0]}}"/>
+            </block>
           </view>
-          <view class='sku'>
-            <view class='title'></view>
-            <view class='lists'>
-              <text></text>
+          <zan-panel wx:for="{{skuData}}" wx:key="key">
+            <view class='sku'>
+              <view class='title'>{{item.name.name}}</view>
+              <view class='lists'>
+                <zan-button 
+                  bindtap="changeSelect" 
+                  class="sku-list" 
+                  size="mini" 
+                  wx:for="{{item.select}}" 
+                  wx:for-item="select" 
+                  data-nameId="{{item.name.id}}"
+                  data-id="{{select.id}}"
+                  type="{{lineValue[item.name.id] == select.id ? 'primary' : ''}}"
+                  wx:key="index">
+                  {{select.option}}
+                </zan-button>
+              </view>
             </view>
-          </view>
-          <view class='sku'>
-            <view class='title'></view>
-            <view class='lists'>
-              <text></text>
-            </view>
-          </view>
-
+          </zan-panel>
           <view class='send'>
-
+            <zan-button bindtap='closeBottomPopup'>确定选择</zan-button>
           </view>
         </view>
       </view>
     </zan-popup>
   </view>
+  <zan-panel>
+    <view class="buy-buttons">
+      <view class="collect">
+        <template is="collect" data="{{isCollect}}"/>
+      </view>
+      <view class="cart">
+        <view bindtap="goCarts">
+          <icon class="icon" type="gouwuche2"></icon>
+          <view>购物车</view>
+        </view>
+      </view>
+      <view class="add-cart" bindtap="addCarts">加入购物车</view>
+      <view class="buy-now" bindtap="buyNow">立即购买</view>
+    </view>
+  </zan-panel>
   <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
   <view wx:if="{{show === 1}}" class='particulars'>
     <view>if</view>
@@ -108,3 +130,30 @@
     <view>if</view>
   </view>
 </view>
+
+<template name="collect">
+  <view wx:if="{{isCollect}}" bindtap="changeCollect">
+    <icon class="icon" type="shoucang"></icon>
+    <view>已收藏</view>
+  </view>
+  <view wx:else="{{isCollect}}" bindtap="changeCollect">
+    <icon class="icon" type="star"></icon>
+    <view>收藏</view> 
+  </view>
+</template>
+
+
+<template name="findSkuPrice">
+  <view class='price-warpper'>
+    <view class='price'>￥{{sell_price}}</view>
+    <view class='stock'>库存：{{stock}}</view>
+  </view>
+</template>
+
+<template name="defaultPrice">
+  <view class='price-warpper'>
+    <view class='price'>￥{{sell_price}}</view>
+    <view class='stock'>库存：{{stock}}</view>
+  </view>
+</template>
+
