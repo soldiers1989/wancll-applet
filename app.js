@@ -15,7 +15,6 @@ App({
       Token.getUser(this)
     }
   },
-
   // 全局变量
   globalData: {
     hasLogin: false,

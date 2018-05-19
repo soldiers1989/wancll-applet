@@ -40,6 +40,7 @@ Page({
     // 控制
     show: 1,
     showBottomPopup: false,
+    openType: '', // 打开sku的类型是点击加入购物车还是立即购买
   },
 
   /**
@@ -65,17 +66,28 @@ Page({
   },
   // 关闭
   closeBottomPopup(e) {
-    let type = APP.utils.getDataSet(e,'type');
-    if(type == 'icon'){
+    let type = APP.utils.getDataSet(e, 'type');
+    if (type == 'icon') {
       this.setData({
         showBottomPopup: false
       })
-    }else{
+    } else {
       // 选择全部
       let skuLength = Object.keys(this.data.goodsSpecInfo).length;
       if (Object.keys(this.data.lineValue).length == skuLength) {
         this.setData({
           showBottomPopup: false
+        }, () => {
+          if (this.data.openType == "buy") {
+            setTimeout(() => {
+              this.sendBuyNow('buy')
+            }, 500)
+
+          } else {
+            setTimeout(() => {
+              this.addCarts('carts')
+            }, 500)
+          }
         })
       } else {
         wx.showToast({
@@ -84,9 +96,9 @@ Page({
         })
       }
     }
-    
+
   },
-  // 加载判断商品是否收藏
+  // 点击收藏加载判断商品是否收藏
   isCollect() {
     APP.ajax({
       url: APP.api.detailCollect,
@@ -100,74 +112,85 @@ Page({
       }
     })
   },
-  // 购物车按钮
+  // 点击购物车按钮
   goCarts() {
     wx.switchTab({
       url: '/pages/carts/carts'
     })
   },
-  // 加入购物车
-  addCarts() {
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      wx.showToast({
-        title: "请先登录",
-        icon: 'none',
-      })
-      setTimeout(() => {
-        wx.reLaunch({
-          url: '/pages/login/login'
+  // 点击加入购物车
+  addCarts(e) {
+    let type = e == 'carts' ? 'carts' : APP.utils.getDataSet(e, 'type');
+    this.setData({
+      openType: type
+    }, () => {
+      let token = wx.getStorageSync('token')
+      if (!token) {
+        wx.showToast({
+          title: "请先登录",
+          icon: 'none',
         })
-      }, 1000)
-    } else {
-      if (this.data.findSku) {
-        APP.ajax({
-          url: APP.api.detailCartsSave,
-          data: {
-            goods_id: this.data.detailInfo.id,
-            num: 1,
-            spec_group_id: this.data.findSku.id,
-            status: this.data.detailInfo.status
-          },
-          success: (res) => {
-            wx.showToast({
-              title: res.msg,
-              icon: 'none',
-            })
-          }
-        })
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }, 1000)
       } else {
-        this.openBottomPopup();
+        if (this.data.findSku) {
+          APP.ajax({
+            url: APP.api.detailCartsSave,
+            data: {
+              goods_id: this.data.detailInfo.id,
+              spec_group_id: this.data.findSku.id,
+              status: this.data.detailInfo.status,
+              num: 1              
+            },
+            success: (res) => {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none',
+              })
+            }
+          })
+        } else {
+          this.openBottomPopup();
+        }
       }
-    }
+    })
   },
-  buyNow() {
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      wx.showToast({
-        title: "请先登录",
-        icon: 'none',
-      })
-      setTimeout(() => {
-        wx.reLaunch({
-          url: '/pages/login/login'
+  // 点击立即购买
+  buyNow(e) {
+    let type = e == 'buy' ? 'buy' : APP.utils.getDataSet(e, 'type');
+    this.setData({
+      openType: type
+    }, () => {
+      let token = wx.getStorageSync('token')
+      if (!token) {
+        wx.showToast({
+          title: "请先登录",
+          icon: 'none',
         })
-      }, 1000)
-    } else {
-      if (this.data.findSku) {
-        this.sendBuyNow();
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }, 1000)
       } else {
-        this.openBottomPopup();
+        if (this.data.findSku) {
+          this.sendBuyNow();
+        } else {
+          this.openBottomPopup();
+        }
       }
-    }
+    })
   },
   // 跳转到订单详情页
-  sendBuyNow(){
+  sendBuyNow() {
     let param = APP.utils.paramsJoin({
-      goodsId:this.data.detailId.id,
-      num:1,
-      specGroupId:1,
-      money:1
+      goods_id: this.data.detailInfo.id,
+      spec_group_id: this.data.findSku.id,      
+      money: this.data.findSku.sell_price,
+      num: 1      
     });
     wx.navigateTo({
       url: `/pages/detailOrderAffirm/detailOrderAffim?${param}`

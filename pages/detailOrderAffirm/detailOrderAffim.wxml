@@ -1,2 +1,115 @@
-<!--pages/detailOrderAffirm/detailOrderAffim.wxml-->
-<text>pages/detailOrderAffirm/detailOrderAffim.wxml</text>
+<view class="order-address" bindtap="toggilBottomPopupAddress">
+  <view class="address">
+    <view class="right">
+      {{takeAddress.province}}{{takeAddress.city}}{{takeAddress.area}}{{takeAddress.address}}
+    </view>
+  </view>
+  <view class="info">
+    <view class="right">{{takeAddress.consignee_name}} {{takeAddress.mobile}}</view>
+  </view>
+</view>
+<view class="item-list">
+  <zan-panel>
+    <view class='item-content'>
+      <view class='center-info'>
+        <view class='image-warpper'>
+          <image class='image' src='{{itemInfo.thum}}' mode="widthFix"></image>
+        </view>
+        <view class='title-warpper'>
+          <view class='title'>{{itemInfo.name}}</view>
+          <view class='intro'>{{itemInfo.intro}}</view>
+          <view class='sku'>规格: {{selectSpecGroupInfo.spec_option_group}}</view>
+          <view class='price-warpper'>
+            <view class='price'>￥{{view.goods_money}}</view>
+            <view class='count'>
+              <zan-button size="mini" bindbtnclick="minus">-</zan-button>
+              <text> {{num}} </text>
+              <zan-button size="mini" bindbtnclick="plus">+</zan-button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </zan-panel>
+</view>
+<view class='other-price'>
+  <zan-panel>
+    <view wx:if="{{user.full}}" class='panel' bindtap="toggilBottomPopupDis1">
+      <text class='title'>选择减满优惠</text>
+      <text class='discont'>{{selectType=='full'?selectShow:''}}</text>
+    </view>
+  </zan-panel>
+  <view wx:if="{{user.coupon}}" class='panel' bindtap="toggilBottomPopupDis2">
+    <text class='title'>选择优惠券</text>
+    <text class='discont'>{{selectType=='coupon'?selectShow:''}}</text>
+  </view>
+  <zan-panel>
+    <view class='panel'>
+      <text class='title'>运费</text>
+      <text class='discont'>￥{{view.freight_money}}</text>
+    </view>
+  </zan-panel>
+</view>
+
+<view class="">
+  <text>合计：{{allMoney}}</text>
+  <zan-button> 提交订单</zan-button>
+</view>
+
+<zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
+  <view class="pop-example__container pop-example__container--bottom">
+    <zan-panel>
+      <view class='top-close'>
+        <text>请选择收货地址</text>
+        <text class="icon" data-type="icon" bindtap="toggilBottomPopupAddress">关闭</text>
+      </view>
+    </zan-panel>
+    <scroll-view scroll-y style="height: 450px;">
+      <wancll-address id="address" bind:getclickid="getClickId"></wancll-address>
+    </scroll-view>   
+  </view>
+</zan-popup>
+
+<zan-popup show="{{ showBottomPopupDis1 }}" type="bottom" bindclose="toggilBottomPopupDis1">
+  <view class="pop-example__container pop-example__container--bottom">
+    <zan-panel>
+      <view class='top-close'>
+        <text>请选择减满优惠</text>
+        <text class="icon" data-type="icon" bindtap="toggilBottomPopupDis1">关闭</text>
+      </view>
+    </zan-panel>
+    <scroll-view scroll-y style="height: 450px;">
+      <view 
+        class='discount-boc' 
+        wx:for="{{user.full}}" 
+        wx:key="key"
+        data-id="{{item.id}}"
+        bindtap="selectFull">
+        <text>满{{item.full_money}}减{{item.reduce_money}}元</text>
+      </view>
+    </scroll-view>   
+  </view>
+</zan-popup>
+
+<zan-popup show="{{ showBottomPopupDis2 }}" type="bottom" bindclose="toggilBottomPopupDis2">
+  <view class="pop-example__container pop-example__container--bottom">
+    <zan-panel>
+      <view class='top-close'>
+        <text>请选择折扣优惠</text>
+        <text class="icon" data-type="icon" bindtap="toggilBottomPopupDis2">关闭</text>
+      </view>
+    </zan-panel>
+    <scroll-view scroll-y style="height: 450px;">
+      <view 
+        class='discount-boc' 
+        wx:for="{{user.coupon}}" 
+        wx:if="{{!item.is_expiry}}" 
+        wx:key="key"
+        data-id="{{item.id}}"
+        bindtap="selectCoupon">
+        <view>满{{item.reach_money}}打{{item.change_value}}折</view>
+        <view>失效时间{{item.expiry_time}}</view>
+      </view>
+    </scroll-view>   
+  </view>
+</zan-popup>

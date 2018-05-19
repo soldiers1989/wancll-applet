@@ -1,10 +1,6 @@
 {
   "navigationBarTitleText": "收货地址",
   "usingComponents": {
-    "zan-icon": "../../../dist/icon/index",
-    "zan-panel": "../../../dist/panel/index",
-    "zan-button": "../../../dist/btn/index",
-    "zan-cell": "../../../dist/cell/index",
-    "zan-cell-group": "../../../dist/cell-group/index"
+    "wancll-address": "../../../components/address/index"
   }
 }

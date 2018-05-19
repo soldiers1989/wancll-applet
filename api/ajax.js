@@ -28,6 +28,11 @@ function runAjax(option, header) {
   let data = options.data || {};
   let method = options.method || 'POST';
   let success = options.success
+  let timer = setTimeout(()=>{
+    wx.showLoading({
+      title: '加载中...',
+    })
+  },1000)
   wx.request({
     url: url,
     data: data,
@@ -37,6 +42,11 @@ function runAjax(option, header) {
     responseType: 'text',
     success(res) {
       if (res.data.code == 1) {
+        // 存在showLoading时候
+        if(timer){
+          wx.hideLoading()
+          clearTimeout(timer)
+        }
         success(res.data);
       } else {
         wx.showToast({

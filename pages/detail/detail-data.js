@@ -6,12 +6,14 @@ export function getDetailData(that,id=''){
       url: APP.api.detailRead,
       data: { id: id },
       success: (res) => {
-        resolve(res.data);
+        wx.setStorageSync('buyItem', res.data)
         console.log(res.data)
         that.setData({
           detailInfo: res.data,
           goodsGroupInfo:res.data.goods_spec_group_info,
           goodsSpecInfo:res.data.goods_spec_info,
+        },()=>{
+          resolve(res.data);
         })
       }
     })

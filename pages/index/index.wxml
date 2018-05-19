@@ -35,16 +35,16 @@
     </view>
   </view>
 
-  <view class='discount'>
+  <!-- <view class='discount'>
     <zan-cell is-link>限时折扣 限时折扣活动 21天 03: 38: 38</zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">
-      <!--  display: inline-block-->
+      <!--  display: inline-block
       <view class='item'>1</view>
       <view class='item'>2</view>
       <view class='item'>3</view>
       <view class='item'>4</view>
     </scroll-view>
-  </view>
+  </view> -->
   <view class='goods-list'>
     <view class='goods' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goods}}" wx:key="index">
       <view class='lay'>

@@ -3,7 +3,7 @@ Page({
   data: {
     condition: false,
     isEdit: false,
-    id:0,
+    id: 0,
     enterName: '',
     enterMobile: '',
     enterTextarea: '',
@@ -15,34 +15,53 @@ Page({
   },
 
   onLoad(options) {
-    let that = this;
     // 编辑模式
     if (options.id) {
+      wx.setNavigationBarTitle({
+        title: '编辑地址',
+      })
       APP.ajax({
         url: APP.api.addressRead,
-        data: { id: options.id },
-        success(res) {
-          console.log(res.data)
-          that.setData({
+        data: {
+          id: options.id
+        },
+        success: res => {
+          let data = res.data;
+          this.setData({
             isEdit: true,
-            id: res.data.id,
-            enterName: res.data.consignee_name,
-            enterMobile: res.data.mobile,
-            enterTextarea: res.data.address,
-            enterDefault: res.data.is_default,
-            province: { name: res.data.province, code: res.data.province_code },
-            city: { name: res.data.city, code: res.data.city_code },
-            county: { name: res.data.area, code: res.data.area_code }
+            id: data.id,
+            enterName: data.consignee_name,
+            enterMobile: data.mobile,
+            enterTextarea: data.address,
+            enterDefault: data.is_default,
+            province: {
+              name: data.province,
+              code: data.province_code
+            },
+            city: {
+              name: data.city,
+              code: data.city_code
+            },
+            county: {
+              name: data.area,
+              code: data.area_code
+            }
           })
         }
       })
+    } else {
+      wx.setNavigationBarTitle({
+        title: '新增地址',
+      })
     }
   },
+  
   showPicker() {
     this.setData({
       condition: true
     });
   },
+  // 默认值是否选择
   radioChange(e) {
     this.setData({
       enterDefault: e.detail.value
@@ -57,30 +76,40 @@ Page({
     })
   },
   enterName(e) {
-    this.setData({ enterName: e.detail.value })
+    this.setData({
+      enterName: e.detail.value
+    })
   },
   enterMobile(e) {
-    this.setData({ enterMobile: e.detail.value })
+    this.setData({
+      enterMobile: e.detail.value
+    })
   },
   enterTextarea(e) {
-    this.setData({ enterTextarea: e.detail.value })
+    this.setData({
+      enterTextarea: e.detail.value
+    })
   },
+  // 新增
   send() {
     if (!this.data.enterName) {
       wx.showToast({
-        title: '请输入收货人名字', icon: 'none'
+        title: '请输入收货人名字',
+        icon: 'none'
       })
       return;
     }
     if (!this.data.enterMobile) {
       wx.showToast({
-        title: '请输入收货人联系电话', icon: 'none'
+        title: '请输入收货人联系电话',
+        icon: 'none'
       })
       return;
     }
     if (!this.data.enterTextarea) {
       wx.showToast({
-        title: '请输入详细地址', icon: 'none'
+        title: '请输入详细地址',
+        icon: 'none'
       })
       return;
     }
@@ -102,16 +131,16 @@ Page({
         mobile: this.data.enterMobile,
         province_code: this.data.province.code,
       },
-      success(res) {
-        console.log(res.data)
+      success: res => {
         wx.showToast({
-          title: res.msg,icon:'none'
+          title: res.msg,
+          icon: 'none'
         })
-        setTimeout(()=>{
-          wx.navigateTo({
-            url: '/pages/userSubPage/address/address',
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
           })
-        },1000)
+        }, 1000)
       }
     })
   }

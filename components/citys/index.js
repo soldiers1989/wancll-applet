@@ -29,32 +29,32 @@ Component({
    */
   attached() {
     let cityData = wx.getStorageSync('citys');
-    if (cityData) {
-      this.setData({
-        cityData: cityData
-      }, () => {
-        this.init(this);
-      })
-    } else {
-      APP.ajax({
-        url: APP.api.addressRegions,
-        success(res) {
-          wx.setStorageSync('citys', res.data)
-          this.setData({
-            cityData: res.data
-          }, () => {
-            this.init(this);
-          })
-        }
-      })
-    }
+    // if (cityData) {
+    this.setData({
+      cityData: cityData
+    }, () => {
+      this.init(this);
+    })
+    // } else {
+    //   APP.ajax({
+    //     url: APP.api.addressRegions,
+    //     success(res) {
+    //       wx.setStorageSync('citys', res.data)
+    //       this.setData({
+    //         cityData: res.data
+    //       }, () => {
+    //         this.init(this);
+    //       })
+    //     }
+    //   })
+    // }
   },
   /**
    * 组件的方法列表
    */
   methods: {
     init(that) {
-      var cityData = that.data.cityData;
+      let cityData = that.data.cityData;
       let provinces = [];
       let citys = [];
       let countys = [];
@@ -81,16 +81,16 @@ Component({
         'citys': citys,
         'countys': countys,
         'province': {
-          name:cityData[0].name,
-          code:cityData[0].id
+          name: cityData[0].name,
+          code: cityData[0].id
         },
         'city': {
-          name:cityData[0].citys[0].name,
-          code:cityData[0].citys[0].id
+          name: cityData[0].citys[0].name,
+          code: cityData[0].citys[0].id
         },
         'county': {
-          name:cityData[0].citys[0].areas[0].name,
-          code:cityData[0].citys[0].areas[0].id
+          name: cityData[0].citys[0].areas[0].name,
+          code: cityData[0].citys[0].areas[0].id
         },
       })
     },
@@ -117,21 +117,20 @@ Component({
         this.setData({
           province: this.data.provinces[val[0]],
           city: {
-            name:cityData[val[0]].citys[0].name,
-            code:cityData[val[0]].citys[0].id,
+            name: cityData[val[0]].citys[0].name,
+            code: cityData[val[0]].citys[0].id,
           },
-          county:{
-            name:cityData[val[0]].citys[0].areas[0].name,
-            code:cityData[val[0]].citys[0].areas[0].id
-          }, 
-          citys: citys,          
+          county: {
+            name: cityData[val[0]].citys[0].areas[0].name,
+            code: cityData[val[0]].citys[0].areas[0].id
+          },
+          citys: citys,
           countys: countys,
           values: val,
           value: [val[0], 0, 0]
         }, () => {
           this.eventTar()
         })
-
         return;
       }
       // 转动 城市
@@ -139,15 +138,15 @@ Component({
         const countys = [];
         for (let i = 0; i < cityData[val[0]].citys[val[1]].areas.length; i++) {
           countys.push({
-            name:cityData[val[0]].citys[val[1]].areas[i].name,
-            code:cityData[val[0]].citys[val[1]].areas[i].id
+            name: cityData[val[0]].citys[val[1]].areas[i].name,
+            code: cityData[val[0]].citys[val[1]].areas[i].id
           })
         }
         this.setData({
           city: this.data.citys[val[1]],
           county: {
-            name:cityData[val[0]].citys[val[1]].areas[0].name,
-            code:cityData[val[0]].citys[val[1]].areas[0].id,
+            name: cityData[val[0]].citys[val[1]].areas[0].name,
+            code: cityData[val[0]].citys[val[1]].areas[0].id,
           },
           countys: countys,
           values: val,
@@ -168,13 +167,13 @@ Component({
         return;
       }
     },
-    eventTar(){
+    eventTar() {
       let data = {
-        province:this.data.province,
-        city:this.data.city,
-        county:this.data.county
+        province: this.data.province,
+        city: this.data.city,
+        county: this.data.county
       }
-      this.triggerEvent('getCitys',data)
+      this.triggerEvent('getCitys', data)
     },
     open() {
       this.setData({
@@ -182,5 +181,5 @@ Component({
       })
     },
   },
-  
+
 })
