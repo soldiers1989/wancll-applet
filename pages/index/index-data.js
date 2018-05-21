@@ -13,7 +13,7 @@ export function getOtherData(that){
   APP.ajax({
     url: APP.api.indexConfigs,
     success: (res) => {
-      console.log(res)
+      // console.log(res)
     }
   })
   // 获取首页公告
@@ -29,14 +29,14 @@ export function getOtherData(that){
   APP.ajax({
     url: APP.api.indexMarket,
     success: (res) => {
-      console.log(res)
+      // console.log(res)
     }
   })
   APP.ajax({
     url: APP.api.indexAdvertisements,
     data: { type: "wap首页广告" },
     success: (res) => {
-      console.log(res)
+      // console.log(res)
     }
   })
 }

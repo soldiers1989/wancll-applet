@@ -28,7 +28,8 @@
     "pages/userSubPage/setting/setting",
     "pages/userSubPage/settingPassword/settingPassword",
     "pages/userSubPage/orderDetail/orderDetail",
-    "pages/detailOrderAffirm/detailOrderAffim"
+    "pages/detailOrderAffirm/detailOrderAffim",
+    "pages/searchPage/searchPage"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

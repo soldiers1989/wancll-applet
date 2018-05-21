@@ -1,0 +1,9 @@
+<!--pages/searchPage/searchPage.wxml-->
+<view>
+ <view class='search_box' bindtap='goSearchPage'>
+    <view class='search_input'>
+      <icon class='icon' type='sousuo'></icon>
+      <input class='input' placeholder='搜索商品'></input>
+    </view>
+  </view>
+</view>

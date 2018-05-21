@@ -41,12 +41,12 @@ function runAjax(option, header) {
     dataType: 'json',
     responseType: 'text',
     success(res) {
+      // 存在showLoading时候
+      if (timer) {
+        wx.hideLoading()
+        clearTimeout(timer)
+      }
       if (res.data.code == 1) {
-        // 存在showLoading时候
-        if(timer){
-          wx.hideLoading()
-          clearTimeout(timer)
-        }
         success(res.data);
       } else {
         wx.showToast({
@@ -56,10 +56,15 @@ function runAjax(option, header) {
       }
     },
     fail(err) {
-      wx.showToast({
-        title: '哎呀，网络粗错了',
-        icon: 'none',
-      });
+      // 存在showLoading时候
+      if (timer) {
+        wx.hideLoading()
+        clearTimeout(timer)
+      }
+      // wx.showToast({
+      //   title: '哎呀，网络粗错了',
+      //   icon: 'none',
+      // });
       console.log(err);
     }
   })

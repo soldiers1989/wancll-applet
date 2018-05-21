@@ -18,7 +18,6 @@ Page({
     APP.ajax({
       url: APP.api.userAsset,
       success(res){
-        console.log(res.data)
         that.setData({ 
           asset:res.data,
           user: user
@@ -37,7 +36,6 @@ Page({
         'page-num': pageNum,
       },
       success(res) {
-        console.log(res.data)
         if (res.data.length) {
           that.setData({
             lists: lists.concat(res.data),
