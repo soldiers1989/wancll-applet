@@ -1,10 +1,5 @@
-// pages/detail/detail.js
 const APP = getApp()
-import {
-  getDetailData
-} from './detail-data.js'
 Page({
-
   data: {
     // 轮播参数
     indicatorDots: true,
@@ -27,83 +22,61 @@ Page({
     tabListScroll: true,
     tabListHeight: 45,
     // 数据
-    detailId: -1, // 商品的id
-    isCollect: 0, // 是否收藏
-    detailInfo: [], // read:res.data
-    goodsGroupInfo: [], // read:res.data.goods_spec_group_info
-    goodsSpecInfo: [], // read:res.data.goods_spec_info
+    goodsId: -1, //   商品的id
+    goodsInfo: '', //  商品信息 read:res.data
+    isCollect: 0, //  默认是否收藏
+
     comments: [], // comments:res.data
-    templateData: {}, // template:res.data
-    skuData: [], // 重新组装的sku数据
     lineValue: {}, // 当前点击的sku数据
     findSku: '', // 点击后筛选出的sku
+    cartsDetail:[], // 加入购物车后返回的
     // 控制
-    show: 1,
+    showTab: 1,
     showBottomPopup: false,
     openType: '', // 打开sku的类型是点击加入购物车还是立即购买
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-    this.setData({
-      detailId: options.id
-    })
-    getDetailData(this, options.id);
-    let token = wx.getStorageSync('token')
-    if (token) {
-      this.isCollect()
-    }
-  },
-  // 打开弹出层sku选择器
-  openBottomPopup() {
-    // 执行 sku 一些列逻辑计算
-    this.assemblySkuData()
-    this.setData({
-      showBottomPopup: true
-    })
-  },
-  // 关闭
-  closeBottomPopup(e) {
-    let type = APP.utils.getDataSet(e, 'type');
-    if (type == 'icon') {
-      this.setData({
-        showBottomPopup: false
-      })
-    } else {
-      // 选择全部
-      let skuLength = Object.keys(this.data.goodsSpecInfo).length;
-      if (Object.keys(this.data.lineValue).length == skuLength) {
+    // 请求商品数据
+    APP.ajax({
+      url: APP.api.detailRead,
+      data: {
+        id: options.id
+      },
+      success: res => {
         this.setData({
-          showBottomPopup: false
+          goodsId: options.id,
+          goodsInfo: res.data,
+          // goodsGroupInfo: res.data.goods_spec_group_info,
+          // goodsSpecInfo: res.data.goods_spec_info,
         }, () => {
-          if (this.data.openType == "buy") {
-            setTimeout(() => {
-              this.sendBuyNow('buy')
-            }, 500)
-
-          } else {
-            setTimeout(() => {
-              this.addCarts('carts')
-            }, 500)
+          // 判断是否登录状态 然后获取收藏状态
+          let token = wx.getStorageSync('token');
+          if (token) {
+            this.isCollect()
           }
         })
-      } else {
-        wx.showToast({
-          title: "请选择商品属性",
-          icon: 'none',
+      }
+    })
+    // 请求评论数据
+    APP.ajax({
+      url: APP.api.detailComments,
+      data: {
+        goods_id: options.id
+      },
+      success: res => {
+        // console.log('评论',res.data)
+        this.setData({
+          comments: res.data
         })
       }
-    }
-
+    })
   },
-  // 点击收藏加载判断商品是否收藏
+  // 默认加载时候判断是否收藏的商品
   isCollect() {
     APP.ajax({
       url: APP.api.detailCollect,
       data: {
-        goods_id: this.data.detailId
+        goods_id: this.data.goodsId
       },
       success: (res) => {
         this.setData({
@@ -112,10 +85,87 @@ Page({
       }
     })
   },
+  // 点击的时候判断商品是否收藏
+  changeCollect() {
+    let token = wx.getStorageSync('token')
+    if (!token) {
+      wx.showToast({
+        title: "请先登录",
+        icon: 'none',
+      })
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/login/login'
+        })
+      }, 1000)
+    } else {
+      let url = '';
+      if (this.data.isCollect) {
+        url = APP.api.detailCollectCancel
+      } else {
+        url = APP.api.detailCollectSave
+      }
+      APP.ajax({
+        url: url,
+        data: {
+          goods_id: this.data.goodsId
+        },
+        success: (res) => {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+          })
+          let isCollect = res.data.id ? 1 : 0
+          this.setData({
+            isCollect: isCollect
+          })
+        }
+      })
+    }
+  },
   // 点击购物车按钮
   goCarts() {
     wx.switchTab({
       url: '/pages/carts/carts'
+    })
+  },
+  // 切换详情和评价
+  changeTab() {
+    let id = this.selectComponent("#tab").data.selectedId
+    this.setData({
+      showTab: id
+    })
+  },
+
+  // 打开弹出层sku选择器
+  openBottomPopup() {
+    this.setData({
+      showBottomPopup: true
+    })
+  },
+  // 子组件的关闭按钮点击时候也同时关闭
+  closeBottomPopup() {
+    this.setData({
+      showBottomPopup: false
+    })
+  },
+  // 点击确定按钮关闭的时候
+  confirm(e) {
+    this.setData({
+      lineValue: e.detail.lineValue,
+      findSku: e.detail.findSku,
+      showBottomPopup: false
+    }, () => {
+      let type = APP.utils.getDataSet(e, 'type');
+      if (this.data.openType == "buy") {
+        setTimeout(() => {
+          this.sendBuyNow('buy')
+        }, 500)
+      } else if (this.data.openType == "carts") {
+        setTimeout(() => {
+          this.addCarts('carts')
+        }, 500)
+      }
     })
   },
   // 点击加入购物车
@@ -140,15 +190,18 @@ Page({
           APP.ajax({
             url: APP.api.detailCartsSave,
             data: {
-              goods_id: this.data.detailInfo.id,
+              goods_id: this.data.goodsInfo.id,
               spec_group_id: this.data.findSku.id,
-              status: this.data.detailInfo.status,
-              num: 1              
+              status: this.data.goodsInfo.status,
+              num: 1
             },
             success: (res) => {
               wx.showToast({
                 title: res.msg,
                 icon: 'none',
+              })
+              this.setData({
+                cartsDetail:[res.data]
               })
             }
           })
@@ -186,137 +239,40 @@ Page({
   },
   // 跳转到订单详情页
   sendBuyNow() {
-    let param = APP.utils.paramsJoin({
-      goods_id: this.data.detailInfo.id,
-      spec_group_id: this.data.findSku.id,      
-      money: this.data.findSku.sell_price,
-      num: 1      
-    });
+    // 组装成和购物车的数据一样的格式
+    let cartsDetail = []; // 订单确认页面需要读取的产品信息
+    let goodsInfo = []; // 订单确认页面需要发送请求的信息
+    let goodsIds = []; // 订单确认页面需要发送请求的信息
+    // 填入数据
+    goodsInfo.push({
+      goods_id: this.data.goodsInfo.id,
+      spec_group_id: this.data.findSku.id,
+      num: 1,
+    })
+    // 加入购物车后直接生成的数据
+    if(this.data.cartsDetail.length){
+      cartsDetail = this.data.cartsDetail
+    }else{
+      cartsDetail.push({
+        goods_id: Number(this.data.goodsId),
+        spec_group_id: this.data.findSku.id,
+        spec_group_info: this.data.findSku,
+        num: 1,
+        goods_info: this.data.goodsInfo
+      })
+    }
+    // 组装id
+    goodsIds.push(Number(this.data.goodsId))
+    let orderAffim = {
+      goodsInfo: goodsInfo,
+      goodsIds: goodsIds,
+      cartsDetail: cartsDetail
+    }
+    console.log(orderAffim)
+    // 本地存储 当前选中的订单信息以及商品信息
+    wx.setStorageSync('orderAffim', orderAffim)
     wx.navigateTo({
-      url: `/pages/detailOrderAffirm/detailOrderAffim?${param}`
-    })
-  },
-  // 点击的时候判断商品是否收藏
-  changeCollect() {
-    let token = wx.getStorageSync('token')
-    if (!token) {
-      wx.showToast({
-        title: "请先登录",
-        icon: 'none',
-      })
-      setTimeout(() => {
-        wx.reLaunch({
-          url: '/pages/login/login'
-        })
-      }, 1000)
-    } else {
-      let url = '';
-      if (this.data.isCollect) {
-        url = APP.api.detailCollectCancel
-      } else {
-        url = APP.api.detailCollectSave
-      }
-      APP.ajax({
-        url: url,
-        data: {
-          goods_id: this.data.detailId
-        },
-        success: (res) => {
-          wx.showToast({
-            title: res.msg,
-            icon: 'none',
-          })
-          let isCollect = res.data.id ? 1 : 0
-          this.setData({
-            isCollect: isCollect
-          })
-        }
-      })
-    }
-  },
-  // 处理sku数据
-  assemblySkuData() {
-    // 只处理一次
-    if (this.data.skuData.length != 0) {
-      return;
-    }
-    let names = this.data.templateData.spec_template.names;
-    let goodsGroupInfo = this.data.goodsGroupInfo;
-    let goodsSpecInfo = this.data.goodsSpecInfo;
-    let sku = [];
-    names.forEach((item, index) => {
-      let id = item.id
-      sku.push({
-        name: item,
-        select: goodsSpecInfo[id]
-      })
-    });
-    // 排序sku数据
-    goodsGroupInfo.sort((n1, n2) => {
-      return n1.sell_price - n2.sell_price
-    })
-    this.setData({
-      goodsGroupInfo: goodsGroupInfo,
-      skuData: sku
-    }, () => {
-      this.changeOptionIds()
-    })
-    console.log(sku)
-  },
-  // 点击选择sku
-  changeSelect(e) {
-    let nameid = APP.utils.getDataSet(e, 'nameid');
-    let id = APP.utils.getDataSet(e, 'id');
-    let lineValue = this.data.lineValue;
-    lineValue[nameid] = id;
-    // 这里应该做一个防止重复点击同一个按钮，先放着 
-    this.setData({
-      lineValue: lineValue
-    }, () => {
-      this.sortPriceFilter();
-    })
-  },
-  // 排序对比选出匹配的数据
-  sortPriceFilter() {
-    let idsArray = this.data.goodsGroupInfo;
-    let lineValue = this.data.lineValue;
-    let skuLength = this.data.skuData.length;
-    let newValueArr = [];
-    // 重组sku值
-    idsArray.forEach(item => {
-      item.spec_option_ids.sort()
-    });
-    // 生成数组
-    for (const key in lineValue) {
-      newValueArr.push(lineValue[key])
-    }
-    newValueArr.sort()
-    // 筛选
-    let find = idsArray.filter((item) => {
-      return item.spec_option_ids.toString() == newValueArr.toString()
-    })
-    // 选择完了所有的sku才发生改变
-    if (newValueArr.length == skuLength) {
-      find[0].spec_option_group = find[0].spec_option_group.split("_").join(';')
-      // console.log(find[0])
-      this.setData({
-        findSku: find[0]
-      })
-    }
-  },
-  // 讲横线连接的sku数据用数组表示
-  changeOptionIds() {
-    let data = this.data.goodsGroupInfo;
-    data.forEach((item, index) => {
-      let optionsIds = item.spec_option_ids.split('_')
-      item.spec_option_ids = optionsIds
-    })
-  },
-  // 切换详情和评价
-  changeTab() {
-    let id = this.selectComponent("#tab").data.selectedId
-    this.setData({
-      show: id
+      url: `/pages/detailOrderAffirm/detailOrderAffim`
     })
   }
 })

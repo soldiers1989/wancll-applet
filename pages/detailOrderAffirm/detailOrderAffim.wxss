@@ -87,3 +87,23 @@
   padding: 10px;
   margin-bottom: 10px;
 }
+.total-box{
+  background: #fff;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.total-box .total{
+  font-size: 20px;
+  padding: 10px;
+}
+.memo{
+  display: flex;
+  padding: 10px;
+}
+.memo .title{
+  flex: 150rpx 0 0;
+}
+.memo .content{
+  flex: 1;
+  height: 100px;
+}

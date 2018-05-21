@@ -30,7 +30,7 @@ Page({
       success(res) {
         if(res.data.length){
           that.setData({
-            logs: res.data,
+            logs: logs.concat(res.dat),
             pageNum: ++pageNum
           })
         }else{

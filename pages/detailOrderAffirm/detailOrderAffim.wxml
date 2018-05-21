@@ -10,21 +10,21 @@
 </view>
 <view class="item-list">
   <zan-panel>
-    <view class='item-content'>
+    <view class='item-content' wx:for="{{cartsDetail}}" wx:key="key">
       <view class='center-info'>
         <view class='image-warpper'>
-          <image class='image' src='{{itemInfo.thum}}' mode="widthFix"></image>
+          <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title'>{{itemInfo.name}}</view>
-          <view class='intro'>{{itemInfo.intro}}</view>
-          <view class='sku'>规格: {{selectSpecGroupInfo.spec_option_group}}</view>
+          <view class='title'>{{item.goods_info.name}}</view>
+          <view class='intro'>{{item.goods_info.intro}}</view>
+          <view class='sku'>规格: {{item.spec_group_info.spec_option_group}}</view>
           <view class='price-warpper'>
-            <view class='price'>￥{{view.goods_money}}</view>
+            <view class='price'>￥{{item.spec_group_info.sell_price*item.num}}</view>
             <view class='count'>
-              <zan-button size="mini" bindbtnclick="minus">-</zan-button>
-              <text> {{num}} </text>
-              <zan-button size="mini" bindbtnclick="plus">+</zan-button>
+              <zan-button size="mini" data-index="{{item.goods_id}}" bindbtnclick="minus">-</zan-button>
+              <text> {{item.num}} </text>
+              <zan-button size="mini" data-index="{{item.goods_id}}" bindbtnclick="plus">+</zan-button>
             </view>
           </view>
         </view>
@@ -49,12 +49,19 @@
       <text class='discont'>￥{{view.freight_money}}</text>
     </view>
   </zan-panel>
+  <zan-panel>
+    <view class='memo'>
+      <text class='title'>买家留言</text>
+      <textarea class="content" bindinput="memo" placeholder="说点什么吧"></textarea>
+    </view>
+  </zan-panel>
 </view>
 
-<view class="">
-  <text>合计：{{allMoney}}</text>
-  <zan-button> 提交订单</zan-button>
+<view class="total-box">
+  <view class="total">合计：{{allMoney}}</view>
 </view>
+
+<zan-button bindbtnclick="saveOrder"> 提交订单</zan-button>
 
 <zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
   <view class="pop-example__container pop-example__container--bottom">

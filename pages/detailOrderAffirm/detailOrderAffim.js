@@ -1,20 +1,24 @@
 const APP = getApp();
 Page({
   data: {
-    itemInfo: '', // 商品信息
-    goodsId: '', // 商品的 id数组
-    num: '', // 商品个数
-    money: '', // 多少钱 
-    allMoney:'', //终合计 多少钱  
-    specGroupId: '', // sku 对应id
+    cartsDetail: '', // 商品信息
+    goodsIds: '', // 请求的数据参数商品的 id数组
+    goodsInfo: '', // 请求的数据参数
+
+    allMoney: '', //终合计 多少钱  
+
     takeAddress: '', // 地址列表
     addressId: '', // 地址id
+
     view: '', // 当前的钱和优惠状态
     user: '', // 用户的优惠券信息
-    selectSpecGroupInfo: '', // 选中的sku对象
+
     selectShow: '', // 显示的优惠券信息
-    selectType:'',
-    selectNum:'',
+    selectType: '', // 选中的优惠券类型
+    selectNum: '', // 选中的金额或者满折
+
+    memo: '',
+
     // 控制弹出层显示
     showBottomPopupAddress: false,
     showBottomPopupDis1: false,
@@ -22,22 +26,28 @@ Page({
 
   },
   onLoad(options) {
-    // 读取本地的当前选中的商品信息
-    let itemInfo = wx.getStorageSync('buyItem');
+    // 读取本地存储的购物车订单信息
+    let cartsGoodsInfo = wx.getStorageSync('orderAffim')
+    let cartsDetail = cartsGoodsInfo.cartsDetail;
+    let goodsIds = cartsGoodsInfo.goodsIds;
+    let goodsInfo = cartsGoodsInfo.goodsInfo;
+
+
     // 得到规格尺寸信息重新组合和排列
-    let specGroupInfo = itemInfo.goods_spec_group_info;
-    let selectSpecGroupInfo = specGroupInfo.filter(item => {
-      return item.id == options.spec_group_id;
-    })
-    selectSpecGroupInfo[0].spec_option_group = selectSpecGroupInfo[0].spec_option_group.split('_').join(';');
+    // let specGroupInfo = itemInfos.goods_spec_group_info;
+    // let selectSpecGroupInfo = specGroupInfo.filter(item => {
+    //   return item.id == options.spec_group_id;
+    // })
+    // selectSpecGroupInfo[0].spec_option_group = selectSpecGroupInfo[0].spec_option_group.split('_').join(';');
     //设置数据
     this.setData({
-      itemInfo: itemInfo,
-      goodsId: options.goods_id,
-      specGroupId: options.spec_group_id,
-      num: options.num,
-      money: options.money,
-      selectSpecGroupInfo: selectSpecGroupInfo[0]
+      cartsDetail: cartsDetail,
+      goodsIds: goodsIds,
+      goodsInfo: goodsInfo,
+      // specGroupId: options.spec_group_id,
+      // num: options.num,
+      // money: options.money,
+      // selectSpecGroupInfo: selectSpecGroupInfo[0]
     }, () => {
       this.getDefaultAddress();;
     })
@@ -48,7 +58,7 @@ Page({
   },
   // 组装参数 goods_info
   goodsInfo() {
-    let obj =  {
+    let obj = {
       "goods_id": this.data.goodsId,
       "num": this.data.num,
       "spec_group_id": this.data.specGroupId,
@@ -56,12 +66,7 @@ Page({
     let str = `[${JSON.stringify(obj)}]`;
     return str
   },
-  // 参数数组
-  goodsIds() {
-    let id = this.data.goodsId;
-    return [id]
-  },
-  // 获取默认的地址
+  // 获取默认的地址 得到id 然后调用 获取价格
   getDefaultAddress() {
     APP.ajax({
       url: APP.api.orderAffimAddress,
@@ -75,14 +80,13 @@ Page({
       }
     })
   },
-  // 获取sku信息
+  // 获取价格信息 然后调用获得优惠券信息
   getViewData() {
-    let goodsInfo = this.goodsInfo();
     APP.ajax({
       url: APP.api.orderAffimView,
       data: {
         address_id: this.data.addressId,
-        goods_info: goodsInfo,
+        goods_info: JSON.stringify(this.data.goodsInfo),
       },
       success: res => {
         this.setData({
@@ -96,20 +100,18 @@ Page({
   },
   // 获取优惠券信息
   getUserData() {
-    let goodsIds = this.goodsIds();
     APP.ajax({
       url: APP.api.orderAffimUser,
       data: {
-        goods_ids: goodsIds,
+        goods_ids: this.data.goodsIds,
         money: this.data.view.goods_money
       },
       success: res => {
         this.setData({
           user: res.data
-        },()=>{
+        }, () => {
           this.allMoney()
         })
-        // console.log('uesr', res.data)
       }
     })
   },
@@ -123,7 +125,6 @@ Page({
       let address = addressList.filter(item => {
         return item.id == id
       })
-      console.log(address[0])
       this.setData({
         takeAddress: address[0]
       }, () => {
@@ -131,50 +132,52 @@ Page({
       })
     })
   },
-  minus() {
-    let num = this.data.num;
-    if (num > 1) {
-      --num
+  // 减少商品数量
+  minus(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    let goodsInfo = this.data.goodsInfo;
+    let cartsDetail = this.data.cartsDetail;
+
+    let findG = goodsInfo.findIndex(item => {
+      return item.goods_id == index;
+    });
+    let findC = cartsDetail.findIndex(item => {
+      return item.goods_id == index;
+    });
+    if (goodsInfo[findC].num == 1) {
+      return
+    } else {
+      goodsInfo[findC].num -= 1;
+      cartsDetail[findG].num -= 1;
       this.setData({
-        num: num,
-      },()=>{
+        goodsInfo: goodsInfo,
+        cartsDetail: cartsDetail,
+      }, () => {
         this.getViewData();
-        this.getUserData();
       })
-    }else{
-      return;
     }
   },
-  plus() {
-    let num = this.data.num;
-    ++num
+  
+  // 添加商品数量
+  plus(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    let goodsInfo = this.data.goodsInfo;
+    let cartsDetail = this.data.cartsDetail;
+
+    let findG = goodsInfo.findIndex(item => {
+      return item.goods_id == index;
+    });
+    let findC = cartsDetail.findIndex(item => {
+      return item.goods_id == index;
+    });
+    goodsInfo[findC].num += 1;
+    cartsDetail[findG].num += 1;
     this.setData({
-      num: num,
-    },()=>{
+      goodsInfo: goodsInfo,
+      cartsDetail: cartsDetail,
+    }, () => {
       this.getViewData();
-      this.getUserData();
     })
-  },
-  // 计算总价 勾选了满减后 增减商品后都要计算
-  allMoney(){
-    let money = this.data.view.total_money;
-    // 选了折扣
-    if(this.data.selectNum){
-      let num = Number(this.data.selectNum);
-      let allMoney = 0;
-      if(this.data.selectType=="full"){
-        allMoney = money - num
-      }else{
-        allMoney = money * (num * 0.1)
-      }
-      this.setData({
-        allMoney:allMoney.toFixed(2)
-      })
-    }else{
-      this.setData({
-        allMoney:money
-      })
-    }
   },
   // 满折选择
   selectCoupon(e) {
@@ -186,8 +189,8 @@ Page({
     let str = `满${coupon.reach_money}打${coupon.change_value}折`
     this.setData({
       selectShow: str,
-      selectType:'coupon',
-      selectNum:coupon.change_value
+      selectType: 'coupon',
+      selectNum: coupon.change_value
     }, () => {
       this.toggilBottomPopupDis2();
       this.allMoney()
@@ -203,11 +206,71 @@ Page({
     let str = `满${full.full_money}减${full.reduce_money}元`
     this.setData({
       selectShow: str,
-      selectType:'full',
-      selectNum:full.reduce_money
+      selectType: 'full',
+      selectNum: full.reduce_money
     }, () => {
       this.toggilBottomPopupDis1();
       this.allMoney()
+    })
+  },
+  // 买家留言
+  memo(e) {
+    this.setData({
+      memo: e.detail.value
+    })
+  },
+  // 计算总价 勾选了满减后 增减商品后都要计算
+  allMoney() {
+    let money = this.data.view.total_money;
+    // 选了折扣
+    if (this.data.selectNum) {
+      let num = Number(this.data.selectNum);
+      let allMoney = 0;
+      if (this.data.selectType == "full") {
+        allMoney = money - num
+      } else {
+        allMoney = money * (num * 0.1)
+      }
+      this.setData({
+        allMoney: allMoney.toFixed(2)
+      })
+    } else {
+      this.setData({
+        allMoney: money
+      })
+    }
+  },
+  // 发送订单
+  saveOrder() {
+    // 组装数据
+    APP.ajax({
+      url: APP.api.orderSaveAll,
+      data: {
+        address_id: this.data.addressId,
+        goods_info: this.data.goodsInfo,
+        market_activity_id: 0,
+        market_activity_type: 0,
+        memo: this.data.memo
+      },
+      success: res => {
+        let orderId = res.data.id;
+        wx.setStorageSync('buyOrder', res.data)
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+        })
+        setTimeout(() => {
+          wx.showToast({
+            title: '前往支付',
+            icon: 'none',
+          })
+          setTimeout(() => {
+            wx.redirectTo({
+              url: `/pages/userSubPage/orderPay/pay?order_id=${orderId}`
+            })
+          }, 1000)
+        }, 1000)
+      }
     })
   },
   // 切换地址弹出层

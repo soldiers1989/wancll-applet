@@ -28,10 +28,13 @@ export const api = {
   orderAffimAddress:`${defaultHost}/api_query/users/default_address`,
   orderAffimView:`${defaultHost}/api_orders/orders/view`,
   orderAffimUser:`${defaultHost}/api_query/market/user`,
+  orderSaveAll: `${defaultHost}/api_orders/orders/save`,
 
   // 购物车
-
-
+  getCartsAll: `${defaultHost}/api_goods/carts/lists`,
+  getCartsUpdate: `${defaultHost}/api_goods/carts/update`,
+  
+  
   // 登录相关
   loginUser: `${defaultHost}/api_users/user_accounts/login`,
 
@@ -60,6 +63,8 @@ export const api = {
   orderComments: `${defaultHost}/api_goods/goods_comments/save`,
   orderDelete: `${defaultHost}/api_orders/orders/delete`,
   orderDetail: `${defaultHost}/api_orders/orders/read`,
+
+  
 
   // 收藏夹
   collections: `${defaultHost}/api_goods/goods_collections/lists`,

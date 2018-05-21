@@ -8,8 +8,7 @@ Page({
     showPopup: false,
     orderInfo: {},
     password: "",
-    items: [
-      {
+    items: [{
         padding: 0,
         value: '1',
         name: '余额支付',
@@ -39,8 +38,10 @@ Page({
   onLoad: function (options) {
     // 获取本地存储的订单列表
     APP.utils.getOrderById(options.id, (res) => {
+      let buyOrder = wx.getStorageSync('buyOrder')
+      let data = res ? res : buyOrder;
       this.setData({
-        orderInfo: res
+        orderInfo: data
       })
     })
   },
@@ -64,7 +65,7 @@ Page({
       [`checked.${type}`]: value
     });
   },
-  
+
   payMoney() {
     // 钱包支付
     let that = this;
@@ -104,10 +105,11 @@ Page({
           icon: 'none',
           success() {
             let params = APP.utils.paramsJoin({
-              target: wx.getStorageSync('thisOrderList')
+              // target: wx.getStorageSync('thisOrderList')
+              target: 2
             })
             setTimeout(() => {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: `/pages/userSubPage/order/order?${params}`,
               })
             }, 1000)
