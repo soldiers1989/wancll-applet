@@ -1,66 +1,36 @@
-// pages/searchPage/searchPage.js
+const APP = getApp();
+import { getKeywords, deleteKeywords } from './searchPageData.js';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    keywords: '',
+    userKeywordsList: [],
+    hotKeywordsList: [],
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  onLoad(options) {
+    getKeywords(this);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 搜索输入框监听
+  keywordsInput(e) {
+    this.setData({
+      keywords: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 搜索商品
+  search(e) {
+    if (e.currentTarget.dataset.keywords) {
+      wx.navigateTo({
+        url: `/pages/goodsListModel/goodsListModel?value=${e.currentTarget.dataset.keywords}&type=keyword`,
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 删除搜索词
+  deleteKeywords(e) {
+    deleteKeywords(this)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  onPullDownRefresh() {
+    getKeywords(this);
   },
+  onShareAppMessage() {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

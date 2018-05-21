@@ -109,30 +109,3 @@
   display: inline-block;
 }
 
-.goods-list{
-  padding: 5rpx;
-  display: flex;
-  flex-wrap: wrap;
-}
-.goods-list .goods{
-  flex: 50% 0 0;
-  overflow: hidden;
-}
-.goods-list .goods .lay{
-  margin: 5rpx;
-
-}
-.goods-list .goods .image image{
-  width: 100%;
-}
-.goods-list .goods .info .title{
-  height: 70rpx;
-  line-height: 35rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-bottom: 10rpx;
-}
-.goods-list .goods .info .price{
-  color: #df0303;
-  margin-bottom: 20rpx;
-}

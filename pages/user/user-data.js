@@ -12,4 +12,12 @@ export function getUserData(that){
       that.setData({ asset: res.data })
     }
   })
+  APP.ajax({
+    url: APP.api.user,
+    success(res){
+      that.setData({
+        user: res.data
+      })
+    }
+  })
 }

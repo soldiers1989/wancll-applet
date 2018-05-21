@@ -93,7 +93,7 @@ Page({
         if (res.confirm) {
           wx.clearStorageSync()
           wx.reLaunch({
-            url:`/pages/login/login`
+            url:'/pages/index/index'
           })
         }
       }

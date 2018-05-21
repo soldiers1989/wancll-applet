@@ -34,6 +34,10 @@ page {
   padding: 0 !important;
 }
 
+.wancll-padded-3 {
+  padding: 6rpx;
+}
+
 .wancll-padded-5 {
   padding: 10rpx;
 }
@@ -449,4 +453,14 @@ page {
 .form input {
   height: 100rpx;
   line-height: 100rpx;
+}
+
+/* goods */
+.goods-list {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.goods-list .goods {
+  flex: 50% 0 0;
 }

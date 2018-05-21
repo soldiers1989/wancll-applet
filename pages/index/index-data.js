@@ -1,5 +1,5 @@
 const APP = getApp();
-export function getOtherData(that){
+export function getOtherData(that) {
   // 获取首页轮播图
   APP.ajax({
     url: APP.api.indexBanners,
@@ -41,7 +41,7 @@ export function getOtherData(that){
   })
 }
 // 获取商品参数 并控制 loading显示
-export function getGoodsData(that,id='') {  
+export function getGoodsData(that, id = '') {
   const pageLimit = 10;
   let data = that.data.goods;
   APP.ajax({
@@ -56,7 +56,7 @@ export function getGoodsData(that,id='') {
         that.setData({
           goods: data.concat(res.data)
         }, () => { that.data.pageNum++; })
-      }else{
+      } else {
         that.setData({
           loading: false
         })

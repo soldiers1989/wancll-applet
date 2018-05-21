@@ -41,6 +41,12 @@ Page({
       url: '/pages/searchPage/searchPage',
     })
   },
+  // 标签商品页
+  goTagGoods(e){
+    wx.navigateTo({
+      url: `/pages/goodsListModel/goodsListModel?value=${e.currentTarget.dataset.tag}&type=tag`,
+    })
+  },
   onPullDownRefresh: function () {
 
   },

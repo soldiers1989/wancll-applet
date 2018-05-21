@@ -39,6 +39,7 @@ export const api = {
   loginUser: `${defaultHost}/api_users/user_accounts/login`,
 
   // 个人中心
+  user: `${defaultHost}/api_users/users/read`,
   userCount: `${defaultHost}/api_query/orders/count`,
   userAsset: `${defaultHost}/api_query/users/asset`,
   userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
@@ -98,5 +99,9 @@ export const api = {
   myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,  
   myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,  
   myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,  
-  
+
+  // 商品搜索
+  goodsKeywordsList: `${defaultHost}/api_goods/goods_keywords/lists`,
+  userGoodsKeywordsRead: `${defaultHost}/api_users/user_goods_keywords/read`,
+  deleteKeywords: `${defaultHost}/api_users/user_goods_keywords/delete`,
 }
