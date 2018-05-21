@@ -247,7 +247,7 @@ Page({
       url: APP.api.orderSaveAll,
       data: {
         address_id: this.data.addressId,
-        goods_info: this.data.goodsInfo,
+        goods_info: JSON.stringify(this.data.goodsInfo),
         market_activity_id: 0,
         market_activity_type: 0,
         memo: this.data.memo
