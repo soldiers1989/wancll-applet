@@ -464,3 +464,7 @@ page {
 .goods-list .goods {
   flex: 50% 0 0;
 }
+
+.goods-list .goods image {
+  display: block;
+}

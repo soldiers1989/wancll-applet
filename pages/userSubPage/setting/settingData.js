@@ -1,16 +1,4 @@
 const APP = getApp();
-
-export function getUserInfo(that) {
-  APP.ajax({
-    url: APP.api.user,
-    success(res) {
-      that.setData({
-        user: res.data
-      })
-    }
-  })
-}
-
 export function updateUserInfo(that, data) {
   APP.ajax({
     url: APP.api.userSettingUpdate,

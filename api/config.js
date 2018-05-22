@@ -6,10 +6,10 @@ export const headers = {
   'clientType': 'applet'
 }
 // 主机名称
-export const defaultHost = 'http://wancllshop.wx.wygoo.com/index.php'
+export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
 
 // 图片地址
 export const imageHost = {
-  upload:'http://api.wancll.wygoo.com/data/upload/file',
-  wap:'http://wancllshop.wx.wygoo.com/public/static/wap/images'
+  wapImages:'https://wancllshop.wx.wygoo.com/public/static/wap/images',
+  images: 'https://wancllshop.wx.wygoo.com/public/static/images'
 }

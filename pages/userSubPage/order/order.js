@@ -24,7 +24,8 @@ Page({
       title: '待评价'
     }],
     tabSelectedId: 0,
-    orderList:[]
+    orderList:[],
+    pageNum: 1,
   },
 
   /**
@@ -43,6 +44,10 @@ Page({
   },
   //重新加载数据
   refreshGet(){
+    this.setData({
+      orderList: [],
+      pageNum: 1,
+    })
     getOrderData(this, this.data.tabSelectedId);
   },
   // 点击切换顶部的标签
@@ -54,16 +59,23 @@ Page({
     }
     wx.setStorageSync('thisOrderList', id)
     this.setData({ 
-      tabSelectedId:id
+      tabSelectedId:id,
+      orderList: [],
+      pageNum: 1,
     },()=>{
       getOrderData(this, id);
     })
   },
   onPullDownRefresh: function () {
-
+    this.setData({
+      orderList: [],
+      pageNum: 1,
+    })
+    wx.setStorageSync('orderList', []);
+    getOrderData(this, this.data.tabSelectedId);
   },
   onReachBottom: function () {
-
+    getOrderData(this, this.data.tabSelectedId);
   },
   onShareAppMessage: function () {
 

@@ -1,6 +1,6 @@
 <view class='info'>
-  <view class='title'>钱包余额 (元)</view>
-  <view class='money'>￥{{walletInfo.money}}</view>
+  <view class='wancll-font-size-16'>钱包余额 (元)</view>
+  <view class='money wancll-margin-t-20'>￥{{walletInfo.money}}</view>
 </view>
 <zan-panel>
   <zan-cell-group>

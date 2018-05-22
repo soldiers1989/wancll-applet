@@ -3,13 +3,14 @@ import { imageHost } from './config.js';
 export const imgs = {
   // 首页五张小图
   smallImg: [
-    `${imageHost.upload}/20180227/5a9559dbd0d09.png`,
-    `${imageHost.upload}/20180227/5a9559dc6efb6.png`,
-    `${imageHost.upload}/20180227/5a9559dc21810.png`,
-    `${imageHost.upload}/20180227/5a9559db2e958.png`,
-    `${imageHost.upload}/20180227/5a9559dcafae3.png`
+    `${imageHost.wapImages}/tag1.png`,
+    `${imageHost.wapImages}/tag2.png`,
+    `${imageHost.wapImages}/tag3.png`,
+    `${imageHost.wapImages}/tag4.png`,
+    `${imageHost.wapImages}/tag5.png`
   ],
-  notice: `${imageHost.wap}/wangkaikuaibao.png`,
-  logo: `${imageHost.wap}/wap_logo.png`
+  avatar: `${imageHost.images}/avatar.png`,
+  notice: `${imageHost.wapImages}/wangkaikuaibao.png`,
+  logo: `${imageHost.wapImages}/wap_logo.png`
 }
   

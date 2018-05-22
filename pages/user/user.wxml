@@ -2,7 +2,7 @@
   <zan-panel>
     <view class='user'>
       <view class='avatar'>
-        <image src="{{user.avatar || '../../static/images/avatar.png'}}"></image>
+        <image src="{{user.avatar}}"></image>
       </view>
       <view class='info'>
         <view class="name">{{user.nick_name || '匿名用户'}}</view>

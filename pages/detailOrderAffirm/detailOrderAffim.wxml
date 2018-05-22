@@ -61,7 +61,7 @@
   <view class="total">合计：{{allMoney}}</view>
 </view>
 
-<zan-button bindbtnclick="saveOrder"> 提交订单</zan-button>
+<button class="wancll-bg-info wancll-text-white" catchtap='saveOrder'>提交订单</button>
 
 <zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
   <view class="pop-example__container pop-example__container--bottom">
@@ -73,7 +73,7 @@
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
       <wancll-address id="address" bind:getclickid="getClickId"></wancll-address>
-    </scroll-view>   
+    </scroll-view>
   </view>
 </zan-popup>
 
@@ -86,15 +86,10 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
-      <view 
-        class='discount-boc' 
-        wx:for="{{user.full}}" 
-        wx:key="key"
-        data-id="{{item.id}}"
-        bindtap="selectFull">
+      <view class='discount-boc' wx:for="{{user.full}}" wx:key="key" data-id="{{item.id}}" bindtap="selectFull">
         <text>满{{item.full_money}}减{{item.reduce_money}}元</text>
       </view>
-    </scroll-view>   
+    </scroll-view>
   </view>
 </zan-popup>
 
@@ -107,16 +102,10 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
-      <view 
-        class='discount-boc' 
-        wx:for="{{user.coupon}}" 
-        wx:if="{{!item.is_expiry}}" 
-        wx:key="key"
-        data-id="{{item.id}}"
-        bindtap="selectCoupon">
+      <view class='discount-boc' wx:for="{{user.coupon}}" wx:if="{{!item.is_expiry}}" wx:key="key" data-id="{{item.id}}" bindtap="selectCoupon">
         <view>满{{item.reach_money}}打{{item.change_value}}折</view>
         <view>失效时间{{item.expiry_time}}</view>
       </view>
-    </scroll-view>   
+    </scroll-view>
   </view>
 </zan-popup>

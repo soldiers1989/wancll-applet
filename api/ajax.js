@@ -27,7 +27,8 @@ function runAjax(option, header) {
   let url = options.url || '';
   let data = options.data || {};
   let method = options.method || 'POST';
-  let success = options.success
+  let success = options.success;
+  let fail = options.fail;
   let timer = setTimeout(() => {
     wx.showLoading({
       title: '加载中...',
@@ -61,11 +62,8 @@ function runAjax(option, header) {
         wx.hideLoading()
         clearTimeout(timer)
       }
-      // wx.showToast({
-      //   title: '哎呀，网络粗错了',
-      //   icon: 'none',
-      // });
       console.log(err);
+      fail && fail(err);
     }
   })
 }

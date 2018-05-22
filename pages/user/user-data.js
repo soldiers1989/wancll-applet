@@ -15,6 +15,7 @@ export function getUserData(that){
   APP.ajax({
     url: APP.api.user,
     success(res){
+      res.data.avatar = res.data.avatar ? res.data.avatar : APP.imgs.avatar
       that.setData({
         user: res.data
       })

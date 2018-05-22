@@ -6,5 +6,6 @@
     "zan-button": "../../../dist/btn/index",
     "zan-loading": "../../../dist/loading/index",
     "icon":"../../../components/icon/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

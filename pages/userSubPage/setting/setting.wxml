@@ -3,7 +3,7 @@
     <zan-panel>
       <view class='avatar-warpper' bindtap='changeAvatar'>
         <view class='avatar'>
-          <image src="{{user.avatar || '../../../static/images/avatar.png'}}" widthFix></image>
+          <image src="{{user.avatar}}" widthFix></image>
         </view>
         <view class='avatar-change'>点击头像修改</view>
       </view>

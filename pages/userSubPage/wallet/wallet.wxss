@@ -6,9 +6,6 @@
   color: #fff;
   font-size: 40rpx;
 }
-.info .title{
-  line-height: 80rpx;
-}
 .info .money{
-  line-height: 80rpx;
+  font-size: 50rpx;
 }

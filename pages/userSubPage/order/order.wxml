@@ -1,22 +1,9 @@
 <!--pages/userSubPage/order/order.wxml-->
 <view>
-  <zan-tab 
-  id="tab"
-  class="tab"
-  bindtap="tabchange" 
-  list="{{ tabList }}" 
-  selected-id="{{ tabSelectedId }}" 
-  data-target="{{ tabSelectedId }}"
-  fixed
-  >
+  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
     <block wx:for="{{orderList}}" wx:key="key">
-      <order-item 
-        data="{{item}}"
-        haveinfo
-        bind:refreshGet="refreshGet"
-      ></order-item>
+      <order-item data="{{item}}" haveinfo bind:refreshGet="refreshGet"></order-item>
     </block>
-  
   </zan-tab>
-  
+
 </view>

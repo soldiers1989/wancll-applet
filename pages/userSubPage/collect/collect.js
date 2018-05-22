@@ -21,10 +21,14 @@ Page({
       },
       data: {},
       success(res) {
+        wx.stopPullDownRefresh();
         that.setData({
           conlectList: conlectList.concat(res.data),
           pageNum: ++pageNum
         })
+      },
+      fail(err){
+        wx.stopPullDownRefresh();
       }
     })
   },
@@ -65,7 +69,11 @@ Page({
     })
   },
   onPullDownRefresh () {
-
+    this.setData({
+      conlectList: [],
+      pageNum: 1
+    })
+    this.getConlectList();
   },
   onReachBottom () {
     this.getConlectList()

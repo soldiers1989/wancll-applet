@@ -20,21 +20,28 @@ Page({
         'page-num': pageNum,
       },
       success(res) {
+        wx.stopPullDownRefresh();
+        that.setData({
+          loading: false
+        })
         if (res.data.length) {
           that.setData({
-            logs: logs.concat(res.dat),
+            logs: logs.concat(res.data),
             pageNum: ++pageNum
           })
-        } else {
-          that.setData({
-            loading: false
-          })
         }
+      },
+      fail(err){
+        wx.stopPullDownRefresh();
       }
     })
   },
   onPullDownRefresh() {
-
+    this.setData({
+      logs: [],
+      pageNum: 1
+    });
+    this.getData();
   },
 
   onReachBottom() {

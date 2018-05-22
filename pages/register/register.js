@@ -119,6 +119,7 @@ Page({
           title: res.msg,
           icon: 'none'
         })
+        res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar;
         // 登录之后先全部存入本地
         wx.setStorageSync("token", res.data.token)
         wx.setStorageSync("user", res.data.user)

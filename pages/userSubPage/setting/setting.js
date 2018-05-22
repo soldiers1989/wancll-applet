@@ -1,6 +1,6 @@
 const APP = getApp();
 const passwordSelectList = ['登录密码修改', '支付密码修改'];
-import { updateUserInfo, getUserInfo } from './settingData.js';
+import { updateUserInfo } from './settingData.js';
 import { getBase64Image } from '../../../utils/common.js';
 Page({
   data: {
@@ -8,7 +8,9 @@ Page({
     genderList: ['保密', '男', '女'],
   },
   onLoad(options) {
-    getUserInfo(this);
+    this.setData({
+      user: wx.getStorageSync('user')
+    })
   },
   // 改变头像
   changeAvatar() {

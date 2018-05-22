@@ -9,32 +9,23 @@ Page({
     orderInfo: {},
     password: "",
     items: [{
-        padding: 0,
-        value: '1',
-        name: '余额支付',
-      },
-      {
-        padding: 0,
-        value: '2',
-        name: '支付宝支付',
-      },
-      {
-        padding: 0,
-        value: '3',
-        name: '微信支付',
-      },
+      padding: 0,
+      value: '1',
+      name: '余额支付',
+    },
+    {
+      padding: 0,
+      value: '2',
+      name: '微信支付',
+    },
     ],
     checked: {
       base: -1,
       color: 1,
       form: -1
     },
-    activeColor: '#4b0'
+    activeColor: '#358cff'
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     // 获取本地存储的订单列表
     APP.utils.getOrderById(options.id, (res) => {
@@ -65,25 +56,35 @@ Page({
       [`checked.${type}`]: value
     });
   },
-
+  // 钱包支付
   payMoney() {
-    // 钱包支付
     let that = this;
     if (this.data.checked.color == 1) {
       APP.ajax({
         url: APP.api.orderPassword,
         success(res) {
-          if (res.code == 1) {
+          if (res.data.is_set_pay_password == 1) {
             that.togglePopup()
+          } else {
+            wx.showToast({
+              title: '请设置支付密码',
+              icon: 'none',
+            })
+            setTimeout(() => {
+              wx.navigateTo({
+                url: `/pages/userSubPage/settingPassword/settingPassword?id=1`,
+              })
+            }, 500)
           }
         }
       })
+    } else if (this.data.checked.color == 2){
+      wx.showToast({
+        title: '暂不支持微信支付',
+        icon: 'none',
+      })
     }
-    // 微信支付
-
-    // 支付宝支付
   },
-  // 
   sendMoney() {
     if (!this.data.password) {
       wx.showToast({
@@ -118,52 +119,12 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   }
