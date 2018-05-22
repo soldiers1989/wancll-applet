@@ -1,28 +1,17 @@
 const APP = getApp();
-const TITLE = ['登录密码修改', '支付密码修改'];
 Page({
   data: {
     type: 1,
     logo: APP.imgs.logo,
     mobile: '',
-    code: 0,
+    code: '',
     password: '',
     rpassword: '',
     status: true, //  发送成功？
     countDown: 91,
-    hasLogin: false,
   },
   onLoad: function (options) {
-    let type = (options.id == 0) ? 1 : 2;
-    let user = wx.getStorageSync('user');
-    wx.setNavigationBarTitle({
-      title: TITLE[options.id]
-    })
-    this.setData({
-      mobile: user ? user.mobile : '',
-      type: type,
-      hasLogin: user ? true : false
-    })
+
   },
   // 手机号码输入
   bindMobile(e) {
@@ -61,7 +50,7 @@ Page({
       url: APP.api.userSettingCode,
       data: {
         mobile: this.data.mobile,
-        type: 2
+        type: 1
       },
       success: res => {
         wx.showToast({
@@ -117,39 +106,30 @@ Page({
       })
       return;
     }
-    let url = this.data.type == 1 ? APP.api.userSettingPass : APP.api.userSettingPayPass;
     let data = {
       mobile: this.data.mobile,
-      code: this.data.code
+      password: this.data.password,
+      code: this.data.code,
     };
-    if (this.data.type == 1) {
-      data.password = this.data.password;
-      data.password_confirm = this.data.rpassword;
-    } else {
-      data.pay_password = this.data.password;
-      data.pay_password_confirm = this.data.rpassword;
-    }
     APP.ajax({
-      url: url,
+      url: APP.api.userRegister,
       data: data,
       success: res => {
         wx.showToast({
           title: res.msg,
           icon: 'none'
         })
-        if (this.data.type == 1) {
-          wx.removeStorageSync('token');
-          wx.removeStorageSync('user');
-          setTimeout(() => {
-            wx.reLaunch({
-              url: '/pages/index/index'
-            })
-          }, 1000);
-        } else {
-          setTimeout(() => {
-            wx.navigateBack()
-          }, 1000)
-        }
+        // 登录之后先全部存入本地
+        wx.setStorageSync("token", res.data.token)
+        wx.setStorageSync("user", res.data.user)
+        // 然后再存入全局变量中
+        APP.globalData.hasLogin = true
+        APP.globalData.token = res.data.token.token
+        APP.globalData.user = res.data.user
+
+        wx.switchTab({
+          url: '/pages/user/user',
+        })
       }
     })
   },

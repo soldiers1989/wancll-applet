@@ -30,7 +30,9 @@
     "pages/userSubPage/orderDetail/orderDetail",
     "pages/detailOrderAffirm/detailOrderAffim",
     "pages/searchPage/searchPage",
-    "pages/goodsListModel/goodsListModel"
+    "pages/goodsListModel/goodsListModel",
+    "pages/userSubPage/modifyMobile/modifyMobile",
+    "pages/register/register"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -6,7 +6,7 @@ Page({
     count: {},
     asset: {},
   },
-  onLoad: function (options) {
+  onLoad(options) {
 
   },
   // 跳转到订单状态页面
@@ -55,10 +55,10 @@ Page({
       getUserData(this);
     }
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
     getUserData();
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
 
   }
 })

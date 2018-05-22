@@ -1,3 +1,4 @@
+/* pages/login/login.wxss */
 .log-box{
   text-align: center;
 }

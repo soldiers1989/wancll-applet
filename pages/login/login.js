@@ -5,7 +5,7 @@ Page({
     mobile: '',
     password: ''
   },
-  onLoad(options){
+  onLoad(options) {
 
   },
   // 手机号码监听
@@ -38,34 +38,39 @@ Page({
     }
     // 登录逻辑
     APP.ajax({
-      url: APP.api.loginUser,
-      data:{
+      url: APP.api.userLogin,
+      data: {
         mobile: this.data.mobile,
         password: this.data.password,
       },
-      success(res){
+      success(res) {
         wx.showToast({
           title: '登录成功',
           icon: 'none',
         })
-        // 存储到local
-        new Promise((resolve,reject)=>{
-          // 登录之后先全部存入本地
-          wx.setStorageSync("token", res.data.token)
-          wx.setStorageSync("user", res.data.user)
-          // 然后再存入全局变量中
-          APP.globalData.hasLogin = true
-          APP.globalData.token = res.data.token.token
-          APP.globalData.user = res.data.user
-          // 再跳转
-          resolve(true);
-        }).then(()=>{
-          wx.switchTab({
-            url: '/pages/user/user',
-          })
+        // 登录之后先全部存入本地
+        wx.setStorageSync("token", res.data.token)
+        wx.setStorageSync("user", res.data.user)
+        // 然后再存入全局变量中
+        APP.globalData.hasLogin = true
+        APP.globalData.token = res.data.token.token
+        APP.globalData.user = res.data.user
+        // 再跳转
+        wx.switchTab({
+          url: '/pages/user/user',
         })
       }
     });
+  },
+  register(){
+    wx.navigateTo({
+      url: '/pages/register/register',
+    })
+  },
+  forgetPassword() {
+    wx.navigateTo({
+      url: `/pages/userSubPage/settingPassword/settingPassword?id=0`,
+    })
   },
   // 微信登陆监听
   wechatLogin() {

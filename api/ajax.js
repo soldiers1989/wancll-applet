@@ -13,11 +13,11 @@ export function ajax(option) {
 
   //判断本地是否有token
   let has = wx.getStorageSync('token');
-  if (has){
+  if (has) {
     let token = { 'token': has.token }
     let tokenHeader = Object.assign(token, header)
     runAjax(option, tokenHeader)
-  }else{
+  } else {
     runAjax(option, header)
   }
 }
@@ -28,11 +28,11 @@ function runAjax(option, header) {
   let data = options.data || {};
   let method = options.method || 'POST';
   let success = options.success
-  let timer = setTimeout(()=>{
+  let timer = setTimeout(() => {
     wx.showLoading({
       title: '加载中...',
     })
-  },1000)
+  }, 1000)
   wx.request({
     url: url,
     data: data,

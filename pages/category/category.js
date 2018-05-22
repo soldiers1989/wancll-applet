@@ -3,9 +3,6 @@ const APP = getApp();
 import { getGoodsTree } from './category-data.js';
 import { getGoodsData } from '../index/index-data.js';
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     // tab组件参数
     tabList: [],
@@ -16,7 +13,7 @@ Page({
     goods: [],
     childNav: [],
     // 控制参数
-    id:0,
+    id: 0,
     pageNum: 1,
     loading: true,
     changeIdFNav: '',
@@ -24,16 +21,12 @@ Page({
     popupNav: false,
 
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options){
+  onLoad(options) {
     getGoodsTree(this)
     getGoodsData(this)
   },
   // 小分类的点击
-  changeSubNav(e){
+  changeSubNav(e) {
     let id = e.currentTarget.dataset.id;
     // 相同点击 禁止
     if (this.data.changeIdCNav == id) {
@@ -43,11 +36,11 @@ Page({
     this.setData({
       goods: [],
       pageNum: 1,
-      changeIdCNav:id,
+      changeIdCNav: id,
       id: id,
-    }, () => { 
-      getGoodsData(this, id)  
-      this.setData({ popupNav: false})
+    }, () => {
+      getGoodsData(this, id)
+      this.setData({ popupNav: false })
     })
   },
   // 大分类的点击
@@ -59,10 +52,10 @@ Page({
       return;
     }
     // 得到子分类
-    let child = this.data.tabList.filter(item=>item.id == id)
+    let child = this.data.tabList.filter(item => item.id == id)
     // console.log(child)
     if (id) {
-      this.setData({ 
+      this.setData({
         popupNav: true,
         childNav: child[0]._child,
       })
@@ -76,61 +69,22 @@ Page({
       pageNum: 1,
       id: id,
       changeIdFNav: id
-    }, () => { getGoodsData(this, id)})
+    }, () => { getGoodsData(this, id) })
   },
   // 跳转到商品详情页
-  goDetail(e){
+  goDetail(e) {
     let id = e.currentTarget.dataset.id
     // console.log(id);
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`,
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  onPullDownRefresh() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onReachBottom() {
+    getGoodsData(this, this.data.id)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    getGoodsData(this,this.data.id)
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
 
   }

@@ -2,10 +2,10 @@
   <zan-panel>
     <view class='user'>
       <view class='avatar'>
-        <image src='{{user.avatar}}'></image>
+        <image src="{{user.avatar || '../../static/images/avatar.png'}}"></image>
       </view>
       <view class='info'>
-        <view class="name">{{user.nick_name}}</view>
+        <view class="name">{{user.nick_name || '匿名用户'}}</view>
         <view class="phone">
           <icon class='icon' type='shouji'></icon>
           <text> {{user.mobile}}</text>

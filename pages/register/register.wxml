@@ -4,13 +4,13 @@
   </view>
 
   <view class='panle'>
-    <input value="{{mobile}}" bindinput='bindMobile' disabled='{{hasLogin}}' placeholder='请输入手机号码'></input>
+    <input bindinput='bindMobile'  placeholder='请输入手机号码'></input>
     <view class='right'>
       <block wx:if="{{status}}">
         <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">发送验证码</button>
       </block>
       <block wx:else="{{status}}">
-        <zan-button class="">{{countDown}} 再次发送</zan-button>
+        <zan-button>{{countDown}} 再次发送</zan-button>
       </block>
     </view>
   </view>
@@ -24,6 +24,6 @@
     <input bindinput="bindRPassword" password placeholder="确认密码" class="" />
   </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
-    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">确认重置</button>
+    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">注册</button>
   </view>
 </view>

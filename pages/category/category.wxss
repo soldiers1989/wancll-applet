@@ -26,7 +26,6 @@
   margin-bottom: 20rpx;
 }
 .popup-nav{
-  position: fixed;
   display: flex;
   width: 100%;
   top: 45px;
@@ -47,3 +46,6 @@
   height: 100rpx;
 }
 
+.zan-tab__item--selected .zan-tab__title{
+  color: #358cff !important;
+}

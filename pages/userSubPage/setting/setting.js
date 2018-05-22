@@ -1,63 +1,27 @@
 const APP = getApp();
-const sexList = ['保密', '男', '女'];
-const password = ['登录密码修改', '支付密码修改'];
+const passwordSelectList = ['登录密码修改', '支付密码修改'];
+import { updateUserInfo, getUserInfo } from './settingData.js';
+import { getBase64Image } from '../../../utils/common.js';
 Page({
   data: {
-    sex: '',
-    mobile: '',
-    name: '',
-    avatar: '',
+    user: {},
+    genderList: ['保密', '男', '女'],
   },
-  onLoad: function (options) {
-    let user = wx.getStorageSync('user');
-    this.setData({
-      mobile: user.mobile,
-      sex: sexList[user.gender],
-      name: user.nick_name,
-      avatar: user.avatar
-    })
+  onLoad(options) {
+    getUserInfo(this);
   },
-  // 添加图片
+  // 改变头像
   changeAvatar() {
-    let that = this;
-    // const ctx = wx.createCanvasContext('myCanvas')
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success(res) {
-        // ctx.drawImage(res.tempFilePaths[0], 0, 0, 150, 100)
-        // ctx.draw()
-        // console.log(ctx)
-        that.setData({ avatar: res.tempFilePaths[0] })
-      }
+    getBase64Image((base64) => {
+      updateUserInfo(this, { avatar: base64 });
     })
-    
-    // wx.canvasGetImageData({
-    //   canvasId: 'myCanvas',
-    //   x: 0,
-    //   y: 0,
-    //   width: 100,
-    //   height: 100,
-    //   success: res => {
-    //     console.log(res.width) // 100
-    //     console.log(res.height) // 100
-    //     console.log(res.data instanceof Uint8ClampedArray) // true
-    //     console.log(res.data.length) // 100 * 100 * 4
-    //     console.log(res.data)
-    //     var base64 = wx.arrayBufferToBase64(res.data.buffer);
-    //     console.log(base64)
-    //     // this.setData({
-    //     //   b64: base64
-    //     // });
-    //   }
-    // })
+
   },
   //密码修改
-  changePassword(){
+  changePassword() {
     wx.showActionSheet({
-      itemList: password,
-      success:res=>{
+      itemList: passwordSelectList,
+      success: res => {
         wx.navigateTo({
           url: `/pages/userSubPage/settingPassword/settingPassword?id=${res.tapIndex}`,
         })
@@ -65,35 +29,35 @@ Page({
     })
   },
   // 性别选择
-  selectSex() {
+  selectGender() {
     let that = this;
     wx.showActionSheet({
-      itemList: sexList,
+      itemList: this.data.genderList,
       success(res) {
-        that.setData({ sex: sexList[res.tapIndex] }, () => {
-      
-        })
+        updateUserInfo(that, { gender: res.tapIndex });
       }
     })
   },
   // 修改昵称
   changeName(e) {
-    this.setData({ name: e.detail.value })
+    updateUserInfo(this, { nick_name: e.detail.value });
   },
-  // 修改昵称
+  // 修改手机号码
   changeMobile(e) {
-    this.setData({ mobile: e.detail.value })
+    wx.navigateTo({
+      url: '/pages/userSubPage/modifyMobile/modifyMobile',
+    })
   },
 
-  logout(){
+  logout() {
     wx.showModal({
       title: '提示',
       content: '确定要退出登录吗？',
-      success:(res)=>{
+      success(res) {
         if (res.confirm) {
           wx.clearStorageSync()
           wx.reLaunch({
-            url:'/pages/index/index'
+            url: '/pages/index/index'
           })
         }
       }

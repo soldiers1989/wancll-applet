@@ -3,28 +3,26 @@
     <zan-panel>
       <view class='avatar-warpper' bindtap='changeAvatar'>
         <view class='avatar'>
-          <image src='{{avatar}}' widthFix></image>
+          <image src="{{user.avatar || '../../../static/images/avatar.png'}}" widthFix></image>
         </view>
         <view class='avatar-change'>点击头像修改</view>
       </view>
     </zan-panel>
     <zan-cell-group>
       <zan-cell class="cell" title="昵称">
-        <input slot="footer" type="text" bindinput='changeName' placeholder="请输入昵称" value='{{name}}' />
+        <input slot="footer" type="text" bindblur='changeName' placeholder="请输入昵称" value="{{user.nick_name || '匿名用户'}}" />
       </zan-cell>
       <zan-cell title="性别">
-        <view slot="footer" bindtap='selectSex'>{{sex}}</view>
+        <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>
       </zan-cell>
-      <zan-cell title="手机号码">
-        <input slot="footer" type="number" bindinput='changeMobile' placeholder="手机号" value="{{mobile}}" />
-      </zan-cell>
-      <zan-cell title="密码设置" bindtap='changePassword'  value="点击修改" is-link ></zan-cell>
+      <zan-cell title="手机号码" bindtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
+      <zan-cell title="密码设置" bindtap='changePassword' value="点击修改" is-link></zan-cell>
     </zan-cell-group>
   </zan-panel>
 </view>
 <view class='panel'>
   <zan-panel>
-    <zan-cell title="第三方账户绑定"  value="点击设置" is-link></zan-cell>
+    <zan-cell title="第三方账户绑定" value="点击设置" is-link></zan-cell>
   </zan-panel>
 </view>
 
@@ -37,5 +35,5 @@
   </zan-panel>
 </view>
 <view class='btn'>
-  <zan-button type="primary" bindtap="logout">退出登录</zan-button>
+  <button class="wancll-bg-info wancll-text-white" bindtap="logout">退出登录</button>
 </view>

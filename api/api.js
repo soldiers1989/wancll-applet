@@ -35,8 +35,9 @@ export const api = {
   getCartsUpdate: `${defaultHost}/api_goods/carts/update`,
   
   
-  // 登录相关
-  loginUser: `${defaultHost}/api_users/user_accounts/login`,
+  // 登录注册相关
+  userLogin: `${defaultHost}/api_users/user_accounts/login`,
+  userRegister: `${defaultHost}/api_users/user_accounts/register`,
 
   // 个人中心
   user: `${defaultHost}/api_users/users/read`,
@@ -48,6 +49,8 @@ export const api = {
   userSettingCode: `${defaultHost}/api_systems/helper/send_code`,
   userSettingPass: `${defaultHost}/api_users/user_accounts/reset_password`,
   userSettingPayPass: `${defaultHost}/api_users/user_accounts/reset_pay_password`,
+  userSettingUpdate: `${defaultHost}/api_users/users/update`,
+  userSettingMobile: `${defaultHost}/api_users/user_accounts/change_mobile`,
   
   // 订单相关
   orderAll: `${defaultHost}/api_orders/orders/lists`,
