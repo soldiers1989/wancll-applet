@@ -89,6 +89,8 @@ export const api = {
   // 我的钱包
   myWallet: `${defaultHost}/api_query/users/asset`,
   myWalletLog: `${defaultHost}/api_users/user_asset_logs/lists`,
+  recharge: `${defaultHost}/api_users/user_recharges/save`,
+  withdraw: `${defaultHost}/api_users/user_drawcashs/save`,
 
   // 我的银行卡
   myBankCard: `${defaultHost}/api_users/bank_cards/lists`,

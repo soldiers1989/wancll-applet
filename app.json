@@ -33,7 +33,8 @@
     "pages/goodsListModel/goodsListModel",
     "pages/userSubPage/modifyMobile/modifyMobile",
     "pages/register/register",
-    "pages/userSubPage/recharge/recharge"
+    "pages/userSubPage/recharge/recharge",
+    "pages/userSubPage/withdraw/withdraw"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

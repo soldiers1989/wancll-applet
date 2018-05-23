@@ -26,7 +26,6 @@ Page({
     // 获取所有数据
     getOtherData(this);
     getGoodsData(this);
-
   },
   // 获取商品数据
   goDetail(e) {

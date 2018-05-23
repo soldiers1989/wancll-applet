@@ -8,7 +8,9 @@
     </block>
   </swiper>
   <view class='detail-info'>
-    <view class='price'>￥{{goodsInfo.sell_price}}</view>
+    <view class='price'>
+      <text style='font-size: 20rpx;'>￥</text> {{goodsInfo.sell_price}}
+    </view>
     <view class='name'>{{goodsInfo.name}}</view>
     <view class='intro'>{{goodsInfo.intro}}</view>
     <view class='sales-info'>
@@ -25,12 +27,7 @@
     </zan-panel>
     <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="closeBottomPopup">
       <view class="pop-example__container pop-example__container--bottom">
-        <wancll-selectsku 
-          id="selectsku"
-          wx:if="{{goodsInfo}}" 
-          goodsinfo="{{goodsInfo}}"
-          bind:confirm="confirm"
-          bind:close="closeBottomPopup">
+        <wancll-selectsku id="selectsku" wx:if="{{goodsInfo}}" goodsinfo="{{goodsInfo}}" bind:confirm="confirm" bind:close="closeBottomPopup">
         </wancll-selectsku>
       </view>
     </zan-popup>
@@ -38,7 +35,7 @@
   <zan-panel>
     <view class="buy-buttons">
       <view class="collect">
-        <template is="collect" data="{{isCollect}}"/>
+        <template is="collect" data="{{isCollect}}" />
       </view>
       <view class="cart">
         <view bindtap="goCarts">
@@ -50,7 +47,7 @@
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即购买</view>
     </view>
   </zan-panel>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <!-- <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
   <view wx:if="{{showTab === 1}}" class='particulars'>
     <view>if</view>
     <view>if</view>
@@ -96,18 +93,16 @@
     <view>if</view>
     <view>if</view>
     <view>if</view>
-  </view>
+  </view> -->
 </view>
- 
+
 <template name="collect">
   <view wx:if="{{isCollect}}" bindtap="changeCollect">
-    <icon class="icon" type="shoucang"></icon>
+    <icon class="icon" type="shoucang" style="color: rgb(255, 198, 64);"></icon>
     <view>已收藏</view>
   </view>
   <view wx:else="{{isCollect}}" bindtap="changeCollect">
     <icon class="icon" type="star"></icon>
-    <view>收藏</view> 
+    <view>收藏</view>
   </view>
 </template>
-
- 

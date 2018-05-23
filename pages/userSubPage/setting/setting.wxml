@@ -16,7 +16,7 @@
         <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>
       </zan-cell>
       <zan-cell title="手机号码" bindtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
-      <zan-cell title="密码设置" bindtap='changePassword' value="点击修改" is-link></zan-cell>
+      <zan-cell title="密码设置" catchtap='changePassword' value="点击修改" is-link></zan-cell>
     </zan-cell-group>
   </zan-panel>
 </view>

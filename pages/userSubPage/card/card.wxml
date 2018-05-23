@@ -1,10 +1,5 @@
 <view class='items'>
-  <view 
-    class="item" 
-    wx:for="{{lists}}" 
-    wx:key="key" 
-    data-id='{{item.id}}' 
-    catchtap='editBankCard'>
+  <view class="item" wx:for="{{lists}}" wx:key="key" data-id='{{item.id}}' catchtap='editBankCard'>
     <view class='logo'>
 
     </view>

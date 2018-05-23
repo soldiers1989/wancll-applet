@@ -2,11 +2,7 @@
   <zan-panel>
     <view class='item-content'>
       <view class="select-button">
-        <zan-icon 
-          bindtap="select" 
-          data-id="{{item.id}}" 
-          class="icon" 
-          type="{{selectObj[item.id] ? 'checked':'check'}}">
+        <zan-icon bindtap="select" data-id="{{item.id}}" class="icon" type="{{selectObj[item.id] ? 'checked':'check'}}">
         </zan-icon>
       </view>
       <view class='center-info'>
@@ -16,18 +12,12 @@
         <view class='title-warpper'>
           <view class='title'>{{item.goods_info.name}}</view>
           <view class='intro'>{{item.goods_info.intro}}</view>
-          <zan-button 
-            size="mini" 
-            class='sku'
-            data-index="{{index}}"
-            data-id="{{item.id}}"
-            data-goodsinfo="{{item.goods_info}}"
-            data-sendfindsku = "{{item.spec_group_info}}" 
-            bindbtnclick='openBottomPopup'>
+          <zan-button size="mini" class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}" bindbtnclick='openBottomPopup'>
             规格: {{item.spec_group_info.spec_option_group}}
           </zan-button>
           <view class='price-warpper'>
-            <view class='price'>￥{{item.spec_group_info.sell_price * item.num}}</view>
+            <view class='price wancll-text-price wancll-font-size-14'>
+              <text class='price wancll-text-price wancll-font-size-10'>￥</text> {{item.spec_group_info.sell_price * item.num}}</view>
             <view class='count'>
               <zan-button size="mini" data-id="{{item.id}}" bindbtnclick="minus">-</zan-button>
               <text> {{item.num}} </text>
@@ -51,25 +41,19 @@
       <text> 取消</text>
     </view>
     <view class="price">
-      总价：{{allPreice}}
+      总价：
+      <text class="wancll-text-price wancll-font-size-15">￥</text>
+      <text class="wancll-text-price wancll-font-size-20">{{allPreice}}</text>
+
     </view>
-    <view class="send" bindtap="sendOrderAffirm">
+    <view class="send wancll-text-white" bindtap="sendOrderAffirm">
       去结算
     </view>
   </view>
 </zan-panel>
-
-
 <zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="closeBottomPopup">
   <view class="pop-example__container pop-example__container--bottom">
-   <wancll-selectsku 
-      id="selectsku"
-      iscart
-      sendfindsku="{{sendfindsku}}"
-      wx:if="{{goodsInfo}}" 
-      goodsinfo="{{goodsInfo}}"
-      bind:confirm="confirm"
-      bind:close="closeBottomPopup">
+    <wancll-selectsku id="selectsku" iscart sendfindsku="{{sendfindsku}}" wx:if="{{goodsInfo}}" goodsinfo="{{goodsInfo}}" bind:confirm="confirm" bind:close="closeBottomPopup">
     </wancll-selectsku>
   </view>
 </zan-popup>

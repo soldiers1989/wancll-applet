@@ -20,21 +20,22 @@ Page({
         'page-num': pageNum,
       },
       success(res) {
+        that.setData({
+          loading: false
+        });
+        wx.stopPullDownRefresh();
         if (res.data.length) {
-          if (pageNum == 1) {
-            that.setData({
-              loading: false
-            })
-          }
           that.setData({
             lists: res.data,
             pageNum: ++pageNum
           })
-        } else {
-          that.setData({
-            loading: false
-          })
         }
+      },
+      fail(err){
+        wx.stopPullDownRefresh();
+        that.setData({
+          loading: false
+        })
       }
     })
   },
@@ -45,7 +46,11 @@ Page({
     })
   },
   onPullDownRefresh() {
-
+    this.setData({
+      lists: [],
+      pageNum: 1
+    })
+    this.getData();
   },
   onReachBottom() {
     this.getData()

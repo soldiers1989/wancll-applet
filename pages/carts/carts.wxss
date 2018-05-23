@@ -1,17 +1,20 @@
-.item-content{
+.item-content {
   padding: 10px;
   background: #fff;
   display: flex;
 }
-.select-button{
+
+.select-button {
   flex: 80rpx 0 0;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
 }
-.icon{
+
+.icon {
   font-size: 35rpx;
 }
+
 .pop-example--top {
   width: 100vw;
   padding: 15px;
@@ -30,78 +33,94 @@
   width: 100vw;
 }
 
-.pop-example__container--left,
-.pop-example__container--right {
+.pop-example__container--left, .pop-example__container--right {
   height: 100vh;
 }
-.center-info{
+
+.center-info {
   flex: 1;
   background: #fafafa;
   padding: 10rpx;
   display: flex;
   margin-bottom: 10rpx;
 }
-.center-info .image-warpper{
-  flex: 180rpx 0 0;  
+
+.center-info .image-warpper {
+  flex: 180rpx 0 0;
 }
-.center-info .image{
+
+.center-info .image {
   width: 160rpx;
   height: 160rpx;
   background: #ccc;
   display: block;
 }
-.center-info .title-warpper{
+
+.center-info .title-warpper {
   flex: 1;
 }
-.center-info .title-warpper .title{
+
+.center-info .title-warpper .title {
   width: 100%;
   line-height: 40rpx;
   margin-bottom: 5rpx;
 }
-.center-info .title-warpper .intro{
+
+.center-info .title-warpper .intro {
   width: 100%;
   line-height: 40rpx;
   margin-bottom: 5rpx;
   color: #999;
 }
-.center-info .title-warpper .sku{
+
+.center-info .title-warpper .sku {
   line-height: 40rpx;
   color: #999;
 }
-.center-info .title-warpper .price-warpper{
+
+.center-info .title-warpper .price-warpper {
   display: flex;
 }
-.center-info .title-warpper .price-warpper .price{
+
+.center-info .title-warpper .price-warpper .price {
   flex: 1;
 }
-.center-info .title-warpper .price-warpper .count{
+
+.center-info .title-warpper .price-warpper .count {
   flex: 1;
   text-align: right;
 }
 
-.select-all{
+.select-all {
   position: fixed;
   bottom: 0;
   width: 100%;
   height: 100rpx;
   line-height: 100rpx;
   display: flex;
-  background:#fff;
+  background: #fff;
 }
-.select-all .select{
+
+.select-all .select {
   height: 100rpx;
   text-align: center;
   flex: 150rpx 0 0;
 }
-.select-all .price{
+
+.select-all .price {
   height: 100rpx;
   margin-right: 10px;
   text-align: right;
   flex: 1;
 }
-.select-all .send{
+
+.select-all .send {
   height: 100rpx;
   text-align: center;
-  background: #ccc;
+  background: linear-gradient(to bottom, #41c4da, #34a3e4, #2680ef);
   flex: 200rpx 0 0;
+}
+
+zan-icon .zan-icon-checked{
+  color: #358cff !important;
 }

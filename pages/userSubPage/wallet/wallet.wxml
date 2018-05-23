@@ -4,8 +4,8 @@
 </view>
 <zan-panel>
   <zan-cell-group>
-    <zan-cell title="充值" is-link></zan-cell>
-    <zan-cell title="提现" is-link></zan-cell>
+    <zan-cell title="充值" is-link url="/pages/userSubPage/recharge/recharge"></zan-cell>
+    <zan-cell title="提现" is-link url="/pages/userSubPage/withdraw/withdraw"></zan-cell>
     <zan-cell title="明细" is-link url="/pages/userSubPage/walletLog/walletLog"></zan-cell>
   </zan-cell-group>
 </zan-panel>
