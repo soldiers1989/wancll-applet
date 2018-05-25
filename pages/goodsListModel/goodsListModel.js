@@ -6,6 +6,8 @@ Page({
     pageNum: 1,
     loading: true,
     data: {},
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
   onLoad: function (options) {
     this.setData({

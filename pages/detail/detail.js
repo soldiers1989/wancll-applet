@@ -64,7 +64,6 @@ Page({
         goods_id: options.id
       },
       success: res => {
-        // console.log('评论',res.data)
         this.setData({
           comments: res.data
         })
@@ -268,7 +267,6 @@ Page({
       goodsIds: goodsIds,
       cartsDetail: cartsDetail
     }
-    console.log(orderAffim)
     // 本地存储 当前选中的订单信息以及商品信息
     wx.setStorageSync('orderAffim', orderAffim)
     wx.navigateTo({

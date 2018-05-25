@@ -1,16 +1,18 @@
 const APP = getApp();
 const passwordSelectList = ['登录密码修改', '支付密码修改'];
-import { updateUserInfo } from './settingData.js';
-import { getBase64Image } from '../../../utils/common.js';
+import { updateUserInfo, queryWechatBindStatus, unbind, bindWechatInLogin, getUserData } from './settingData.js';
+import { getBase64Image, handleWechatLogin } from '../../../utils/common.js';
 Page({
   data: {
     user: {},
     genderList: ['保密', '男', '女'],
+    hasBindWechat: false,
   },
   onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user')
-    })
+    });
+    queryWechatBindStatus(this);
   },
   // 改变头像
   changeAvatar() {
@@ -50,6 +52,22 @@ Page({
       url: '/pages/userSubPage/modifyMobile/modifyMobile',
     })
   },
+  // 解绑
+  unbind() {
+    let that = this;
+    wx.showModal({
+      title: '确定解除微信账号绑定?',
+      success(res) {
+        if (res.confirm) {
+          unbind(that);
+        }
+      }
+    })
+  },
+  // 绑定
+  bind(res) {
+    handleWechatLogin(this, res.detail);
+  },
 
   logout() {
     wx.showModal({
@@ -64,5 +82,13 @@ Page({
         }
       }
     })
+  },
+  onPullDownRefresh() {
+    getUserData(this);
+    queryWechatBindStatus(this);
+    wx.stopPullDownRefresh();
+  },
+  onShareAppMessage() {
+
   }
 })

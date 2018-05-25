@@ -1,4 +1,5 @@
 const APP = getApp();
+import { getCarts, updateCart } from './cartData.js';
 Page({
   data: {
     cartsList: [], // 购物车商品信息列表包含了sku信息组合
@@ -6,48 +7,34 @@ Page({
     allPreice: 0.00, // 商品的总价
     goodsInfo: '',    // 商品详细信息
     thisClickId: '', // 当前编辑的那个商品
-
-    selectAll: false, 
+    selectAll: false,
     showBottomPopup: false,
     pageNum: 1,
     pageLimit: 10,
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
   onLoad(options) {
-    
+
   },
   // 页面新显示的时候
   onShow: function () {
     this.setData({
-      selectObj:{},
-      selectAll:false,
-      cartsList:[],
+      selectObj: {},
+      selectAll: false,
+      cartsList: [],
       allPreice: 0.00,
       pageNum: 1,
       thisClickId: ''
     })
-    this.getCartsList()
-    
-  },
-  // 获取页面的数据
-  getCartsList() {
-    let pageNum = this.data.pageNum;
-    let cartsList = this.data.cartsList
-    APP.ajax({
-      url: APP.api.getCartsAll,
-      header: {
-        'page-limit': this.data.pageLimit,
-        'page-num': pageNum,
-      },
-      data: {},
-      success: res => {
-        console.log(res.data)
-        if (res.data.length) {
-          this.setData({
-            cartsList: cartsList.concat(res.data)
-          })
-        }
-      }
-    })
+    // 判断登录状态
+    if (!wx.getStorageSync('token')) {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      getCarts(this)
+    }
   },
   // 更新sku数据
   confirm(e) {
@@ -201,7 +188,7 @@ Page({
   },
   // 跳转到订单确认页面
   sendOrderAffirm() {
-   
+
     let cartsList = this.data.cartsList;
     let selectObj = this.data.selectObj;
     // console.log(selectObj)
@@ -219,7 +206,7 @@ Page({
         })
       }
     })
-    if(cartsDetail.length ==0 || goodsInfo.length==0 || goodsIds.length==0){
+    if (cartsDetail.length == 0 || goodsInfo.length == 0 || goodsIds.length == 0) {
       wx.showToast({
         title: '最少选择一个商品',
         icon: 'none',
@@ -239,5 +226,15 @@ Page({
       url: `/pages/detailOrderAffirm/detailOrderAffim`
     })
   },
-
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh();
+    this.setData({
+      cartsList: [],
+      pageNum: 1
+    })
+    getCarts(this);
+  },
+  onReachBottom() {
+    getCarts(this);
+  },
 })

@@ -8,14 +8,9 @@
       <text class="wancll-fl" bindtap='forgetPassword'>忘记密码？</text>
       <text class="wancll-fr" bindtap='register'>没有账号？立即注册</text>
     </view>
-    <!-- <view class="wancll-margin-t-25 wancll-text-pray wancll-font-size-16">
-      <text>第三方登陆</text>
-    </view> -->
-    <!-- <view class="wancll-margin-t-10" bindtap="wechatLogin">
-      <text class="iconfont icon-gongzhonghao"></text>
-    </view> -->
-     <!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
-
+    <view class="wancll-margin-t-25 wancll-text-pray wancll-font-size-16">
+      <button size="mini" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信用户快速登录</button>
+    </view>
   </view>
 
 </view>

@@ -20,7 +20,7 @@ Page({
     goods: [],
     // 控制参数
     pageNum: 1,
-    loading: true
+    loading: true,
   },
   onLoad() {
     // 获取所有数据

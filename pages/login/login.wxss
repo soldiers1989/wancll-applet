@@ -1,12 +1,15 @@
 /* pages/login/login.wxss */
-.container{
+
+.container {
   text-align: center;
 }
-.logo{
+
+.logo {
   margin-top: 100rpx;
   margin-bottom: 50rpx;
 }
-.iconfont{
+
+.iconfont {
   font-size: 65rpx;
   color: #09bb07;
 }

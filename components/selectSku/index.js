@@ -25,7 +25,6 @@ Component({
   // 组件生成到页面获取的参数
   attached() {
     if (!this.data.iscart) {
-      console.log('调用attached')
       this.getTemplate()
     }
   },

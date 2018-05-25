@@ -5,13 +5,11 @@ Page({
     logo: APP.imgs.logo,
     mobile: '',
     code: '',
-    password: '',
-    rpassword: '',
-    status: true, //  发送成功？
+    status: true, //  发送成功
     countDown: 91,
-    unionId:'',
+    unionId: '',
   },
-  onLoad (options) {
+  onLoad(options) {
     this.setData({
       unionId: options.unionId
     })
@@ -28,18 +26,6 @@ Page({
       code: e.detail.value
     })
   },
-  // 密码输入
-  bindPassword(e) {
-    this.setData({
-      password: e.detail.value
-    })
-  },
-  // 重复密码输入
-  bindRPassword(e) {
-    this.setData({
-      rpassword: e.detail.value
-    })
-  },
   // 发送验证码请求
   sendCode() {
     if (!this.data.mobile) {
@@ -53,9 +39,9 @@ Page({
       url: APP.api.userSettingCode,
       data: {
         mobile: this.data.mobile,
-        type: 1
+        type: 2
       },
-      success: res => {
+      success(res) {
         wx.showToast({
           title: res.msg,
           icon: 'none',
@@ -84,43 +70,16 @@ Page({
       })
       return;
     }
-    if (!this.data.password) {
-      wx.showToast({
-        title: '密码不能为空',
-        icon: 'none'
-      })
-      return;
-    }
-    if (!APP.validator.valiPassword(this.data.password)) {
-      wx.showToast({
-        title: '密码限制6-20位大小写字母数字组合',
-        icon: 'none'
-      })
-      return;
-    }
-    if (this.data.rpassword != this.data.password) {
-      wx.showToast({
-        title: '两次密码不一样',
-        icon: 'none'
-      })
-      this.setData({
-        rpassword: '',
-        password: ''
-      })
-      return;
-    }
     let data = {
       mobile: this.data.mobile,
-      password: this.data.password,
       code: this.data.code,
+      openid: this.data.unionId,
+      openid_type: 'wechat'
     };
-    if (this.data.unionId){
-      data.wechat_openid = this.data.unionId
-    }
     APP.ajax({
-      url: APP.api.userRegister,
+      url: APP.api.bindMobileInNoLogin,
       data: data,
-      success: res => {
+      success(res) {
         wx.showToast({
           title: res.msg,
           icon: 'none'
@@ -133,7 +92,6 @@ Page({
         APP.globalData.hasLogin = true
         APP.globalData.token = res.data.token.token
         APP.globalData.user = res.data.user
-
         wx.switchTab({
           url: '/pages/user/user',
         })

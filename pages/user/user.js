@@ -42,8 +42,6 @@ Page({
       url: `/pages/userSubPage/setting/setting`,
     })
   },
-  onReady: function () {
-  },
   onShow: function () {
     // 判断登录状态
     if (!wx.getStorageSync('token')) {
@@ -56,7 +54,8 @@ Page({
     }
   },
   onPullDownRefresh() {
-    getUserData();
+    getUserData(this);
+    wx.stopPullDownRefresh();
   },
   onShareAppMessage() {
 

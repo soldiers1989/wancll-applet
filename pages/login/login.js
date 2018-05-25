@@ -1,4 +1,5 @@
 const APP = getApp();
+import { handleWechatLogin } from '../../utils/common.js';
 Page({
   data: {
     logo: APP.imgs.logo,
@@ -63,7 +64,7 @@ Page({
       }
     });
   },
-  register(){
+  register() {
     wx.navigateTo({
       url: '/pages/register/register',
     })
@@ -75,11 +76,7 @@ Page({
   },
   // 微信登陆监听
   onGotUserInfo(res) {
-    console.log(res)
-    wx.login({
-      success(res){
-        console.log(res)
-      }
-    })
-  }
+    handleWechatLogin(this, res.detail)
+  },
+
 })

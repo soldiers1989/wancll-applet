@@ -10,5 +10,6 @@
     "zan-button": "../../dist/btn/index",
     "wancll-address":"../../components/address/index",
     "wancll-selectsku": "../../components/selectSku/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

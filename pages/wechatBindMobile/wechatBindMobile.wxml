@@ -3,8 +3,8 @@
     <image src="{{logo}}" mode="widthFix" class="wancll-col-xs-7 logo"></image>
   </view>
 
-  <view class="wancll-margin-l-15 wancll-text-pray wancll-margin-b-10" wx:if="{{unionId}}">
-    <text>请注册绑定手机号,下次可直接用第三方账号登录</text>
+  <view class="wancll-margin-l-15 wancll-text-pray wancll-margin-b-10">
+    <text>请绑定手机号,下次可直接用第三方账号登录</text>
   </view>
 
   <view class='panle'>
@@ -21,13 +21,7 @@
   <view class='panle'>
     <input bindinput="bindCode" placeholder="输入验证码" class="" />
   </view>
-  <view class='panle'>
-    <input bindinput="bindPassword" password placeholder="输入密码" class="" />
-  </view>
-  <view class='panle'>
-    <input bindinput="bindRPassword" password placeholder="确认密码" class="" />
-  </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
-    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">注册</button>
+    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">绑定手机号</button>
   </view>
 </view>

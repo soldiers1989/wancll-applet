@@ -468,3 +468,14 @@ page {
 .goods-list .goods image {
   display: block;
 }
+
+/* no-content */
+.no-content-image{
+  margin-top: 20%;
+  text-align: center;
+}
+.no-content-image image{
+  display: block;
+  width: 18%;
+  margin: 0 auto;
+}

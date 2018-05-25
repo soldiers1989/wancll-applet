@@ -20,9 +20,11 @@
     </zan-cell-group>
   </zan-panel>
 </view>
-<view class='panel'>
+<view class='panel' wx:if="{{hasBindWechat}}">
   <zan-panel>
-    <zan-cell title="第三方账户绑定" value="点击设置" is-link></zan-cell>
+    <zan-cell title="微信绑定" value="已绑定(点击解绑)" catchtap="unbind" is-link></zan-cell>
+    <!-- <zan-cell title="微信绑定" value="点击绑定" is-link wx:if="{{!hasBindWechat}}"></zan-cell> -->
+
   </zan-panel>
 </view>
 
@@ -35,5 +37,6 @@
   </zan-panel>
 </view>
 <view class='btn'>
-  <button class="wancll-bg-info wancll-text-white" bindtap="logout">退出登录</button>
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bind" wx:if="{{!hasBindWechat}}"  type="primary">绑定微信</button>
+  <button class="wancll-bg-info wancll-text-white wancll-margin-t-15" bindtap="logout">退出登录</button>
 </view>

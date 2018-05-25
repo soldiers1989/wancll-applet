@@ -18,6 +18,10 @@ export function getUserData(that){
       res.data.avatar = res.data.avatar ? res.data.avatar : APP.imgs.avatar
       that.setData({
         user: res.data
+      });
+      wx.setStorage({
+        key: 'user',
+        data: res.data,
       })
     }
   })

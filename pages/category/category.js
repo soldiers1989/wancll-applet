@@ -1,7 +1,6 @@
 // pages/category/category.js
 const APP = getApp();
-import { getGoodsTree } from './category-data.js';
-import { getGoodsData } from '../index/index-data.js';
+import { getGoodsTree, getGoodsData } from './category-data.js';
 Page({
   data: {
     // tab组件参数
@@ -16,10 +15,9 @@ Page({
     id: 0,
     pageNum: 1,
     loading: true,
-    changeIdFNav: '',
-    changeIdCNav: '',
     popupNav: false,
-
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
   onLoad(options) {
     getGoodsTree(this)
@@ -29,58 +27,63 @@ Page({
   changeSubNav(e) {
     let id = e.currentTarget.dataset.id;
     // 相同点击 禁止
-    if (this.data.changeIdCNav == id) {
+    if (this.data.id == id) {
       return;
     }
     // 更新数据
     this.setData({
       goods: [],
       pageNum: 1,
-      changeIdCNav: id,
       id: id,
     }, () => {
       getGoodsData(this, id)
-      this.setData({ popupNav: false })
     })
   },
   // 大分类的点击
   changeNav() {
+    let that = this;
     let id = this.selectComponent("#tab").data.selectedId
     // 相同点击 禁止
-    if (this.data.changeIdFNav == id) {
-      this.setData({ popupNav: true })
+    if (this.data.id == id) {
       return;
     }
-    // 得到子分类
-    let child = this.data.tabList.filter(item => item.id == id)
-    // console.log(child)
-    if (id) {
-      this.setData({
-        popupNav: true,
-        childNav: child[0]._child,
-      })
-    } else {
-      this.setData({ popupNav: false })
-    }
-
+    this.data.tabList.forEach((i) => {
+      if (i.id == id) {
+        if (i._child) {
+          that.setData({
+            childNav: i._child,
+            popupNav: true,
+          })
+        } else {
+          that.setData({
+            childNav: [],
+            popupNav: false,
+          })
+        }
+      }
+    })
     // 设置数据
     this.setData({
       goods: [],
       pageNum: 1,
       id: id,
-      changeIdFNav: id
     }, () => { getGoodsData(this, id) })
   },
   // 跳转到商品详情页
   goDetail(e) {
     let id = e.currentTarget.dataset.id
-    // console.log(id);
     wx.navigateTo({
       url: `/pages/detail/detail?id=${id}`,
     })
   },
   onPullDownRefresh() {
-
+    wx.stopPullDownRefresh()
+    this.setData({
+      goods: [],
+      pageNum: 1,
+    })
+    getGoodsTree(this);
+    getGoodsData(this, this.data.id);
   },
   onReachBottom() {
     getGoodsData(this, this.data.id)

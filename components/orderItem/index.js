@@ -5,7 +5,7 @@ Component({
       type: Object,
       description: '数据列表'
     },
-    haveinfo:{
+    haveinfo: {
       type: Boolean,
       description: '是否显示价格栏位'
     }
@@ -14,10 +14,10 @@ Component({
   },
   methods: {
     // 进入订单详情
-    goDetail(){
+    goDetail() {
       let id = this.data.data.id;
       wx.navigateTo({
-        url:`/pages/userSubPage/orderDetail/orderDetail?id=${id}`
+        url: `/pages/userSubPage/orderDetail/orderDetail?id=${id}`
       })
     },
     // ----------------- 待付款
@@ -48,15 +48,15 @@ Component({
     },
     // 预支付
     payOrder() {
-      let id = this.data.data.id;
+      let that = this;
       APP.ajax({
         url: APP.api.orderPrePay,
-        data: { order_id: id },
+        data: { order_id: this.data.data.id },
         success(res) {
           if (res.code == 1) {
             // 前往支付页面
             wx.navigateTo({
-              url: `/pages/userSubPage/orderPay/pay?id=${id}`,
+              url: `/pages/userSubPage/orderPay/pay?orderNo=${that.data.data.order_no}&orderMoney=${that.data.data.total_money}`,
             })
           }
         }

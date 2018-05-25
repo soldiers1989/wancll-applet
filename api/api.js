@@ -23,35 +23,47 @@ export const api = {
   detailComments: `${defaultHost}/api_query/goods/comments`,
   detailTemplate: `${defaultHost}/api_query/goods_cates/template`,
   detailCartsSave: `${defaultHost}/api_goods/carts/save`,
-  
+
   // 确认订单
-  orderAffimAddress:`${defaultHost}/api_query/users/default_address`,
-  orderAffimView:`${defaultHost}/api_orders/orders/view`,
-  orderAffimUser:`${defaultHost}/api_query/market/user`,
+  orderAffimAddress: `${defaultHost}/api_query/users/default_address`,
+  orderAffimView: `${defaultHost}/api_orders/orders/view`,
+  orderAffimUser: `${defaultHost}/api_query/market/user`,
   orderSaveAll: `${defaultHost}/api_orders/orders/save`,
 
   // 购物车
   getCartsAll: `${defaultHost}/api_goods/carts/lists`,
   getCartsUpdate: `${defaultHost}/api_goods/carts/update`,
-  
-  
+
+
   // 登录注册相关
   userLogin: `${defaultHost}/api_users/user_accounts/login`,
   userRegister: `${defaultHost}/api_users/user_accounts/register`,
+
+  // 微信授权登录
+  getSessionCode: `${defaultHost}/api_systems/oauth/applet_get_session_key`,
+  getWechatUserInfo: `${defaultHost}/api_systems/oauth/applet_get_user_info`,
+  queryUserByUnionId: `${defaultHost}/api_query/oauth/openid`,
+  queryWechatBindStatus: `${defaultHost}/api_query/oauth/binding`,
+  unbind: `${defaultHost}/api_users/binding/delete`,
+  bindWechatInLogin: `${defaultHost}/api_users/binding/save_in_login`,
+  bindMobileInNoLogin: `${defaultHost}/api_users/binding/save_in_no_login`,
+
+  // 微信支付
+  wechatPay: `${defaultHost}/api_orders/pay/wechat_pay_applet`,
 
   // 个人中心
   user: `${defaultHost}/api_users/users/read`,
   userCount: `${defaultHost}/api_query/orders/count`,
   userAsset: `${defaultHost}/api_query/users/asset`,
   userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
-  
+
   // 个人中心设置
   userSettingCode: `${defaultHost}/api_systems/helper/send_code`,
   userSettingPass: `${defaultHost}/api_users/user_accounts/reset_password`,
   userSettingPayPass: `${defaultHost}/api_users/user_accounts/reset_pay_password`,
   userSettingUpdate: `${defaultHost}/api_users/users/update`,
   userSettingMobile: `${defaultHost}/api_users/user_accounts/change_mobile`,
-  
+
   // 订单相关
   orderAll: `${defaultHost}/api_orders/orders/lists`,
   orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,
@@ -68,12 +80,12 @@ export const api = {
   orderDelete: `${defaultHost}/api_orders/orders/delete`,
   orderDetail: `${defaultHost}/api_orders/orders/read`,
 
-  
+
 
   // 收藏夹
   collections: `${defaultHost}/api_goods/goods_collections/lists`,
   collectionsDelete: `${defaultHost}/api_goods/goods_collections/delete`,
-  
+
   // 地址 
   addressList: `${defaultHost}/api_users/addresses/lists`,
   addressSetDefault: `${defaultHost}/api_users/addresses/set_default`,
@@ -98,12 +110,12 @@ export const api = {
   myBankCardUpdate: `${defaultHost}/api_users/bank_cards/update`,
   myBankCardSave: `${defaultHost}/api_users/bank_cards/save`,
   myBankCardDelete: `${defaultHost}/api_users/bank_cards/delete`,
-  
+
   // 优惠券
-  myDiscount: `${defaultHost}/api_users/user_coupons/lists`,  
-  myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,  
-  myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,  
-  myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,  
+  myDiscount: `${defaultHost}/api_users/user_coupons/lists`,
+  myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,
+  myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,
+  myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,
 
   // 商品搜索
   goodsKeywordsList: `${defaultHost}/api_goods/goods_keywords/lists`,

@@ -33,7 +33,7 @@ function runAjax(option, header) {
     wx.showLoading({
       title: '加载中...',
     })
-  }, 1000)
+  }, 800)
   wx.request({
     url: url,
     data: data,

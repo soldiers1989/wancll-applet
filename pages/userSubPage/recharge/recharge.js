@@ -1,4 +1,5 @@
 const APP = getApp();
+import { handleWechatPay } from '../../../utils/common.js';
 Page({
   data: {
     money: ''
@@ -27,6 +28,7 @@ Page({
         },
         success(res) {
           // 微信支付
+          handleWechatPay(res.data.order_no);
         }
       })
     }

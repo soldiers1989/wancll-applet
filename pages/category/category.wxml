@@ -1,15 +1,13 @@
 <view>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap='changeNav' fixed/>
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap='changeNav' />
   <!-- 弹出的 -->
   <view class='popup-nav' wx:if="{{popupNav}}">
-    <!-- <scroll-view class='scroll-items' scroll-x="true"> -->
     <view class='list' wx:for="{{childNav}}" wx:key="{{index}}" bindtap='changeSubNav' data-id='{{item.id}}'>
       <view class='image'>
-        <image src="{{item.thum  || '../../static/images/avatar.png'}}"></image>
+        <image src="{{item.thum}}"></image>
       </view>
       <view class='text'>{{item.name}}</view>
     </view>
-    <!-- </scroll-view> -->
   </view>
 
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
@@ -28,5 +26,9 @@
   </view>
   <view class='loading' wx:if="{{loading}}">
     <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
+  </view>
+  <view wx:if="{{noContent}}" class="no-content-image">
+    <image mode="widthFix" src="{{noContentImg}}"></image>
+    <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </view>

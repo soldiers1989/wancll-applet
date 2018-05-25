@@ -6,5 +6,6 @@
     "zan-cell": "../../dist/cell/index",
     "zan-badge": "../../dist/badge/index",
     "zan-cell-group": "../../dist/cell-group/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

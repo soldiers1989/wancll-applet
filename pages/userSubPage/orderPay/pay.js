@@ -1,12 +1,10 @@
 const APP = getApp();
+import { handleWechatPay } from '../../../utils/common.js';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     showPopup: false,
-    orderInfo: {},
+    orderNo:'',
+    orderMoney:'',
     password: "",
     items: [{
       padding: 0,
@@ -27,13 +25,9 @@ Page({
     activeColor: '#358cff'
   },
   onLoad: function (options) {
-    // 获取本地存储的订单列表
-    APP.utils.getOrderById(options.id, (res) => {
-      let buyOrder = wx.getStorageSync('buyOrder')
-      let data = res ? res : buyOrder;
-      this.setData({
-        orderInfo: data
-      })
+    this.setData({
+      orderNo: options.orderNo,
+      orderMoney: options.orderMoney
     })
   },
   // 数据绑定
@@ -56,7 +50,7 @@ Page({
       [`checked.${type}`]: value
     });
   },
-  // 钱包支付
+  // 支付
   payMoney() {
     let that = this;
     if (this.data.checked.color == 1) {
@@ -78,11 +72,8 @@ Page({
           }
         }
       })
-    } else if (this.data.checked.color == 2){
-      wx.showToast({
-        title: '暂不支持微信支付',
-        icon: 'none',
-      })
+    } else if (this.data.checked.color == 2) {
+      handleWechatPay(that.data.orderNo);
     }
   },
   sendMoney() {
@@ -97,7 +88,7 @@ Page({
     APP.ajax({
       url: APP.api.orderMoney,
       data: {
-        order_no: that.data.orderInfo.order_no,
+        order_no: that.data.orderNo,
         pay_password: that.data.password
       },
       success(res) {

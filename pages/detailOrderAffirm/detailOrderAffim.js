@@ -157,7 +157,7 @@ Page({
       })
     }
   },
-  
+
   // 添加商品数量
   plus(e) {
     let index = APP.utils.getDataSet(e, 'index');
@@ -252,23 +252,16 @@ Page({
         market_activity_type: 0,
         memo: this.data.memo
       },
-      success: res => {
-        let orderId = res.data.id;
+      success(res) {
         wx.setStorageSync('buyOrder', res.data)
         wx.showToast({
           title: res.msg,
           icon: 'none',
         })
         setTimeout(() => {
-          wx.showToast({
-            title: '前往支付',
-            icon: 'none',
+          wx.redirectTo({
+            url: `/pages/userSubPage/orderPay/pay?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}`
           })
-          setTimeout(() => {
-            wx.redirectTo({
-              url: `/pages/userSubPage/orderPay/pay?order_id=${orderId}`
-            })
-          }, 1000)
         }, 1000)
       }
     })

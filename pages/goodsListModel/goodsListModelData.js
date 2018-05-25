@@ -17,6 +17,12 @@ export function getGoodsList(that) {
           goodsList: that.data.goodsList.concat(res.data),
           pageNum: ++that.data.pageNum
         })
+      } else {
+        if (that.data.pageNum == 1) {
+          that.setData({
+            noContent: true
+          })
+        }
       }
     }
   })
