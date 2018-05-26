@@ -53,3 +53,9 @@
 .popup-warpper .select .no {
   flex: 1;
 }
+
+
+.bankicon{
+  font-size:80rpx;
+
+}

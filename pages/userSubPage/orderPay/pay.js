@@ -1,10 +1,11 @@
 const APP = getApp();
 import { handleWechatPay } from '../../../utils/common.js';
+import { payType } from '../../../api/config.js';
 Page({
   data: {
     showPopup: false,
-    orderNo:'',
-    orderMoney:'',
+    orderNo: '',
+    orderMoney: '',
     password: "",
     items: [{
       padding: 0,
@@ -73,7 +74,7 @@ Page({
         }
       })
     } else if (this.data.checked.color == 2) {
-      handleWechatPay(that.data.orderNo);
+      handleWechatPay(that.data.orderNo, payType.goodsOrderPay);
     }
   },
   sendMoney() {

@@ -20,8 +20,8 @@ Page({
   selectCard(e) {
     this.setData({
       card: e.currentTarget.dataset.card,
-      popupShow: !this.data.popupShow
     })
+    this.togglePopupShow();
   },
   // 金额输入
   bindMoney(e) {
@@ -30,7 +30,7 @@ Page({
     })
   },
   // 切换银行卡弹出层
-  togglePopupShow() {
+  togglePopupShow(e) {
     this.setData({
       popupShow: !this.data.popupShow,
     })

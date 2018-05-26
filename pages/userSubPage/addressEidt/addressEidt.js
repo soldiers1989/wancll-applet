@@ -7,7 +7,7 @@ Page({
     enterName: '',
     enterMobile: '',
     enterTextarea: '',
-    enterDefault: 0,
+    enterDefault: 1,
     // 三级联动
     province: {},
     city: {},

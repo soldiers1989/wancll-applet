@@ -1,5 +1,5 @@
 <view class='goods-list wancll-padded-3 wancll-bg-pray'>
-  <view class='goods wancll-bg-pray' wx:for="{{conlectList}}" wx:key="index">
+  <view class='goods wancll-bg-pray' wx:for="{{collectionList}}" wx:key="index">
     <view class='wancll-padded-3 wancll-bg-pray'>
       <view class='image' data-id='{{item.goods_info.id}}' catchtap='goDetail'>
         <image mode="widthFix" class="wancll-col-xs-12" src='{{item.goods_info.thum}}'></image>
@@ -13,4 +13,9 @@
       </view>
     </view>
   </view>
+</view>
+
+<view wx:if="{{noContent}}" class="no-content-image">
+  <image mode="widthFix" src="{{noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>

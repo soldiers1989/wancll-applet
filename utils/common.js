@@ -155,7 +155,7 @@ function queryUserInfoByUnionId(unionId, that) {
 }
 
 // 代理微信支付
-export function handleWechatPay(orderNo) {
+export function handleWechatPay(orderNo, payType) {
   wx.login({
     success(res) {
       if (res.code) {
@@ -166,10 +166,12 @@ export function handleWechatPay(orderNo) {
             order_no: orderNo
           },
           success(res) {
-            wx.showToast({
-              title: res.msg,
-              icon: 'none'
-            })
+            res.data.success = function (res) {
+              wx.redirectTo({
+                url: `/pages/userSubPage/payWaiting/payWaiting?orderNo=${orderNo}&payType=${payType}`,
+              })
+            }
+            wx.requestPayment(res.data)
           }
         })
       }

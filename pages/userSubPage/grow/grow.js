@@ -1,61 +1,34 @@
 const APP = getApp();
+import { getUserAsset, getList } from './growData.js';
 Page({
   data: {
-    asset:{},
-    user:{},
-    lists:[],
+    asset: {},
+    user: {},
+    lists: [],
     pageNum: 1,
     pageLimit: 10,
     loading: true
   },
   onLoad: function (options) {
-    this.getAsset()
-    this.getLists()
-  },
-  getAsset(){
-    let that = this
-    let user = wx.getStorageSync('user')
-    APP.ajax({
-      url: APP.api.userAsset,
-      success(res){
-        that.setData({ 
-          asset:res.data,
-          user: user
-        })
-      }
+    this.setData({
+      user: wx.getStorageSync('user')
     })
-  },
-  getLists() {
-    let that = this
-    let pageNum = this.data.pageNum;
-    let lists = this.data.lists
-    APP.ajax({
-      url: APP.api.userGrowLogs,
-      header: {
-        'page-limit': that.data.pageLimit,
-        'page-num': pageNum,
-      },
-      success(res) {
-        if (res.data.length) {
-          that.setData({
-            lists: lists.concat(res.data),
-            pageNum: ++pageNum
-          })
-        } else {
-          that.setData({
-            loading: false
-          })
-        }
-      }
-    })
+    getUserAsset(this);
+    getList(this);
   },
   onPullDownRefresh: function () {
-  
+    wx.stopPullDownRefresh();
+    this.setData({
+      lists: [],
+      pageNum: 1
+    })
+    getList(this);
+    getUserAsset(this);
   },
   onReachBottom: function () {
-    this.getLists()
+    getList(this);
   },
   onShareAppMessage: function () {
-  
+
   }
 })

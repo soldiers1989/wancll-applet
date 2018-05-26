@@ -83,6 +83,8 @@ export const api = {
   orderDelete: `${defaultHost}/api_orders/orders/delete`,
   orderDetail: `${defaultHost}/api_orders/orders/read`,
 
+  // 订单是否支付
+  orderIsPay: `${defaultHost}/api_query/pay/is_pay`,
 
 
   // 收藏夹

@@ -1,5 +1,6 @@
 const APP = getApp();
 import { handleWechatPay } from '../../../utils/common.js';
+import { payType } from '../../../api/config.js';
 Page({
   data: {
     money: ''
@@ -28,7 +29,7 @@ Page({
         },
         success(res) {
           // 微信支付
-          handleWechatPay(res.data.order_no);
+          handleWechatPay(res.data.order_no, payType.rechargeOrderPay);
         }
       })
     }

@@ -1,8 +1,5 @@
 <view class='address-list'>
-  <view 
-    class='item' 
-    wx:for="{{addressList}}" 
-    wx:key="key">
+  <view class='item' wx:for="{{addressList}}" wx:key="key">
     <zan-panel>
       <zan-cell-group>
         <zan-cell class="top">
@@ -15,24 +12,15 @@
         <zan-cell>
           <view class='bottom'>
             <view class='default-address' data-id='{{item.id}}' catchtap='setDefaultAddress'>
-              <zan-icon type="{{item.id == defaultAddress ? 'checked':'check'}}"></zan-icon>
+              <zan-icon type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
               <text> 默认地址</text>
             </view>
             <view class='click-button'>
-              <zan-button 
-                class='zan-button' 
-                bindbtnclick="editAddress"
-                data-id='{{item.id}}' 
-                size="small">
+              <zan-button class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
                 <zan-icon type="edit"></zan-icon>
                 <text> 编辑</text>
               </zan-button>
-              <zan-button
-               class='zan-button' 
-               bindbtnclick="deleteAddress" 
-               data-id='{{item.id}}'
-               size="small" 
-               type="danger">
+              <zan-button class='zan-button' bindbtnclick="deleteAddress" data-id='{{item.id}}' size="small" type="danger">
                 <zan-icon type="delete"></zan-icon>
                 <text> 删除</text>
               </zan-button>
@@ -46,4 +34,9 @@
     <zan-button bindbtnclick="editAddress" data-id='new'>
       <zan-icon type="add"></zan-icon> 添加新地址</zan-button>
   </zan-panel>
+
+  <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">
+    <image mode="widthFix" src="{{noContentImg}}" style="width: 18%;margin: 0 auto;"></image>
+    <view style="color: #777;">啊哦,这里什么都没有~</view>
+  </view>
 </view>

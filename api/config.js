@@ -10,6 +10,11 @@ export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
 
 // 图片地址
 export const imageHost = {
-  wapImages:'https://wancllshop.wx.wygoo.com/public/static/wap/images',
+  wapImages: 'https://wancllshop.wx.wygoo.com/public/static/wap/images',
   images: 'https://wancllshop.wx.wygoo.com/public/static/images'
+}
+
+export const payType = {
+  goodsOrderPay: 'goodsOrderPay',
+  rechargeOrderPay: 'rechargeOrderPay'
 }

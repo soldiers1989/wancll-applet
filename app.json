@@ -36,7 +36,8 @@
     "pages/userSubPage/recharge/recharge",
     "pages/userSubPage/withdraw/withdraw",
     "pages/userSubPage/helpAndOption/helpAndOption",
-    "pages/wechatBindMobile/wechatBindMobile"
+    "pages/wechatBindMobile/wechatBindMobile",
+    "pages/userSubPage/payWaiting/payWaiting"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

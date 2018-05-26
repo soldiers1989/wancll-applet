@@ -5,5 +5,4 @@
       <order-item data="{{item}}" haveinfo bind:refreshGet="refreshGet"></order-item>
     </block>
   </zan-tab>
-
 </view>

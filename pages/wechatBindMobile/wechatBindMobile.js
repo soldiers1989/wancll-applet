@@ -83,18 +83,12 @@ Page({
         wx.showToast({
           title: res.msg,
           icon: 'none'
-        })
-        res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar;
-        // 登录之后先全部存入本地
-        wx.setStorageSync("token", res.data.token)
-        wx.setStorageSync("user", res.data.user)
-        // 然后再存入全局变量中
-        APP.globalData.hasLogin = true
-        APP.globalData.token = res.data.token.token
-        APP.globalData.user = res.data.user
-        wx.switchTab({
-          url: '/pages/user/user',
-        })
+        });
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/login/login',
+          })
+        }, 500)
       }
     })
   },

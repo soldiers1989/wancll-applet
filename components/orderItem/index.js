@@ -129,29 +129,5 @@ Component({
         url: `/pages/userSubPage/orderEstimate/estimate?${params}`,
       })
     },
-    // 删除订单
-    deleteOrder() {
-      // let id = this.data.data.id;
-      // let that = this;
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '确定要删除订单吗？',
-      //   success: function (res) {
-      //     if (res.confirm) {
-      //       APP.ajax({
-      //         url: APP.api.orderDelete,
-      //         data: { order_id: id },
-      //         success(res) {
-      //           wx.showToast({
-      //             title: res.msg,
-      //             icon: 'none',
-      //           })
-      //           that.triggerEvent('refreshGet')
-      //         }
-      //       })
-      //     }
-      //   }
-      // })
-    }
   }
 })

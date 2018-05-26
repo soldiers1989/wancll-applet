@@ -1,4 +1,3 @@
-/* pages/userSubPage/address/address.wxss */
 .address-list{
   padding-bottom: 120rpx;
 }

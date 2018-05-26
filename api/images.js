@@ -12,6 +12,6 @@ export const imgs = {
   avatar: `${imageHost.images}/avatar.png`,
   notice: `${imageHost.wapImages}/wangkaikuaibao.png`,
   logo: `${imageHost.wapImages}/wap_logo.png`,
-  noContentImg: `${imageHost.wapImages}/no_content.png`
+  noContentImg: `${imageHost.wapImages}/no_content.png`,
 }
   

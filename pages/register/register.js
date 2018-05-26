@@ -9,10 +9,10 @@ Page({
     rpassword: '',
     status: true, //  发送成功？
     countDown: 91,
-    unionId:'',
+    unionId: '',
   },
-  onLoad (options) {
-    this.setData({
+  onLoad(options) {
+    options.unionId && this.setData({
       unionId: options.unionId
     })
   },
@@ -114,7 +114,7 @@ Page({
       password: this.data.password,
       code: this.data.code,
     };
-    if (this.data.unionId){
+    if (this.data.unionId) {
       data.wechat_openid = this.data.unionId
     }
     APP.ajax({

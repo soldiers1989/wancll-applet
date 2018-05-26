@@ -20,9 +20,9 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;" class="wancll-bg-white">
-      <zan-cell-group>
-        <zan-cell wx:for="{{cards}}" wx:key="{{index}}" title="{{item.bank_name}}" data-card="{{item}}" label="{{item.card_holder}}" value="{{item.card_number}}" bindtap="selectCard"></zan-cell>
-      </zan-cell-group>
+      <view class="wancll-margin-15" wx:for="{{cards}}" wx:key="{{index}}" data-card="{{item}}" bindtap="selectCard">
+        <i class="{{'bankicon iconfont ' + item.fontClass}}" style="{{'color: ' + item.color}}"></i>
+      </view>
       <button class="wancll-margin-10 wancll-bg-info wancll-text-white" catchtap='addBank'>新增银行卡</button>
     </scroll-view>
   </view>
