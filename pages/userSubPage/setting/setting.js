@@ -14,6 +14,11 @@ Page({
     });
     queryWechatBindStatus(this);
   },
+  goHelpAndOption(){
+    wx.navigateTo({
+      url: `/pages/userSubPage/helpAndOption/helpAndOption`,
+    })
+  },
   // 改变头像
   changeAvatar() {
     getBase64Image((base64) => {

@@ -64,6 +64,9 @@ export const api = {
   userSettingUpdate: `${defaultHost}/api_users/users/update`,
   userSettingMobile: `${defaultHost}/api_users/user_accounts/change_mobile`,
 
+  // 反馈
+  submitHelpAndOption: `${defaultHost}/api_articles/feedbacks/save`,
+
   // 订单相关
   orderAll: `${defaultHost}/api_orders/orders/lists`,
   orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,

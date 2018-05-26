@@ -1,66 +1,50 @@
-// pages/userSubPage/helpAndOption/helpAndOption.js
+const APP = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    content: '',
+    title: '功能异常'
   },
+  onLoad(options) {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  inputChange(e) {
+    this.setData({
+      content: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  submit() {
+    if (!this.data.content) {
+      wx.showToast({
+        title: '请填写反馈意见',
+        icon: 'none'
+      })
+      return;
+    }
+    let userId = wx.getStorageSync('user').id;
+    APP.ajax({
+      url: APP.api.submitHelpAndOption,
+      data: {
+        user_id: userId,
+        title: this.data.title,
+        content: this.data.content
+      },
+      success(res) {
+        wx.showToast({
+          title: res.msg,
+          icon: 'non'
+        })
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 800)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  radioChange(e) {
+    this.setData({
+      title: e.detail.value
+    })
   },
+  onShareAppMessage() {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })
