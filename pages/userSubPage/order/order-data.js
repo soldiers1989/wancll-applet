@@ -10,15 +10,18 @@ export function getOrderData(that, status) {
       'page-num': that.data.pageNum,
     },
     success(res) {
-      wx.stopPullDownRefresh()
-      that.setData({
-        orderList: that.data.orderList.concat(res.data),
-        pageNum: ++(that.data.pageNum)
-      })
-      wx.setStorageSync('orderList', res.data)
-    },
-    fail(err){
-      wx.stopPullDownRefresh()
+      if (res.data.length) {
+        that.setData({
+          orderList: that.data.orderList.concat(res.data),
+          pageNum: ++(that.data.pageNum),
+          noContent: false,
+        })
+        wx.setStorageSync('orderList', res.data)
+      } else if (that.data.pageNum == 1) {
+        that.setData({
+          noContent: true
+        })
+      }
     }
   })
 }

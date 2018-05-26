@@ -1,5 +1,5 @@
 const APP = getApp();
-export function getUserAsset(that){
+export function getUserAsset(that) {
   APP.ajax({
     url: APP.api.userAsset,
     success(res) {
@@ -9,7 +9,7 @@ export function getUserAsset(that){
     }
   })
 }
-export function getList(that){
+export function getList(that) {
   let pageNum = that.data.pageNum;
   let lists = that.data.lists
   APP.ajax({
@@ -22,11 +22,12 @@ export function getList(that){
       if (res.data.length) {
         that.setData({
           lists: lists.concat(res.data),
-          pageNum: ++pageNum
+          pageNum: ++pageNum,
+          noContent: false,
         })
-      } else {
+      } else if (that.data.pageNum == 1) {
         that.setData({
-          loading: false
+          noContent: true
         })
       }
     }

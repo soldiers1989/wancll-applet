@@ -18,7 +18,7 @@ const bank = [
 ]
 Page({
   data: {
-    isEdit:false,
+    isEdit: false,
     id: 0,
     index: 0,
     bankArray: bank,
@@ -33,7 +33,7 @@ Page({
         data: { id: options.id },
         success(res) {
           that.setData({
-            isEdit:true,
+            isEdit: true,
             index: that.selectBank(res.data.bank_name),
             enterName: res.data.card_holder,
             enterCard: res.data.card_number,
@@ -59,7 +59,7 @@ Page({
   enterCard(e) {
     this.setData({ enterCard: e.detail.value })
   },
-  send(){
+  send() {
     let that = this;
     if (!that.data.enterName) {
       wx.showToast({
@@ -76,37 +76,37 @@ Page({
       return
     }
     let api = '';
-    let toUrl='';
-    if (that.data.isEdit){
+    let toUrl = '';
+    if (that.data.isEdit) {
       api = APP.api.myBankCardUpdate;
-    }else{
+    } else {
       api = APP.api.myBankCardSave;
     }
     APP.ajax({
       url: api,
-      data:{
-        id:that.data.id,
+      data: {
+        id: that.data.id,
         bank_name: that.data.bankArray[that.data.index],
         card_holder: that.data.enterName,
         card_number: that.data.enterCard
       },
-      success(res){
-        wx.showToast({ title: res.msg, icon: 'none', });
-        setTimeout(()=>{
-          wx.navigateTo({ url: `/pages/userSubPage/card/card`})
-        },1000)
-      }
-    })
-  },
-  deleteCard(){
-    let that = this;    
-    APP.ajax({
-      url: APP.api.myBankCardDelete,
-      data: { id: that.data.id},
       success(res) {
         wx.showToast({ title: res.msg, icon: 'none', });
         setTimeout(() => {
-          wx.navigateTo({ url: `/pages/userSubPage/card/card` })
+          wx.navigateBack();
+        }, 1000)
+      }
+    })
+  },
+  deleteCard() {
+    let that = this;
+    APP.ajax({
+      url: APP.api.myBankCardDelete,
+      data: { id: that.data.id },
+      success(res) {
+        wx.showToast({ title: res.msg, icon: 'none', });
+        setTimeout(() => {
+          wx.navigateBack();
         }, 1000)
       }
     })

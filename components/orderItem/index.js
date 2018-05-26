@@ -11,6 +11,8 @@ Component({
     }
   },
   data: {
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
   methods: {
     // 进入订单详情

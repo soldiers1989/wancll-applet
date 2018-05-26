@@ -4,5 +4,10 @@
     <block wx:for="{{orderList}}" wx:key="key">
       <order-item data="{{item}}" haveinfo bind:refreshGet="refreshGet"></order-item>
     </block>
+
+    <view wx:if="{{noContent}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
+      <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+    </view>
   </zan-tab>
 </view>

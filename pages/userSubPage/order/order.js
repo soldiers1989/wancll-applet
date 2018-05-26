@@ -1,11 +1,6 @@
-// pages/userSubPage/order/order.js
 const APP = getApp();
 import {getOrderData} from './order-data.js'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     tabList: [{
       id: 0,
@@ -26,11 +21,9 @@ Page({
     tabSelectedId: 0,
     orderList:[],
     pageNum: 1,
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     // 设置跳转目标并对应请求
     if (options.target) {
@@ -67,6 +60,7 @@ Page({
     })
   },
   onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
     this.setData({
       orderList: [],
       pageNum: 1,

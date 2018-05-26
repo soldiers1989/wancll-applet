@@ -126,4 +126,7 @@ export const api = {
   goodsKeywordsList: `${defaultHost}/api_goods/goods_keywords/lists`,
   userGoodsKeywordsRead: `${defaultHost}/api_users/user_goods_keywords/read`,
   deleteKeywords: `${defaultHost}/api_users/user_goods_keywords/delete`,
+
+  // 工具api
+  uploadFile: `${defaultHost}/api_systems/helper/upload_file`,
 }

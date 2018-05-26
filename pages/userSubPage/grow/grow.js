@@ -7,7 +7,8 @@ Page({
     lists: [],
     pageNum: 1,
     pageLimit: 10,
-    loading: true
+    noContent: false,
+    noContentImg: APP.imgs.noContentImg
   },
   onLoad: function (options) {
     this.setData({

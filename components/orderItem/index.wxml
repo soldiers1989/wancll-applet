@@ -95,3 +95,8 @@
   <view wx:if="{{status === 4}}" class='right'>待评价</view>
   <view wx:if="{{status === 9}}" class='right'>交易关闭</view>
 </template>
+
+<view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">
+  <image mode="widthFix" src="{{noContentImg}}" style="width: 18%;margin: 0 auto;"></image>
+  <view style="color: #777;">啊哦,这里什么都没有~</view>
+</view>
