@@ -49,10 +49,15 @@ function runAjax(option, header) {
       }
       if (res.data.code == 1) {
         success(res.data);
-      } else {
+      } else if (res.data.code == 0) {
         wx.showToast({
           title: res.data.msg,
           icon: 'none',
+        })
+      } else {
+        wx.clearStorageSync();
+        wx.reLaunch({
+          url: '/pages/index/index'
         })
       }
     },
