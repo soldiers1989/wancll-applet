@@ -61,7 +61,6 @@ Page({
       url: `/pages/goodsListModel/goodsListModel?${param}`,
     })
   },
-<<<<<<< HEAD
   // 下拉刷新事件
   onPullDownRefresh () {
     getOtherData(this);
@@ -72,16 +71,6 @@ Page({
     },()=>{
       getGoodsData(this)
     })
-=======
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-    this.setData({
-      goods: [],
-      pageNum: 1,
-    });
-    getGoodsData(this);
-    getOtherData(this);
->>>>>>> a6b5b19a6f04240fba71394e1102dc1102a79b22
   },
   // 上拉加载事件
   onReachBottom() {
