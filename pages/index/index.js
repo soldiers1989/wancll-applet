@@ -60,6 +60,7 @@ Page({
     wx.navigateTo({
       url: `/pages/goodsListModel/goodsListModel?${param}`,
     })
+
   },
   // 下拉刷新事件
   onPullDownRefresh () {
