@@ -18,9 +18,13 @@
         <view class='title-warpper'>
           <view class='title'>{{item.goods_info.name}}</view>
           <view class='intro'>{{item.goods_info.intro}}</view>
-          <view class='sku'>规格: {{item.spec_group_info.spec_option_group}}</view>
+          <view class='sku'>
+            规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
+          </view>
           <view class='price-warpper'>
-            <view class='price'>￥{{item.spec_group_info.sell_price*item.num}}</view>
+            <view class='price'>
+              ￥{{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price*item.num}}
+            </view>
             <view class='count'>
               <zan-button size="mini" data-index="{{item.goods_id}}" bindbtnclick="minus">-</zan-button>
               <text> {{item.num}} </text>

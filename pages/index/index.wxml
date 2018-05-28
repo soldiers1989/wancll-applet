@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="">
+<view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
       <icon class='icon' type='sousuo'></icon>
@@ -18,20 +18,20 @@
   </view>
 
   <view class='banner-list'>
-    <view class='list' wx:for="{{smallImg}}" wx:key="index" data-tag="{{title[index]}}" bindtap='goTagGoods'>
+    <view class='list' wx:for="{{sellList}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
       <view class='img'>
-        <image mode="widthFix" src='{{item}}'></image>
+        <image mode="widthFix" src='{{item.img}}'></image>
       </view>
-      <view class='text'>{{title[index]}}</view>
+      <view class='text'>{{item.title}}</view>
     </view>
   </view>
 
   <view class='notice'>
     <view class='notice-img'>
-      <image mode="widthFix" src='{{noticeImg}}'></image>
+      <image mode="widthFix" src='{{notice.img}}'></image>
     </view>
     <view class='notice-list'>
-      <view class='list' wx:for="{{notice}}" wx:key="index">• {{item.title}}</view>
+      <view class='list' wx:for="{{notice.data}}" wx:key="index">• {{item.title}}</view>
     </view>
   </view>
 

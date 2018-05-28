@@ -21,18 +21,23 @@ Page({
     tabListSelectedId: 1,
     tabListScroll: true,
     tabListHeight: 45,
+
     // 数据
     goodsId: -1, //   商品的id
     goodsInfo: '', //  商品信息 read:res.data
     isCollect: 0, //  默认是否收藏
-
+    
     comments: [], // comments:res.data
     lineValue: {}, // 当前点击的sku数据
     findSku: '', // 点击后筛选出的sku
     cartsDetail:[], // 加入购物车后返回的
+    attrs:[], // 产品的属性列表
     // 控制
     showTab: 1,
-    showBottomPopup: false,
+    hasSku:false, // 是否含有sku内容
+    hasAttr:false, // 是否有产品参数内容
+    showSkuPopup: false,
+    showAttrPopup: false,
     openType: '', // 打开sku的类型是点击加入购物车还是立即购买
   },
   onLoad(options) {
@@ -43,6 +48,40 @@ Page({
         id: options.id
       },
       success: res => {
+        APP.ajax({
+          url: APP.api.detailTemplate,
+          data: {
+            goods_cate_id: res.data.goods_cate_id
+          },
+          success: rest => {
+            // console.log(rest)
+            if(rest.data.attr_template.names){
+              this.setData({
+                attrs:rest.data.attr_template.names
+              })
+            }
+            // 判断是否有产品参数
+            if(rest.data.attr_template.id){
+              this.setData({
+                hasAttr:true
+              })
+            }else{
+              this.setData({
+                hasAttr:false
+              })
+            }
+            // 判断是否有产品sku
+            if(rest.data.spec_template.id){
+              this.setData({
+                hasSku:true
+              })
+            }else{
+              this.setData({
+                hasSku:false
+              })
+            }
+          }
+        })
         this.setData({
           goodsId: options.id,
           goodsInfo: res.data,
@@ -135,17 +174,28 @@ Page({
       showTab: id
     })
   },
-
   // 打开弹出层sku选择器
-  openBottomPopup() {
+  openSkuPopup() {
     this.setData({
-      showBottomPopup: true
+      showSkuPopup: true
     })
   },
   // 子组件的关闭按钮点击时候也同时关闭
-  closeBottomPopup() {
+  closeSkuPopup() {
     this.setData({
-      showBottomPopup: false
+      showSkuPopup: false
+    })
+  },
+  // 打开弹出层sku选择器
+  openAttrPopup() {
+    this.setData({
+      showAttrPopup: true
+    })
+  },
+  // 子组件的关闭按钮点击时候也同时关闭
+  closeAttrPopup() {
+    this.setData({
+      showAttrPopup: false
     })
   },
   // 点击确定按钮关闭的时候
@@ -153,7 +203,7 @@ Page({
     this.setData({
       lineValue: e.detail.lineValue,
       findSku: e.detail.findSku,
-      showBottomPopup: false
+      showSkuPopup: false
     }, () => {
       let type = APP.utils.getDataSet(e, 'type');
       if (this.data.openType == "buy") {
@@ -185,12 +235,35 @@ Page({
           })
         }, 1000)
       } else {
-        if (this.data.findSku) {
+        if(this.data.hasSku){
+          if (this.data.findSku) {
+            APP.ajax({
+              url: APP.api.detailCartsSave,
+              data: {
+                goods_id: this.data.goodsInfo.id,
+                spec_group_id: this.data.findSku.id,
+                status: this.data.goodsInfo.status,
+                num: 1
+              },
+              success: (res) => {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none',
+                })
+                this.setData({
+                  cartsDetail:[res.data]
+                })
+              }
+            })
+          } else {
+            this.openSkuPopup();
+          }
+        }else{
           APP.ajax({
             url: APP.api.detailCartsSave,
             data: {
               goods_id: this.data.goodsInfo.id,
-              spec_group_id: this.data.findSku.id,
+              spec_group_id: 0,
               status: this.data.goodsInfo.status,
               num: 1
             },
@@ -204,8 +277,6 @@ Page({
               })
             }
           })
-        } else {
-          this.openBottomPopup();
         }
       }
     })
@@ -228,10 +299,14 @@ Page({
           })
         }, 1000)
       } else {
-        if (this.data.findSku) {
+        if(this.data.hasSku){
+          if (this.data.findSku) {
+            this.sendBuyNow();
+          } else {
+            this.openSkuPopup();
+          }
+        }else{
           this.sendBuyNow();
-        } else {
-          this.openBottomPopup();
         }
       }
     })
@@ -242,23 +317,44 @@ Page({
     let cartsDetail = []; // 订单确认页面需要读取的产品信息
     let goodsInfo = []; // 订单确认页面需要发送请求的信息
     let goodsIds = []; // 订单确认页面需要发送请求的信息
-    // 填入数据
-    goodsInfo.push({
-      goods_id: this.data.goodsInfo.id,
-      spec_group_id: this.data.findSku.id,
-      num: 1,
-    })
-    // 加入购物车后直接生成的数据
-    if(this.data.cartsDetail.length){
-      cartsDetail = this.data.cartsDetail
-    }else{
-      cartsDetail.push({
-        goods_id: Number(this.data.goodsId),
+    if(this.data.hasSku){
+      // 填入数据
+      goodsInfo.push({
+        goods_id: this.data.goodsInfo.id,
         spec_group_id: this.data.findSku.id,
-        spec_group_info: this.data.findSku,
         num: 1,
-        goods_info: this.data.goodsInfo
       })
+      // 加入购物车后直接生成的数据
+      if(this.data.cartsDetail.length){
+        cartsDetail = this.data.cartsDetail
+      }else{
+        cartsDetail.push({
+          goods_id: Number(this.data.goodsId),
+          spec_group_id: this.data.findSku.id,
+          spec_group_info: this.data.findSku,
+          num: 1,
+          goods_info: this.data.goodsInfo
+        })
+      }
+    }else{
+      // 填入数据
+      goodsInfo.push({
+        goods_id: this.data.goodsInfo.id,
+        spec_group_id: 0,
+        num: 1,
+      })
+      // 加入购物车后直接生成的数据
+      if(this.data.cartsDetail.length){
+        cartsDetail = this.data.cartsDetail
+      }else{
+        cartsDetail.push({
+          goods_id: Number(this.data.goodsId),
+          spec_group_id: 0,
+          spec_group_info: [],
+          num: 1,
+          goods_info: this.data.goodsInfo
+        })
+      }
     }
     // 组装id
     goodsIds.push(Number(this.data.goodsId))

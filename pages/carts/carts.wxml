@@ -1,3 +1,9 @@
+
+<view class="edit" wx:if="{{selectObjlen}}">
+  <zan-button class="btn" bindbtnclick="deleteCarts" size="small">删除</zan-button>
+  <zan-button class="btn" bindbtnclick="collectCarts" size="small">加入收藏夹</zan-button>
+</view>
+
 <view class="item-list" wx:for="{{cartsList}}" wx:key="key">
   <zan-panel>
     <view class='item-content'>
@@ -13,11 +19,13 @@
           <view class='title'>{{item.goods_info.name}}</view>
           <view class='intro'>{{item.goods_info.intro}}</view>
           <zan-button size="mini" class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}" bindbtnclick='openBottomPopup'>
-            规格: {{item.spec_group_info.spec_option_group}}
+            规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
           </zan-button>
           <view class='price-warpper'>
             <view class='price wancll-text-price wancll-font-size-14'>
-              <text class='price wancll-text-price wancll-font-size-10'>￥</text> {{item.spec_group_info.sell_price * item.num}}</view>
+              <text class='price wancll-text-price wancll-font-size-10'>￥</text> 
+              {{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price * item.num}}
+            </view>
             <view class='count'>
               <zan-button size="mini" data-id="{{item.id}}" bindbtnclick="minus">-</zan-button>
               <text> {{item.num}} </text>

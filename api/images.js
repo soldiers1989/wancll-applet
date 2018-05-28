@@ -1,5 +1,6 @@
+// 引入配置文件
 import { imageHost } from './config.js';
-
+// 网络静态图片
 export const imgs = {
   // 首页五张小图
   smallImg: [

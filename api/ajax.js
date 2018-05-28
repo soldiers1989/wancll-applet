@@ -1,27 +1,31 @@
-import { headers } from './config.js';
-const APP = getApp();
+// 引入配置文件
+import {headers} from './config.js';
 
 // 封装原来的请求 添加公共请求头的配置
 export function ajax(option) {
-  // 配置header
+  // 添加默认的配置 header
   let headerMust = {
     'auth': headers.auth,
     'client-type': headers.clientType,
   }
-  // 合并header参数
-  let header = option.header ? Object.assign(option.header, headerMust) : headerMust
-
+  // 合并 header 参数
+  let header = {};
+  if(option.header){
+    header = Object.assign(option.header, headerMust);
+  }else{
+    header = headerMust;
+  }
   //判断本地是否有token
-  let has = wx.getStorageSync('token');
-  if (has) {
-    let token = { 'token': has.token }
-    let tokenHeader = Object.assign(token, header)
-    runAjax(option, tokenHeader)
+  let token = wx.getStorageSync('token');
+  if (token) {
+    let tokenHeader = Object.assign({ 'token': token.token }, header)
+    request(option, tokenHeader)
   } else {
-    runAjax(option, header)
+    request(option, header)
   }
 }
-function runAjax(option, header) {
+// 微信请求的封装
+function request(option, header) {
   // 其他参数
   let options = option || {};
   let url = options.url || '';
@@ -29,11 +33,10 @@ function runAjax(option, header) {
   let method = options.method || 'POST';
   let success = options.success;
   let fail = options.fail;
-  let timer = setTimeout(() => {
-    wx.showLoading({
-      title: '加载中...',
-    })
-  }, 800)
+  // 0.8秒后显示加载的动态
+  // 暂时取消请求的loding
+
+  // 请求的封装
   wx.request({
     url: url,
     data: data,
@@ -41,12 +44,8 @@ function runAjax(option, header) {
     method: method,
     dataType: 'json',
     responseType: 'text',
-    success(res) {
-      // 存在showLoading时候
-      if (timer) {
-        wx.hideLoading()
-        clearTimeout(timer)
-      }
+    success: res => {
+      // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
       if (res.data.code == 1) {
         success(res.data);
       } else if (res.data.code == 0) {
@@ -55,6 +54,7 @@ function runAjax(option, header) {
           icon: 'none',
         })
       } else {
+        // 异常操作 清除本地存储 跳转到首页
         wx.clearStorageSync();
         wx.reLaunch({
           url: '/pages/index/index'
@@ -62,11 +62,10 @@ function runAjax(option, header) {
       }
     },
     fail(err) {
-      // 存在showLoading时候
-      if (timer) {
-        wx.hideLoading()
-        clearTimeout(timer)
-      }
+      // 清除加载状态
+      wx.hideLoading()
+      clearTimeout(timer)
+      // 错误内容
       console.log(err);
       fail && fail(err);
     }

@@ -8,6 +8,7 @@ export function getCarts(that) {
     },
     success(res) {
       if (res.data.length) {
+        console.log(res.data)
         that.setData({
           cartsList: that.data.cartsList.concat(res.data),
           pageNum: that.data.pageNum + 1,

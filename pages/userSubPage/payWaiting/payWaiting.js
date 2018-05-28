@@ -10,7 +10,6 @@ Page({
     this.setData({
       payType: options.payType,
     });
-
     let interverInt = setInterval(() => {
       APP.ajax({
         url: APP.api.orderIsPay,

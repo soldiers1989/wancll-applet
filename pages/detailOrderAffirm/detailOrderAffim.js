@@ -31,23 +31,11 @@ Page({
     let cartsDetail = cartsGoodsInfo.cartsDetail;
     let goodsIds = cartsGoodsInfo.goodsIds;
     let goodsInfo = cartsGoodsInfo.goodsInfo;
-
-
-    // 得到规格尺寸信息重新组合和排列
-    // let specGroupInfo = itemInfos.goods_spec_group_info;
-    // let selectSpecGroupInfo = specGroupInfo.filter(item => {
-    //   return item.id == options.spec_group_id;
-    // })
-    // selectSpecGroupInfo[0].spec_option_group = selectSpecGroupInfo[0].spec_option_group.split('_').join(';');
     //设置数据
     this.setData({
       cartsDetail: cartsDetail,
       goodsIds: goodsIds,
-      goodsInfo: goodsInfo,
-      // specGroupId: options.spec_group_id,
-      // num: options.num,
-      // money: options.money,
-      // selectSpecGroupInfo: selectSpecGroupInfo[0]
+      goodsInfo: goodsInfo
     }, () => {
       this.getDefaultAddress();;
     })

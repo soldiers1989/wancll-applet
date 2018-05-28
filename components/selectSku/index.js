@@ -12,20 +12,27 @@ Component({
     sendfindsku:{
       type:Object,
       description: '传递过来的sku'
+    },
+    hassku:{
+      type:Boolean,
+      description: '判断是否存在sku数据'
     }
   },
   data: {
     // 请求到的模板数据
     templateInfo: '', // 模板信息
-    skuData: '', // 重新组装的sku数据
-    lineValue: {}, // 当前点击的sku数据
-    findSku: '', // 点击后筛选出的sku
-    defaultSku: '', // 默认显示价格数据
+    skuData: '',      // 重新组装的sku数据
+    lineValue: {},    // 当前点击的sku数据
+    findSku: '',      // 点击后筛选出的sku
+    defaultSku: '',   // 默认显示价格数据
   },
   // 组件生成到页面获取的参数
   attached() {
-    if (!this.data.iscart) {
-      this.getTemplate()
+    // console.log(this.data.hassku)
+    if(this.data.hassku){
+      if (!this.data.iscart) {
+        this.getTemplate()
+      }
     }
   },
   // 组件的方法列表

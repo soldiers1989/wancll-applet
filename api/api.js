@@ -1,5 +1,5 @@
+// 引入配置文件
 import { defaultHost } from './config.js';
-
 // 请求的api
 export const api = {
   // 主页
@@ -33,7 +33,10 @@ export const api = {
   // 购物车
   getCartsAll: `${defaultHost}/api_goods/carts/lists`,
   getCartsUpdate: `${defaultHost}/api_goods/carts/update`,
-
+  getCartsDelete: `${defaultHost}/api_goods/carts/batch_delete`,
+  getCartsColleSave: `${defaultHost}/api_goods/goods_collections/batch_save`,
+  
+  
 
   // 登录注册相关
   userLogin: `${defaultHost}/api_users/user_accounts/login`,
@@ -85,7 +88,6 @@ export const api = {
 
   // 订单是否支付
   orderIsPay: `${defaultHost}/api_query/pay/is_pay`,
-
 
   // 收藏夹
   collections: `${defaultHost}/api_goods/goods_collections/lists`,

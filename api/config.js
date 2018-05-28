@@ -1,4 +1,4 @@
-// 配置文件
+// 公共配置文件
 
 // 必须请求头信息
 export const headers = {
@@ -14,6 +14,7 @@ export const imageHost = {
   images: 'https://wancllshop.wx.wygoo.com/public/static/images'
 }
 
+// 支付类型 
 export const payType = {
   goodsOrderPay: 'goodsOrderPay',
   rechargeOrderPay: 'rechargeOrderPay'

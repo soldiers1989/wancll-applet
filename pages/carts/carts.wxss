@@ -124,3 +124,11 @@
 zan-icon .zan-icon-checked{
   color: #358cff !important;
 }
+
+.edit{
+  padding: 10px;
+  text-align: right
+}
+.edit .btn{
+  margin-left: 10px;
+}
