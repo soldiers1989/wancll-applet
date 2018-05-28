@@ -28,7 +28,7 @@ Page({
             pageNum: ++pageNum,
             noContent: false,
           })
-        } else { that.data.pageNum == 1 } {
+        } else if (that.data.pageNum == 1) {
           that.setData({
             noContent: true,
           })
@@ -36,13 +36,21 @@ Page({
       }
     })
   },
+  previewImg(e) {
+    let imgs = e.currentTarget.dataset.imgs;
+    let currentImg = e.currentTarget.dataset.currentimg;
+    wx.previewImage({
+      urls: imgs,
+      current: currentImg,
+    })
+  },
   onPullDownRefresh: function () {
     wx.stopPullDownRefresh();
-    this.SetData({
+    this.setData({
       goodsComments: [],
       pageNum: 1
     })
-    this.getDat();
+    this.getData();
   },
   onReachBottom: function () {
     this.getData();

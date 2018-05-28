@@ -1,5 +1,5 @@
-
-<view class="order-top">{{orderStaus}}</view>
+<view class="order-top">
+  {{orderStaus}}</view>
 <view class="order-address">
   <view class="address">
     <view class="right">
@@ -34,7 +34,7 @@
     <view class="line">
       订单创建时间：{{orderData.create_time}}
     </view>
-    <view class="line">
+    <view class="line" wx:if="{{orderData.pay_time}}">
       订单付款时间：{{orderData.pay_time}}
     </view>
   </view>

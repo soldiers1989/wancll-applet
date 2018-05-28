@@ -20,7 +20,6 @@ Page({
     goods: [],
     // 控制参数
     pageNum: 1,
-    loading: true,
   },
   onLoad() {
     // 获取所有数据
@@ -47,7 +46,13 @@ Page({
     })
   },
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh();
+    this.setData({
+      goods: [],
+      pageNum: 1,
+    });
+    getGoodsData(this);
+    getOtherData(this);
   },
   onReachBottom() {
     getGoodsData(this);

@@ -1,5 +1,5 @@
 const APP = getApp();
-import { headers } from '../api/config.js';
+import { headers, imageHost } from '../api/config.js';
 // 获取base64格式的图片
 export function getBase64Image(callback) {
   wx.chooseImage({
@@ -7,7 +7,6 @@ export function getBase64Image(callback) {
     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
     success(res) {
-      console.log();
       wx.uploadFile({
         url: APP.api.uploadFile,
         filePath: res.tempFilePaths[0],
@@ -16,9 +15,12 @@ export function getBase64Image(callback) {
           'client-type': headers.clientType,
           'token': wx.getStorageSync('token').token,
         },
+        formData: {
+          save_path: 'public/upload/applet/'
+        },
         name: 'file',
         success(res) {
-          console.log(res)
+          callback(imageHost.appletUploadImages + JSON.parse(res.data).data.file_name);
         },
         fail(e) {
           console.log(e)
