@@ -92,10 +92,12 @@ export function getOtherData(that) {
   // 获取首页广告
 
 }
-// 获取商品参数 并控制 loading显示
 export function getGoodsData(that, id = '') {
+<<<<<<< HEAD
   const pageLimit = 10;
   let count = that.data.dataCount;
+=======
+>>>>>>> a6b5b19a6f04240fba71394e1102dc1102a79b22
   let data = that.data.goods;
   // 数据获取完了 不请求
   if(count == data.length){
@@ -110,7 +112,7 @@ export function getGoodsData(that, id = '') {
       goods_cate_id: id
     },
     header: {
-      'page-limit': pageLimit,
+      'page-limit': 10,
       'page-num': that.data.pageNum
     },
     success: (res) => {

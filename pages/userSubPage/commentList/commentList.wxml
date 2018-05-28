@@ -3,20 +3,16 @@
     <view class='image-warpper'>
       <image class='image' src='{{item.order_goods_info.thum}}' mode="widthFix"></image>
     </view>
-    <view class='title-warpper'>
-      <view class='title zan-ellipsis--l2'>{{item.order_goods_info.name}}</view>
-      <view class='sku'>规格: {{item.order_goods_info.intro}}</view>
-    </view>
-    <view class='price-warpper'>
-      <view class='price'>
-        <view class='real_price'>￥{{item.order_goods_info.real_price}}</view>
-      </view>
+    <view class='title-warpper '>
+      <view class=' wancll-ellipsis-2'>{{item.order_goods_info.name}}</view>
+      <view class='wancll-padded-t-5 wancll-text-pray wancll-font-size-12 wancll-ellipsis-2'>{{item.order_goods_info.intro}}</view>
+      <view class='wancll-text-price wancll-padded-t-10 wancll-font-size-14'>
+        <text class="wancll-font-size-10">￥</text> {{item.order_goods_info.real_price}}</view>
     </view>
   </view>
   <view class='bottom-info'>
     <zan-panel>
       <view class='star-cent'>
-        <view class='star-title'>服务评价：</view>
         <view class='star-list'>
           <icon class='star' type="{{item.score>=1?'shoucang':'star'}}"></icon>
           <icon class='star' type="{{item.score>=2?'shoucang':'star'}}"></icon>
@@ -26,10 +22,15 @@
         </view>
       </view>
       <view class='star-cent'>
-        <view class='star-title'>评价内容：</view>
         <view class='star-list'>{{item.content}}</view>
       </view>
     </zan-panel>
+  </view>
+
+  <view class="bottom-imgs">
+    <view class="wancll-col-5 wancll-padded-5 bottom-img" wx:for="{{item.imgs}}" wx:for-item="img" wx:for-index="imgIndex" wx:key="imgIndex" bindtap='previewImg' data-imgs="{{item.imgs}}" data-currentimg="{{img}}">
+      <image class="wancll-col-xs-12" mode='widthFix' src="{{img}}"></image>
+    </view>
   </view>
 </view>
 
