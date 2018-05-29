@@ -15,13 +15,19 @@
 <view class='coupon'>
   <view class='title'>领券优惠券</view>
   <view class='lists'>
-    <view class='list' wx:for="{{coupon}}" wx:key="index">
+    <view class='list' 
+      wx:for="{{coupon}}" 
+      wx:key="index"
+      style="background-image:url({{item.bg_img}})">
       <view class='coupon'>
-        <view class=''>
+        <view class='num'>
           {{item.change_value}}{{item.coupon_type=='full'?'元':'折'}}
         </view>
-        <view class=''>满{{item.reach_money}}元使用</view>
-        <view class='' data-id="{{item.id}}" bindtap='draw'>立即领取</view>
+        <view class='info'>满{{item.reach_money}}元使用</view>
+        <view class='go' data-id="{{item.id}}" bindtap='draw'>立即领取</view>
+      </view>
+      <view class="type">
+        {{item.coupon_type=='full'?'满减券':'折扣券'}}
       </view>
     </view>
   </view>

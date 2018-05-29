@@ -21,20 +21,54 @@
 }
 .discount-list .discount{
   padding: 10px;
-  background: #fff;
+  background-size: 100% 100%;
   height: 130rpx;
   margin-bottom: 10px;
   border-radius: 10px;
   display: flex
 }
 .discount-list .discount .left{
-  flex: 150rpx 0 0;
+  flex: 130rpx 0 0;
+  text-align: center;
+  color: #358cff;
+}
+.discount-list .discount .left .num{
+  line-height: 40px;
+  font-size: 40rpx;
+}
+.discount-list .discount .left text{
+  font-size: 24rpx;
+}
+.discount-list .discount .left .text{
+  line-height: 20px;
 }
 .discount-list .discount .center{
   flex: 1;
 }
+.discount-list .discount .center .num{
+  line-height: 40px;
+  font-size: 30rpx;
+}
+.discount-list .discount .center .text{
+  line-height: 20px;
+  color: #b8b8b8
+}
 .discount-list .discount .right{
   flex: 150rpx 0 0;
+}
+
+.discount-list .discount .right .see{
+  border-radius: 20rpx;
+  color: #fff;
+  line-height: 23px;
+  text-align: center;
+  margin-top: 50%;
+}
+.discount-list .discount .right .red{
+  background: #d50202;
+}
+.discount-list .discount .right .gry{
+  background: #b8b8b8
 }
 .fix-bottom{
   position: fixed;

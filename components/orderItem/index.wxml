@@ -1,6 +1,6 @@
 <view class='item'>
   <zan-panel>
-    <view class='item-content' catchtap="goDetail">
+    <view class='item-content' catchtap="goDetail" wx:if="{{data.status != 4 || data.is_comment == 0}}">
       <view class='top-info'>
         <view class='left'>订单编号：{{data.order_no}}</view>
         <template is="pay-actions" data="{{...data}}" />

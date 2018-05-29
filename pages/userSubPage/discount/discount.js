@@ -41,6 +41,14 @@ Page({
       success(res) {
         if (res.data.length) {
           console.log(res.data)
+          res.data.forEach(item => {
+            if(!item.is_expiry && item.status!=2){
+              item.bg_img = APP.imgs.coupon
+            }else{
+              item.bg_img = APP.imgs.couponPass
+            }
+            item.change_value = parseFloat(item.change_value)
+          });
           that.setData({
             discountList: res.data,
             pageNum: ++pageNum

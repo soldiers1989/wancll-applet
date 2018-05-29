@@ -19,5 +19,10 @@ export const imgs = {
   idcardBackExample: `${imageHost.wapImages}/idcard_back_example.png`,
   uploadCardFront: `${imageHost.wapImages}/idcard_front.png`,
   uploadCardBack: `${imageHost.wapImages}/idcard_back.png`,
+
+  //优惠券
+  coupon:`${imageHost.wapImages}/coupon.png`,
+  couponPass:`${imageHost.wapImages}/coupon_guoqi.png`,
+  couponGet:`${imageHost.wapImages}/coupon_get.png`,
 }
   

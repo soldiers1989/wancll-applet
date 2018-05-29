@@ -21,23 +21,26 @@ Page({
   },
 
   getBanners() {
-    let that = this
     APP.ajax({
       url: APP.api.indexBanners,
       data: { type:"wap领券中心轮播"},
-      success(res){
-        that.setData({ imgUrls:res.data})
+      success:(res)=>{
+        this.setData({ imgUrls:res.data})
       }
     })
   },
 
   getCoupons() {
-    let that = this
     APP.ajax({
       url: APP.api.myDiscountCoupon,
       data: {},
-      success(res) {
-        that.setData({ coupon: res.data })
+      success:res=>{
+        res.data.forEach(item => {
+          item.bg_img = APP.imgs.couponGet;
+          item.change_value = parseFloat(item.change_value)
+        });
+        console.log(res.data)
+        this.setData({ coupon: res.data })
       }
     })
   },
