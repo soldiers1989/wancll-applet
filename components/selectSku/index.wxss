@@ -71,7 +71,7 @@
 }
 .price-warpper .price{
   color: #df0303 ;
-  font-size: 50rpx;
+  font-size: 40rpx;
 }
 
 .price-warpper .stock{

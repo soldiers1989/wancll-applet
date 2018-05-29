@@ -40,7 +40,6 @@ Page({
       data: data,
       success(res) {
         if (res.data.length) {
-          console.log(res.data)
           res.data.forEach(item => {
             if(!item.is_expiry && item.status!=2){
               item.bg_img = APP.imgs.coupon

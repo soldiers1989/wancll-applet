@@ -22,7 +22,7 @@
             规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
           </view>
           <view class='price-warpper'>
-            <view class='price'>
+            <view class='price wancll-text-price'>
               ￥{{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price*item.num}}
             </view>
             <view class='count'>

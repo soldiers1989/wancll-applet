@@ -20,7 +20,7 @@
     </view>
   </zan-panel>
   <zan-panel>
-    <view class='panel' catchtap='deleteCard'>
+    <view class='panel' catchtap='deleteCard' wx:if="{{id}}">
       <zan-button type="danger">删除该银行卡</zan-button>
     </view>
   </zan-panel>
