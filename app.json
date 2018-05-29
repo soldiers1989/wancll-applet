@@ -13,7 +13,6 @@
     "pages/userSubPage/discount/discount",
     "pages/userSubPage/cardList/cardList",
     "pages/userSubPage/collect/collect",
-    "pages/userSubPage/attestation/attestation",
     "pages/userSubPage/commentList/commentList",
     "pages/userSubPage/service/service",
     "pages/userSubPage/orderPay/pay",
@@ -38,7 +37,9 @@
     "pages/userSubPage/helpAndOption/helpAndOption",
     "pages/wechatBindMobile/wechatBindMobile",
     "pages/userSubPage/payWaiting/payWaiting",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/userSubPage/idcardAuthInfo/idcardAuthInfo",
+    "pages/userSubPage/idcardAuthSubmit/idcardAuthSubmit"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

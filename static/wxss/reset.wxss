@@ -448,6 +448,16 @@ page {
   float: right;
 }
 
+/* 弹性布局 */
+.wancll-flex{
+  display: flex;
+  align-items: center;
+}
+
+.wancll-borderbox{
+  box-sizing: border-box;
+}
+
 /* form */
 
 .form input {

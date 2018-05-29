@@ -1,5 +1,5 @@
 const APP = getApp()
-import { getUserData } from './user-data.js';
+import { getUserData, queryAuthStatus } from './user-data.js';
 Page({
   data: {
     user: {},
@@ -52,6 +52,9 @@ Page({
       // 发起请求
       getUserData(this);
     }
+  },
+  auth() {
+    queryAuthStatus();
   },
   onPullDownRefresh() {
     getUserData(this);

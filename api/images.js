@@ -14,5 +14,10 @@ export const imgs = {
   notice: `${imageHost.wapImages}/wangkaikuaibao.png`,
   logo: `${imageHost.wapImages}/wap_logo.png`,
   noContentImg: `${imageHost.wapImages}/no_content.png`,
+
+  idcardFrontExample: `${imageHost.wapImages}/idcard_front_example.png`,
+  idcardBackExample: `${imageHost.wapImages}/idcard_back_example.png`,
+  uploadCardFront: `${imageHost.wapImages}/idcard_front.png`,
+  uploadCardBack: `${imageHost.wapImages}/idcard_back.png`,
 }
   

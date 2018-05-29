@@ -97,7 +97,7 @@
       </zan-panel>
       <zan-panel hide-border="{{true}}">
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="attestation">
+          <view class='pending' catchtap='auth'>
             <icon class='icon color-r' type="shimingrenzheng1"></icon>
             <view class='text'>实名认证</view>
           </view>

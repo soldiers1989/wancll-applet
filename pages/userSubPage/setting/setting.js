@@ -1,7 +1,7 @@
 const APP = getApp();
 const passwordSelectList = ['登录密码修改', '支付密码修改'];
 import { updateUserInfo, queryWechatBindStatus, unbind, bindWechatInLogin, getUserData } from './settingData.js';
-import { getBase64Image, handleWechatLogin } from '../../../utils/common.js';
+import { uploadFile, handleWechatLogin } from '../../../utils/common.js';
 Page({
   data: {
     user: {},
@@ -22,7 +22,7 @@ Page({
   // 改变头像
   changeAvatar() {
     let that = this;
-    getBase64Image((imgPath) => {
+    uploadFile((imgPath) => {
       console.log(imgPath);
       updateUserInfo(that, { avatar: imgPath });
     })

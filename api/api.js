@@ -131,4 +131,9 @@ export const api = {
 
   // 工具api
   uploadFile: `${defaultHost}/api_systems/helper/upload_file`,
+
+  // 实名认证
+  queryAuthStatus: `${defaultHost}/api_query/users/auth`,
+  submitAuthInfo: `${defaultHost}/api_users/user_auths/save`,
+  updateAuthInfo: `${defaultHost}/api_users/user_auths/update`,
 }
