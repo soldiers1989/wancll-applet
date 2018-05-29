@@ -9,8 +9,9 @@ export function getList(that) {
       'page-limit': that.data.pageLimit,
       'page-num': pageNum,
     },
-    success(res) {
+    success: res=> {
       if (res.data.length) {
+        wx.setStorageSync('address',res.data)
         that.setData({
           addressList: addressList.concat(res.data),
           pageNum: ++pageNum,

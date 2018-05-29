@@ -59,6 +59,11 @@ Page({
     APP.ajax({
       url: APP.api.orderAffimAddress,
       success: res => {
+        // 没有获取到地址的时候
+        if(!res.data.id){
+          this.toggilBottomPopupAddress();
+          return 
+        }
         this.setData({
           takeAddress: res.data,
           addressId: res.data.id,
@@ -106,6 +111,7 @@ Page({
   // 点击地址刷新数据 然后关闭弹窗
   getClickId(e) {
     let id = e.detail.id;
+    console.log(id)
     this.setData({
       addressId: id
     }, () => {
@@ -116,6 +122,7 @@ Page({
       this.setData({
         takeAddress: address[0]
       }, () => {
+        this.getViewData();
         this.toggilBottomPopupAddress();
       })
     })

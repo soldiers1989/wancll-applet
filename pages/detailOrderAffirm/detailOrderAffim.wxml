@@ -1,12 +1,21 @@
 <view class="order-address" bindtap="toggilBottomPopupAddress">
-  <view class="address">
-    <view class="right">
-      {{takeAddress.province}}{{takeAddress.city}}{{takeAddress.area}}{{takeAddress.address}}
+  <block wx:if="{{addressId}}">
+    <view class="address">
+      <view class="right">
+        {{takeAddress.province}}{{takeAddress.city}}{{takeAddress.area}}{{takeAddress.address}}
+      </view>
     </view>
-  </view>
-  <view class="info">
-    <view class="right">{{takeAddress.consignee_name}} {{takeAddress.mobile}}</view>
-  </view>
+    <view class="info">
+      <view class="right">{{takeAddress.consignee_name}} {{takeAddress.mobile}}</view>
+    </view>
+  </block>
+  <block wx:else="{{addressId}}">
+    <view class="address">
+      <view class="right">
+        请先添加收货地址
+      </view>
+    </view>
+  </block>
 </view>
 <view class="item-list">
   <zan-panel>

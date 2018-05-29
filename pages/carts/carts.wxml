@@ -52,7 +52,6 @@
       总价：
       <text class="wancll-text-price wancll-font-size-15">￥</text>
       <text class="wancll-text-price wancll-font-size-20">{{allPreice}}</text>
-
     </view>
     <view class="send wancll-text-white" bindtap="sendOrderAffirm">
       去结算

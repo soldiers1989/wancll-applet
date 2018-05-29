@@ -3,11 +3,13 @@
     <zan-panel>
       <zan-cell-group>
         <zan-cell class="top">
-          <view class='line' data-id="{{item.id}}" bindtap="selectAddress">
-            <view class='name'>{{item.consignee_name}}</view>
-            <view class='number'>{{item.mobile}}</view>
+          <view data-id="{{item.id}}" bindtap="selectAddress">
+            <view class='line'>
+              <view class='name'>{{item.consignee_name}}</view>
+              <view class='number'>{{item.mobile}}</view>
+            </view>
+            <view class='line'>{{item.address_info}}</view>
           </view>
-          <view class='line'>{{item.address_info}}</view>
         </zan-cell>
         <zan-cell>
           <view class='bottom'>
