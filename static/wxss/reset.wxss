@@ -302,6 +302,12 @@ page {
   font-size: 40rpx !important;
 }
 
+/* 文字加粗 */
+
+.wancll-font-weight {
+  font-weight: bold;
+}
+
 /* 文字颜色 */
 
 .wancll-text-info {
@@ -449,12 +455,13 @@ page {
 }
 
 /* 弹性布局 */
-.wancll-flex{
+
+.wancll-flex {
   display: flex;
   align-items: center;
 }
 
-.wancll-borderbox{
+.wancll-borderbox {
   box-sizing: border-box;
 }
 
@@ -466,9 +473,10 @@ page {
 }
 
 /* goods */
+
 .goods-list {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .goods-list .goods {
@@ -480,11 +488,13 @@ page {
 }
 
 /* no-content */
-.no-content-image{
+
+.no-content-image {
   margin-top: 20%;
   text-align: center;
 }
-.no-content-image image{
+
+.no-content-image image {
   display: block;
   width: 18%;
   margin: 0 auto;

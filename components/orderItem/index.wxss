@@ -60,7 +60,7 @@
   margin-bottom: 5rpx;
 }
 .center-info .price-warpper .price .real_price{
-  color: #f44;
+  color: #df0303;
 }
 .center-info .price-warpper .price .sell_price{
   text-decoration: line-through;
@@ -76,7 +76,7 @@
   text-align: right;
 }
 .bottom-info .all-price .text-price{
-  color: #f44;
+  color: #df0303;
 }
 .bottom-info .click-button{
   text-align: right;

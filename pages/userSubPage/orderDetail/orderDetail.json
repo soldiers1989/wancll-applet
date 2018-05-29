@@ -11,5 +11,6 @@
     "order-item": "../../../components/orderItem/index",
     "zan-cell": "../../../dist/cell/index",
     "zan-cell-group": "../../../dist/cell-group/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

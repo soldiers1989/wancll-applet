@@ -1,5 +1,5 @@
 const APP = getApp();
-import {getOrderData} from './order-data.js'
+import { getOrderData } from './order-data.js'
 Page({
   data: {
     tabList: [{
@@ -19,7 +19,7 @@ Page({
       title: '待评价'
     }],
     tabSelectedId: 0,
-    orderList:[],
+    orderList: [],
     pageNum: 1,
     noContent: false,
     noContentImg: APP.imgs.noContentImg
@@ -30,13 +30,13 @@ Page({
       wx.setStorageSync('thisOrderList', Number(options.target))
       this.setData({
         tabSelectedId: options.target
-      },()=>{
+      }, () => {
         getOrderData(this, options.target);
       })
     }
   },
   //重新加载数据
-  refreshGet(){
+  refreshGet() {
     this.setData({
       orderList: [],
       pageNum: 1,
@@ -44,22 +44,22 @@ Page({
     getOrderData(this, this.data.tabSelectedId);
   },
   // 点击切换顶部的标签
-  tabchange(e){
+  tabchange(e) {
     let id = this.selectComponent("#tab").data.selectedId
     // 禁止重复点击
-    if (id == this.data.tabSelectedId){
+    if (id == this.data.tabSelectedId) {
       return;
     }
     wx.setStorageSync('thisOrderList', id)
-    this.setData({ 
-      tabSelectedId:id,
+    this.setData({
+      tabSelectedId: id,
       orderList: [],
       pageNum: 1,
-    },()=>{
+    }, () => {
       getOrderData(this, id);
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
     wx.stopPullDownRefresh();
     this.setData({
       orderList: [],
@@ -71,7 +71,7 @@ Page({
   onReachBottom: function () {
     getOrderData(this, this.data.tabSelectedId);
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
 
   }
 })
