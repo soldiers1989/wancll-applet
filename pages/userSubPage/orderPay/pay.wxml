@@ -1,19 +1,30 @@
-<view class="top">
+<view>
   <zan-panel>
-    <view class='title'>
-      <view>订单号：{{orderNo}}</view>
-      <view>订单金额：
-        <text class='money'>￥{{orderMoney}}</text>
+    <view class="wancll-bg-white wancll-padded-10">
+      <view class="wancll-font-size-14">订单号：{{orderNo}}</view>
+      <view class="wancll-margin-t-10 wancll-font-size-14">订单金额：
+        <text class='money  wancll-text-price'>
+        <text class="wancll-font-size-10">￥</text>{{orderMoney}}</text>
       </view>
     </view>
   </zan-panel>
 </view>
-<view class="center">
-  <zan-panel>
-    <zan-select items="{{ items }}" data-type="color" checkedValue="{{ checked.color }}" activeColor="{{ activeColor }}" bind:change="handleSelectChange" />
-  </zan-panel>
+<view class="wancll-bg-white wancll-padded-5 wancll-margin-t-10 wancll-margin-b-10">
+  <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="1">
+    <i class="wancll-padded-10 iconfont icon-yue" style="font-size:50rpx;color: #eb661b;"></i>
+    <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">余额支付</text>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18 wancll-text-info" wx:if="{{payType == 1}}"></i>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:rgb(204, 204, 204);" wx:else></i>
+  </view>
+
+  <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="2">
+    <i class="wancll-padded-10 iconfont icon-weixinzhifu" style="font-size:50rpx;color:#09bb07;"></i>
+    <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">微信支付</text>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18 wancll-text-info" wx:if="{{payType == 2}}"></i>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:rgb(204, 204, 204);" wx:else></i>
+  </view>
 </view>
-<view class="bottom">
+<view class="wancll-margin-10">
   <button class="wancll-bg-info wancll-text-white" catchtap='payMoney'>确认付款 ￥{{orderMoney}}</button>
 </view>
 

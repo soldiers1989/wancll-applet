@@ -7,23 +7,7 @@ Page({
     orderNo: '',
     orderMoney: '',
     password: "",
-    items: [{
-      padding: 0,
-      value: '1',
-      name: '余额支付',
-    },
-    {
-      padding: 0,
-      value: '2',
-      name: '微信支付',
-    },
-    ],
-    checked: {
-      base: -1,
-      color: 1,
-      form: -1
-    },
-    activeColor: '#358cff'
+    payType: '1'
   },
   onLoad: function (options) {
     this.setData({
@@ -45,16 +29,14 @@ Page({
   },
   // 选择
   handleSelectChange(e) {
-    let type = APP.utils.getDataSet(e, 'type');
-    let value = e.detail.value;
     this.setData({
-      [`checked.${type}`]: value
-    });
+      payType: e.currentTarget.dataset.paytype
+    })
   },
   // 支付
   payMoney() {
     let that = this;
-    if (this.data.checked.color == 1) {
+    if (this.data.payType == 1) {
       APP.ajax({
         url: APP.api.orderPassword,
         success(res) {
@@ -73,7 +55,7 @@ Page({
           }
         }
       })
-    } else if (this.data.checked.color == 2) {
+    } else if (this.data.payType == 2) {
       handleWechatPay(that.data.orderNo, payType.goodsOrderPay);
     }
   },

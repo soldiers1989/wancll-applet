@@ -7,6 +7,11 @@ Page({
     idcard: '',
     idcardFront: '',
     idcardBack: '',
+    statusName: {
+      1: '审核中',
+      2: '审核未通过',
+      3: '审核已通过'
+    }
   },
   onLoad: function (options) {
     this.getAuthInfo();

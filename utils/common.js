@@ -41,6 +41,7 @@ export function handleWechatLogin(that, userinfo) {
   if (!userinfo.encryptedData) {
     return;
   }
+  wx.showLoading()
   // 微信登录获取临时code
   wx.login({
     success(res) {
@@ -51,6 +52,7 @@ export function handleWechatLogin(that, userinfo) {
           code: res.code
         },
         success(res) {
+          wx.hideLoading();
           if (res.data.unionid) {
             queryUserInfoByUnionId(res.data.unionid, that);
           } else {
@@ -139,6 +141,7 @@ function queryUserInfoByUnionId(unionId, that) {
 
 // 代理微信支付
 export function handleWechatPay(orderNo, payType) {
+  wx.showLoading()
   wx.login({
     success(res) {
       if (res.code) {
@@ -149,6 +152,7 @@ export function handleWechatPay(orderNo, payType) {
             order_no: orderNo
           },
           success(res) {
+            wx.hideLoading();
             res.data.success = function (res) {
               wx.redirectTo({
                 url: `/pages/userSubPage/payWaiting/payWaiting?orderNo=${orderNo}&payType=${payType}`,
