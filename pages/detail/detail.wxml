@@ -27,14 +27,6 @@
         </view>
       </zan-panel>
     </block>
-    <block wx:else="{{hasSku}}">
-      <zan-panel>
-        <view class='go-select'>
-          <view>无商品规格</view>
-          <view></view>
-        </view>
-      </zan-panel>
-    </block>
     <block wx:if="{{hasAttr}}">
       <zan-panel>
         <view class='go-select' bindtap='openAttrPopup'>

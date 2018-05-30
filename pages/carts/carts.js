@@ -182,7 +182,6 @@ Page({
     let goodsinfo = APP.utils.getDataSet(e, 'goodsinfo');
     let index = APP.utils.getDataSet(e, 'index');
     let id = APP.utils.getDataSet(e, 'id');
-    console.log(goodsinfo)
     if(!goodsinfo.goods_spec_group_info.length){
       return
     }

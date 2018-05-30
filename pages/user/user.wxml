@@ -117,7 +117,7 @@
             <icon class='icon color-r' type="gouwuche2"></icon>
             <view class='text'>购物车</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="discount">
+          <view class='pending' catchtap='goSubPages' data-target="couponList">
             <icon class='icon color-y' type="youhuiquan"></icon>
             <view class='text'>优惠券</view>
           </view>

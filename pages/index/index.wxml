@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--search-->
 <view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
@@ -6,7 +6,7 @@
       <view class='input'>搜索商品</view>
     </view>
   </view>
-
+  <!-- banner -->
   <view class='banner'>
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="key">
@@ -16,7 +16,7 @@
       </block>
     </swiper>
   </view>
-
+  <!-- tag -->
   <view class='banner-list'>
     <view class='list' wx:for="{{sellList}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
       <view class='img'>
@@ -25,7 +25,7 @@
       <view class='text'>{{item.title}}</view>
     </view>
   </view>
-
+  <!-- ad -->
   <view class='notice'>
     <view class='notice-img'>
       <image mode="widthFix" src='{{notice.img}}'></image>
@@ -34,7 +34,7 @@
       <view class='list' wx:for="{{notice.data}}" wx:key="index">• {{item.title}}</view>
     </view>
   </view>
-
+  <!-- discount -->
   <!-- <view class='discount'>
     <zan-cell is-link>限时折扣 限时折扣活动 21天 03: 38: 38</zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">
@@ -45,6 +45,7 @@
       <view class='item'>4</view>
     </scroll-view>
   </view> -->
+  <!-- goodslist -->
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goods}}" wx:key="index">
       <view class='wancll-padded-3 wancll-bg-pray'>

@@ -29,13 +29,13 @@ export function getOtherData(that) {
   })
   // 获取促销列表
   let proSellList = new Promise((resolve) => {
-    let title= ['新品', '精品', '热销', '折扣', '清仓']
+    let title = ['新品', '精品', '热销', '折扣', '清仓']
     let smallImg = APP.imgs.smallImg;
     let sellList = [];
-    title.forEach((item,index)=> {
+    title.forEach((item, index) => {
       sellList.push({
-        title:item,
-        img:smallImg[index]
+        title: item,
+        img: smallImg[index]
       })
     });
     resolve(sellList);
@@ -45,15 +45,15 @@ export function getOtherData(that) {
 
   // 输出结果
   Promise.all([
-    proImgUrls, 
+    proImgUrls,
     proNotice,
     proSellList
   ]).then((values) => {
     that.setData({
       imgUrls: values[0],
       notice: values[1],
-      sellList:values[2],
-      ready:true
+      sellList: values[2],
+      ready: true
     }, () => {
       let timer = setTimeout(() => {
         // console.log('refresh',values);
@@ -97,9 +97,9 @@ export function getGoodsData(that, id = '') {
   let count = that.data.dataCount;
   let data = that.data.goods;
   // 数据获取完了 不请求
-  if(count == data.length){
+  if (count == data.length) {
     that.setData({
-      loading:false
+      loading: false
     })
     return
   }
@@ -114,7 +114,7 @@ export function getGoodsData(that, id = '') {
     },
     success: (res) => {
       that.setData({
-        dataCount:res.page.data_count,
+        dataCount: res.page.data_count,
         goods: data.concat(res.data)
       }, () => {
         that.data.pageNum++;
