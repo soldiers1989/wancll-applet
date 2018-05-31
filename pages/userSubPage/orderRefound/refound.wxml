@@ -8,7 +8,7 @@
         </view>
         <view class='title-warpper'>
           <view class='title zan-ellipsis--l2'>{{goodsInfo.name}}</view>
-          <view class='sku'>规格: {{goodsInfo.spec_group_info}}</view>
+          <view class='sku'>规格: {{goodsInfo.spec_group_info?goodsInfo.spec_group_info:'无'}}</view>
         </view>
         <view class='price-warpper'>
           <view class='count'>x{{goodsInfo.num}}</view>
