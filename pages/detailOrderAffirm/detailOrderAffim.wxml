@@ -31,7 +31,7 @@
             规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
           </view>
           <view class='price-warpper'>
-            <view class='price wancll-text-price'>
+            <view class='price' style="{{discountItem.id?'text-decoration: line-through':''}}">
               ￥{{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price*item.num}}
             </view>
             <view class='count'>
@@ -47,12 +47,18 @@
 </view>
 <view class='other-price'>
   <zan-panel>
-    <view wx:if="{{user.full}}" class='panel' bindtap="toggilBottomPopupDis1">
+    <view wx:if="{{discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis1">
+      <text class='title'>限时折扣单价</text>
+      <text class='discont'>{{discountItem.discount_price}}</text>
+    </view>
+  </zan-panel>
+  <zan-panel>
+    <view wx:if="{{user.full && !discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis1">
       <text class='title'>选择减满优惠</text>
       <text class='discont'>{{selectType=='full'?selectShow:''}}</text>
     </view>
   </zan-panel>
-  <view wx:if="{{user.coupon}}" class='panel' bindtap="toggilBottomPopupDis2">
+  <view wx:if="{{user.coupon && !discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis2">
     <text class='title'>选择优惠券</text>
     <text class='discont'>{{selectType=='coupon'?selectShow:''}}</text>
   </view>

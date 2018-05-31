@@ -6,7 +6,7 @@ export const api = {
   indexBanners: `${defaultHost}/api_articles/banners/lists`,
   indexConfigs: `${defaultHost}/api_query/configs/wap_index`,
   indexAnnoncements: `${defaultHost}/api_articles/annoncements/lists`,
-  indexMarket: `${defaultHost}/api_query/market/activity`,
+  indexActivity: `${defaultHost}/api_query/market/activity`,
   indexAdvertisements: `${defaultHost}/api_articles/advertisements/lists`,
 
   // 商品页面 

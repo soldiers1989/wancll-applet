@@ -102,12 +102,17 @@ Page({
       })
       return
     }
-    let i = 0;
-    let imgs = [];
-    wx.showLoading({
-      title: '图片上传中',
-    })
-    this.uploadDIY(i, imgs);
+    if(this.data.tempFilePaths.length){
+      let i = 0;
+      let imgs = [];
+      wx.showLoading({
+        title: '图片上传中',
+      })
+      this.uploadDIY(i, imgs);
+    }else{
+      this.uploadData([])
+    }
+    
   },
   // 上传数据
   uploadData(imgs) {
@@ -122,7 +127,9 @@ Page({
         status: 1
       },
       success: res => {
-        wx.hideLoading();
+        if(this.data.tempFilePaths.length){
+          wx.hideLoading();
+        }
         wx.showToast({
           title: res.msg,
           icon: 'none',
@@ -170,7 +177,6 @@ Page({
       }
     });
   },
-
 
   onPullDownRefresh: function () {
 

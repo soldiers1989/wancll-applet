@@ -7,8 +7,16 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class='detail-info'>
+  <view class="discountPrice" wx:if="{{activityId}}">
     <view class='price'>
+      <text style='font-size: 20rpx;'>￥</text>
+      <text style='margin-right:10px;'>{{discountItem.discount_price}}</text>
+      <text style='font-size: 20rpx;text-decoration: line-through'>￥{{goodsInfo.sell_price}}</text>
+    </view>
+    <view class='discount'>距离结束：{{timeDown}}</view>
+  </view>
+  <view class='detail-info'>
+    <view class='price' wx:if="{{!activityId}}">
       <text style='font-size: 20rpx;'>￥</text> {{goodsInfo.sell_price}}
     </view>
     <view class='name'>{{goodsInfo.name}}</view>
@@ -64,13 +72,13 @@
       <view class="collect">
         <template is="collect" data="{{isCollect}}"/>
       </view>
-      <view class="cart">
+      <view class="cart" wx:if="{{!activityId}}">
         <view bindtap="goCarts">
           <icon class="icon" type="gouwuche2"></icon>
           <view>购物车</view>
         </view>
       </view>
-      <view class="add-cart" data-type="carts" bindtap="addCarts">加入购物车</view>
+      <view wx:if="{{!activityId}}" class="add-cart" data-type="carts" bindtap="addCarts">加入购物车</view>
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即购买</view>
     </view>
   </zan-panel>

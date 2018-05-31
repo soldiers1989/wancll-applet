@@ -4,6 +4,8 @@ Page({
     cartsDetail: '', // 商品信息
     goodsIds: '', // 请求的数据参数商品的 id数组
     goodsInfo: '', // 请求的数据参数
+    discountItem: '', // 折扣信息
+    discount:'',
 
     allMoney: '', //终合计 多少钱  
 
@@ -31,12 +33,17 @@ Page({
     let cartsDetail = cartsGoodsInfo.cartsDetail;
     let goodsIds = cartsGoodsInfo.goodsIds;
     let goodsInfo = cartsGoodsInfo.goodsInfo;
+    let discountItem = cartsGoodsInfo.discountItem;
+    let discount = cartsGoodsInfo.discount;
     //设置数据
     this.setData({
       cartsDetail: cartsDetail,
       goodsIds: goodsIds,
-      goodsInfo: goodsInfo
+      goodsInfo: goodsInfo,
+      discountItem: discountItem,
+      discount:discount
     }, () => {
+      console.log(this.data)
       this.getDefaultAddress();;
     })
   },
@@ -60,9 +67,9 @@ Page({
       url: APP.api.orderAffimAddress,
       success: res => {
         // 没有获取到地址的时候
-        if(!res.data.id){
+        if (!res.data.id) {
           this.toggilBottomPopupAddress();
-          return 
+          return
         }
         this.setData({
           takeAddress: res.data,
@@ -216,24 +223,35 @@ Page({
   },
   // 计算总价 勾选了满减后 增减商品后都要计算
   allMoney() {
-    let money = this.data.view.total_money;
-    // 选了折扣
-    if (this.data.selectNum) {
-      let num = Number(this.data.selectNum);
-      let allMoney = 0;
-      if (this.data.selectType == "full") {
-        allMoney = money - num
+    if(!this.data.discountItem.id){
+      let money = this.data.view.total_money;
+      // 选了折扣
+      if (this.data.selectNum) {
+        let num = Number(this.data.selectNum);
+        let allMoney = 0;
+        if (this.data.selectType == "full") {
+          allMoney = money - num
+        } else {
+          allMoney = money * (num * 0.1)
+        }
+        this.setData({
+          allMoney: allMoney.toFixed(2)
+        })
       } else {
-        allMoney = money * (num * 0.1)
+        this.setData({
+          allMoney: money
+        })
       }
+    }else{
+      let money = Number(this.data.discountItem.discount_price);
+      let num = Number(this.data.goodsInfo[0].num);
+      console.log(money,num)
       this.setData({
-        allMoney: allMoney.toFixed(2)
-      })
-    } else {
-      this.setData({
-        allMoney: money
+        allMoney:  money* num
       })
     }
+    // 限时折扣的价格
+
   },
   // 发送订单
   saveOrder() {
@@ -243,8 +261,8 @@ Page({
       data: {
         address_id: this.data.addressId,
         goods_info: JSON.stringify(this.data.goodsInfo),
-        market_activity_id: 0,
-        market_activity_type: 0,
+        market_activity_id: this.data.discountItem.market_activity_id,
+        market_activity_type: this.data.discount.type,
         memo: this.data.memo
       },
       success(res) {

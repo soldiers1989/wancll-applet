@@ -16,8 +16,10 @@ Page({
     imgUrls: [], // 轮播图片
     notice: {}, // 首页公告
     goods: [],  // 商品列表
-    sellList: [], // 促销列表广告
-
+    sellList: [], // 促销列表广告(5个圆形图片)
+    discount: [], // 限时折扣活动列表
+    full: [],     // 减免活动列表
+    timeDown: '0天 00 : 00 : 00', // 倒计时
     // 控制参数
     ready: false, // 数据是否请求成功？
     dataCount: -1,
@@ -42,6 +44,30 @@ Page({
     })
     wx.navigateTo({
       url: `/pages/detail/detail?${param}`,
+    })
+  },
+  // 跳转到商品的详情页面 仅存在于线上折扣
+  goDetailDiscount(e) {
+    let id = APP.utils.getDataSet(e, 'id');
+    let discountid = APP.utils.getDataSet(e, 'discountid');
+    let param = APP.utils.paramsJoin({
+      id: id,
+      discountid: discountid
+    })
+    wx.navigateTo({
+      url: `/pages/detail/detail?${param}`,
+    })
+  },
+  // 去领券中心
+  goDiscountCenter() {
+    wx.navigateTo({
+      url: `/pages/userSubPage/discountCenter/diecountCenter`,
+    })
+  },
+  // 减慢促销
+  goCategory() {
+    wx.switchTab({
+      url: `/pages/category/category`,
     })
   },
   // 去搜索页面

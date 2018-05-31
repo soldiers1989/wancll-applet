@@ -100,11 +100,56 @@
 .scroll-items {
   white-space: nowrap;
   display: flex;
+  margin-bottom: 20px;
 }
 
 .scroll-items .item {
-  background: red;
-  width: 33.33%;
-  height: 120px;
+  width: 240rpx;
+  height: 240rpx;
+  margin: 10rpx;
   display: inline-block;
+}
+
+.scroll-items .item .info image {
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.scroll-items .item .info {
+  text-align: center;
+}
+
+.scroll-items .item .info .discount_price {
+  font-size: 14px;
+  color: #df0303;
+}
+
+.scroll-items .item .info .sell_price {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.links {
+  display: flex;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.links .link {
+  padding: 10px 0;
+  flex: 1;
+  font-size: 18px;
+  color: rgb(255, 158, 79);
+}
+
+.links .link .text {
+  padding-left: 10px;
+  line-height: 70px;
+}
+
+.links .link image {
+  width: 70px;
+  height: 70px;
+  float: right;
+  margin-right: 10px;
 }

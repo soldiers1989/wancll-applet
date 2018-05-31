@@ -40,6 +40,16 @@ export function getOtherData(that) {
     });
     resolve(sellList);
   })
+  // 获取限时折扣
+  let proActivity = new Promise((resolve) => {
+    APP.ajax({
+      url: APP.api.indexActivity,
+      success: (res) => {
+        resolve(res.data);
+        console.log('活动', res.data)
+      }
+    })
+  })
   // 获取商品列表
   // 下拉刷新要不要重新刷新商品？？？？
 
@@ -47,22 +57,31 @@ export function getOtherData(that) {
   Promise.all([
     proImgUrls,
     proNotice,
-    proSellList
+    proSellList,
+    proActivity,
   ]).then((values) => {
     that.setData({
       imgUrls: values[0],
       notice: values[1],
       sellList: values[2],
+
+      discount: values[3].discount ? values[3].discount : [],
+      full: values[3].full ? values[3].full : [],
       ready: true
     }, () => {
       let timer = setTimeout(() => {
-        // console.log('refresh',values);
         wx.hideLoading();
         wx.stopPullDownRefresh();
         clearTimeout(timer);
       }, 500)
+      // 设置倒计时
+      setInterval(() => {
+        APP.utils.timeDown(that, that.data.discount[0].end_timestamp * 1000)
+      }, 1000)
     })
   })
+
+
 
 
   // // 获取首页公告
@@ -82,13 +101,8 @@ export function getOtherData(that) {
   //   }
   // })
 
-  // ----------------
-  // APP.ajax({
-  //   url: APP.api.indexMarket,
-  //   success: (res) => {
-  //     // console.log(res)
-  //   }
-  // })
+  // 获取首页活动
+
   // 获取首页广告
 
 }

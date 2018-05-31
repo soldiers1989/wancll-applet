@@ -1,4 +1,8 @@
 const APP = getApp();
+import {
+  headers,
+  imageHost
+} from '../../../api/config.js';
 Page({
   data: {
     orderId: 0,
@@ -60,7 +64,7 @@ Page({
     arr.splice(id, 1);
     this.setData({ tempFilePaths: arr })
   },
-  // 退款  此方法不完善，等待修复
+  // 退款 
   send() {
     let that = this;
     if (!that.data.refoundTexts) {
@@ -70,25 +74,42 @@ Page({
       })
       return
     }
+    // 添加了图片的时候
+    if(that.data.tempFilePaths.length){
+      let i = 0;
+      let imgs = [];
+      wx.showLoading({
+        title: '图片上传中',
+      })
+      this.uploadDIY(i, imgs);
+    }else{
+      this.uploadData([]);
+    }
+  },
+  // 上传数据
+  uploadData(imgs) {
     APP.ajax({
       url: APP.api.orderRefound,
       data: {
-        order_id: Number(that.data.orderId),
-        order_goods_id: that.data.goodsInfo.id,
-        imgs: that.data.tempFilePaths,
-        return_reason: that.data.refoundTexts,
+        order_id: Number(this.data.orderId),
+        order_goods_id: this.data.goodsInfo.id,
+        imgs: imgs,
+        return_reason: this.data.refoundTexts,
         return_type: 1
       },
-      success(res) {
+      success: res => {
+        if(this.data.tempFilePaths.length){
+          wx.hideLoading();
+        }
         wx.showToast({
           title: res.msg,
           icon: 'none',
-          success() {
+          success: () => {
             let params = APP.utils.paramsJoin({
               target: wx.getStorageSync('thisOrderList')
             })
             setTimeout(() => {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: `/pages/userSubPage/order/order?${params}`,
               })
             }, 1000)
@@ -96,6 +117,36 @@ Page({
         })
       }
     })
+  },
+  // 上传图片
+  uploadDIY(i, imgs) {
+    wx.uploadFile({
+      url: APP.api.uploadFile,
+      filePath: this.data.tempFilePaths[i],
+      header: {
+        'auth': headers.auth,
+        'client-type': headers.clientType,
+        'token': wx.getStorageSync('token').token,
+      },
+      formData: {
+        save_path: 'public/upload/applet/'
+      },
+      name: 'file',
+      success: res => {
+        imgs.push(imageHost.appletUploadImages + JSON.parse(res.data).data.file_name)
+        if (i == this.data.tempFilePaths.length - 1) {
+          this.uploadData(imgs)
+        } else {
+          i++;
+          // console.log(imgs)
+          this.uploadDIY(i, imgs);
+          // console.log('上传第',i,'个')
+        }
+      },
+      fail: e => {
+        console.log(e)
+      }
+    });
   },
   onPullDownRefresh() {
 
