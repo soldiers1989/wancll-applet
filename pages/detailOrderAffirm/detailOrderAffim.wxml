@@ -1,43 +1,40 @@
 <view class="order-address" bindtap="toggilBottomPopupAddress">
-  <block wx:if="{{addressId}}">
-    <view class="address">
-      <view class="right">
-        {{takeAddress.province}}{{takeAddress.city}}{{takeAddress.area}}{{takeAddress.address}}
+  <block wx:if="{{selectedAddress.id}}">
+    <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
+      <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
+      <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10">
+        <view class="wancll-font-weight"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
+        <view class="clearfix wancll-margin-t-10">
+          <text>{{selectedAddress.consignee_name}}</text>
+          <text class="wancll-fr">{{selectedAddress.mobile}}</text>
+        </view>
       </view>
-    </view>
-    <view class="info">
-      <view class="right">{{takeAddress.consignee_name}} {{takeAddress.mobile}}</view>
     </view>
   </block>
-  <block wx:else="{{addressId}}">
-    <view class="address">
-      <view class="right">
-        请先添加收货地址
-      </view>
-    </view>
+  <block wx:else>
+    <view class=" wancll-margin-t-10 wancll-margin-b-10  wancll-padded-15 wancll-bg-white">请先添加收货地址</view>
   </block>
 </view>
 <view class="item-list">
   <zan-panel>
-    <view class='item-content' wx:for="{{cartsDetail}}" wx:key="key">
+    <view class='item-content' wx:for="{{goodsList}}" wx:key="key">
       <view class='center-info'>
         <view class='image-warpper'>
-          <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
+          <image class='image' src='{{item.goodsInfo.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title'>{{item.goods_info.name}}</view>
-          <view class='intro'>{{item.goods_info.intro}}</view>
-          <view class='sku'>
-            规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
+          <view class='title wancll-margin-b-5'>{{item.goodsInfo.name}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goodsInfo.intro}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.specGroupInfo.id}}">规格: {{item.specGroupInfo.spec_option_group}}
           </view>
           <view class='price-warpper'>
-            <view class='price' style="{{discountItem.id?'text-decoration: line-through':''}}">
-              ￥{{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price*item.num}}
+            <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
+              <text class="wancll-font-size-10">￥</text>{{item.specGroupInfo.sell_price?item.specGroupInfo.sell_price:item.goodsInfo.sell_price*item.num}}
             </view>
-            <view class='count'>
-              <zan-button size="mini" data-index="{{item.goods_id}}" bindbtnclick="minus">-</zan-button>
-              <text> {{item.num}} </text>
-              <zan-button size="mini" data-index="{{item.goods_id}}" bindbtnclick="plus">+</zan-button>
+            <view class='count wancll-flex'>
+              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num - 1}}"></i>
+              <text class="wancll-padded-5"> {{item.num}} </text>
+              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num + 1}}"></i>
             </view>
           </view>
         </view>
@@ -47,41 +44,50 @@
 </view>
 <view class='other-price'>
   <zan-panel>
-    <view wx:if="{{discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis1">
+    <view wx:if="{{isDiscountGoods}}" class='panel'>
       <text class='title'>限时折扣单价</text>
-      <text class='discont'>{{discountItem.discount_price}}</text>
+      <text class='discont wancll-text-price wancll-font-size-16'><text class="wancll-font-size-10">￥</text>{{activities.discount[0].discount_price}}</text>
     </view>
   </zan-panel>
   <zan-panel>
-    <view wx:if="{{user.full && !discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis1">
+    <view wx:if="{{activities.full && !isDiscountGoods}}" class='panel' bindtap="toggilBottomPopupDis1">
       <text class='title'>选择减满优惠</text>
-      <text class='discont'>{{selectType=='full'?selectShow:''}}</text>
+      <text class='discont'>{{selectedActivityType == 'full' ? selectedActivityText : ''}}</text>
     </view>
   </zan-panel>
-  <view wx:if="{{user.coupon && !discountItem.id}}" class='panel' bindtap="toggilBottomPopupDis2">
+  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilBottomPopupDis2">
     <text class='title'>选择优惠券</text>
-    <text class='discont'>{{selectType=='coupon'?selectShow:''}}</text>
+    <text class='discont'>{{selectedActivityType == 'coupon' ? selectedActivityText : ''}}</text>
   </view>
   <zan-panel>
     <view class='panel'>
       <text class='title'>运费</text>
-      <text class='discont'>￥{{view.freight_money}}</text>
+      <text class='discont'>
+      <text class="wancll-font-size-10">￥</text>{{view.freight_money}}
+      </text>
     </view>
   </zan-panel>
   <zan-panel>
     <view class='memo'>
       <text class='title'>买家留言</text>
-      <textarea class="content" bindinput="memo" placeholder="说点什么吧"></textarea>
+      <textarea class="content" bindinput="memoInput" placeholder="说点什么吧"></textarea>
     </view>
   </zan-panel>
 </view>
 
 <view class="total-box">
-  <view class="total">合计：{{allMoney}}</view>
+  <view class="total">
+    <text class="wancll-font-size-14">合计：</text>
+    <text class="wancll-text-price wancll-font-size-12">￥</text>
+    <text class="wancll-text-price">{{totalPrice}}</text>
+  </view>
 </view>
 
-<button class="wancll-bg-info wancll-text-white" catchtap='saveOrder'>提交订单</button>
+<view class="wancll-padded-5">
+  <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
+</view>
 
+<!-- 地址选择 -->
 <zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
@@ -95,7 +101,7 @@
     </scroll-view>
   </view>
 </zan-popup>
-
+<!-- 满减优惠选择 -->
 <zan-popup show="{{ showBottomPopupDis1 }}" type="bottom" bindclose="toggilBottomPopupDis1">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
@@ -105,13 +111,11 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
-      <view class='discount-boc' wx:for="{{user.full}}" wx:key="key" data-id="{{item.id}}" bindtap="selectFull">
-        <text>满{{item.full_money}}减{{item.reduce_money}}元</text>
-      </view>
+      <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.full}}" wx:key="key" data-index="{{index}}" bindtap="selectFull">满{{item.full_money}}减{{item.reduce_money}}元</view>
     </scroll-view>
   </view>
 </zan-popup>
-
+<!-- 折扣优惠选择 -->
 <zan-popup show="{{ showBottomPopupDis2 }}" type="bottom" bindclose="toggilBottomPopupDis2">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
@@ -121,9 +125,10 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
-      <view class='discount-boc' wx:for="{{user.coupon}}" wx:if="{{!item.is_expiry}}" wx:key="key" data-id="{{item.id}}" bindtap="selectCoupon">
-        <view>满{{item.reach_money}}打{{item.change_value}}折</view>
-        <view>失效时间{{item.expiry_time}}</view>
+      <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:if="{{!item.is_expiry}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
+        <view wx:if="item.coupon_type=='discount'">满{{item.reach_money}}打{{item.change_value}}折</view>
+        <view wx:else>满{{item.reach_money}}减{{item.change_value}}元</view>
+        <view class="wancll-margin-t-5">失效时间{{item.expiry_time}}</view>
       </view>
     </scroll-view>
   </view>

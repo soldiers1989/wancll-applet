@@ -78,7 +78,7 @@ Page({
   logout() {
     wx.showModal({
       title: '提示',
-      content: '确定要退出登录吗？',
+      content: '确定退出登录?',
       success(res) {
         if (res.confirm) {
           wx.clearStorageSync()

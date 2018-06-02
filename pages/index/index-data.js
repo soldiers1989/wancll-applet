@@ -46,7 +46,6 @@ export function getOtherData(that) {
       url: APP.api.indexActivity,
       success: (res) => {
         resolve(res.data);
-        console.log('活动', res.data)
       }
     })
   })

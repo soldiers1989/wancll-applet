@@ -67,6 +67,7 @@
       </zan-popup>
     </block>
   </view>
+  <view style="height: 100rpx;background: #fff;"></view>
   <zan-panel>
     <view class="buy-buttons">
       <view class="collect">
@@ -82,7 +83,7 @@
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即购买</view>
     </view>
   </zan-panel>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <!-- <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
   <view wx:if="{{showTab === 1}}" class='particulars'>
     
   </view>
@@ -106,7 +107,7 @@
       </view>
     </zan-panel>
     
-  </view>
+  </view> -->
 </view>
 
 <template name="collect">
