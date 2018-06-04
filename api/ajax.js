@@ -64,7 +64,7 @@ function request(option, header) {
     fail(err) {
       // 清除加载状态
       wx.hideLoading()
-      clearTimeout(timer)
+      // clearTimeout(timer)
       // 错误内容
       console.log(err);
       fail && fail(err);

@@ -27,30 +27,30 @@
     </view>
   </view>
   <view class='select-sku'>
-    <block wx:if="{{hasSku}}">
-      <zan-panel>
-        <view class='go-select' bindtap='openSkuPopup'>
-          <view>选择商品规格</view>
-          <view wx:if="{{findSku}}">{{findSku.spec_option_group}}</view>
-        </view>
-      </zan-panel>
-    </block>
-    <block wx:else="{{hasSku}}">
-      <zan-panel>
+    <zan-panel>
+      <block wx:if="{{hasSku}}">
+        <zan-panel>
+          <view class='go-select' bindtap='openSkuPopup'>
+            <view class="left">选择商品规格</view>
+            <view class="right" wx:if="{{findSku}}">{{findSku.spec_option_group}}</view>
+          </view>
+        </zan-panel>
+      </block>
+      <block wx:else="{{hasSku}}">
         <view class='go-select'>
-          <view>无商品规格</view>
-          <view></view>
-        </view>
-      </zan-panel>
-    </block>
-    <block wx:if="{{hasAttr}}">
-      <zan-panel>
+          <view class="left">无商品规格</view>
+          <view class="right"></view>
+        </view> 
+      </block>
+      <block wx:if="{{hasAttr}}">
+        
         <view class='go-select' bindtap='openAttrPopup'>
-          <view>产品属性参数</view>
-          <view></view>
+          <view class="left">产品属性参数</view>
+          <view class="right"></view>
         </view>
-      </zan-panel>
-    </block>
+        
+      </block>
+    </zan-panel>
     <block wx:if="{{hasSku}}">
       <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
         <view class="pop-example__container pop-example__container--bottom">

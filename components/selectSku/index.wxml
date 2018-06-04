@@ -1,8 +1,8 @@
 <view class="zan-btns">
   <zan-panel>
     <view class='top-close'>
-      <text>请选择规格</text>
-      <text class="icon" data-type="icon" bindtap="close">关闭</text>
+      <text class="left">请选择规格</text>
+      <text class="right icon" data-type="icon" bindtap="close">关闭</text>
     </view>
   </zan-panel>
   <view class='image-warpper'>

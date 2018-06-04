@@ -8,6 +8,7 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
+  margin: 10px;
 }
 .user .avatar{
   flex: 250rpx 0 0;
@@ -33,7 +34,6 @@
 }
 .user .info .name{
   font-size: 36rpx;
-  /* margin-bottom: 15rpx; */
 }
 .user .info .phone{
   line-height: 50rpx;
@@ -44,16 +44,17 @@
 .user .info .other .vip{
   margin-right: 50rpx;
 }
-
 .title{
   padding: 10px;
+  font-size: 28rpx;
 }
+
+
 .lists{
   padding: 20rpx;
 }
 .lists .list{
   display: flex;
-  height: 150rpx;
   padding: 10px;
   border-radius: 10rpx;
   background: #fff;
@@ -64,4 +65,9 @@
 }
 .lists .list .right{
   flex: 100rpx 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #358cff;
 }

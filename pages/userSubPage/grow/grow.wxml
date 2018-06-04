@@ -1,5 +1,5 @@
 <view class='panel'>
-  <zan-panel>
+  
     <view class='user'>
       <view class='avatar'>
         <image src='{{user.avatar}}'></image>
@@ -18,7 +18,6 @@
         </view>
       </view>
     </view>
-  </zan-panel>
 </view>
 <view class='grow-warpper'>
   <view class='title'>成长记录</view>

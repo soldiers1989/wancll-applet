@@ -1,11 +1,15 @@
 const APP = getApp();
 Page({
   data: {
-    cartsDetail: '', // 商品信息
+    // 交互数据
     goodsIds: '', // 请求的数据参数商品的 id数组
     goodsInfo: '', // 请求的数据参数
-    discountItem: '', // 折扣信息
-    discount:'',
+    memo: '', // 备注
+
+    // 显示参数
+    cartsDetail: '', // 商品信息
+    discountItem:'', // 折扣信息
+    discount:'', 
 
     allMoney: '', //终合计 多少钱  
 
@@ -17,14 +21,12 @@ Page({
 
     selectShow: '', // 显示的优惠券信息
     selectType: '', // 选中的优惠券类型
-    selectNum: '', // 选中的金额或者满折
-
-    memo: '',
+    selectSale: '', // 选中的金额或者满折
 
     // 控制弹出层显示
-    showBottomPopupAddress: false,
-    showBottomPopupDis1: false,
-    showBottomPopupDis2: false,
+    showPopupAddress: false,
+    showPopupDiscount: false,
+    showPopupFull: false,
 
   },
   onLoad(options) {
@@ -61,6 +63,7 @@ Page({
     let str = `[${JSON.stringify(obj)}]`;
     return str
   },
+
   // 获取默认的地址 得到id 然后调用 获取价格
   getDefaultAddress() {
     APP.ajax({
@@ -80,6 +83,7 @@ Page({
       }
     })
   },
+
   // 获取价格信息 然后调用获得优惠券信息
   getViewData() {
     APP.ajax({
@@ -192,7 +196,7 @@ Page({
     this.setData({
       selectShow: str,
       selectType: 'coupon',
-      selectNum: coupon.change_value
+      selectSale: coupon.change_value
     }, () => {
       this.toggilBottomPopupDis2();
       this.allMoney()
@@ -209,7 +213,7 @@ Page({
     this.setData({
       selectShow: str,
       selectType: 'full',
-      selectNum: full.reduce_money
+      selectSale: full.reduce_money
     }, () => {
       this.toggilBottomPopupDis1();
       this.allMoney()
@@ -223,34 +227,38 @@ Page({
   },
   // 计算总价 勾选了满减后 增减商品后都要计算
   allMoney() {
+    // 不是促销商品的时候
     if(!this.data.discountItem.id){
-      let money = this.data.view.total_money;
+      let goodsMoney = Number(this.data.view.goods_money);
+      let freightMoney = Number(this.data.view.freight_money);
       // 选了折扣
-      if (this.data.selectNum) {
-        let num = Number(this.data.selectNum);
+      if (this.data.selectSale) {
+        let num = Number(this.data.selectSale);
         let allMoney = 0;
         if (this.data.selectType == "full") {
-          allMoney = money - num
+          allMoney = (goodsMoney+freightMoney) - num
         } else {
-          allMoney = money * (num * 0.1)
+          allMoney = (goodsMoney+freightMoney) * (num * 0.1)
         }
         this.setData({
           allMoney: allMoney.toFixed(2)
         })
+      // 没选择折扣
       } else {
         this.setData({
-          allMoney: money
+          allMoney: goodsMoney+freightMoney
         })
       }
-    }else{
+    }
+    // 是促销商品的时候 一口价 + 运费
+    if(this.data.discountItem.id){
       let money = Number(this.data.discountItem.discount_price);
       let num = Number(this.data.goodsInfo[0].num);
-      console.log(money,num)
+      let freightMoney = Number(this.data.view.freight_money);
       this.setData({
-        allMoney:  money* num
+        allMoney:  (money* num)+freightMoney
       })
     }
-    // 限时折扣的价格
 
   },
   // 发送订单
@@ -280,19 +288,19 @@ Page({
     })
   },
   // 切换地址弹出层
-  toggilBottomPopupAddress() {
+  toggilPopupAddress() {
     this.setData({
-      showBottomPopupAddress: !this.data.showBottomPopupAddress,
+      showPopupAddress: !this.data.showPopupAddress,
     })
   },
-  toggilBottomPopupDis1() {
+  toggilPopupDiscount() {
     this.setData({
-      showBottomPopupDis1: !this.data.showBottomPopupDis1,
+      showPopupDiscount: !this.data.showPopupDiscount,
     })
   },
-  toggilBottomPopupDis2() {
+  toggilPopupFull() {
     this.setData({
-      showBottomPopupDis2: !this.data.showBottomPopupDis2,
+      showPopupFull: !this.data.showPopupFull,
     })
   }
 })

@@ -1,5 +1,14 @@
 .top-close{
   padding: 15px;
+  display:flex;
+}
+.top-close .left{
+  flex: 1;
+  text-align: left;
+}
+.top-close .right{
+  flex: 1;
+  text-align: right;
 }
 .image-warpper{
   padding: 20px;
