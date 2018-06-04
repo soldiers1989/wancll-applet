@@ -48,6 +48,7 @@ Page({
       this.toggilBottomPopupAddress();
     })
   },
+  // 改变商品数量
   changeNum(e) {
     let index = APP.utils.getDataSet(e, 'index');
     let num = Number(APP.utils.getDataSet(e, 'num'));
@@ -131,7 +132,7 @@ Page({
   },
   // 提交订单
   submit() {
-    submit();
+    submit(this);
   },
   // 切换地址弹出层
   toggilBottomPopupAddress() {

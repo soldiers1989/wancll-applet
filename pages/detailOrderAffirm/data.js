@@ -29,7 +29,10 @@ export function orderView(that) {
     },
     success(res) {
       that.setData({
-        view: res.data
+        view: res.data,
+        selectedActivity: {},
+        selectedActivityText: '',
+        selectedActivityType: '',
       }, () => {
         getMarketInfo(that);
       })
