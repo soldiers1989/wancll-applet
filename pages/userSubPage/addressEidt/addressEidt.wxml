@@ -11,7 +11,7 @@
   </zan-panel>
   <view class="plant">
     <view class='title'>当前选择：</view>
-    <input class='context' placeholder='点击选择地址' value="{{province.name}}{{city.name}}{{county.name}}" bindtap="showPicker" />
+    <view class='context' bindtap="showPicker" >{{showAddress}}</view>
   </view>
   <zan-panel>
     <view class='plant'>
@@ -38,4 +38,4 @@
     </view>
   </zan-panel>
 </zan-panel>
-<citys bind:getCitys="getCitys" condition="{{condition}}"></citys>
+<citys id="citys" bind:getCitys="getCitys" condition="{{condition}}"></citys>

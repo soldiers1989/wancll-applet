@@ -6,7 +6,7 @@
   background: #fff;
 }
 .popup-nav .list{
-  flex: 1;
+  margin: 0 0 0 10px;
   text-align: center;
 }
 .popup-nav .list .image{

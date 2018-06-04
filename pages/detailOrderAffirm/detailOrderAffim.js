@@ -23,7 +23,7 @@ Page({
     showPopupAddress: false,
     showPopupDiscount: false,
     showPopupFull: false,
-
+    hasPopup:true,
   },
   onLoad(options) {
     this.setData({
@@ -47,7 +47,7 @@ Page({
       selectedAddress: addresses[0]
     }, () => {
       orderView(this);
-      this.toggilBottomPopupAddress();
+      this.toggilPopupAddress();
     })
   },
   // 改变商品数量
@@ -108,40 +108,40 @@ Page({
     })
   },
   // 计算总价 勾选了满减后 增减商品后都要计算
-  allMoney() {
-    // 不是促销商品的时候
-    if(!this.data.discountItem.id){
-      let goodsMoney = Number(this.data.view.goods_money);
-      let freightMoney = Number(this.data.view.freight_money);
-      // 选了折扣
-      if (this.data.selectSale) {
-        let num = Number(this.data.selectSale);
-        let allMoney = 0;
-        if (this.data.selectType == "full") {
-          allMoney = (goodsMoney+freightMoney) - num
-        } else {
-          allMoney = (goodsMoney+freightMoney) * (num * 0.1)
-        }
-        this.setData({
-          allMoney: allMoney.toFixed(2)
-        })
-      // 没选择折扣
-      } else {
-        this.setData({
-          allMoney: goodsMoney+freightMoney
-        })
-      }
-    }
-    // 是促销商品的时候 一口价 + 运费
-    if(this.data.discountItem.id){
-      let money = Number(this.data.discountItem.discount_price);
-      let num = Number(this.data.goodsInfo[0].num);
-      let freightMoney = Number(this.data.view.freight_money);
-      this.setData({
-        allMoney:  (money* num)+freightMoney
-      })
-    }
-  },
+  // allMoney() {
+  //   // 不是促销商品的时候
+  //   if(!this.data.discountItem.id){
+  //     let goodsMoney = Number(this.data.view.goods_money);
+  //     let freightMoney = Number(this.data.view.freight_money);
+  //     // 选了折扣
+  //     if (this.data.selectSale) {
+  //       let num = Number(this.data.selectSale);
+  //       let allMoney = 0;
+  //       if (this.data.selectType == "full") {
+  //         allMoney = (goodsMoney+freightMoney) - num
+  //       } else {
+  //         allMoney = (goodsMoney+freightMoney) * (num * 0.1)
+  //       }
+  //       this.setData({
+  //         allMoney: allMoney.toFixed(2)
+  //       })
+  //     // 没选择折扣
+  //     } else {
+  //       this.setData({
+  //         allMoney: goodsMoney+freightMoney
+  //       })
+  //     }
+  //   }
+  //   // 是促销商品的时候 一口价 + 运费
+  //   if(this.data.discountItem.id){
+  //     let money = Number(this.data.discountItem.discount_price);
+  //     let num = Number(this.data.goodsInfo[0].num);
+  //     let freightMoney = Number(this.data.view.freight_money);
+  //     this.setData({
+  //       allMoney:  (money* num)+freightMoney
+  //     })
+  //   }
+  // },
   computeTotalPrice() {
     if (!this.data.isDiscountGoods) {
       let totalPrice = this.data.view.total_money;
@@ -174,16 +174,19 @@ Page({
   toggilPopupAddress() {
     this.setData({
       showPopupAddress: !this.data.showPopupAddress,
+      hasPopup: !this.data.hasPopup
     })
   },
   toggilPopupDiscount() {
     this.setData({
       showPopupDiscount: !this.data.showPopupDiscount,
+      hasPopup: !this.data.hasPopup
     })
   },
   toggilPopupFull() {
     this.setData({
       showPopupFull: !this.data.showPopupFull,
+      hasPopup: !this.data.hasPopup
     })
   }
 })

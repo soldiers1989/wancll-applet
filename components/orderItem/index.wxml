@@ -43,25 +43,25 @@
 <template name="finsh-actions">
   <view wx:if="{{status === 1}}" class='click-button'>
     <zan-button catchtap='cancelOrder' class='zan-button' size="small">取消订单</zan-button>
-    <zan-button catchtap='payOrder' class='zan-button' size="small">确认付款</zan-button>
+    <zan-button catchtap='payOrder' type="info" class='zan-button' size="small">确认付款</zan-button>
   </view>
   <block wx:if="{{is_has_return_goods===0}}">
     <view wx:if="{{status === 2}}" class='click-button'>
-      <zan-button catchtap="tipOrder" class='zan-button' size="small">提醒发货</zan-button>
+      <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
     </view>
     <view wx:if="{{status === 3}}" class='click-button'>
       <zan-button class='zan-button' catchtap='refundOrder' size="small">退款</zan-button>
       <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
-      <zan-button class='zan-button' catchtap="userSing" size="small">确认收货</zan-button>
+      <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
     </view>
   </block>
   <block wx:if="{{is_has_return_goods===1}}">
     <view wx:if="{{status === 2}}" class='click-button'>
-      <zan-button catchtap="tipOrder" class='zan-button' size="small">提醒发货</zan-button>
+      <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
     </view>
     <view wx:if="{{status === 3}}" class='click-button'>
       <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
-      <zan-button class='zan-button' catchtap="userSing" size="small">确认收货</zan-button>
+      <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
     </view>
   </block>
 
@@ -81,7 +81,7 @@
 <!-- 评价按钮 -->
 <template name="estimate">
   <view class='action'>
-    <zan-button wx:if="{{is_comment===0}}" data-id="{{goods_id}}" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
+    <zan-button wx:if="{{is_comment===0}}" data-id="{{goods_id}}" type="info" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
     <zan-button wx:if="{{is_comment===1}}" data-id="{{goods_id}}" class='zan-button' size="mini"> 已评论 </zan-button>
   </view>
 </template>
@@ -89,14 +89,21 @@
 
 <!-- 付款状态 -->
 <template name="pay-actions">
-  <view wx:if="{{status === 1}}" class='right'>待付款</view>
-  <view wx:if="{{status === 2}}" class='right'>待发货</view>
-  <view wx:if="{{status === 3}}" class='right'>待收货</view>
-  <view wx:if="{{status === 4}}" class='right'>待评价</view>
-  <view wx:if="{{status === 9}}" class='right'>交易关闭</view>
+  <view wx:if="{{status === 1}}" class='right' style="color:#358cff">待付款</view>
+  <view wx:if="{{status === 2}}" class='right' style="color:#358cff">待发货</view>
+  <view wx:if="{{status === 3}}" class='right' style="color:#358cff">待收货</view>
+  <view wx:if="{{status === 4}}" class='right' style="color:#358cff">待评价</view>
+  <view wx:if="{{status === 9}}" class='right' style="color:#358cff">交易关闭</view>
 </template>
 
 <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">
   <image mode="widthFix" src="{{noContentImg}}" style="width: 18%;margin: 0 auto;"></image>
   <view style="color: #777;">啊哦,这里什么都没有~</view>
 </view>
+
+
+<modal hidden="{{hiddenmodalput}}" title="请输入原因" confirm-text="确认" cancel-text="取消" bindcancel="modalCancel" bindconfirm="modalConfirm">  
+  <block wx:if="{{!hiddenmodalput}}">
+    <input bindinput="bindInput" type='text' placeholder="请输入内容"/>  
+  </block>
+</modal>

@@ -14,11 +14,11 @@
         <zan-cell>
           <view class='bottom'>
             <view class='default-address' data-id='{{item.id}}' catchtap='setDefaultAddress'>
-              <zan-icon type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
+              <zan-icon style="color:#358cff" type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
               <text> 默认地址</text>
             </view>
             <view class='click-button'>
-              <zan-button class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
+              <zan-button type="info" class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
                 <zan-icon type="edit"></zan-icon>
                 <text> 编辑</text>
               </zan-button>
@@ -33,7 +33,7 @@
     </zan-panel>
   </view>
   <zan-panel class='add-address'>
-    <zan-button bindbtnclick="editAddress" data-id='new'>
+    <zan-button bindbtnclick="editAddress" type="info" data-id='new'>
       <zan-icon type="add"></zan-icon> 添加新地址</zan-button>
   </zan-panel>
 

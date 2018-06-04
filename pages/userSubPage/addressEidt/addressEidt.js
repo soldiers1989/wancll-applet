@@ -11,10 +11,12 @@ Page({
     // 三级联动
     province: {},
     city: {},
-    county: {}
+    county: {},
+    showAddress:'点击选择地址'
   },
 
   onLoad(options) {
+    
     // 编辑模式
     if (options.id) {
       wx.setNavigationBarTitle({
@@ -55,8 +57,8 @@ Page({
       })
     }
   },
-  
   showPicker() {
+    this.selectComponent('#citys').defaultSelect();
     this.setData({
       condition: true
     });
@@ -72,7 +74,8 @@ Page({
     this.setData({
       province: e.detail.province,
       city: e.detail.city,
-      county: e.detail.county
+      county: e.detail.county,
+      showAddress:`${e.detail.province.name} ${e.detail.city.name} ${e.detail.county.name}` 
     })
   },
   enterName(e) {

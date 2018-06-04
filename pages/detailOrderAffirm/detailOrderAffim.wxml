@@ -1,4 +1,4 @@
-<view class="order-address" bindtap="toggilBottomPopupAddress">
+<view class="order-address" bindtap="toggilPopupAddress">
   <block wx:if="{{selectedAddress.id}}">
     <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
       <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
@@ -50,12 +50,12 @@
     </view>
   </zan-panel>
   <zan-panel>
-    <view wx:if="{{activities.full && !isDiscountGoods}}" class='panel' bindtap="toggilBottomPopupDis1">
+    <view wx:if="{{activities.full && !isDiscountGoods}}" class='panel' bindtap="toggilPopupDiscount">
       <text class='title'>选择减满优惠</text>
       <text class='discont'>{{selectedActivityType == 'full' ? selectedActivityText : ''}}</text>
     </view>
   </zan-panel>
-  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilBottomPopupDis2">
+  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilPopupFull">
     <text class='title'>选择优惠券</text>
     <text class='discont'>{{selectedActivityType == 'coupon' ? selectedActivityText : ''}}</text>
   </view>
@@ -68,7 +68,7 @@
     </view>
   </zan-panel>
   <zan-panel>
-    <view class='memo'>
+    <view class='memo' wx:if="{{hasPopup}}">
       <text class='title'>买家留言</text>
       <textarea class="content" bindinput="memoInput" placeholder="说点什么吧"></textarea>
     </view>
@@ -88,7 +88,7 @@
 </view>
 
 <!-- 地址选择 -->
-<zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
+<zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
@@ -102,7 +102,7 @@
   </view>
 </zan-popup>
 <!-- 满减优惠选择 -->
-<zan-popup show="{{ showBottomPopupDis1 }}" type="bottom" bindclose="toggilBottomPopupDis1">
+<zan-popup show="{{ showPopupDiscount }}" type="bottom" bindclose="toggilPopupDiscount">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
@@ -116,7 +116,7 @@
   </view>
 </zan-popup>
 <!-- 折扣优惠选择 -->
-<zan-popup show="{{ showBottomPopupDis2 }}" type="bottom" bindclose="toggilBottomPopupDis2">
+<zan-popup show="{{ showPopupFull }}" type="bottom" bindclose="toggilPopupFull">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>

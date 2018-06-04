@@ -1,3 +1,6 @@
+.view{
+  color:#999999
+}
 .item{  
   padding: 15px;
   display: flex;
@@ -40,12 +43,13 @@
 .image-input .add-image{
   width: 100rpx;
   height: 100rpx;
-  padding: 5rpx;
+  padding: 10rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 10px
+  border-radius: 5px;
+  font-size: 50rpx;
 }
 
 .star-cent{
@@ -59,4 +63,5 @@
 }
 .star-cent .star{
   font-size: 40rpx;
+  color:rgb(255, 198, 64)
 }

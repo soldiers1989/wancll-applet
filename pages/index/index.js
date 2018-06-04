@@ -61,7 +61,7 @@ Page({
   // 去领券中心
   goDiscountCenter() {
     wx.navigateTo({
-      url: `/pages/userSubPage/discountCenter/diecountCenter`,
+      url: `/pages/userSubPage/couponCenter/couponCenter`,
     })
   },
   // 减慢促销

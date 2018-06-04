@@ -27,6 +27,10 @@
 
 .sku .lists .sku-list{
   margin-right: 10px;
+ 
+}
+.sku .lists .sku-list button{
+  margin-bottom: 10px;
 }
 .buy-buttons{
   display: flex;
@@ -85,4 +89,7 @@
 
 .price-warpper .stock{
   margin-top: 20rpx;
+}
+.send{
+  padding: 10px;
 }
