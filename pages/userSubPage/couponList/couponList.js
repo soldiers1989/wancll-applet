@@ -16,9 +16,9 @@ Page({
     tabSelectedId: 1,
     loading: true,
     discountList: [],
-    enterConvert:''
+    enterConvert: ''
   },
-  onLoad: function (options) {
+  onLoad(options) {
     this.getList(this.data.tabSelectedId);
   },
   getList(status) {
@@ -40,11 +40,10 @@ Page({
       data: data,
       success(res) {
         if (res.data.length) {
-          console.log(res.data)
           res.data.forEach(item => {
-            if(!item.is_expiry && item.status!=2){
+            if (!item.is_expiry && item.status != 2) {
               item.bg_img = APP.imgs.coupon
-            }else{
+            } else {
               item.bg_img = APP.imgs.couponPass
             }
             item.change_value = parseFloat(item.change_value)
@@ -80,10 +79,10 @@ Page({
     })
   },
   goCenter() {
-    wx.navigateTo({ url: `/pages/userSubPage/discountCenter/diecountCenter` })
+    wx.navigateTo({ url: `/pages/userSubPage/couponCenter/couponCenter` })
   },
   convert() {
-    let that = this
+    let that = this;
     if (!this.data.enterConvert) {
       wx.showToast({
         title: '输入兑换码',
@@ -101,35 +100,29 @@ Page({
           title: res.msg,
           icon: 'none',
         })
-        setTimeout(()=>{
+        setTimeout(() => {
           that.getList(that.datatabSelectedId)
-        },1000)
+        }, 1000)
       }
     })
   },
-  goBuy(){
+  goBuy() {
     wx.switchTab({ url: `/pages/category/category` })
   },
-  onShow(){
+  onShow() {
     this.setData({
       discountList: [],
       pageNum: 1
-    },()=>{
+    }, () => {
       this.getList(this.data.tabSelectedId)
     })
-    
+
   },
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
+  onReachBottom() {
 
   },
 })

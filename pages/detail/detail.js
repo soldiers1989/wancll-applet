@@ -26,9 +26,9 @@ Page({
     // 类型 是否有活动参与
     activityId: 0,
     discount: [], // 所有的活动数据
-    discountItem:{}, // 当前显示宝贝的活动数据
+    discountItem: {}, // 当前显示宝贝的活动数据
     full: [],
-    timeDown:'0天 00 : 00 : 00', // 倒计时
+    timeDown: '0天 00 : 00 : 00', // 倒计时
 
     // 数据
     goodsId: -1, //   商品的id
@@ -52,7 +52,6 @@ Page({
   },
   onLoad(options) {
     // 请求活动数据
-    console.log(options)
     if (options.discountid) {
       APP.ajax({
         url: APP.api.indexActivity,
@@ -61,18 +60,18 @@ Page({
             activityId: options.discountid,
             discount: res.data.discount ? res.data.discount : [],
             full: res.data.full ? res.data.full : [],
-          },()=>{
+          }, () => {
             let rulesInfo = this.data.discount[0].rule_info;
             let ruleInfo = rulesInfo.find(item => {
               return item.goods_id == options.id
             });
             this.setData({
-              discountItem:ruleInfo
+              discountItem: ruleInfo
             })
             // 默认执行一次
-            APP.utils.timeDown(this, this.data.discount[0].end_timestamp*1000)
+            APP.utils.timeDown(this, this.data.discount[0].end_timestamp * 1000)
             setInterval(() => {
-              APP.utils.timeDown(this, this.data.discount[0].end_timestamp*1000)
+              APP.utils.timeDown(this, this.data.discount[0].end_timestamp * 1000)
             }, 1000)
           })
         }
@@ -143,7 +142,7 @@ Page({
     })
   },
   // 倒计时
- 
+
   // 默认加载时候判断是否收藏的商品
   isCollect() {
     APP.ajax({
@@ -324,62 +323,13 @@ Page({
   },
   // 跳转到订单详情页
   sendBuyNow() {
-    // 组装成和购物车的数据一样的格式
-    let cartsDetail = []; // 订单确认页面需要读取的产品信息
-    let goodsInfo = []; // 订单确认页面需要发送请求的信息
-    let goodsIds = []; // 订单确认页面需要发送请求的信息
     if (this.data.hasSku) {
-      // 填入数据
-      goodsInfo.push({
-        goods_id: this.data.goodsInfo.id,
-        spec_group_id: this.data.findSku.id,
-        num: 1,
-      })
-      // 加入购物车后直接生成的数据
-      if (this.data.cartsDetail.length) {
-        cartsDetail = this.data.cartsDetail
-      } else {
-        cartsDetail.push({
-          goods_id: Number(this.data.goodsId),
-          spec_group_id: this.data.findSku.id,
-          spec_group_info: this.data.findSku,
-          num: 1,
-          goods_info: this.data.goodsInfo
-        })
-      }
+      wx.setStorageSync('orderConfirmGoodsList', [{ goodsInfo: this.data.goodsInfo, specGroupInfo: this.data.findSku, num: 1 }])
     } else {
-      // 填入数据
-      goodsInfo.push({
-        goods_id: this.data.goodsInfo.id,
-        spec_group_id: 0,
-        num: 1,
-      })
-      // 加入购物车后直接生成的数据
-      if (this.data.cartsDetail.length) {
-        cartsDetail = this.data.cartsDetail
-      } else {
-        cartsDetail.push({
-          goods_id: Number(this.data.goodsId),
-          spec_group_id: 0,
-          spec_group_info: [],
-          num: 1,
-          goods_info: this.data.goodsInfo
-        })
-      }
+      wx.setStorageSync('orderConfirmGoodsList', [{ goodsInfo: this.data.goodsInfo, specGroupInfo: 0, num: 1 }])
     }
-    // 组装id
-    goodsIds.push(Number(this.data.goodsId))
-    let orderAffim = {
-      goodsInfo: goodsInfo,
-      goodsIds: goodsIds,
-      cartsDetail: cartsDetail,
-      discountItem:this.data.discountItem,
-      discount:this.data.discount[0]
-    }
-    // 本地存储 当前选中的订单信息以及商品信息
-    wx.setStorageSync('orderAffim', orderAffim)
     wx.navigateTo({
-      url: `/pages/detailOrderAffirm/detailOrderAffim`
+      url: `/pages/detailOrderAffirm/detailOrderAffim?isDiscountGoods=${this.data.activityId}`
     })
   },
   // 打开弹出层sku选择器

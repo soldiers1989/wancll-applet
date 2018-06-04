@@ -46,7 +46,6 @@ export function getOtherData(that) {
       url: APP.api.indexActivity,
       success: (res) => {
         resolve(res.data);
-        console.log('活动', res.data)
       }
     })
   })
@@ -64,8 +63,9 @@ export function getOtherData(that) {
       imgUrls: values[0],
       notice: values[1],
       sellList: values[2],
-      discount: values[3].discount?values[3].discount:[],
-      full: values[3].full?values[3].full:[],
+
+      discount: values[3].discount ? values[3].discount : [],
+      full: values[3].full ? values[3].full : [],
       ready: true
     }, () => {
       let timer = setTimeout(() => {
@@ -75,12 +75,12 @@ export function getOtherData(that) {
       }, 500)
       // 设置倒计时
       setInterval(() => {
-        APP.utils.timeDown(that, that.data.discount[0].end_timestamp*1000)
+        APP.utils.timeDown(that, that.data.discount[0].end_timestamp * 1000)
       }, 1000)
     })
   })
 
-  
+
 
 
   // // 获取首页公告

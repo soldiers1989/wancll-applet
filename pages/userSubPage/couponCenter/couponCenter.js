@@ -10,12 +10,11 @@ Page({
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
-    // 
     imgUrls: [], // 轮播图片
-    coupon:[],
+    coupon: [],
   },
 
-  onLoad: function (options) {
+  onLoad(options) {
     this.getBanners();
     this.getCoupons()
   },
@@ -23,9 +22,9 @@ Page({
   getBanners() {
     APP.ajax({
       url: APP.api.indexBanners,
-      data: { type:"wap领券中心轮播"},
-      success:(res)=>{
-        this.setData({ imgUrls:res.data})
+      data: { type: "wap领券中心轮播" },
+      success: (res) => {
+        this.setData({ imgUrls: res.data })
       }
     })
   },
@@ -34,7 +33,7 @@ Page({
     APP.ajax({
       url: APP.api.myDiscountCoupon,
       data: {},
-      success:res=>{
+      success: res => {
         res.data.forEach(item => {
           item.bg_img = APP.imgs.couponGet;
           item.change_value = parseFloat(item.change_value)
@@ -44,11 +43,11 @@ Page({
       }
     })
   },
-  draw(e){
-    let id=APP.utils.getDataSet(e,'id');
+  draw(e) {
+    let id = APP.utils.getDataSet(e, 'id');
     APP.ajax({
       url: APP.api.myDiscountCouponSave,
-      data: {activity_coupon_id:id},
+      data: { activity_coupon_id: id },
       success(res) {
         wx.showToast({
           title: res.msg,
@@ -57,13 +56,13 @@ Page({
       }
     })
   },
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh() {
+
   },
-  onReachBottom: function () {
-  
+  onReachBottom() {
+
   },
-  onShareAppMessage: function () {
-  
+  onShareAppMessage() {
+
   }
 })

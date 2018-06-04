@@ -43,8 +43,7 @@
 <template name="findSkuPrice">
   <view class='price-warpper'>
     <view class='price'>
-      <view style="font-size: 30rpx;">￥</view>
-      {{sell_price}}</view>
+      <view style="font-size: 30rpx;">￥</view>{{sell_price}}</view>
     <view class='stock'>库存：{{stock}}</view>
   </view>
 </template>

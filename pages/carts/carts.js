@@ -14,7 +14,7 @@ Page({
     noContent: false,
     noContentImg: APP.imgs.noContentImg,
     // 
-    selectObjlen:0,
+    selectObjlen: 0,
   },
   onLoad(options) {
 
@@ -28,7 +28,7 @@ Page({
       allPreice: 0.00,
       pageNum: 1,
       thisClickId: '',
-      selectObjlen:0
+      selectObjlen: 0
     })
     // 判断登录状态
     if (!wx.getStorageSync('token')) {
@@ -106,7 +106,7 @@ Page({
       }
       this.setData({
         selectObj: selectObj,
-        selectObjlen:Object.keys(selectObj).length
+        selectObjlen: Object.keys(selectObj).length
       }, () => {
         this.allPreice()
       })
@@ -121,9 +121,9 @@ Page({
       if (selectObj[item.id]) {
         let num = item.num;
         let price = 0;
-        if(item.spec_group_info.sell_price){
+        if (item.spec_group_info.sell_price) {
           price = item.spec_group_info.sell_price;
-        }else{
+        } else {
           price = item.goods_info.sell_price;
         }
         let sum = price * num;
@@ -145,7 +145,7 @@ Page({
     }
     this.setData({
       selectObj: selectObj,
-      selectObjlen:Object.keys(selectObj).length
+      selectObjlen: Object.keys(selectObj).length
     }, () => {
       this.checkSelectAll()
       this.allPreice()
@@ -182,8 +182,7 @@ Page({
     let goodsinfo = APP.utils.getDataSet(e, 'goodsinfo');
     let index = APP.utils.getDataSet(e, 'index');
     let id = APP.utils.getDataSet(e, 'id');
-    console.log(goodsinfo)
-    if(!goodsinfo.goods_spec_group_info.length){
+    if (!goodsinfo.goods_spec_group_info.length) {
       return
     }
     this.setData({
@@ -202,19 +201,19 @@ Page({
     })
   },
   // 批量删除购物车
-  deleteCarts(){
+  deleteCarts() {
     let keys = Object.keys(this.data.selectObj);
     wx.showModal({
       title: '提示',
       content: '确定要删除这些商品吗？',
-      success:res =>{
+      success: res => {
         if (res.confirm) {
           APP.ajax({
-            url:APP.api.getCartsDelete,
-            data:{
-              id:keys
+            url: APP.api.getCartsDelete,
+            data: {
+              id: keys
             },
-            success:res=>{
+            success: res => {
               wx.showToast({
                 title: res.msg,
                 icon: 'none'
@@ -226,77 +225,63 @@ Page({
                 allPreice: 0.00,
                 pageNum: 1,
                 thisClickId: '',
-                selectObjlen:0
-              },()=>{
+                selectObjlen: 0
+              }, () => {
                 getCarts(this)
               })
             }
           })
-        } 
+        }
       }
     })
   },
   // 批量加入收藏夹
-  collectCarts(){
+  collectCarts() {
     let keys = Object.keys(this.data.selectObj);
     wx.showModal({
       title: '提示',
       content: '全部添加到收藏夹吗？',
-      success:res =>{
+      success: res => {
         if (res.confirm) {
           APP.ajax({
-            url:APP.api.getCartsColleSave,
-            data:{
-              goods_ids:keys
+            url: APP.api.getCartsColleSave,
+            data: {
+              goods_ids: keys
             },
-            success:res=>{
+            success: res => {
               wx.showToast({
                 title: res.msg,
                 icon: 'none'
               })
             }
           })
-        } 
+        }
       }
     })
   },
   // 跳转到订单确认页面
   sendOrderAffirm() {
-    let cartsList = this.data.cartsList;
-    let selectObj = this.data.selectObj;
-    // console.log(selectObj)
-    let cartsDetail = [];   // 订单确认页面需要读取的产品信息
-    let goodsInfo = [];     // 订单确认页面需要发送请求的信息
-    let goodsIds = [];      // 订单确认页面需要发送请求的信息
-    cartsList.forEach(item => {
-      if (selectObj[item.id]) {
-        cartsDetail.push(item);
-        goodsIds.push(item.goods_id)
-        goodsInfo.push({
-          goods_id: item.goods_id,
-          num: item.num,
-          spec_group_id: item.spec_group_id,
+    let that = this;
+    let orderConfirmGoodsList = [];
+    this.data.cartsList.forEach(item => {
+      if (that.data.selectObj[item.id]) {
+        orderConfirmGoodsList.push({
+          goodsInfo: item.goods_info,
+          specGroupInfo: item.spec_group_info,
+          num: item.num
         })
       }
-    })
-    if (cartsDetail.length == 0 || goodsInfo.length == 0 || goodsIds.length == 0) {
+    });
+    if (!orderConfirmGoodsList.length) {
       wx.showToast({
-        title: '最少选择一个商品',
-        icon: 'none',
-        duration: 500
-      });
+        title: '请选择商品',
+        icon: 'none'
+      })
       return;
     }
-    let orderAffim = {
-      goodsInfo: goodsInfo,
-      goodsIds: goodsIds,
-      cartsDetail: cartsDetail
-    }
-    // console.log(orderAffim)
-    // 本地存储 当前选中的订单信息以及商品信息
-    wx.setStorageSync('orderAffim', orderAffim)
+    wx.setStorageSync('orderConfirmGoodsList', orderConfirmGoodsList);
     wx.navigateTo({
-      url: `/pages/detailOrderAffirm/detailOrderAffim`
+      url: '/pages/detailOrderAffirm/detailOrderAffim'
     })
   },
   onPullDownRefresh() {
