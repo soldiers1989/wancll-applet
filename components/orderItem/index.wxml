@@ -50,7 +50,7 @@
       <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
     </view>
     <view wx:if="{{status === 3}}" class='click-button'>
-      <zan-button class='zan-button' catchtap='refundOrder' size="small">退款</zan-button>
+      <!-- <zan-button class='zan-button' catchtap='refundOrder' size="small">退款</zan-button> -->
       <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
       <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
     </view>
