@@ -32,10 +32,20 @@ export function queryAuthStatus(that) {
     url: APP.api.queryAuthStatus,
     success(res) {
       let status = res.data.status;
-      if (status == 0 || status == 2) {
+      if (status == 0) {
         wx.navigateTo({
-          url: `/pages/userSubPage/idcardAuthSubmit/idcardAuthSubmit?status=${status}&id=${res.data.id}`,
+          url: `/pages/userSubPage/idcardAuthSubmit/idcardAuthSubmit?status=${status}`,
         })
+      } else if (status == 2) {
+        wx.showToast({
+          title: '您的信息未通过审核,请重新提交',
+          icon: 'none'
+        });
+        setTimeout(() => {
+          wx.navigateTo({
+            url: `/pages/userSubPage/idcardAuthSubmit/idcardAuthSubmit?status=${status}&id=${res.data.id}`,
+          })
+        }, 1000)
       } else if (status == 1 || status == 3) {
         wx.navigateTo({
           url: '/pages/userSubPage/idcardAuthInfo/idcardAuthInfo',
