@@ -12,24 +12,23 @@
     </view>
   </view>
 </view>
-<order-item data="{{orderData}}"></order-item>
-
+<order-item data="{{orderData}}" gotype='goodsdetail'></order-item>
 <zan-panel>
   <zan-cell-group>
     <zan-cell title="运费">
-      <view slot="footer">{{orderData.freight_money}}</view>
+      <view slot="footer">￥{{orderData.freight_money}}</view>
     </zan-cell>
     <block wx:if="{{orderData.market_reduce_money}}">
       <zan-cell title="有优惠活动">
-        <view slot="footer">{{orderData.market_reduce_money}}</view>
+        <view slot="footer">￥{{orderData.market_reduce_money}}</view>
       </zan-cell>
     </block>
     <zan-cell title="订单总价（含运费）">
-      <view slot="footer">{{orderData.total_money}}</view>
+      <view slot="footer">￥{{orderData.total_money}}</view>
     </zan-cell>
   </zan-cell-group>
 </zan-panel>
-
+<view style="margin-bottom:10px"></view>
 <zan-panel>
   <view class="order-bottom">
     <view class="line wancll-text-pray">订单创建时间：{{orderData.create_time}}</view>
@@ -38,4 +37,4 @@
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.finish_time}}">确认收货时间：{{orderData.finish_time}}</view>
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.cancel_time}}">订单取消时间：{{orderData.cancel_time}}</view>
   </view>
-</zan-panel>
+</zan-panel> 

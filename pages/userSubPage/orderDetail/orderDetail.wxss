@@ -6,4 +6,5 @@
 .order-bottom{
   background: #fff;
   padding: 15px;
+  margin: 10px 0;
 }

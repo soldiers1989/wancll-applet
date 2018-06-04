@@ -1,19 +1,22 @@
+
 <view class="order-address" bindtap="toggilPopupAddress">
-  <block wx:if="{{selectedAddress.id}}">
-    <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
-      <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
-      <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10">
-        <view class="wancll-font-weight"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
-        <view class="clearfix wancll-margin-t-10">
-          <text>{{selectedAddress.consignee_name}}</text>
-          <text class="wancll-fr">{{selectedAddress.mobile}}</text>
+  <zan-panel>
+    <block wx:if="{{selectedAddress.id}}">
+      <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
+        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
+        <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10">
+          <view class="wancll-font-weight"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
+          <view class="clearfix wancll-margin-t-10">
+            <text>{{selectedAddress.consignee_name}}</text>
+            <text class="wancll-fr">{{selectedAddress.mobile}}</text>
+          </view>
         </view>
       </view>
-    </view>
-  </block>
-  <block wx:else>
-    <view class=" wancll-margin-t-10 wancll-margin-b-10  wancll-padded-15 wancll-bg-white">请先添加收货地址</view>
-  </block>
+    </block>
+    <block wx:else>
+      <view class=" wancll-margin-t-10 wancll-margin-b-10  wancll-padded-15 wancll-bg-white">请先添加收货地址</view>
+    </block>
+  </zan-panel>
 </view>
 <view class="item-list">
   <zan-panel>
@@ -43,14 +46,14 @@
   </zan-panel>
 </view>
 <view class='other-price'>
-  <zan-panel>
-    <view wx:if="{{isDiscountGoods}}" class='panel'>
+  <zan-panel wx:if="{{isDiscountGoods}}">
+    <view class='panel'>
       <text class='title'>限时折扣单价</text>
       <text class='discont wancll-text-price wancll-font-size-16'><text class="wancll-font-size-10">￥</text>{{activities.discount[0].discount_price}}</text>
     </view>
   </zan-panel>
-  <zan-panel>
-    <view wx:if="{{activities.full && !isDiscountGoods}}" class='panel' bindtap="toggilPopupDiscount">
+  <zan-panel wx:if="{{activities.full && !isDiscountGoods}}">
+    <view class='panel' bindtap="toggilPopupDiscount">
       <text class='title'>选择减满优惠</text>
       <text class='discont'>{{selectedActivityType == 'full' ? selectedActivityText : ''}}</text>
     </view>

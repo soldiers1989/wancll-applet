@@ -1,11 +1,11 @@
 <view class='item'>
   <zan-panel>
-    <view class='item-content' catchtap="goDetail" wx:if="{{data.status != 4 || data.is_comment == 0}}">
+    <view class='item-content' catchtap="goOrderDetail" wx:if="{{data.status != 4 || data.is_comment == 0}}">
       <view class='top-info'>
         <view class='left'>订单编号：{{data.order_no}}</view>
         <template is="pay-actions" data="{{...data}}" />
       </view>
-      <view class='center-info' wx:for="{{data.order_goods_info}}" wx:key="key">
+      <view class='center-info' catchtap="goGoodsDetail" data-id="{{item.goods_id}}" wx:for="{{data.order_goods_info}}" wx:key="key">
         <view class='image-warpper'>
           <image class='image' src='{{item.thum}}' mode="widthFix"></image>
         </view>

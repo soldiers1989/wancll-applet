@@ -11,6 +11,12 @@
 .pop-example__container--right {
   height: 100vh;
 }
+.order-address{
+  margin-bottom: 10px;
+}
+.item-list{
+  margin-bottom: 10px;
+}
 .top-close{
   font-size: 28rpx;
   padding: 10px;

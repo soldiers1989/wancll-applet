@@ -8,6 +8,10 @@ Component({
     haveinfo: {
       type: Boolean,
       description: '是否显示价格栏位'
+    },
+    gotype:{
+      type: String,
+      description: '跳转的类型'
     }
   },
   data: {
@@ -18,12 +22,27 @@ Component({
   },
   methods: {
     // 进入订单详情
-    goDetail() {
-      let id = this.data.data.id;
-      wx.navigateTo({
-        url: `/pages/userSubPage/orderDetail/orderDetail?id=${id}`
-      })
+    goOrderDetail() {
+      // console.log(this.data.data)
+      if(this.data.gotype == 'orderdetail'){
+        let id = this.data.data.id;
+        wx.navigateTo({
+          url: `/pages/userSubPage/orderDetail/orderDetail?id=${id}`
+        })
+      }
     },
+    goGoodsDetail(e){
+      if(this.data.gotype == 'orderdetail'){
+        this.goOrderDetail()
+      }
+      if(this.data.gotype == 'goodsdetail'){
+        let id = APP.utils.getDataSet(e,'id')
+        wx.navigateTo({
+          url: `/pages/detail/detail?id=${id}`,
+        })
+      }
+    },
+    // 进入商品详情
     // ----------------- 待付款
     // 取消订单
     cancelOrder() {
