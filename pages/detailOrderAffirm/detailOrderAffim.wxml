@@ -87,12 +87,8 @@
   <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
 </view>
 
-<<<<<<< HEAD
-<zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
-=======
 <!-- 地址选择 -->
 <zan-popup show="{{ showBottomPopupAddress }}" type="bottom" bindclose="toggilBottomPopupAddress">
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
@@ -105,13 +101,8 @@
     </scroll-view>
   </view>
 </zan-popup>
-<<<<<<< HEAD
-
-<zan-popup show="{{ showPopupDiscount }}" type="bottom" bindclose="toggilPopupDiscount">
-=======
 <!-- 满减优惠选择 -->
 <zan-popup show="{{ showBottomPopupDis1 }}" type="bottom" bindclose="toggilBottomPopupDis1">
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
@@ -124,13 +115,8 @@
     </scroll-view>
   </view>
 </zan-popup>
-<<<<<<< HEAD
-
-<zan-popup show="{{ showPopupFull }}" type="bottom" bindclose="toggilPopupFull">
-=======
 <!-- 折扣优惠选择 -->
 <zan-popup show="{{ showBottomPopupDis2 }}" type="bottom" bindclose="toggilBottomPopupDis2">
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>

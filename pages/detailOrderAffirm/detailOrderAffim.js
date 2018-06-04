@@ -2,20 +2,8 @@ const APP = getApp();
 import { getDefaultAddress, orderView, getMarketInfo, submit } from './data.js';
 Page({
   data: {
-<<<<<<< HEAD
-    // 交互数据
-    goodsIds: '', // 请求的数据参数商品的 id数组
-    goodsInfo: '', // 请求的数据参数
-    memo: '', // 备注
-
-    // 显示参数
-    cartsDetail: '', // 商品信息
-    discountItem:'', // 折扣信息
-    discount:'', 
-=======
     goodsList: '', // 商品信息
     isDiscountGoods: 0,  // 是否折扣商品提交
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
 
     totalPrice: '', // 订单总价
     selectedAddress: '', // 选择的地址
@@ -48,75 +36,6 @@ Page({
   onShow() {
     this.selectComponent("#address").refresh();
   },
-<<<<<<< HEAD
-  // 组装参数 goods_info
-  goodsInfo() {
-    let obj = {
-      "goods_id": this.data.goodsId,
-      "num": this.data.num,
-      "spec_group_id": this.data.specGroupId,
-    }
-    let str = `[${JSON.stringify(obj)}]`;
-    return str
-  },
-
-  // 获取默认的地址 得到id 然后调用 获取价格
-  getDefaultAddress() {
-    APP.ajax({
-      url: APP.api.orderAffimAddress,
-      success: res => {
-        // 没有获取到地址的时候
-        if (!res.data.id) {
-          this.toggilBottomPopupAddress();
-          return
-        }
-        this.setData({
-          takeAddress: res.data,
-          addressId: res.data.id,
-        }, () => {
-          this.getViewData()
-        })
-      }
-    })
-  },
-
-  // 获取价格信息 然后调用获得优惠券信息
-  getViewData() {
-    APP.ajax({
-      url: APP.api.orderAffimView,
-      data: {
-        address_id: this.data.addressId,
-        goods_info: JSON.stringify(this.data.goodsInfo),
-      },
-      success: res => {
-        this.setData({
-          view: res.data
-        }, () => {
-          // console.log('view',res.data)
-          this.getUserData()
-        })
-      }
-    })
-  },
-  // 获取优惠券信息
-  getUserData() {
-    APP.ajax({
-      url: APP.api.orderAffimUser,
-      data: {
-        goods_ids: this.data.goodsIds,
-        money: this.data.view.goods_money
-      },
-      success: res => {
-        this.setData({
-          user: res.data
-        }, () => {
-          this.allMoney()
-        })
-      }
-    })
-  },
-=======
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
   // 点击地址刷新数据 然后关闭弹窗
   getClickId(e) {
     let id = e.detail.id;
@@ -160,15 +79,9 @@ Page({
       text = `满${coupon.reach_money}打${coupon.change_value}折`
     }
     this.setData({
-<<<<<<< HEAD
-      selectShow: str,
-      selectType: 'coupon',
-      selectSale: coupon.change_value
-=======
       selectedActivity: coupon,
       selectedActivityText: text,
       selectedActivityType: 'coupon'
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
     }, () => {
       this.toggilBottomPopupDis2();
       this.computeTotalPrice()
@@ -180,15 +93,9 @@ Page({
     let full = this.data.activities.full[index];
     let text = `满${full.full_money}减${full.reduce_money}元`;
     this.setData({
-<<<<<<< HEAD
-      selectShow: str,
-      selectType: 'full',
-      selectSale: full.reduce_money
-=======
       selectedActivity: full,
       selectedActivityText: text,
       selectedActivityType: 'full'
->>>>>>> 196031522aa74cacf25b1408dd6cf308894b18e3
     }, () => {
       this.toggilBottomPopupDis1();
       this.computeTotalPrice()
