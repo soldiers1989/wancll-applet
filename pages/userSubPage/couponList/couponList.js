@@ -22,7 +22,6 @@ Page({
     this.getList(this.data.tabSelectedId);
   },
   getList(status) {
-    let that = this
     let data = {}
     if (status == 3) {
       data = { expiry_time: "" }
@@ -34,11 +33,11 @@ Page({
     APP.ajax({
       url: APP.api.myDiscount,
       header: {
-        'page-limit': that.data.pageLimit,
+        'page-limit': this.data.pageLimit,
         'page-num': pageNum,
       },
       data: data,
-      success(res) {
+      success:res =>{
         if (res.data.length) {
           res.data.forEach(item => {
             if (!item.is_expiry && item.status != 2) {
@@ -48,12 +47,12 @@ Page({
             }
             item.change_value = parseFloat(item.change_value)
           });
-          that.setData({
+          this.setData({
             discountList: res.data,
             pageNum: ++pageNum
           })
         } else {
-          that.setData({
+          this.setData({
             loading: false
           })
         }
@@ -109,20 +108,25 @@ Page({
   goBuy() {
     wx.switchTab({ url: `/pages/category/category` })
   },
-  onShow() {
+  // 刷新
+  refresh(){
     this.setData({
       discountList: [],
       pageNum: 1
     }, () => {
       this.getList(this.data.tabSelectedId)
     })
-
   },
+  // 显示刷新
+  onShow() {
+    this.refresh()
+  },
+  // 下拉刷新
   onPullDownRefresh() {
-
+    this.refresh()
   },
-
+  // 上拉加载
   onReachBottom() {
-
+    this.getList(this.data.tabSelectedId);
   },
 })

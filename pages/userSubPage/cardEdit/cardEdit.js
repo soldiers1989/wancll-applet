@@ -99,16 +99,26 @@ Page({
     })
   },
   deleteCard() {
-    let that = this;
-    APP.ajax({
-      url: APP.api.myBankCardDelete,
-      data: { id: that.data.id },
-      success(res) {
-        wx.showToast({ title: res.msg, icon: 'none', });
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 1000)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除该银行卡吗？',
+      success: function(res) {
+        if (res.confirm) {
+          APP.ajax({
+            url: APP.api.myBankCardDelete,
+            data: { id: this.data.id },
+            success:(res)=> {
+              wx.showToast({ title: res.msg, icon: 'none', });
+              setTimeout(() => {
+                wx.navigateBack();
+              }, 1000)
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
+    
   }
 })

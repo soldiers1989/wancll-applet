@@ -19,14 +19,10 @@
       <input bindinput='enterCard' placeholder='请输入卡号' value='{{enterCard}}'></input>
     </view>
   </zan-panel>
-  <zan-panel>
-    <view class='panel' catchtap='deleteCard' wx:if="{{id}}">
-      <zan-button type="danger">删除该银行卡</zan-button>
-    </view>
-  </zan-panel>
-  <zan-panel>
-    <view class='addCard' data-id='new' catchtap='send'>
-      <zan-button>提交</zan-button>
-    </view>
-  </zan-panel>
 </zan-panel>
+<view class="delete-card" catchtap='deleteCard' wx:if="{{id}}">
+  <zan-button size="small" type="danger">删除</zan-button>
+</view>
+<view class='addCard' data-id='new' catchtap='send'>
+  <zan-button type="info">提交</zan-button>
+</view>

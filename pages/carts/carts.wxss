@@ -87,8 +87,7 @@
 }
 
 .center-info .title-warpper .price-warpper .count {
-  flex: 1;
-  text-align: right;
+  flex: 50px 0 0;
 }
 
 .select-all {

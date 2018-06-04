@@ -13,12 +13,13 @@ Page({
     nextMargin: 0,
 
     // 数据参数
-    imgUrls: [], // 轮播图片
-    notice: {}, // 首页公告
-    goods: [],  // 商品列表
+    imgUrls: [],  // 轮播图片
+    notice: {},   // 首页公告
+    goods: [],    // 商品列表
     sellList: [], // 促销列表广告(5个圆形图片)
     discount: [], // 限时折扣活动列表
     full: [],     // 减免活动列表
+    wapIndex: [], // 广告轮播产品
     timeDown: '0天 00 : 00 : 00', // 倒计时
     // 控制参数
     ready: false, // 数据是否请求成功？

@@ -1,14 +1,14 @@
 
 <view class="edit" wx:if="{{selectObjlen}}">
-  <zan-button class="btn" bindbtnclick="deleteCarts" size="small">删除</zan-button>
-  <zan-button class="btn" bindbtnclick="collectCarts" size="small">加入收藏夹</zan-button>
+  <zan-button class="btn" bindbtnclick="deleteCarts" type="danger" size="small">删除</zan-button>
+  <zan-button class="btn" bindbtnclick="collectCarts" type="info" size="small">加入收藏夹</zan-button>
 </view>
 
 <view class="item-list" wx:for="{{cartsList}}" wx:key="key">
   <zan-panel>
     <view class='item-content'>
       <view class="select-button">
-        <zan-icon bindtap="select" data-id="{{item.id}}" class="icon" type="{{selectObj[item.id] ? 'checked':'check'}}">
+        <zan-icon style="color:#358cff" bindtap="select" data-id="{{item.id}}" class="icon" type="{{selectObj[item.id] ? 'checked':'check'}}">
         </zan-icon>
       </view>
       <view class='center-info'>
@@ -26,10 +26,10 @@
               <text class='price wancll-text-price wancll-font-size-10'>￥</text> 
               {{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price * item.num}}
             </view>
-            <view class='count'>
-              <zan-button size="mini" data-id="{{item.id}}" bindbtnclick="minus">-</zan-button>
-              <text> {{item.num}} </text>
-              <zan-button size="mini" data-id="{{item.id}}" bindbtnclick="plus">+</zan-button>
+            <view class='count wancll-flex'>
+              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="minus"></i>
+              <text class="wancll-padded-5"> {{item.num}} </text>
+              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="plus"></i>
             </view>
           </view>
         </view>
@@ -41,11 +41,11 @@
 <zan-panel>
   <view class="select-all">
     <view class="select" bindtap="selectAll" wx:if="{{!selectAll}}">
-      <zan-icon class="icon" type="check"></zan-icon>
+      <zan-icon style="color:#358cff" class="icon" type="check"></zan-icon>
       <text> 全选</text>
     </view>
     <view class="select" bindtap="selectAll" wx:if="{{selectAll}}">
-      <zan-icon class="icon" type="checked"></zan-icon>
+      <zan-icon style="color:#358cff" class="icon" type="checked"></zan-icon>
       <text> 取消</text>
     </view>
     <view class="price">

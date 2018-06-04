@@ -6,6 +6,7 @@
       <view class='input'>搜索商品</view>
     </view>
   </view>
+
   <!-- 轮播图 -->
   <view class='banner'>
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -51,9 +52,10 @@
       </view>
     </scroll-view>
   </view>
+
   <!-- 图片连接 -->
   <view class='links'>
-    <view class='link' bindtap="goDiscountCenter">
+    <view class='link' bindtap="goDiscountCenter" style="border-right:1px solid #eee">
       <text class="text">优惠券</text>
       <image src="http://wancllshop.wx.wygoo.com/public/static/wap/images/index_coupon.png" mode="widthFix" />
     </view>
@@ -62,6 +64,23 @@
       <image src="http://wancllshop.wx.wygoo.com/public/static/wap/images/index_full.png" mode="widthFix" />
     </view>
   </view>
+
+  <!-- 轮播商品 -->
+  <view class="wap-index">
+    <view class='lists' wx:for="{{wapIndex}}" wx:key="key">
+      <image src="{{item.ad_img}}" mode="widthFix" />
+      <scroll-view class='scroll-items' scroll-x="true">
+        <view wx:for="{{item.goods_info}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">
+          <view class="info">
+            <image src="{{goods.thum}}" mode="widthFix" />
+            <view class="name">{{goods.name}}</view>
+            <view class="price">￥{{goods.sell_price}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
   <!--商品列表 -->
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goods}}" wx:key="index">

@@ -8,6 +8,7 @@ export const api = {
   indexAnnoncements: `${defaultHost}/api_articles/annoncements/lists`,
   indexActivity: `${defaultHost}/api_query/market/activity`,
   indexAdvertisements: `${defaultHost}/api_articles/advertisements/lists`,
+  indexWapIndex: `${defaultHost}/api_query/configs/wap_index`,
 
   // 商品页面 
   goodsTree: `${defaultHost}/api_goods/goods_cates/lists_tree`,

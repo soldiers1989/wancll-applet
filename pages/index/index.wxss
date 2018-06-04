@@ -123,7 +123,6 @@
   font-size: 14px;
   color: #df0303;
 }
-
 .scroll-items .item .info .sell_price {
   text-decoration: line-through;
   color: #777;
@@ -133,6 +132,7 @@
   display: flex;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
 }
 
 .links .link {
@@ -152,4 +152,23 @@
   height: 70px;
   float: right;
   margin-right: 10px;
+}
+.wap-index{
+  margin-bottom: 10px;
+}
+.wap-index .lists image{
+  width: 100%;
+}
+.wap-index .scroll-items .item .info {
+  text-align: left;
+}
+
+.scroll-items .item .info .name {
+  color: #000;
+  height: 40px;
+  white-space: pre-wrap
+}
+.scroll-items .item .info .price {
+  font-size: 14px;
+  color: #df0303;
 }

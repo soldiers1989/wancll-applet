@@ -4,7 +4,7 @@
   <view class='convert'>
     <input class='convert-input wancll-padded-l-10' bindinput='enterConvert' placeholder='请输入兑换码'></input>
     <view class='convert-btn'>
-      <zan-button size='small' catchtap='convert'>兑换</zan-button>
+      <zan-button size='small' type="info" catchtap='convert'>兑换</zan-button>
     </view>
   </view>
   <view class='discount-list'>

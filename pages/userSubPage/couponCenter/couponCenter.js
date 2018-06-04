@@ -28,7 +28,6 @@ Page({
       }
     })
   },
-
   getCoupons() {
     APP.ajax({
       url: APP.api.myDiscountCoupon,
@@ -56,13 +55,14 @@ Page({
       }
     })
   },
+  // 下拉刷新
   onPullDownRefresh() {
-
-  },
-  onReachBottom() {
-
-  },
-  onShareAppMessage() {
-
+    this.setData({
+      imgUrls: [], 
+      coupon: [],
+    },()=>{
+      this.getBanners()
+      this.getCoupons()
+    })
   }
 })

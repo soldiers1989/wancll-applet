@@ -49,6 +49,16 @@ export function getOtherData(that) {
       }
     })
   })
+  // 获取广告+轮播产品列表
+  let proWapIndex = new Promise((resolve) => {
+    APP.ajax({
+      url: APP.api.indexWapIndex,
+      success: (res) => {
+        resolve(res.data);
+      }
+    })
+  })
+
   // 获取商品列表
   // 下拉刷新要不要重新刷新商品？？？？
 
@@ -58,14 +68,15 @@ export function getOtherData(that) {
     proNotice,
     proSellList,
     proActivity,
+    proWapIndex,
   ]).then((values) => {
     that.setData({
       imgUrls: values[0],
       notice: values[1],
       sellList: values[2],
-
       discount: values[3].discount ? values[3].discount : [],
       full: values[3].full ? values[3].full : [],
+      wapIndex:values[4],
       ready: true
     }, () => {
       let timer = setTimeout(() => {

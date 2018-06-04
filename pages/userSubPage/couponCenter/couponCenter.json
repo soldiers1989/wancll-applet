@@ -5,5 +5,6 @@
     "zan-panel": "../../../dist/panel/index",
     "zan-button": "../../../dist/btn/index",
     "zan-tab": "../../../dist/tab/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }
