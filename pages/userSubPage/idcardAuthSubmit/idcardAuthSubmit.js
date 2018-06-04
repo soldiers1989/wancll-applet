@@ -13,7 +13,6 @@ Page({
     id: ''
   },
   onLoad: function (options) {
-    console.log(options)
     if (options.id) {
       this.setData({
         id: options.id,
