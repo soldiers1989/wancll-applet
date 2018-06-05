@@ -41,7 +41,6 @@ Page({
     cartsDetail: [], // 加入购物车后返回的
     attrs: [], // 产品的属性列表
 
-
     // 控制
     showTab: 1,
     hasSku: false, // 是否含有sku内容
