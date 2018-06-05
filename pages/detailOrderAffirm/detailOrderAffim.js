@@ -15,15 +15,11 @@ Page({
     selectedActivityText: '', // 选择的营销活动简介
     selectedActivityType: '', //选择的营销活动类型
 
-    selectShow: '', // 显示的优惠券信息
-    selectType: '', // 选中的优惠券类型
-    selectSale: '', // 选中的金额或者满折
-
     // 控制弹出层显示
     showPopupAddress: false,
-    showPopupDiscount: false,
+    showPopupCoupon: false,
     showPopupFull: false,
-    hasPopup:true,
+    hasPopup: true,
   },
   onLoad(options) {
     this.setData({
@@ -68,9 +64,9 @@ Page({
     orderView(this);
 
   },
-  // 满折选择
+  // 优惠券选择
   selectCoupon(e) {
-    let index = APP.utils.getDataSet(e, 'index');
+    let index = e.currentTarget.dataset.index;
     let coupon = this.data.activities.coupon[index];
     let text = '';
     if (coupon.coupon_type == 'full') {
@@ -83,7 +79,7 @@ Page({
       selectedActivityText: text,
       selectedActivityType: 'coupon'
     }, () => {
-      this.toggilBottomPopupDis2();
+      this.toggilPopupCoupon();
       this.computeTotalPrice()
     })
   },
@@ -97,7 +93,7 @@ Page({
       selectedActivityText: text,
       selectedActivityType: 'full'
     }, () => {
-      this.toggilBottomPopupDis1();
+      this.toggilPopupFull();
       this.computeTotalPrice()
     })
   },
@@ -107,41 +103,7 @@ Page({
       memo: e.detail.value
     })
   },
-  // 计算总价 勾选了满减后 增减商品后都要计算
-  // allMoney() {
-  //   // 不是促销商品的时候
-  //   if(!this.data.discountItem.id){
-  //     let goodsMoney = Number(this.data.view.goods_money);
-  //     let freightMoney = Number(this.data.view.freight_money);
-  //     // 选了折扣
-  //     if (this.data.selectSale) {
-  //       let num = Number(this.data.selectSale);
-  //       let allMoney = 0;
-  //       if (this.data.selectType == "full") {
-  //         allMoney = (goodsMoney+freightMoney) - num
-  //       } else {
-  //         allMoney = (goodsMoney+freightMoney) * (num * 0.1)
-  //       }
-  //       this.setData({
-  //         allMoney: allMoney.toFixed(2)
-  //       })
-  //     // 没选择折扣
-  //     } else {
-  //       this.setData({
-  //         allMoney: goodsMoney+freightMoney
-  //       })
-  //     }
-  //   }
-  //   // 是促销商品的时候 一口价 + 运费
-  //   if(this.data.discountItem.id){
-  //     let money = Number(this.data.discountItem.discount_price);
-  //     let num = Number(this.data.goodsInfo[0].num);
-  //     let freightMoney = Number(this.data.view.freight_money);
-  //     this.setData({
-  //       allMoney:  (money* num)+freightMoney
-  //     })
-  //   }
-  // },
+  // 计算总价
   computeTotalPrice() {
     if (!this.data.isDiscountGoods) {
       let totalPrice = this.data.view.total_money;
@@ -177,9 +139,9 @@ Page({
       hasPopup: !this.data.hasPopup
     })
   },
-  toggilPopupDiscount() {
+  toggilPopupCoupon() {
     this.setData({
-      showPopupDiscount: !this.data.showPopupDiscount,
+      showPopupCoupon: !this.data.showPopupCoupon,
       hasPopup: !this.data.hasPopup
     })
   },
