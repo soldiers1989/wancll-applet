@@ -170,4 +170,61 @@
 }
 .commonts{
   min-height: 200rpx;
+  padding-bottom:100px; 
+}
+.commonts .user{
+  display: flex;
+  padding: 10px;
+}
+.commonts .user .avatar{
+  flex: 60rpx 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.commonts .comment{
+  margin-bottom: 10px;
+}
+.commonts .comment .user .avatar image{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border:1px solid #eee;
+}
+.commonts .comment .user .name{
+  flex:1;
+  margin-left: 10px;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+.commonts .comment .user .star-list{
+  flex:1;
+  text-align: right;
+}
+
+.commonts .comment .user .star-list .star{
+  font-size: 30rpx;
+  color:rgb(255, 198, 64)
+}
+.commonts .comment .order-time{
+  display: flex;
+  padding: 0 10px;
+  color: #999
+}
+.commonts .comment .order-time .time{
+  flex: 270rpx 0 0;
+}
+.commonts .comment .order-time .showsku{
+  flex: 1;
+}
+.commonts .comment .text{
+  padding: 10px;
+  white-space:pre-wrap;
+  font-size: 28rpx;
+}
+.commonts .comment .images{
+  padding: 10px;
+}
+.commonts .comment .images image{
+  width: 150px;
 }

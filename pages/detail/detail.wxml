@@ -73,7 +73,7 @@
       </zan-popup>
     </block>
   </view>
-  <view style="height: 100rpx;background: #fff;"></view>
+  <view style="height: 20rpx;"></view>
   <zan-panel>
     <view class="buy-buttons">
       <view class="collect">
@@ -89,31 +89,37 @@
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即购买</view>
     </view>
   </zan-panel>
-  <!-- <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
   <view wx:if="{{showTab === 1}}" class='particulars'>
-    
+    <rich-text nodes="{{goodsInfo.desc}}"></rich-text>
   </view>
   <view wx:if="{{showTab === 2}}" class='commonts'>
-    <zan-panel>
-      <view class='comment' wx:for="{{comments}}" wx:key="key">
+    <view class="comment" wx:for="{{comments}}" wx:key="key">
+      <zan-panel>
         <view class='user'>
           <view class='avatar'>
             <image src='{{item.user_info.avatar}}'></image>
           </view>
           <view class='name'>{{item.user_info.nick_name}}</view>
-          <view class='time'>{{item.create_time}}</view>
+          <view class='star-list'>
+            <icon class='star' data-n='1' catchtap='star' type="{{item.score>=1?'shoucang':'star'}}"></icon>
+            <icon class='star' data-n='2' catchtap='star' type="{{item.score>=2?'shoucang':'star'}}"></icon>
+            <icon class='star' data-n='3' catchtap='star' type="{{item.score>=3?'shoucang':'star'}}"></icon>
+            <icon class='star' data-n='4' catchtap='star' type="{{item.score>=4?'shoucang':'star'}}"></icon>
+            <icon class='star' data-n='5' catchtap='star' type="{{item.score>=5?'shoucang':'star'}}"></icon>
+          </view>
         </view>
-        <view class='star'>
-          {{item.score}}
+        <view class='order-time'>
+          <view class='time'>{{item.create_time}}</view>
+          <view class='showsku'>{{item.order_goods_info.spec_group_info}}</view>
         </view>
         <view class='text'>{{item.content}}</view>
         <view class='images'>
-          <image wx:for="{{imgs}}" wx:key="key" src='{{item}}'></image>
+          <image wx:for="{{item.imgs}}" wx:key="key" src='{{item}}' mode="widthFix"></image>
         </view>
-      </view>
-    </zan-panel>
-    
-  </view> -->
+      </zan-panel>
+    </view>
+  </view>
 </view>
 
 <template name="collect">
