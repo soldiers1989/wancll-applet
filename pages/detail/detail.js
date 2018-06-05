@@ -118,7 +118,7 @@ Page({
         // 图片富文本替换为宽度100%
         res.data.desc = res.data.desc.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block"')
         // 保存商品数据
-        console.log(res.data.desc)
+        // console.log(res.data.desc)
         this.setData({
           goodsId: options.id,
           goodsInfo: res.data,

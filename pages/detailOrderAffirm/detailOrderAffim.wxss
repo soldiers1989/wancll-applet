@@ -1,6 +1,6 @@
 .pop-example__container {
   overflow: hidden;
-  background: #fff;
+  background: #f6f6f6;
 }
 
 .pop-example__container--bottom {

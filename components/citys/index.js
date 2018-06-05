@@ -92,11 +92,9 @@ Component({
           name: cityData[0].citys[0].areas[0].name,
           code: cityData[0].citys[0].areas[0].id
         }
+      },()=>{
+        this.eventTar()
       })
-      console.log('完成')
-    },
-    defaultSelect(){
-      this.eventTar()
     },
     bindChange: function (e) {
       let val = e.detail.value

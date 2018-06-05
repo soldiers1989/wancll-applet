@@ -12,7 +12,7 @@ Page({
     province: {},
     city: {},
     county: {},
-    showAddress:'点击选择地址'
+    showAddress:''
   },
 
   onLoad(options) {
@@ -48,6 +48,8 @@ Page({
               name: data.area,
               code: data.area_code
             }
+          },()=>{
+            this.pinAddress()
           })
         }
       })
@@ -57,8 +59,12 @@ Page({
       })
     }
   },
+  pinAddress(){
+    this.setData({
+      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
+    })
+  },
   showPicker() {
-    this.selectComponent('#citys').defaultSelect();
     this.setData({
       condition: true
     });
@@ -74,8 +80,9 @@ Page({
     this.setData({
       province: e.detail.province,
       city: e.detail.city,
-      county: e.detail.county,
-      showAddress:`${e.detail.province.name} ${e.detail.city.name} ${e.detail.county.name}` 
+      county: e.detail.county
+    },()=>{
+      this.pinAddress()
     })
   },
   enterName(e) {
