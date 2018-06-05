@@ -1,4 +1,3 @@
-
 <view class="order-address" bindtap="toggilPopupAddress">
   <zan-panel>
     <block wx:if="{{selectedAddress.id}}">
@@ -53,12 +52,12 @@
     </view>
   </zan-panel>
   <zan-panel wx:if="{{activities.full && !isDiscountGoods}}">
-    <view class='panel' bindtap="toggilPopupDiscount">
+    <view class='panel' bindtap="toggilPopupFull">
       <text class='title'>选择减满优惠</text>
       <text class='discont'>{{selectedActivityType == 'full' ? selectedActivityText : ''}}</text>
     </view>
   </zan-panel>
-  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilPopupFull">
+  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilPopupCoupon">
     <text class='title'>选择优惠券</text>
     <text class='discont'>{{selectedActivityType == 'coupon' ? selectedActivityText : ''}}</text>
   </view>
@@ -105,12 +104,12 @@
   </view>
 </zan-popup>
 <!-- 满减优惠选择 -->
-<zan-popup show="{{ showPopupDiscount }}" type="bottom" bindclose="toggilPopupDiscount">
+<zan-popup show="{{ showPopupFull }}" type="bottom" bindclose="toggilPopupFull">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
         <text>请选择减满优惠</text>
-        <text class="icon" data-type="icon" bindtap="toggilPopupDiscount">关闭</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupFull">关闭</text>
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
@@ -118,17 +117,17 @@
     </scroll-view>
   </view>
 </zan-popup>
-<!-- 折扣优惠选择 -->
-<zan-popup show="{{ showPopupFull }}" type="bottom" bindclose="toggilPopupFull">
+<!-- 优惠券选择 -->
+<zan-popup show="{{ showPopupCoupon }}" type="bottom" bindclose="toggilPopupCoupon">
   <view class="pop-example__container pop-example__container--bottom">
     <zan-panel>
       <view class='top-close'>
-        <text>请选择折扣优惠</text>
-        <text class="icon" data-type="icon" bindtap="toggilPopupFull">关闭</text>
+        <text>请选择优惠券</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupCoupon">关闭</text>
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
-      <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:if="{{!item.is_expiry}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
+      <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
         <view wx:if="item.coupon_type=='discount'">满{{item.reach_money}}打{{item.change_value}}折</view>
         <view wx:else>满{{item.reach_money}}减{{item.change_value}}元</view>
         <view class="wancll-margin-t-5">失效时间{{item.expiry_time}}</view>

@@ -77,8 +77,8 @@ export function submit(that) {
     data: {
       address_id: that.data.selectedAddress.id,
       goods_info: packageOrderGoodsInfo(that.data.goodsList),
-      market_activity_id: that.data.selectedActivity.id,
-      market_activity_type: that.data.selectedActivityType,
+      market_activity_id: that.data.selectedActivity.id || 0,
+      market_activity_type: that.data.selectedActivityType || 0,
       memo: that.data.memo
     },
     success(res) {
