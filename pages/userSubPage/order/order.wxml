@@ -2,7 +2,26 @@
 <view>
   <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
     <block wx:for="{{orderList}}" wx:key="key">
-      <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet"></order-item>
+      <!-- 点击待评价按钮 -->
+      <block wx:if="{{tabSelectedId == 4}}"> 
+        <!-- 只显示没有评价以及不是退款成功的订单 -->
+        
+          <order-item
+            data="{{item}}" 
+            gotype='orderdetail' 
+            haveinfo 
+            bind:refreshGet="refreshGet"
+            wx:if="{{item.is_comment == 0}}"
+            ></order-item>
+      </block>
+      <block wx:else="{{tabSelectedId != 4}}">
+        <order-item
+          data="{{item}}" 
+          gotype='orderdetail' 
+          haveinfo 
+          bind:refreshGet="refreshGet"
+          ></order-item>
+      </block>
     </block>
 
     <view wx:if="{{noContent}}" class="no-content-image">

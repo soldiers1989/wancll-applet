@@ -21,8 +21,9 @@ Page({
     full: [],     // 减免活动列表
     wapIndex: [], // 广告轮播产品
     timeDown: '0天 00 : 00 : 00', // 倒计时
+
     // 控制参数
-    ready: false, // 数据是否请求成功？
+    ready: false,  // 数据是否请求成功？
     dataCount: -1,
     pageNum: 1,
   },
@@ -65,7 +66,7 @@ Page({
       url: `/pages/userSubPage/couponCenter/couponCenter`,
     })
   },
-  // 减慢促销
+  // 减满促销
   goCategory() {
     wx.switchTab({
       url: `/pages/category/category`,
