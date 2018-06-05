@@ -79,6 +79,7 @@ export function getOtherData(that) {
       wapIndex:values[4],
       ready: true
     }, () => {
+      // console.log(values[1])
       let timer = setTimeout(() => {
         wx.hideLoading();
         wx.stopPullDownRefresh();

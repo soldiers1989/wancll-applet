@@ -34,7 +34,7 @@
       <image mode="widthFix" src='{{notice.img}}'></image>
     </view>
     <view class='notice-list'>
-      <view class='list' wx:for="{{notice.data}}" wx:key="index">• {{item.title}}</view>
+      <view bindtap="goArticle" data-id="{{item.id}}" data-type="index" class='list' wx:for="{{notice.data}}" wx:key="index">• {{item.title}}</view>
     </view>
   </view>
 

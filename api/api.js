@@ -10,6 +10,10 @@ export const api = {
   indexAdvertisements: `${defaultHost}/api_articles/advertisements/lists`,
   indexWapIndex: `${defaultHost}/api_query/configs/wap_index`,
 
+  // 通用文章页面
+  articlesReg: `${defaultHost}/api_articles/rules/read`,
+  articlesNotice: `${defaultHost}/api_articles/annoncements/read`,
+
   // 商品页面 
   goodsTree: `${defaultHost}/api_goods/goods_cates/lists_tree`,
 

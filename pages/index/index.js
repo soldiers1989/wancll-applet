@@ -60,6 +60,18 @@ Page({
       url: `/pages/detail/detail?${param}`,
     })
   },
+  // 跳转到文章详情页面
+  goArticle(e){
+    let id = APP.utils.getDataSet(e, 'id');
+    let type = APP.utils.getDataSet(e, 'type');    
+    let param = APP.utils.paramsJoin({
+      id: id,
+      type: type
+    })
+    wx.navigateTo({
+      url: `/pages/article/article?${param}`,
+    })
+  },
   // 去领券中心
   goDiscountCenter() {
     wx.navigateTo({

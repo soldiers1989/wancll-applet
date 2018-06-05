@@ -10,6 +10,7 @@ Page({
     status: true, //  发送成功？
     countDown: 91,
     unionId: '',
+    ischecked:false,
   },
   onLoad(options) {
     options.unionId && this.setData({
@@ -40,6 +41,18 @@ Page({
       rpassword: e.detail.value
     })
   },
+  // 跳转到文章详情页面
+  goArticle(e){
+    let id = APP.utils.getDataSet(e, 'id');
+    let type = APP.utils.getDataSet(e, 'type');
+    let param = APP.utils.paramsJoin({
+      id: id,
+      type: type
+    })
+    wx.navigateTo({
+      url: `/pages/article/article?${param}`,
+    })
+  },
   // 发送验证码请求
   sendCode() {
     if (!this.data.mobile) {
@@ -66,6 +79,12 @@ Page({
           this.countDown()
         })
       }
+    })
+  },
+  // 同意条款
+  ischecked(){
+    this.setData({
+      ischecked: !this.data.ischecked
     })
   },
   // 确认
@@ -106,6 +125,13 @@ Page({
       this.setData({
         rpassword: '',
         password: ''
+      })
+      return;
+    }
+    if (!this.data.ischecked){
+      wx.showToast({
+        title: '请同意条款',
+        icon: 'none'
       })
       return;
     }

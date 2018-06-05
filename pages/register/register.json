@@ -6,6 +6,7 @@
     "zan-button": "../../../dist/btn/index",
     "zan-popup": "../../../dist/popup/index",
     "zan-cell": "../../../dist/cell/index",
+    "zan-icon": "../../../dist/icon/index",
     "zan-cell-group": "../../../dist/cell-group/index"
   }
 }
