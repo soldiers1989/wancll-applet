@@ -37,7 +37,7 @@ Page({
   },
   addBank(){
     wx.navigateTo({
-      url: `/pages/cardEdit/cardEdit?id=new`,
+      url: `/pages/UserCardEidt/index?id=new`,
     })
   },
   // 提交

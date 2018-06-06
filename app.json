@@ -4,7 +4,6 @@
     "pages/BarCarts/index",
     "pages/BarCategory/index",
     "pages/BarUser/index",
-
     "pages/ComArticle/index",
     "pages/ComDetail/index",
     "pages/ComSearch/index",
@@ -16,7 +15,6 @@
     "pages/ComBindMobile/index",
     "pages/ComModifyMobile/index",
     "pages/ComPayWaiting/index",
-
     "pages/UserSetting/index",
     "pages/UserCard/index",
     "pages/UserCardEidt/index",

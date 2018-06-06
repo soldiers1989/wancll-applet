@@ -14,7 +14,7 @@ Page({
   editBankCard(e) {
     let id = APP.utils.getDataSet(e, 'id');
     wx.navigateTo({
-      url: `/pages/cardEdit/cardEdit?id=${id}`,
+      url: `/pages/UserCardEidt/index?id=${id}`,
     })
   },
   onPullDownRefresh() {

@@ -83,7 +83,7 @@ Page({
         if (res.confirm) {
           wx.clearStorageSync()
           wx.reLaunch({
-            url: '/pages/index/index'
+            url: '/pages/BarHome/index'
           })
         }
       }

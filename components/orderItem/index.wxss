@@ -51,7 +51,7 @@
   color: #999;
 }
 .center-info .price-warpper{
-  flex: 100rpx 0 0;
+  flex: 120rpx 0 0;
   margin-left: 20rpx;
   text-align: right;
 }
