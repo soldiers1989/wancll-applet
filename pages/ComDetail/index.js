@@ -202,7 +202,7 @@ Page({
   // 点击购物车按钮
   goCarts() {
     wx.switchTab({
-      url: '/pages/carts/carts'
+      url: '/pages/BarCarts/index'
     })
   },
   // 切换详情和评价

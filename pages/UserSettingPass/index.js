@@ -142,7 +142,7 @@ Page({
           wx.removeStorageSync('user');
           setTimeout(() => {
             wx.reLaunch({
-              url: '/pages/index/index'
+              url: '/pages/BarHome/index'
             })
           }, 1000);
         } else {
