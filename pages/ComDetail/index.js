@@ -138,9 +138,11 @@ Page({
       },
       success: res => {
         this.setData({
-          comments: res.data
-        },()=>{
-          console.log(this.data.comments)
+          comments: res.data.map(comment => {
+            comment.user_info.nick_name = comment.user_info.nick_name ? comment.user_info.nick_name : '匿名用户';
+            comment.user_info.avatar = comment.user_info.avatar ? comment.user_info.avatar : APP.imgs.avatar;;
+            return comment;
+          })
         })
       }
     })

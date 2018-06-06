@@ -66,7 +66,7 @@
       <zan-button class='zan-button' size="small" catchtap='goExpress'>查看物流</zan-button>
     </view>
   </block>
-  
+
 </template>
 
 
@@ -75,6 +75,7 @@
   <view class='action'>
     <zan-button wx:if="{{return_goods_status===0}}" catchtap='refundOrder' data-id="{{goods_id}}" class='zan-button' size="mini"> 退款 </zan-button>
     <zan-button wx:if="{{return_goods_status===1}}" class='zan-button' size="mini"> 退款中... </zan-button>
+    <zan-button wx:if="{{return_goods_status===2}}" class='zan-button' size="mini"> 退款失败 </zan-button>
     <zan-button wx:if="{{return_goods_status===3}}" class='zan-button' size="mini"> 退款成功 </zan-button>
   </view>
 </template>
@@ -102,8 +103,8 @@
 </view>
 
 
-<modal hidden="{{hiddenmodalput}}" title="请输入原因" confirm-text="确认" cancel-text="取消" bindcancel="modalCancel" bindconfirm="modalConfirm">  
+<modal hidden="{{hiddenmodalput}}" title="请输入原因" confirm-text="确认" cancel-text="取消" bindcancel="modalCancel" bindconfirm="modalConfirm">
   <block wx:if="{{!hiddenmodalput}}">
-    <input bindinput="bindInput" type='text' placeholder="请输入内容"/>  
+    <input bindinput="bindInput" type='text' placeholder="请输入内容" />
   </block>
 </modal>
