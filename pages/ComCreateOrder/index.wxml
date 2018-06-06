@@ -128,7 +128,7 @@
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
       <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
-        <view wx:if="item.coupon_type=='discount'">满{{item.reach_money}}打{{item.change_value}}折</view>
+        <view wx:if="{{item.coupon_type=='discount'}}">满{{item.reach_money}}打{{item.change_value}}折</view>
         <view wx:else>满{{item.reach_money}}减{{item.change_value}}元</view>
         <view class="wancll-margin-t-5">失效时间{{item.expiry_time}}</view>
       </view>
