@@ -116,7 +116,7 @@ function queryUserInfoByUnionId(unionId, that) {
           APP.globalData.user = res.data.user
           // 再跳转
           wx.switchTab({
-            url: '/pages/user/user',
+            url: '/pages/BarUser/index',
           })
         } else {
           wx.showActionSheet({
@@ -124,11 +124,11 @@ function queryUserInfoByUnionId(unionId, that) {
             success(res) {
               if (res.tapIndex == 0) {
                 wx.navigateTo({
-                  url: `/pages/wechatBindMobile/wechatBindMobile?unionId=${unionId}`,
+                  url: `/pages/ComBindMobile/index?unionId=${unionId}`,
                 })
               } else if (res.tapIndex == 1) {
                 wx.navigateTo({
-                  url: `/pages/register/register?unionId=${unionId}`,
+                  url: `/pages/ComRegister/index?unionId=${unionId}`,
                 })
               }
             }
@@ -155,7 +155,7 @@ export function handleWechatPay(orderNo, payType) {
             wx.hideLoading();
             res.data.success = function (res) {
               wx.redirectTo({
-                url: `/pages/userSubPage/payWaiting/payWaiting?orderNo=${orderNo}&payType=${payType}`,
+                url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
               })
             }
             wx.requestPayment(res.data)

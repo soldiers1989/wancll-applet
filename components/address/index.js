@@ -57,7 +57,7 @@ Component({
       let id = APP.utils.getDataSet(e, 'id');
       let param = id == 'new' ? '' : `?id=${id}`;
       wx.navigateTo({
-        url: `/pages/userSubPage/addressEidt/addressEidt${param}`
+        url: `/pages/BarUserAddressEidt/index${param}`
       })
     },
     // 删除地址操作

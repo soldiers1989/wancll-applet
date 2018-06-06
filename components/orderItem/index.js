@@ -27,7 +27,7 @@ Component({
       if(this.data.gotype == 'orderdetail'){
         let id = this.data.data.id;
         wx.navigateTo({
-          url: `/pages/userSubPage/orderDetail/orderDetail?id=${id}`
+          url: `/pages/BarUserOrderDetail/index?id=${id}`
         })
       }
     },
@@ -38,7 +38,7 @@ Component({
       if(this.data.gotype == 'goodsdetail'){
         let id = APP.utils.getDataSet(e,'id')
         wx.navigateTo({
-          url: `/pages/detail/detail?id=${id}`,
+          url: `/pages/ComDetail/index?id=${id}`,
         })
       }
     },
@@ -134,7 +134,7 @@ Component({
           if (res.code == 1) {
             // 前往支付页面
             wx.navigateTo({
-              url: `/pages/userSubPage/orderPay/pay?orderNo=${that.data.data.order_no}&orderMoney=${that.data.data.total_money}`,
+              url: `/pages/ComPay/index?orderNo=${that.data.data.order_no}&orderMoney=${that.data.data.total_money}`,
             })
           }
         }
@@ -164,7 +164,7 @@ Component({
         goodsId: APP.utils.getDataSet(e, 'id'),
       })
       wx.navigateTo({
-        url: `/pages/userSubPage/orderRefound/refound?${params}`,
+        url: `/pages/BarUserOrderRefound/index?${params}`,
       })
     },
     // ----------------- 待收货
@@ -198,7 +198,7 @@ Component({
     goExpress() {
       let id = this.data.data.id
       wx.navigateTo({
-        url: `/pages/userSubPage/orderExpress/express?id=${id}`,
+        url: `/pages/BarUserOrderExpress/index?id=${id}`,
       })
     },
     // 评价
@@ -208,7 +208,7 @@ Component({
         goodsId: APP.utils.getDataSet(e, 'id'),
       })
       wx.navigateTo({
-        url: `/pages/userSubPage/orderEstimate/estimate?${params}`,
+        url: `/pages/BarUserOrderEstimate/index?${params}`,
       })
     },
   }

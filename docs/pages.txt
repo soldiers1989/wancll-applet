@@ -1,0 +1,71 @@
+
+页面结构说明：
+
+Bar 表示菜单页面
+Com 表示公共页面
+
+├── api                             // 交互目录
+│   └── ajax.js                         请求方法
+│   └── api.js                          请求api
+│   └── config.js                       公共配置文件
+│   └── images.js                       静态图片地址
+│   └── token.js                        token相关
+├── components                      // 自定义组件目录                                  
+│   └── address                         收货地址组件
+│   └── citys                           下拉三联动城市选择器
+│   └── icon                            自定义图标
+│   └── orderItem                       订单组件
+│   └── selectSku                       sku选择组件
+├── dist                            // 有赞UI组件目录   
+│   └── ...                             组件列表              
+├── docs                            // 说明文档
+├── pages                           // 所有页面
+│   └── article                         公共文章页面
+│   └── carts                           * 购物车页面
+│   └── category                        * 所有商品页面
+│   └── detail                          商品详情页面
+│   └── detailOrderAffim                订单确认页面
+│   └── goodsListModel          
+│   └── index                           * 默认首页
+│   └── login                           登录页面
+│   └── register                        注册页面
+│   └── user                            * 个人中心页面
+│       └── address                     地址列表
+│       └── addressEidt                 地址编辑
+│       └── card                        银行卡列表
+│       └── cardEdit                    银行卡编辑
+│       └── collect                     我的收藏列表
+│       └── comment                     我的评论列表
+│       └── coupon                      我的优惠券列表      
+│       └── couponCenter                领券中心
+│       └── grow                        成长值记录
+│       └── helpAndOptions              帮助与反馈 （设置页面内）
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│       └── user                        saf
+│   └── wechatBindMobile                绑定手机号（登录时选择微信用户快速登录->绑定已有账户）
+
+├── static
+│   └── address
+│   └── address
+│   └── address
+│   └── address
+│   └── address
+├── utils
+│   └── address
+│   └── address
+│   └── address
+│   └── address
+│   └── address
+├── app.js
+├── app.json
+├── app.wxss
+├── project.config.json
