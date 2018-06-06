@@ -75,7 +75,7 @@ Page({
   // 去领券中心
   goDiscountCenter() {
     wx.navigateTo({
-      url: `/pages/BarUserCouponCenter/index`,
+      url: `/pages/UserCouponCenter/index`,
     })
   },
   // 减满促销

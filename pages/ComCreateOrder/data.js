@@ -7,7 +7,7 @@ export function getDefaultAddress(that) {
       // 没有获取到地址的时候
       if (!res.data.id) {
         wx.navigateTo({
-          url: '/pages/BarUserAddressEidt/index',
+          url: '/pages/UserAddressEidt/index',
         });
       } else {
         that.setData({

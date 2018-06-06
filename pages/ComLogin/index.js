@@ -59,7 +59,7 @@ Page({
         APP.globalData.user = res.data.user
         // 再跳转
         wx.switchTab({
-          url: '/pages/BarUser/index',
+          url: '/pages/User/index',
         })
       }
     });
@@ -71,7 +71,7 @@ Page({
   },
   forgetPassword() {
     wx.navigateTo({
-      url: `/pages/BarUserSettingPass/index?id=0`,
+      url: `/pages/UserSettingPass/index?id=0`,
     })
   },
   // 微信登陆监听

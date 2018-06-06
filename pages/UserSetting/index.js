@@ -16,7 +16,7 @@ Page({
   },
   goHelpAndOption() {
     wx.navigateTo({
-      url: `/pages/BarUserSettingHelp/index`,
+      url: `/pages/UserSettingHelp/index`,
     })
   },
   // 改变头像
@@ -33,7 +33,7 @@ Page({
       itemList: passwordSelectList,
       success: res => {
         wx.navigateTo({
-          url: `/pages/BarUserSettingPass/index?id=${res.tapIndex}`,
+          url: `/pages/UserSettingPass/index?id=${res.tapIndex}`,
         })
       }
     })

@@ -27,7 +27,7 @@ Component({
       if(this.data.gotype == 'orderdetail'){
         let id = this.data.data.id;
         wx.navigateTo({
-          url: `/pages/BarUserOrderDetail/index?id=${id}`
+          url: `/pages/UserOrderDetail/index?id=${id}`
         })
       }
     },
@@ -164,7 +164,7 @@ Component({
         goodsId: APP.utils.getDataSet(e, 'id'),
       })
       wx.navigateTo({
-        url: `/pages/BarUserOrderRefound/index?${params}`,
+        url: `/pages/UserOrderRefound/index?${params}`,
       })
     },
     // ----------------- 待收货
@@ -198,7 +198,7 @@ Component({
     goExpress() {
       let id = this.data.data.id
       wx.navigateTo({
-        url: `/pages/BarUserOrderExpress/index?id=${id}`,
+        url: `/pages/UserOrderExpress/index?id=${id}`,
       })
     },
     // 评价
@@ -208,7 +208,7 @@ Component({
         goodsId: APP.utils.getDataSet(e, 'id'),
       })
       wx.navigateTo({
-        url: `/pages/BarUserOrderEstimate/index?${params}`,
+        url: `/pages/UserOrderEstimate/index?${params}`,
       })
     },
   }

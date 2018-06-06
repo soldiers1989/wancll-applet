@@ -58,7 +58,7 @@ Page({
           })
           setTimeout(() => {
             wx.navigateTo({
-              url: `/pages/BarUserSettingPass/index?id=1`,
+              url: `/pages/UserSettingPass/index?id=1`,
             })
           }, 500)
         }

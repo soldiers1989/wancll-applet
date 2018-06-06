@@ -13,7 +13,7 @@ Page({
   goOrderList(e) {
     let target = APP.utils.getDataSet(e, 'target')
     wx.navigateTo({
-      url: `/pages/BarUserOrderList/index?target=${target}`,
+      url: `/pages/UserOrderList/index?target=${target}`,
     })
   },
   // 跳转到子页面
@@ -33,13 +33,13 @@ Page({
   // 跳转成长值记录
   showGrow() {
     wx.navigateTo({
-      url: `/pages/BarUserGrow/index`,
+      url: `/pages/UserGrow/index`,
     })
   },
   // 跳转到设置页面
   settingInfo() {
     wx.navigateTo({
-      url: `/pages/BarUserSetting/index`,
+      url: `/pages/UserSetting/index`,
     })
   },
   onShow: function () {

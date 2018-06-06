@@ -81,15 +81,15 @@
       <zan-cell title="我的服务"></zan-cell>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserCollect">
+          <view class='pending' catchtap='goSubPages' data-target="UserCollect">
             <icon class='icon color-y' type="star"></icon>
             <view class='text'>我的收藏</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserAddress">
+          <view class='pending' catchtap='goSubPages' data-target="UserAddress">
             <icon class='icon color-y' type="dizhi-01"></icon>
             <view class='text'>我的地址</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserComment">
+          <view class='pending' catchtap='goSubPages' data-target="UserComment">
             <icon class='icon color-r' type="dingdan1"></icon>
             <view class='text'>我的评价</view>
           </view>
@@ -101,11 +101,11 @@
             <icon class='icon color-r' type="shimingrenzheng1"></icon>
             <view class='text'>实名认证</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserWallet">
+          <view class='pending' catchtap='goSubPages' data-target="UserWallet">
             <icon class='icon color-y' type="qianbao"></icon>
             <view class='text'>我的钱包</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserCard">
+          <view class='pending' catchtap='goSubPages' data-target="UserCard">
             <icon class='icon color-r' type="yinhangqia"></icon>
             <view class='text'>我的银行卡</view>
           </view>
@@ -117,7 +117,7 @@
             <icon class='icon color-r' type="gouwuche2"></icon>
             <view class='text'>购物车</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="BarUserCoupon">
+          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
             <icon class='icon color-y' type="youhuiquan"></icon>
             <view class='text'>优惠券</view>
           </view>

@@ -30,11 +30,11 @@ Page({
   goOtherPage(e) {
     if (this.data.payType == payType.goodsOrderPay) {
       wx.redirectTo({
-        url: '/pages/BarUserOrderList/index?target=0',
+        url: '/pages/UserOrderList/index?target=0',
       })
     } else if (this.data.payType == payType.rechargeOrderPay) {
       wx.redirectTo({
-        url: '/pages/BarUserWallet/index',
+        url: '/pages/UserWallet/index',
       })
     }
   },

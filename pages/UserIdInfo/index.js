@@ -34,7 +34,7 @@ Page({
   },
   submit() {
     wx.navigateTo({
-      url: `/pages/BarUserIdSubmit/index?status=${this.data.status}&id=${this.data.id}`,
+      url: `/pages/UserIdSubmit/index?status=${this.data.status}&id=${this.data.id}`,
     })
   },
   onPullDownRefresh() {

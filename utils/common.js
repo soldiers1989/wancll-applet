@@ -116,7 +116,7 @@ function queryUserInfoByUnionId(unionId, that) {
           APP.globalData.user = res.data.user
           // 再跳转
           wx.switchTab({
-            url: '/pages/BarUser/index',
+            url: '/pages/User/index',
           })
         } else {
           wx.showActionSheet({

@@ -8,9 +8,10 @@ Page({
     orderId: 0,
     goodsInfo: {},
     tempFilePaths: [],
-    refoundTexts: ''
+    score: 0,
+    commentTexts: ''
   },
-  onLoad(options) {
+  onLoad: function (options) {
     // 获取本地存储的订单列表
     APP.utils.getOrderById(options.orderId, (res) => {
       let goodsList = res.order_goods_info
@@ -18,33 +19,31 @@ Page({
         orderId: options.orderId,
       }, () => {
         let goodsInfo = APP.utils.getGoodsById(goodsList, options.goodsId)
-        this.setData({ goodsInfo: goodsInfo })
+        this.setData({
+          goodsInfo: goodsInfo
+        })
       })
-    })
-
-  },
-  // 输入绑定
-  textareaInput(e) {
-    this.setData({
-      refoundTexts: e.detail.value
     })
   },
   // 添加图片
   addImage() {
-    let that = this;
     let paths = this.data.tempFilePaths;
     wx.chooseImage({
       count: 4, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success(res) {
+      success: res => {
         let path = res.tempFilePaths
         path.forEach((item, index) => {
           if (paths.length < 4) {
             paths.push(item)
           }
         })
-        that.setData({ tempFilePaths: paths })
+        this.setData({
+          tempFilePaths: paths
+        }, () => {
+          console.log(this.data.tempFilePaths)
+        })
       }
     })
   },
@@ -62,20 +61,48 @@ Page({
     let id = APP.utils.getDataSet(e, 'id')
     let arr = this.data.tempFilePaths
     arr.splice(id, 1);
-    this.setData({ tempFilePaths: arr })
+    this.setData({
+      tempFilePaths: arr
+    }, () => {
+      console.log(this.data.tempFilePaths)
+    })
   },
-  // 退款 
+  // 输入绑定
+  textareaInput(e) {
+    this.setData({
+      commentTexts: e.detail.value
+    })
+  },
+  // 点星星
+  canesll() {
+    this.setData({
+      score: 0
+    })
+  },
+  star(e) {
+    let n = APP.utils.getDataSet(e, 'n');
+    console.log(n)
+    this.setData({
+      score: n
+    })
+  },
+  // 发送评价
   send() {
-    let that = this;
-    if (!that.data.refoundTexts) {
+    if (!this.data.commentTexts) {
       wx.showToast({
-        title: '输入退款原因',
+        title: '输入评价内容',
         icon: 'none',
       })
       return
     }
-    // 添加了图片的时候
-    if(that.data.tempFilePaths.length){
+    if (!this.data.score) {
+      wx.showToast({
+        title: '评个分吧！',
+        icon: 'none',
+      })
+      return
+    }
+    if(this.data.tempFilePaths.length){
       let i = 0;
       let imgs = [];
       wx.showLoading({
@@ -83,19 +110,21 @@ Page({
       })
       this.uploadDIY(i, imgs);
     }else{
-      this.uploadData([]);
+      this.uploadData([])
     }
+    
   },
   // 上传数据
   uploadData(imgs) {
     APP.ajax({
-      url: APP.api.orderRefound,
+      url: APP.api.orderComments,
       data: {
-        order_id: Number(this.data.orderId),
-        order_goods_id: this.data.goodsInfo.id,
+        content: this.data.commentTexts,
+        goods_id: this.data.goodsInfo.goods_id,
         imgs: imgs,
-        return_reason: this.data.refoundTexts,
-        return_type: 1
+        order_id: this.data.goodsInfo.order_id,
+        score: this.data.score,
+        status: 1
       },
       success: res => {
         if(this.data.tempFilePaths.length){
@@ -109,8 +138,8 @@ Page({
               target: wx.getStorageSync('thisOrderList')
             })
             setTimeout(() => {
-              wx.redirectTo({
-                url: `/pages/BarUserOrderList/index?${params}`,
+              wx.navigateTo({
+                url: `/pages/UserOrderList/index?${params}`,
               })
             }, 1000)
           }
@@ -148,13 +177,14 @@ Page({
       }
     });
   },
-  onPullDownRefresh() {
+
+  onPullDownRefresh: function () {
 
   },
-  onReachBottom() {
+  onReachBottom: function () {
 
   },
-  onShareAppMessage() {
+  onShareAppMessage: function () {
 
   }
 })

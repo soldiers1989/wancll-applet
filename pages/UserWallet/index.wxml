@@ -5,8 +5,8 @@
 </view>
 <zan-panel>
   <zan-cell-group>
-    <zan-cell title="充值" is-link url="/pages/BarUserWalletRecharge/index"></zan-cell>
-    <zan-cell title="提现" is-link url="/pages/BarUserWalletDraw/index"></zan-cell>
-    <zan-cell title="明细" is-link url="/pages/BarUserWalletLog/index"></zan-cell>
+    <zan-cell title="充值" is-link url="/pages/UserWalletRecharge/index"></zan-cell>
+    <zan-cell title="提现" is-link url="/pages/UserWalletDraw/index"></zan-cell>
+    <zan-cell title="明细" is-link url="/pages/UserWalletLog/index"></zan-cell>
   </zan-cell-group>
 </zan-panel>

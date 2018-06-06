@@ -1,4 +1,4 @@
-/* pages/BarUser/index.wxss */
+/* pages/User/index.wxss */
 .panel{
   margin-bottom: 20rpx;
 }

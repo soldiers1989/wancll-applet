@@ -78,7 +78,7 @@ Page({
     })
   },
   goCenter() {
-    wx.navigateTo({ url: `/pages/BarUserCouponCenter/index` })
+    wx.navigateTo({ url: `/pages/UserCouponCenter/index` })
   },
   convert() {
     let that = this;

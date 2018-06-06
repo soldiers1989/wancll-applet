@@ -34,7 +34,7 @@ export function queryAuthStatus(that) {
       let status = res.data.status;
       if (status == 0) {
         wx.navigateTo({
-          url: `/pages/BarUserIdSubmit/index?status=${status}`,
+          url: `/pages/UserIdSubmit/index?status=${status}`,
         })
       } else if (status == 2) {
         wx.showToast({
@@ -43,12 +43,12 @@ export function queryAuthStatus(that) {
         });
         setTimeout(() => {
           wx.navigateTo({
-            url: `/pages/BarUserIdSubmit/index?status=${status}&id=${res.data.id}`,
+            url: `/pages/UserIdSubmit/index?status=${status}&id=${res.data.id}`,
           })
         }, 1000)
       } else if (status == 1 || status == 3) {
         wx.navigateTo({
-          url: '/pages/BarUserIdInfo/index',
+          url: '/pages/UserIdInfo/index',
         })
       }
     }

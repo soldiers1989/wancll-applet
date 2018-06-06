@@ -161,7 +161,7 @@ Page({
         APP.globalData.user = res.data.user
 
         wx.switchTab({
-          url: '/pages/BarUser/index',
+          url: '/pages/User/index',
         })
       }
     })
