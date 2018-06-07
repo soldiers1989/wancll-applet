@@ -62,7 +62,7 @@
             </view>
             <view class='text'>待评价</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="service">
+          <view class='pending' catchtap='goSubPages' data-target="UserService">
             <view class='icon-badge'>
               <zan-badge wx:if="{{count.return_goods_num}}">{{count.return_goods_num}}</zan-badge>
               <icon class='icon' type="shouhou"></icon>

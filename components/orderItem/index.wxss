@@ -26,7 +26,7 @@
   margin-bottom: 10rpx;
 }
 .center-info .image-warpper{
-  flex: 180rpx 0 0;  
+  width: 25%;
 }
 .center-info .image{
   width: 160rpx;
@@ -35,7 +35,7 @@
   display: block;
 }
 .center-info .title-warpper{
-  flex: 1;
+  width: 55%;
 }
 .center-info .title-warpper .title{
   width: 100%;
@@ -51,8 +51,7 @@
   color: #999;
 }
 .center-info .price-warpper{
-  flex: 120rpx 0 0;
-  margin-left: 20rpx;
+  width: 20%;
   text-align: right;
 }
 .center-info .price-warpper .price{
