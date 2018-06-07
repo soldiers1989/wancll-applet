@@ -7,7 +7,10 @@ Page({
     loading: true,
     data: {},
     noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    noContentImg: APP.imgs.noContentImg,
+
+    // 售罄
+    noStockImage: APP.imgs.noStock,
   },
   onLoad: function (options) {
     this.setData({

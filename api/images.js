@@ -21,8 +21,11 @@ export const imgs = {
   uploadCardBack: `${imageHost.wapImages}/idcard_back.png`,
 
   //优惠券
-  coupon:`${imageHost.wapImages}/coupon.png`,
-  couponPass:`${imageHost.wapImages}/coupon_guoqi.png`,
-  couponGet:`${imageHost.wapImages}/coupon_get.png`,
+  coupon: `${imageHost.wapImages}/coupon.png`,
+  couponPass: `${imageHost.wapImages}/coupon_guoqi.png`,
+  couponGet: `${imageHost.wapImages}/coupon_get.png`,
+
+  // 售罄
+  noStock: `${imageHost.images}/shouxin.png`,
 }
-  
+

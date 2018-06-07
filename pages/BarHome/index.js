@@ -26,6 +26,9 @@ Page({
     ready: false,  // 数据是否请求成功？
     dataCount: -1,
     pageNum: 1,
+
+    // 售罄
+    noStockImage: APP.imgs.noStock,
   },
   onLoad() {
     // 获取所有数据

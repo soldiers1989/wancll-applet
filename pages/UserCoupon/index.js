@@ -123,6 +123,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh() {
+    wx.stopPullDownRefresh();
     this.refresh()
   },
   // 上拉加载

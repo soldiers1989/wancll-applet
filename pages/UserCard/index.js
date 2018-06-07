@@ -9,6 +9,12 @@ Page({
     noContentImg: APP.imgs.noContentImg
   },
   onLoad(options) {
+  },
+  onShow() {
+    this.setData({
+      lists: [],
+      pageNum: 1
+    })
     getList(this);
   },
   editBankCard(e) {
@@ -19,11 +25,7 @@ Page({
   },
   onPullDownRefresh() {
     wx.stopPullDownRefresh();
-    this.setData({
-      lists: [],
-      pageNum: 1
-    })
-    getList(this);
+
   },
   onReachBottom() {
     getList(this);

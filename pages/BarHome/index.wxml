@@ -80,7 +80,7 @@
       </scroll-view>
     </view>
   </view>
-  
+
   <!--商品列表 -->
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goods}}" wx:key="index">
@@ -88,6 +88,7 @@
         <view class='image'>
           <image mode="widthFix" class="wancll-col-xs-12" src='{{item.thum}}'></image>
         </view>
+        <image wx:if="{{item.stock == 0}}" class="no-stock" src="{{noStockImage}}" mode='widthFix'></image>
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
           <view class='wancll-padded-10 wancll-text-price'>

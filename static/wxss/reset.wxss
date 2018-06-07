@@ -481,6 +481,7 @@ page {
 
 .goods-list .goods {
   flex: 50% 0 0;
+  position: relative;
 }
 
 .goods-list .goods image {
@@ -498,4 +499,14 @@ page {
   display: block;
   width: 18%;
   margin: 0 auto;
+}
+
+/* 售罄 */
+
+.no-stock {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 30%;
+  transform: translate(-50%, -50%);
 }

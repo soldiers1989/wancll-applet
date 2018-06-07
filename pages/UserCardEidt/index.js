@@ -1,5 +1,6 @@
 const APP = getApp();
 const bank = [
+  '请选择您的开户银行',
   '中国农业银行',
   '中国建设银行',
   '中国工商银行',
@@ -24,6 +25,7 @@ Page({
     bankArray: bank,
     enterName: '',
     enterCard: '',
+    loading: false,
   },
   onLoad(options) {
     let that = this
@@ -75,6 +77,13 @@ Page({
       })
       return
     }
+    if (!that.data.index) {
+      wx.showToast({
+        title: '请选择您的开户银行',
+        icon: 'none',
+      })
+      return
+    }
     let api = '';
     let toUrl = '';
     if (that.data.isEdit) {
@@ -82,6 +91,9 @@ Page({
     } else {
       api = APP.api.myBankCardSave;
     }
+    this.setData({
+      loading: true,
+    })
     APP.ajax({
       url: api,
       data: {
@@ -99,15 +111,16 @@ Page({
     })
   },
   deleteCard() {
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '确定要删除该银行卡吗？',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
           APP.ajax({
             url: APP.api.myBankCardDelete,
-            data: { id: this.data.id },
-            success:(res)=> {
+            data: { id: that.data.id },
+            success: (res) => {
               wx.showToast({ title: res.msg, icon: 'none', });
               setTimeout(() => {
                 wx.navigateBack();
@@ -119,6 +132,6 @@ Page({
         }
       }
     })
-    
+
   }
 })

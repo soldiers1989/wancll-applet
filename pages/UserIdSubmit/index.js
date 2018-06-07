@@ -10,7 +10,9 @@ Page({
     uploadCardBack: APP.imgs.uploadCardBack,
 
     status: '',
-    id: ''
+    id: '',
+
+    loading: false,
   },
   onLoad: function (options) {
     if (options.id) {
@@ -85,6 +87,9 @@ Page({
     } else {
       url = APP.api.submitAuthInfo;
     }
+    this.setData({
+      loading: true
+    })
     APP.ajax({
       url: url,
       data: data,

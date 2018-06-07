@@ -93,7 +93,7 @@ Component({
           code: cityData[0].citys[0].areas[0].id
         }
       },()=>{
-        this.eventTar()
+        // this.eventTar()
       })
     },
     bindChange: function (e) {

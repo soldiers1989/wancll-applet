@@ -13,7 +13,10 @@ Page({
       3: '审核已通过'
     }
   },
-  onLoad: function (options) {
+  onLoad(options) {
+
+  },
+  onShow() {
     this.getAuthInfo();
   },
   getAuthInfo() {

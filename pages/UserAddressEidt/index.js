@@ -12,11 +12,12 @@ Page({
     province: {},
     city: {},
     county: {},
-    showAddress:''
+    showAddress: '请选择地址',
+    loading: false,
   },
 
   onLoad(options) {
-    
+
     // 编辑模式
     if (options.id) {
       wx.setNavigationBarTitle({
@@ -48,7 +49,7 @@ Page({
               name: data.area,
               code: data.area_code
             }
-          },()=>{
+          }, () => {
             this.pinAddress()
           })
         }
@@ -59,9 +60,9 @@ Page({
       })
     }
   },
-  pinAddress(){
+  pinAddress() {
     this.setData({
-      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
+      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`,
     })
   },
   showPicker() {
@@ -81,7 +82,7 @@ Page({
       province: e.detail.province,
       city: e.detail.city,
       county: e.detail.county
-    },()=>{
+    }, () => {
       this.pinAddress()
     })
   },
@@ -129,6 +130,9 @@ Page({
     } else {
       api = APP.api.addressUpdate
     }
+    this.setData({
+      loading: true
+    })
     APP.ajax({
       url: api,
       data: {
