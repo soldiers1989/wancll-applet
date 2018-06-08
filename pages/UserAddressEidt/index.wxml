@@ -34,7 +34,7 @@
   </view>
   <zan-panel>
     <view class='padding'>
-      <button class="wancll-bg-info wancll-text-white" catchtap='send' loading='{{loading}}'>提交</button>
+      <button class="wancll-bg-info wancll-text-white" catchtap='send' disabled="{{loading}}" loading='{{loading}}'>提交</button>
     </view>
   </zan-panel>
 </zan-panel>

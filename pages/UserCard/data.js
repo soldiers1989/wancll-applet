@@ -21,7 +21,7 @@ export function getList(that) {
   let lists = that.data.lists
   APP.ajax({
     url: APP.api.myBankCard,
-    data: {
+    header: {
       'page-limit': that.data.pageLimit,
       'page-num': pageNum,
     },
