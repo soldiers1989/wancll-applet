@@ -141,4 +141,8 @@ export const api = {
   queryAuthStatus: `${defaultHost}/api_query/users/auth`,
   submitAuthInfo: `${defaultHost}/api_users/user_auths/save`,
   updateAuthInfo: `${defaultHost}/api_users/user_auths/update`,
+
+  // 分红中心
+  bonusCenter: `${defaultHost}/api_query/bonus/bonus_info`,
+  
 }

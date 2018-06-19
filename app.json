@@ -38,7 +38,17 @@
     "pages/UserOrderEstimate/index",
     "pages/UserOrderDetail/index",
     "pages/UserIdInfo/index",
-    "pages/UserIdSubmit/index"
+    "pages/UserIdSubmit/index",
+    "pages/UserQRCode/index",
+    "pages/UserDRCenter/index",
+    "pages/UserDBCenter/index",
+    "pages/UserRecAccunt/index",
+    "pages/UserDBCenterWallet/index",
+    "pages/UserDBCenterApply/index",
+    "pages/UserDBCenterDetail/index",
+    "pages/UserDBCenterOrder/index",
+    "pages/UserDBCenterTeam/index",
+    "pages/UserDBCenterCusts/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

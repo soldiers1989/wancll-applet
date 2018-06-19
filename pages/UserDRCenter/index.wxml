@@ -1,0 +1,6 @@
+<view class='content'>
+  <image class="bg-image" src="{{bgImg}}" mode='widthFix'></image>
+  <view class='ewm-box'>
+    
+  </view>
+</view>

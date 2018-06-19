@@ -121,9 +121,25 @@
             <icon class='icon color-y' type="youhuiquan"></icon>
             <view class='text'>优惠券</view>
           </view>
-          <view class='pending'>
-            <icon class='icon' type=""></icon>
-            <view class='text'></view>
+          <view class='pending' catchtap='goSubPages' data-target="UserQRCode">
+            <icon class='icon color-y' type="qr-code"></icon>
+            <view class='text'>我的二维码</view>
+          </view>
+        </view>
+      </zan-panel>
+      <zan-panel hide-border="{{true}}">
+        <view class='pending-list'>
+          <view class='pending' catchtap='goSubPages' data-target="UserDRCenter">
+            <icon class='icon color-r' type="daifahuo"></icon>
+            <view class='text'>分销中心</view>
+          </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserDBCenter">
+            <icon class='icon color-y' type="shouhou"></icon>
+            <view class='text'>分红中心</view>
+          </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt">
+            <icon class='icon color-r' type="qianbao1"></icon>
+            <view class='text'>收款账户</view>
           </view>
         </view>
       </zan-panel>
