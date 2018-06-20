@@ -11,10 +11,10 @@ Page({
    */
   onLoad: function (options) {
     let user = wx.getStorageSync('user');
-    console.log(user)
     APP.ajax({
       url: APP.api.bonusCenter,
       success:res=>{
+        console.log(res.data)
         this.setData({
           bonusData: res.data,
           user: user

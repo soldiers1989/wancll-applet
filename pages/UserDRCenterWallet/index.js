@@ -3,29 +3,19 @@ const APP = getApp();
 Page({
   data: {
     bgImg: APP.imgs.DRcenter,
-    user: {},
-    drpData: {},
+    bonusData: {},
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let user = wx.getStorageSync('user');
     APP.ajax({
-      url: APP.api.drpCenter,
+      url: APP.api.drpCenterInfo,
       success: res => {
-        console.log(res.data)
         this.setData({
-          drpData: res.data,
-          user: user
+          bonusData: res.data,
         })
       }
-    })
-  },
-  goSubPage(e) {
-    let target = APP.utils.getDataSet(e, 'target');
-    wx.navigateTo({
-      url: `/pages/UserDRCenter${target}/index`,
     })
   },
   /**

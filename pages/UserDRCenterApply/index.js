@@ -14,7 +14,7 @@ Page({
   },
   getData(){
     APP.ajax({
-      url: APP.api.bonusRules,
+      url: APP.api.drpRules,
       success: res => {
         this.setData({
           bonusData: res.data,
@@ -22,7 +22,7 @@ Page({
       }
     })
     APP.ajax({
-      url: APP.api.bonusCenter,
+      url: APP.api.drpCenter,
       success: res => {
         this.setData({
           bonusInfo: res.data,
@@ -45,7 +45,7 @@ Page({
       hidden: true
     });
     APP.ajax({
-      url: APP.api.bonusPaySave,
+      url: APP.api.drpPaySave,
       data: {
         pay_password: this.data.inputData,
         receipt_type: this.data.payType

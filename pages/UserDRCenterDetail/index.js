@@ -73,7 +73,7 @@ Page({
   goDetailInfo(e){
     let id = APP.utils.getDataSet(e,'id');
     wx.navigateTo({
-      url: `/pages/UserDBCenterDetailInfo/index?id=${id}`,
+      url: `/pages/UserDRCenterDetailInfo/index?id=${id}`,
     })
   },
   

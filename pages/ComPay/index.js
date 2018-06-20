@@ -38,7 +38,7 @@ Page({
     let that = this;
     if (this.data.payType == 1) {
       APP.ajax({
-        url: APP.api.orderPassword,
+        url: APP.api.setPayPass,
         success(res) {
           if (res.data.is_set_pay_password == 1) {
             that.togglePopup()

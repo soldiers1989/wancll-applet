@@ -19,6 +19,8 @@ export const api = {
 
   // 多页面公用
   goods: `${defaultHost}/api_goods/goods/lists`,
+  setPayPass: `${defaultHost}/api_query/users/is_set_pay_password`,
+
 
   // 商品的详情页 
   detailRead: `${defaultHost}/api_goods/goods/read`,
@@ -80,7 +82,6 @@ export const api = {
   orderCancel: `${defaultHost}/api_orders/cancel_orders/user_cancel`,
   orderTip: `${defaultHost}/api_orders/tip_deliver/tip`,
   orderPrePay: `${defaultHost}/api_orders/pay/pre_pay`,
-  orderPassword: `${defaultHost}/api_query/users/is_set_pay_password`,
   orderMoney: `${defaultHost}/api_orders/pay/money`,
   // orderAliPayApp: `${defaultHost}/api_orders/pay/ali_pay_app`,
   // orderWechatPayApp: `${defaultHost}/api_orders/pay/wechat_pay_app`,
@@ -141,8 +142,25 @@ export const api = {
   queryAuthStatus: `${defaultHost}/api_query/users/auth`,
   submitAuthInfo: `${defaultHost}/api_users/user_auths/save`,
   updateAuthInfo: `${defaultHost}/api_users/user_auths/update`,
-
+  // 分销中心
+  drpCenter: `${defaultHost}/api_query/drp/distributor_info`,
+  drpCenterInfo: `${defaultHost}/api_query/drp/commission_info`,
+  drpRules: `${defaultHost}/api_drp/rules/index`,
+  drpPaySave: `${defaultHost}/api_drp/commission_applys/save`,
+  
+  
   // 分红中心
   bonusCenter: `${defaultHost}/api_query/bonus/bonus_info`,
+  bonusApplysList: `${defaultHost}/api_bonus/bonus_applys/lists`,
+  bonusApplysRead: `${defaultHost}/api_bonus/bonus_applys/read`,
+  bonusOrderList: `${defaultHost}/api_bonus/bonus_orders/lists`,
+  bonusTeamUser: `${defaultHost}/api_bonus/team/team_users`,
+  bonusChildUser: `${defaultHost}/api_bonus/team/child_users`,
+  bonusRules: `${defaultHost}/api_bonus/rules/index`,
+  bonusPaySave: `${defaultHost}/api_bonus/bonus_applys/save`,
+  
+  
+  
+  
   
 }

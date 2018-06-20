@@ -48,7 +48,15 @@
     "pages/UserDBCenterDetail/index",
     "pages/UserDBCenterOrder/index",
     "pages/UserDBCenterTeam/index",
-    "pages/UserDBCenterCusts/index"
+    "pages/UserDBCenterCusts/index",
+    "pages/UserDBCenterDetailInfo/index",
+    "pages/UserDRCenterWallet/index",
+    "pages/UserDRCenterApply/index",
+    "pages/UserDRCenterDetail/index",
+    "pages/UserDRCenterOrder/index",
+    "pages/UserDRCenterTeam/index",
+    "pages/UserDRCenterCusts/index",
+    "pages/UserDRCenterDetailInfo/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -23,20 +23,17 @@ page {
 
 .info-box .user-info {
   text-align: center;
-  padding: 15px;
+  padding: 50px 15px;
   color: #fff;
 }
 
-.info-box .user-info .avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.info-box .user-info .title {
+  font-size: 15px;
   margin-bottom: 20px;
 }
 
-.info-box .user-info .name {
-  font-size: 28rpx;
-  line-height: 50rpx;
+.info-box .user-info .number {
+  font-size: 30px;
 }
 
 .info-box .moneys {
@@ -63,30 +60,10 @@ page {
 .info-box .moneys .money .text {
   font-size: 28rpx;
   line-height: 70rpx;
+  color: #777;
 }
 
-.selects-subpage {
-  display: flex;
-  flex-wrap: wrap;
-  
-}
-
-.selects-subpage .subpage {
-  flex: 33.33% 0 0;
-  text-align: center;
-  padding: 10px 0 
-}
-.selects-subpage .subpage .other{
-  color: #777
-}
-.selects-subpage .subpage .icon {
-  font-size: 28px;
-}
-
-.selects-subpage .subpage .icon-r {
-  color: rgb(254, 147, 65);
-}
-
-.selects-subpage .subpage .icon-b {
-  color: rgb(37, 127, 214);
+.icon-b{
+  font-size: 20px;
+  color: rgb(86, 171, 239);
 }

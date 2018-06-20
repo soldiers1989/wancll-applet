@@ -47,7 +47,7 @@ Page({
       return;
     }
     APP.ajax({
-      url: APP.api.orderPassword,
+      url: APP.api.setPayPass,
       success(res) {
         if (res.data.is_set_pay_password == 1) {
           that.togglePassPopup()
