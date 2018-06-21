@@ -1,0 +1,26 @@
+<zan-panel class="cell-panel-demo">
+  <zan-cell-group>
+    <zan-cell title="昵称">
+      <input slot="footer" bindinput='enterName' type="text" placeholder="请输入昵称" />
+    </zan-cell>
+    <zan-cell title="QQ">
+      <input slot="footer" bindinput='enterQQ' type="number" placeholder="请输入QQ号码" />
+    </zan-cell>
+    <zan-cell title="微信">
+      <input slot="footer" bindinput='enterWechat' type="text" placeholder="请输入微信号" />
+    </zan-cell>
+    <zan-cell title="邮箱">
+      <input slot="footer" bindinput='enterEmial' type="text" placeholder="请输入邮箱" />
+    </zan-cell>
+    <zan-cell title="地区">
+      <input slot="footer" disabled value='{{showAddress}}' bindtap="showPicker" type="text" placeholder="" />
+    </zan-cell>
+  </zan-cell-group>
+</zan-panel>
+<view style='margin-bottom:10px;'>
+  <zan-button-group>
+    <zan-button bindbtnclick="send" type="info">提交</zan-button>
+  </zan-button-group>
+</view>
+
+<citys id="citys" bind:getCitys="getCitys" condition="{{condition}}"></citys>

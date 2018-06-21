@@ -14,18 +14,18 @@ Component({
     noContent: false,
     noContentImg: APP.imgs.noContentImg
   },
-  // 组件生成到页面获取的参数
-  attached() {
-    // 渲染即 获取全国城市列表    
-    if (!wx.getStorageSync('citys')) {
-      APP.ajax({
-        url: APP.api.addressRegions,
-        success(res) {
-          wx.setStorageSync('citys', res.data)
-        }
-      })
-    }
-  },
+  // // 组件生成到页面获取的参数
+  // attached() {
+  //   // 渲染即 获取全国城市列表    
+  //   if (!wx.getStorageSync('citys')) {
+  //     APP.ajax({
+  //       url: APP.api.addressRegions,
+  //       success(res) {
+  //         wx.setStorageSync('citys', res.data)
+  //       }
+  //     })
+  //   }
+  // },
   // 组件的方法列表 
   methods: {
     // 刷新数据

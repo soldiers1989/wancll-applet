@@ -14,6 +14,15 @@ App({
       Token.getToken(this)
       Token.getUser(this)
     }
+    // 加载城市线
+    if (!wx.getStorageSync('citys')) {
+      ajax({
+        url: api.addressRegions,
+        success(res) {
+          wx.setStorageSync('citys', res.data)
+        }
+      })
+    }
   },
   // 全局变量
   globalData: {

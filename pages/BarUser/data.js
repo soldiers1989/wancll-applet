@@ -25,6 +25,15 @@ export function getUserData(that) {
       })
     }
   })
+  APP.ajax({
+    url: APP.api.userInfo,
+    success(res) {
+      that.setData({
+        is_open_bonus: res.data.is_open_bonus,
+        is_open_drp : res.data.is_open_drp,
+      });
+    }
+  })
 }
 // 查询实名认证状态
 export function queryAuthStatus(that) {

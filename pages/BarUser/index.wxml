@@ -121,23 +121,23 @@
             <icon class='icon color-y' type="youhuiquan"></icon>
             <view class='text'>优惠券</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserQRCode">
+          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
             <icon class='icon color-y' type="qr-code"></icon>
             <view class='text'>我的二维码</view>
           </view>
         </view>
       </zan-panel>
-      <zan-panel hide-border="{{true}}">
+      <zan-panel hide-border="{{true}}" wx:if="{{is_open_bonus||is_open_drp}}">
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="UserDRCenter">
+          <view class='pending' catchtap='goSubPages' data-target="UserDRCenter" wx:if="{{is_open_drp}}">
             <icon class='icon color-r' type="daifahuo"></icon>
             <view class='text'>分销中心</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserDBCenter">
+          <view class='pending' catchtap='goSubPages' data-target="UserDBCenter" wx:if="{{is_open_bonus}}">
             <icon class='icon color-y' type="shouhou"></icon>
             <view class='text'>分红中心</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt">
+          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{is_open_bonus}}">
             <icon class='icon color-r' type="qianbao1"></icon>
             <view class='text'>收款账户</view>
           </view>

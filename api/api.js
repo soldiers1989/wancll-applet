@@ -66,6 +66,14 @@ export const api = {
   userCount: `${defaultHost}/api_query/orders/count`,
   userAsset: `${defaultHost}/api_query/users/asset`,
   userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
+  userInfo: `${defaultHost}/api_query/systems/info`,
+  userBonus:`${defaultHost}/api_bonus/rules/become_bonus_info`,
+  userBonusRead: `${defaultHost}/api_bonus/user_apply_bonus/read`,
+  userCompleteInfo: `${defaultHost}/api_users/users/complete_user_info`,
+  userDrp: `${defaultHost}/api_drp/rules/become_distributor_info`,
+  userDrpRead: `${defaultHost}/api_drp/user_apply_distributor/read`,
+  
+  
 
   // 个人中心设置
   userSettingCode: `${defaultHost}/api_systems/helper/send_code`,
@@ -142,6 +150,10 @@ export const api = {
   queryAuthStatus: `${defaultHost}/api_query/users/auth`,
   submitAuthInfo: `${defaultHost}/api_users/user_auths/save`,
   updateAuthInfo: `${defaultHost}/api_users/user_auths/update`,
+
+  // 分销分红申请
+  getDrpApply: `${defaultHost}/api_drp/user_apply_distributor/apply`,
+  getBonusApply: `${defaultHost}/api_bonus/user_apply_bonus/apply`,
 
   // 分销中心
   drpCenter: `${defaultHost}/api_query/drp/distributor_info`,
