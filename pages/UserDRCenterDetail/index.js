@@ -34,7 +34,7 @@ Page({
   getOrderData(status) {
     let data = status != 0 ? { status: status } : {}
     APP.ajax({
-      url: APP.api.bonusApplysList,
+      url: APP.api.drpApplysList,
       data: data,
       header: {
         'page-limit': 10,

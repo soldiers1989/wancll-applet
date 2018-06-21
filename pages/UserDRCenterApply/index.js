@@ -37,7 +37,8 @@ Page({
   },
   cancel: function () {
     this.setData({
-      hidden: true
+      hidden: true,
+      inputData:'',
     });
   },
   confirm: function () {
@@ -57,6 +58,9 @@ Page({
         })
         setTimeout(()=>{
           this.getData()
+          this.setData({
+            inputData: '',
+          });
         },500)
       }
     })

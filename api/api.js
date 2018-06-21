@@ -142,25 +142,32 @@ export const api = {
   queryAuthStatus: `${defaultHost}/api_query/users/auth`,
   submitAuthInfo: `${defaultHost}/api_users/user_auths/save`,
   updateAuthInfo: `${defaultHost}/api_users/user_auths/update`,
+
   // 分销中心
   drpCenter: `${defaultHost}/api_query/drp/distributor_info`,
   drpCenterInfo: `${defaultHost}/api_query/drp/commission_info`,
   drpRules: `${defaultHost}/api_drp/rules/index`,
+  drpOrderList: `${defaultHost}/api_drp/drp_orders/lists`,
+  drpApplysList: `${defaultHost}/api_drp/commission_applys/lists`,
   drpPaySave: `${defaultHost}/api_drp/commission_applys/save`,
+  drpApplysRead: `${defaultHost}/api_drp/commission_applys/read`,
+  drpChildUser: `${defaultHost}/api_drp/team/child_users`,
+  drpTeamUser: `${defaultHost}/api_drp/team/team_users`,
   
-  
+
   // 分红中心
   bonusCenter: `${defaultHost}/api_query/bonus/bonus_info`,
   bonusApplysList: `${defaultHost}/api_bonus/bonus_applys/lists`,
   bonusApplysRead: `${defaultHost}/api_bonus/bonus_applys/read`,
+  bonusPaySave: `${defaultHost}/api_bonus/bonus_applys/save`,
   bonusOrderList: `${defaultHost}/api_bonus/bonus_orders/lists`,
   bonusTeamUser: `${defaultHost}/api_bonus/team/team_users`,
   bonusChildUser: `${defaultHost}/api_bonus/team/child_users`,
   bonusRules: `${defaultHost}/api_bonus/rules/index`,
-  bonusPaySave: `${defaultHost}/api_bonus/bonus_applys/save`,
   
-  
-  
-  
+  // 收款账户
+  userRhirdAcc: `${defaultHost}/api_users/user_third_accounts/lists`,
+  userRhirdUpdate: `${defaultHost}/api_users/user_third_accounts/update`,
+  // userRhirdWxBind: `${defaultHost}/api_users/user_third_accounts/update`,
   
 }

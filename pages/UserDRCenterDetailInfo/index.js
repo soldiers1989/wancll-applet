@@ -5,7 +5,7 @@ Page({
   },
   onLoad: function (options) {
     APP.ajax({
-      url: APP.api.bonusApplysRead,
+      url: APP.api.drpApplysRead,
       data: {id:options.id},
       success: (res) => {
         this.setData({

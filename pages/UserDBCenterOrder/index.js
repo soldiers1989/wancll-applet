@@ -23,7 +23,7 @@ Page({
   },
 
   onLoad: function (options) {
-    this.getOrderData(this.tabSelectedId)
+    this.getOrderData(this.data.tabSelectedId)
   },
 
   getOrderData(status) {
@@ -72,7 +72,7 @@ Page({
       pageNum: 1,
       orderList: []
     }, () => {
-      this.getOrderData(this.tabSelectedId)
+      this.getOrderData(this.data.tabSelectedId)
     })
   },
 
@@ -80,7 +80,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getOrderData(this.tabSelectedId)
+    this.getOrderData(this.data.tabSelectedId)
   }
 
 })

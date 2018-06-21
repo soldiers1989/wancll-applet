@@ -20,5 +20,5 @@
 </view>
 
 <modal hidden="{{hidden}}" title="请输入密码" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
-    <input bindinput='inputData' style='text-align:center' password="true" placeholder="输入密码"></input>
+    <input value='{{inputData}}' bindinput='inputData' style='text-align:center' password="true" placeholder="输入密码"></input>
 </modal>

@@ -23,13 +23,13 @@ Page({
   },
 
   onLoad: function (options) {
-    this.getOrderData(this.tabSelectedId)
+    this.getOrderData(this.data.tabSelectedId)
   },
 
   getOrderData(status) {
     let data = status != 0 ? { order_status: status } : {}
     APP.ajax({
-      url: APP.api.bonusOrderList,
+      url: APP.api.drpOrderList,
       data: data,
       header: {
         'page-limit': 10,
@@ -72,7 +72,7 @@ Page({
       pageNum: 1,
       orderList: []
     }, () => {
-      this.getOrderData(this.tabSelectedId)
+      this.getOrderData(this.data.tabSelectedId)
     })
   },
 
@@ -80,7 +80,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getOrderData(this.tabSelectedId)
+    this.getOrderData(this.data.tabSelectedId)
   }
 
 })

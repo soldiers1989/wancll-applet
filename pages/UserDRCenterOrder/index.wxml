@@ -4,7 +4,6 @@
       <view class='list-info'>
         <zan-row >
           <zan-col col="18" col-class="left">
-            <!-- <view>{{item.order_info.order_no}}</view> -->
             <view>{{item.order_info.order_no}}</view>
           </zan-col>
           <zan-col col="6" col-class="right">

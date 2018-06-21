@@ -17,7 +17,7 @@
         <view class='title'>
           <template is="status" data="{{...item}}" />
         </view>
-        <view class='text'>订单金额：{{list.order_info.total_money}}</view>
+        <view class='text'>订单金额：{{list.order_info.total_money}} 元</view>
         <view class='text'>订单编号：{{list.order_info.order_no}}</view>
       </view>
     </view>

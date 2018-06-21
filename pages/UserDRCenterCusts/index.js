@@ -15,7 +15,7 @@ Page({
   },
   getOrderData() {
     APP.ajax({
-      url: APP.api.bonusChildUser,
+      url: APP.api.drpChildUser,
       header: {
         'page-limit': 10,
         'page-num': this.data.pageNum,
