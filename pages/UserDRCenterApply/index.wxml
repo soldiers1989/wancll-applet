@@ -4,7 +4,7 @@
     <view class='rmb'>
       <text>￥</text> {{bonusInfo.can_drawcash_money}}
     </view>
-    <view class='stxt'>最小提现金额：￥5</view>
+    <view class='stxt'>最小提现金额：￥{{bonusData.min_drawcash_money}}</view>
   </view>
   <view class='buttons'>
     <view class='button'>
