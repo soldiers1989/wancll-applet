@@ -59,8 +59,15 @@
   padding: 20px 0 15px 0;
   display: flex;
 }
+
 .pending-list .pending{
-  flex: 1;
+  flex: 33.33% 0 0;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.pending-list .pending-order{
+  flex:1;
+  flex-wrap: wrap;
   text-align: center;
 }
 .pending-list .pending .icon-badge{

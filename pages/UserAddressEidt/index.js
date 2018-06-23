@@ -18,7 +18,7 @@ Page({
 
   onLoad(options) {
 
-    // 编辑模式
+    // 编辑模式 先获取地址
     if (options.id) {
       wx.setNavigationBarTitle({
         title: '编辑地址',
@@ -61,20 +61,22 @@ Page({
     }
   },
   pinAddress() {
+    let showAddress;
+    if (this.data.province.name == this.data.city.name) {
+      showAddress = this.data.province.name;
+    } else {
+      showAddress = `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
+    }
     this.setData({
-      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`,
+      showAddress: showAddress
     })
   },
   showPicker() {
     this.setData({
       condition: true
+    },()=>{
+      this.pinAddress()
     });
-  },
-  // 默认值是否选择
-  radioChange(e) {
-    this.setData({
-      enterDefault: e.detail.value
-    })
   },
   // 默认地址选择
   getCitys(e) {
@@ -83,7 +85,15 @@ Page({
       city: e.detail.city,
       county: e.detail.county
     }, () => {
-      this.pinAddress()
+      if (this.data.condition) {
+        this.pinAddress()
+      }
+    })
+  },
+  // 默认值是否选择
+  radioChange(e) {
+    this.setData({
+      enterDefault: e.detail.value
     })
   },
   enterName(e) {
@@ -113,6 +123,13 @@ Page({
     if (!this.data.enterMobile) {
       wx.showToast({
         title: '请输入收货人联系电话',
+        icon: 'none'
+      })
+      return;
+    }
+    if (!APP.validator.mobile(this.data.enterMobile)) {
+      wx.showToast({
+        title: '手机格式不正确',
         icon: 'none'
       })
       return;

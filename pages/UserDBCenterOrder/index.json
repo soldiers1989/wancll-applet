@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "分红订单",
+  "navigationBarTitleText": "订单数量",
   "usingComponents": {
     "zan-tab": "../../dist/tab/index",
     "zan-icon": "../../dist/icon/index",

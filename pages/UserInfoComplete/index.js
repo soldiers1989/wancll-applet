@@ -13,16 +13,45 @@ Page({
     showAddress: '请选择地址',
   },
   onLoad: function (options) {
-
+    APP.ajax({
+      url: APP.api.user,
+      success: res => {
+        let showAddress;
+        if (res.data.province && res.data.city && res.data.area) {
+          if (res.data.province.name == res.data.city.name) {
+            showAddress = res.data.province.name;
+          }else{
+            showAddress = `${res.data.province} ${res.data.city} ${res.data.area}`
+          }
+        } else {
+          showAddress = '请选择地址'
+        }
+        this.setData({
+          name: res.data.nick_name,
+          email: res.data.email,
+          qq: res.data.qq,
+          wechat: res.data.wechat,
+          showAddress: showAddress,
+        })
+      }
+    })
   },
   showPicker() {
     this.setData({
       condition: true
+    },()=>{
+      this.pinAddress()
     });
   },
   pinAddress() {
+    let showAddress;
+    if (this.data.province.name == this.data.city.name) {
+      showAddress = this.data.province.name;
+    } else {
+      showAddress = `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
+    }
     this.setData({
-      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`,
+      showAddress: showAddress
     })
   },
   // 默认地址选择
@@ -32,7 +61,9 @@ Page({
       city: e.detail.city,
       county: e.detail.county
     }, () => {
-      this.pinAddress()
+      if (this.data.condition) {
+        this.pinAddress()
+      }
     })
   },
   enterName(e) {
@@ -50,7 +81,7 @@ Page({
       wechat: e.detail.value
     })
   },
-  enterEmial(e) {
+  enterEmail(e) {
     this.setData({
       email: e.detail.value
     })

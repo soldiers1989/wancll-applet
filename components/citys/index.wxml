@@ -5,13 +5,13 @@
         <view bindtap="open" class="city-true">确定</view>
       </view>
     <picker-view-column>
-      <view wx:for="{{provinces}}" wx:key="item" class="" style="line-height: 50px;padding-left:10px;">{{item.name}}</view>
+      <view wx:for="{{provinces}}" wx:key="item" class="select">{{item.name}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{citys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item.name}}</view>
+      <view wx:for="{{citys}}" wx:key="item" class="select">{{item.name}}</view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{countys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item.name}}</view>
+      <view wx:for="{{countys}}" wx:key="item" class="select">{{item.name}}</view>
     </picker-view-column>
   </picker-view>
 </view>

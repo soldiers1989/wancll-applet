@@ -29,25 +29,25 @@ Component({
    */
   attached() {
     let cityData = wx.getStorageSync('citys');
-    // if (cityData) {
-    this.setData({
-      cityData: cityData
-    }, () => {
-      this.init(this);
-    })
-    // } else {
-    //   APP.ajax({
-    //     url: APP.api.addressRegions,
-    //     success(res) {
-    //       wx.setStorageSync('citys', res.data)
-    //       this.setData({
-    //         cityData: res.data
-    //       }, () => {
-    //         this.init(this);
-    //       })
-    //     }
-    //   })
-    // }
+    if (cityData) {
+      this.setData({
+        cityData: cityData
+      }, () => {
+        this.init(this);
+      })
+    } else {
+      APP.ajax({
+        url: APP.api.addressRegions,
+        success(res) {
+          wx.setStorageSync('citys', res.data)
+          this.setData({
+            cityData: res.data
+          }, () => {
+            this.init(this);
+          })
+        }
+      })
+    }
   },
   /**
    * 组件的方法列表
@@ -92,8 +92,8 @@ Component({
           name: cityData[0].citys[0].areas[0].name,
           code: cityData[0].citys[0].areas[0].id
         }
-      },()=>{
-        // this.eventTar()
+      }, () => {
+        this.eventTar()
       })
     },
     bindChange: function (e) {

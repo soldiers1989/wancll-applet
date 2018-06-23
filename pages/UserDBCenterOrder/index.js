@@ -15,11 +15,15 @@ Page({
       title: '已完成'
     }],
     tabSelectedId: 0,
-    orderList:[],
-    orderData:{},
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    orderList: [],
+    orderData: {},
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
 
   onLoad: function (options) {
@@ -27,26 +31,38 @@ Page({
   },
 
   getOrderData(status) {
+    // 数据请求完了
+    if (!this.data.FPage.hasData) {
+      return;
+    }
     let data = status != 0 ? { order_status: status } : {}
     APP.ajax({
       url: APP.api.bonusOrderList,
       data: data,
       header: {
         'page-limit': 10,
-        'page-num': this.data.pageNum,
+        'page-num': this.data.FPage.pageNum,
       },
       success: (res) => {
-        if (res.data.orders.length>0) {
+        if (res.data.orders.length) {
           this.setData({
             orderData: res.data,
             orderList: this.data.orderList.concat(res.data.orders),
-            pageNum: ++(this.data.pageNum),
-            noContent: false,
+            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
+            ['FPage.noContent']: false,
           })
-        } else if (this.data.pageNum == 1) {
-          this.setData({
-            noContent: true
-          })
+        } else {
+          // 如果是第一页就位空
+          if (this.data.pageNum == 1) {
+            this.setData({
+              ['FPage.noContent']: true,
+              ['FPage.hasData']: false
+            })
+          } else {
+            this.setData({
+              ['FPage.hasData']: false
+            })
+          }
         }
       }
     })
@@ -61,7 +77,7 @@ Page({
     this.setData({
       tabSelectedId: id,
       orderList: [],
-      pageNum: 1,
+      ['FPage.pageNum']: 1,
     }, () => {
       this.getOrderData(id);
     })
@@ -69,13 +85,12 @@ Page({
 
   onPullDownRefresh: function () {
     this.setData({
-      pageNum: 1,
+      ['FPage.pageNum']: 1,
       orderList: []
     }, () => {
       this.getOrderData(this.data.tabSelectedId)
     })
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */

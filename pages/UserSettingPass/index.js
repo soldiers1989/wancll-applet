@@ -1,9 +1,11 @@
 const APP = getApp();
-const TITLE = ['登录密码修改', '支付密码修改'];
+const TITLE1 = ['登录密码修改', '支付密码修改'];
+const TITLE2 = ['登录密码设置', '支付密码设置'];
 Page({
   data: {
     type: 1,
     logo: APP.imgs.logo,
+    showInfo:'',
     mobile: '',
     code: 0,
     password: '',
@@ -14,10 +16,23 @@ Page({
   },
   onLoad: function (options) {
     let type = (options.id == 0) ? 1 : 2;
-    let user = wx.getStorageSync('user');
-    wx.setNavigationBarTitle({
-      title: TITLE[options.id]
+    APP.ajax({
+      url: APP.api.setPayPass,
+      success:(res) =>{
+        if (res.data.is_set_pay_password == 1) {
+          wx.setNavigationBarTitle({
+            title: TITLE1[options.id]
+          })
+          this.setData({ showInfo:'确认重置'})
+        }else{
+          wx.setNavigationBarTitle({
+            title: TITLE2[options.id]
+          })
+          this.setData({ showInfo: '确认设置' })
+        }
+      }
     })
+    let user = wx.getStorageSync('user');
     this.setData({
       mobile: user ? user.mobile : '',
       type: type,
@@ -99,7 +114,7 @@ Page({
       })
       return;
     }
-    if (!APP.validator.valiPassword(this.data.password)) {
+    if (!APP.validator.password(this.data.password)) {
       wx.showToast({
         title: '密码限制6-20位大小写字母数字组合',
         icon: 'none'

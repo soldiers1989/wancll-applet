@@ -16,7 +16,7 @@
         <zan-button size='small' type='info' bindbtnclick="goSubPage"  data-target="Wallet">进入</zan-button>
       </view>
       <view class='money pay-money'>
-        <view class='number'>{{bonusData.bonus_money}}</view>
+        <view class='number'>{{bonusData.can_drawcash_money}}</view>
         <view class='text'>可提现佣金</view>
         <zan-button size='small' type='info' bindbtnclick="goSubPage" data-target="Apply">提现</zan-button>
       </view>

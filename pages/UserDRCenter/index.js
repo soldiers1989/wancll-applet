@@ -14,7 +14,7 @@ Page({
     APP.ajax({
       url: APP.api.drpCenter,
       success: res => {
-        console.log(res.data)
+        res.data.can_drawcash_money = Number(res.data.can_drawcash_money).toFixed(2)
         this.setData({
           drpData: res.data,
           user: user

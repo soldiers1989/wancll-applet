@@ -4,17 +4,24 @@ Page({
     type: 1,
     logo: APP.imgs.logo,
     mobile: '',
+    pMobile:'',
     code: '',
     password: '',
     rpassword: '',
     status: true, //  发送成功？
     countDown: 91,
     unionId: '',
+    
     ischecked:false,
   },
   onLoad(options) {
     options.unionId && this.setData({
       unionId: options.unionId
+    })
+  },
+  bindtjMobile(e){
+    this.setData({
+      pMobile: e.detail.value
     })
   },
   // 手机号码输入
@@ -89,6 +96,13 @@ Page({
   },
   // 确认
   sendData() {
+    if (this.data.pMobile && APP.validator.mobile(this.data.pMobile)) {
+        wx.showToast({
+          title: '填写正确的手机号',
+          icon: 'none'
+        })
+        return;
+    }
     if (!this.data.mobile) {
       wx.showToast({
         title: '手机号码不能为空',
@@ -110,7 +124,7 @@ Page({
       })
       return;
     }
-    if (!APP.validator.valiPassword(this.data.password)) {
+    if (!APP.validator.password(this.data.password)) {
       wx.showToast({
         title: '密码限制6-20位大小写字母数字组合',
         icon: 'none'
@@ -136,6 +150,7 @@ Page({
       return;
     }
     let data = {
+      parent_mobile: this.data.pMobile,
       mobile: this.data.mobile,
       password: this.data.password,
       code: this.data.code,

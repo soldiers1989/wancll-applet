@@ -73,11 +73,19 @@ Page({
   showPicker() {
     this.setData({
       condition: true
+    },()=>{
+      this.pinAddress()
     });
   },
   pinAddress() {
+    let showAddress;
+    if (this.data.province.name == this.data.city.name){
+      showAddress = this.data.province.name;
+    }else{
+      showAddress = `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
+    }
     this.setData({
-      showAddress: `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`,
+      showAddress: showAddress
     })
   },
   // 默认地址选择
@@ -86,8 +94,10 @@ Page({
       province: e.detail.province,
       city: e.detail.city,
       county: e.detail.county
-    }, () => {
-      this.pinAddress()
+    },()=>{
+      if (this.data.condition){
+        this.pinAddress()
+      }
     })
   },
   enterName(e) {
@@ -105,7 +115,7 @@ Page({
       wechat: e.detail.value
     })
   },
-  enterEmial(e) {
+  enterEmail(e) {
     this.setData({
       email: e.detail.value
     })
