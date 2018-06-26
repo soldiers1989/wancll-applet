@@ -1,13 +1,14 @@
 const APP = getApp();
 
-/////////////////////////////////
+// 获取的分页数据
 function getPagesData(options) {
   let that = options.that;
   let url = options.url;
-  let type =  options.type || 1;
-  let postData =options.postData || {}
+  let type = options.type || 1;
+  let postData = options.postData || {}
   let getStr = options.getStr || ''
   let pushData = options.pushData || ''
+
   // 数据请求完了
   if (!that.data.FPage.hasData) {
     return;
@@ -20,16 +21,20 @@ function getPagesData(options) {
       'page-num': that.data.FPage.pageNum,
     },
     success: (res) => {
-      if(type == 1){
-        setdata1(res,getStr,that,pushData)
-      }else if(type == 2){
-        setdata2(res,that,pushData)
+      wx.stopPullDownRefresh();
+      if (type == 1) {
+        // 子参数中取到
+        setdata1(res, getStr, that, pushData)
+      } else if (type == 2) {
+        // 直接data中取到
+        setdata2(res, that, pushData)
       }
     }
   })
 }
+
 // 子参数中取到
-function setdata1(res,getStr,that,pushData){
+function setdata1(res, getStr, that, pushData) {
   if (res.data[getStr].length) {
     that.setData({
       [pushData]: that.data[pushData].concat(res.data[getStr]),
@@ -50,8 +55,9 @@ function setdata1(res,getStr,that,pushData){
     }
   }
 }
+
 // 直接data中取到
-function setdata2(res,that,pushData){
+function setdata2(res, that, pushData) {
   if (res.data.length) {
     that.setData({
       [pushData]: that.data[pushData].concat(res.data),
@@ -72,11 +78,12 @@ function setdata2(res,that,pushData){
     }
   }
 }
-// 下拉刷新
-function pullRefresh(options){
+
+// 下拉刷新 -----------------------------------
+function pullRefresh(options) {
   let that = options.that;
   let pushData = options.pushData || ''
-  let fn = options.fn 
+  let fn = options.fn
   that.setData({
     ['FPage.pageNum']: 1,
     ['FPage.hasData']: true,
@@ -85,11 +92,12 @@ function pullRefresh(options){
     fn()
   })
 }
-// 点击tab菜单切换数据 数据 tabSelectedId 必须固定
-function tabChange(options){
+
+// 点击tab菜单切换数据 数据 tabSelectedId 必须固定 ------------------
+function tabChange(options) {
   let that = options.that;
   let pushData = options.pushData || ''
-  let fn = options.fn 
+  let fn = options.fn
   let id = that.selectComponent("#tab").data.selectedId
   // 禁止重复点击
   if (id == that.data.tabSelectedId) {

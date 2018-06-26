@@ -10,17 +10,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let user = wx.getStorageSync('user');
-    APP.ajax({
-      url: APP.api.bonusCenter,
-      success:res=>{
-        res.data.can_drawcash_money = Number(res.data.can_drawcash_money).toFixed(2)
-        this.setData({
-          bonusData: res.data,
-          user: user
-        })
-      }
-    })
+    
   },
   goSubPage(e){
     let target = APP.utils.getDataSet(e,'target');
@@ -28,6 +18,7 @@ Page({
       url: `/pages/UserDBCenter${target}/index`,
     })
   },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -39,7 +30,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    let user = wx.getStorageSync('user');
+    APP.ajax({
+      url: APP.api.bonusCenter,
+      success:res=>{
+        res.data.can_drawcash_money = Number(res.data.can_drawcash_money).toFixed(2)
+        this.setData({
+          bonusData: res.data,
+          user: user
+        })
+      }
+    })
   },
 
   /**

@@ -8,15 +8,25 @@ Page({
     code: '',
     password: '',
     rpassword: '',
-    status: true, //  发送成功？
+    status: true,    // 发送成功？
     countDown: 91,
     unionId: '',
-    
     ischecked:false,
+    is_open_bonus: '',
+    is_open_drp: '',
   },
   onLoad(options) {
     options.unionId && this.setData({
       unionId: options.unionId
+    })
+    APP.ajax({
+      url: APP.api.userInfo,
+      success:(res) =>{
+        this.setData({
+          is_open_bonus: res.data.is_open_bonus,
+          is_open_drp : res.data.is_open_drp,
+        });
+      }
     })
   },
   bindtjMobile(e){

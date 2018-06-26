@@ -29,5 +29,11 @@ Page({
       colorDark: "#000000",
       colorLight: "#ffffff",
     });
+  },
+  onShareAppMessage: function () {
+    return {
+      title:'扫码注册领红包',
+      path: `${this.route}`
+    }
   }
 })

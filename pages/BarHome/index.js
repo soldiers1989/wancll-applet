@@ -1,5 +1,6 @@
 const APP = getApp();
-import { getOtherData, getGoodsData } from './data.js';
+import { getOtherData } from './data.js';
+import GetPData from '../../utils/pagesRequest.js'
 Page({
   data: {
     // 轮播参数
@@ -24,9 +25,14 @@ Page({
 
     // 控制参数
     ready: false,  // 数据是否请求成功？
-    dataCount: -1,
-    pageNum: 1,
 
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    },
     // 售罄
     noStockImage: APP.imgs.noStock,
   },
@@ -37,10 +43,11 @@ Page({
     })
     let timer = setTimeout(() => {
       getOtherData(this);
-      getGoodsData(this);
+      this.getGoodsData();
       clearTimeout(timer)
-    }, 800)
+    }, 500)
   },
+  
   // 跳转到商品的详情页面 仅存在于商品列表模块
   goDetail(e) {
     let id = APP.utils.getDataSet(e, 'id');
@@ -104,19 +111,34 @@ Page({
       url: `/pages/ComGoodsList/index?${param}`,
     })
   },
+  // 获取商品数据
+  getGoodsData(){
+    let data = {goods_cate_id: ''}
+    GetPData.getPagesData({
+      type:2,
+      that:this,
+      url:'goods',
+      pushData:'goods',
+      postData: data
+    })
+  },
   // 下拉刷新事件
   onPullDownRefresh() {
     getOtherData(this);
-    // 重置加载页数 和 数据
-    this.setData({
-      pageNum: 1,
-      goods: []
-    }, () => {
-      getGoodsData(this)
+    GetPData.pullRefresh({
+      that:this,
+      pushData:'goods',
+      fn:this.getGoodsData
     })
   },
   // 上拉加载事件
   onReachBottom() {
-    getGoodsData(this);
+    this.getGoodsData();
+  },
+  // 分享
+  onShareAppMessage: function () {
+    return {
+      path: '/pages/BarHome/index'
+    }
   }
 })

@@ -6,10 +6,15 @@ Page({
     user: {},
     drpData: {},
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  
+  goSubPage(e) {
+    let target = APP.utils.getDataSet(e, 'target');
+    wx.navigateTo({
+      url: `/pages/UserDRCenter${target}/index`,
+    })
+  },
+
+  onShow: function () {
     let user = wx.getStorageSync('user');
     APP.ajax({
       url: APP.api.drpCenter,
@@ -21,25 +26,6 @@ Page({
         })
       }
     })
-  },
-  goSubPage(e) {
-    let target = APP.utils.getDataSet(e, 'target');
-    wx.navigateTo({
-      url: `/pages/UserDRCenter${target}/index`,
-    })
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

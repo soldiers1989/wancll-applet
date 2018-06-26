@@ -57,11 +57,14 @@ Page({
           title: res.msg,
           icon: 'none',
         })
+        this.getData()
+        this.setData({
+          inputData: '',
+        });
         setTimeout(()=>{
-          this.getData()
-          this.setData({
-            inputData: '',
-          });
+          wx.redirectTo({
+            url: `/pages/UserDRCenter/index`,
+          })
         },500)
       }
     })
@@ -75,7 +78,7 @@ Page({
   payWx() {
     this.pay()
     this.setData({
-      payType: '"wechat"'
+      payType: 'wechat'
     })
   },
   payAli() {

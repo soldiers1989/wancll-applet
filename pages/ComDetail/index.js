@@ -362,4 +362,10 @@ Page({
       showAttrPopup: false
     })
   },
+  onShareAppMessage: function () {
+    return {
+      title:this.data.goodsInfo.name,
+      path: `${this.route}?id=${this.data.goodsId}`
+    }
+  }
 })

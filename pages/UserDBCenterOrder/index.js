@@ -1,6 +1,7 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
-
+// import GetPData from '../../utils/pagesRequest.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     tabList: [{
@@ -17,6 +18,7 @@ Page({
       title: '已完成'
     }],
     tabSelectedId: 0,
+    // 分页数据
     orderList: [],
     // 分页功能
     FPage: {
@@ -26,40 +28,35 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
+  // 获取分页数据
+  getOrderData(status) {
+    let data = status != 0 ? {
+      order_status: status
+    } : {}
+    Paging.getPagesData({
+      type: 1,
+      that: this,
+      url: 'bonusOrderList',
+      pushData: 'orderList',
+      getStr: 'orders',
+      postData: data,
+      callback: this.getOrderData
+    })
+  },
   // 初始化
-  onLoad: function (options) {
+  onLoad(options) {
     this.getOrderData(this.data.tabSelectedId)
   },
   // 上拉加载
-  onReachBottom: function () {
+  onReachBottom() {
     this.getOrderData(this.data.tabSelectedId)
   },
   // 下拉刷新
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'orderList',
-      fn:this.getOrderData
-    })
-  },
-  // 获取分页数据
-  getOrderData(status) {
-    let data = status != 0 ? { order_status: status } : {}
-    GetPData.getPagesData({
-      type:1,
-      that:this,
-      url:'bonusOrderList',
-      pushData:'orderList',
-      getStr:'orders',
-      postData: data
-    })
+  onPullDownRefresh() {
+    Paging.refresh()
   },
   // 点击切换顶部的标签
   tabchange() {
-    GetPData.tabChange({
-      that:this,
-      pushData:'orderList',
-      fn:this.getOrderData
-    })
+    Paging.tabChange()
   }
 })

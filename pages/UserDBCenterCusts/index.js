@@ -3,8 +3,9 @@ import GetPData from '../../utils/pagesRequest.js';
 
 Page({
   data: {
-    custsUser: [],
     user: {},
+    // 分页数据
+    custsUser: [],
     // 分页功能
     FPage: {
       pageNum: 1,
@@ -13,12 +14,14 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
+  // 初始化
   onLoad: function (options) {
     this.getOrderData()
     this.setData({
       user: wx.getStorageSync('user')
     })
   },
+  // 获取分页数据
   getOrderData() {
     GetPData.getPagesData({
       type:2,
@@ -27,6 +30,7 @@ Page({
       pushData:'custsUser',
     })
   },
+  // 下拉刷新
   onPullDownRefresh: function () {
     GetPData.pullRefresh({
       that:this,
@@ -34,6 +38,7 @@ Page({
       fn:this.getOrderData
     })
   },
+  // 上拉加载
   onReachBottom: function () {
     this.getOrderData()
   }

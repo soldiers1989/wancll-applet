@@ -18,13 +18,19 @@ Page({
     popupNav: false,
     noContent: false,
     noContentImg: APP.imgs.noContentImg,
-
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    },
     // 售罄
     noStockImage: APP.imgs.noStock,
   },
   onLoad(options) {
     getGoodsTree(this)
-    getGoodsData(this)
+    this.getGoodsData()
   },
   // 小分类的点击
   changeSubNav(e) {
@@ -70,7 +76,9 @@ Page({
       goods: [],
       pageNum: 1,
       id: id,
-    }, () => { getGoodsData(this, id) })
+    }, () => { 
+      this.getGoodsData(id) 
+    })
   },
   // 跳转到商品详情页
   goDetail(e) {
@@ -79,6 +87,19 @@ Page({
       url: `/pages/ComDetail/index?id=${id}`,
     })
   },
+  // 获取商品数据
+  getGoodsData(id=''){
+    let data = {goods_cate_id: id}
+    GetPData.getPagesData({
+      type:2,
+      that:this,
+      url:'goods',
+      pushData:'goods',
+      postData: data
+    })
+  },
+
+
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
     this.setData({
@@ -90,8 +111,5 @@ Page({
   },
   onReachBottom() {
     getGoodsData(this, this.data.id)
-  },
-  onShareAppMessage: function () {
-
   }
 })

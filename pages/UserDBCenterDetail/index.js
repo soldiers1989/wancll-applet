@@ -1,9 +1,7 @@
 const APP = getApp();
-Page({
+import GetPData from '../../utils/pagesRequest.js';
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
     tabList: [{
       id: 0,
@@ -28,88 +26,47 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 初始化
   onLoad: function (options) {
     this.getOrderData(this.tabSelectedId)
   },
-
-
+  // 上拉加载
+  onReachBottom: function () {
+    this.getOrderData(this.tabSelectedId)
+  },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    GetPData.pullRefresh({
+      that:this,
+      pushData:'dbList',
+      fn:this.getOrderData
+    })
+  },
+  // 获取分页数据
   getOrderData(status) {
-    // 数据请求完了
-    if (!this.data.FPage.hasData) {
-      return;
-    }
-    let data = status != 0 ? { order_status: status } : {}
-    APP.ajax({
-      url: APP.api.bonusApplysList,
-      data: data,
-      header: {
-        'page-limit': 10,
-        'page-num': this.data.FPage.pageNum,
-      },
-      success: (res) => {
-        if (res.data.applys.length) {
-          this.setData({
-            dbList: this.data.dbList.concat(res.data.applys),
-            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
-            ['FPage.noContent']: false,
-          })
-        } else {
-          // 如果是第一页就位空
-          if (this.data.FPage.pageNum == 1) {
-            this.setData({
-              ['FPage.noContent']: true,
-              ['FPage.hasData']: false
-            })
-          } else {
-            this.setData({
-              ['FPage.hasData']: false
-            })
-          }
-        }
-      }
+    let data = status != 0 ? { status: status } : {}
+    GetPData.getPagesData({
+      type:1,
+      that:this,
+      url:'bonusApplysList',
+      pushData:'dbList',
+      getStr:'applys',
+      postData: data
     })
   },
-
   // 点击切换顶部的标签
-  tabchange(e) {
-    let id = this.selectComponent("#tab").data.selectedId
-    // 禁止重复点击
-    if (id == this.data.tabSelectedId) {
-      return;
-    }
-    this.setData({
-      tabSelectedId: id,
-      dbList: [],
-      ['FPage.hasData']: true,
-      ['FPage.pageNum']: 1,
-    }, () => {
-      this.getOrderData(id);
+  tabchange() {
+    GetPData.tabChange({
+      that:this,
+      pushData:'dbList',
+      fn:this.getOrderData
     })
   },
+  // 进入详情
   goDetailInfo(e) {
     let id = APP.utils.getDataSet(e, 'id');
     wx.navigateTo({
       url: `/pages/UserDBCenterDetailInfo/index?id=${id}`,
     })
-  },
-
-  onPullDownRefresh: function () {
-    this.setData({
-      ['FPage.pageNum']: 1,
-      dbList: []
-    }, () => {
-      this.getOrderData(this.tabSelectedId)
-    })
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.getOrderData(this.tabSelectedId)
   }
-
 })
