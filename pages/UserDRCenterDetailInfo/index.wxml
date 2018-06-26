@@ -34,8 +34,10 @@
 <!-- 状态 -->
 <template name="type">
   <text class='text' wx:if="{{bonus_type==1}}">等级代理分红</text>
-  <text class='text' wx:if="{{bonus_type==2}}">等级代理分红</text>
-  <text class='text' wx:if="{{bonus_type==3}}">等级代理分红</text>
+  <text class='text' wx:if="{{bonus_type==2 && region_type == 'area'}}">县级区域代理分红</text>
+  <text class='text' wx:if="{{bonus_type==2 && region_type == 'city'}}">市级区域代理分红</text>
+  <text class='text' wx:if="{{bonus_type==2 && region_type == 'province'}}">省级区域代理分红</text>
+  <text class='text' wx:if="{{bonus_type==3}}">全球分红</text>
 </template>
 <!-- 分销商等级  -->
 <template name="level">

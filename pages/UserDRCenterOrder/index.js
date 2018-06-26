@@ -24,11 +24,7 @@ Page({
       hasData: true,
       noContent: false,
       noContentImg: APP.imgs.noContentImg
-    },
-
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    }
   },
 
   onLoad: function (options) {
@@ -57,7 +53,7 @@ Page({
           })
         } else {
           // 如果是第一页就位空
-          if (this.data.pageNum == 1) {
+          if (this.data.FPage.pageNum == 1) {
             this.setData({
               ['FPage.noContent']: true,
               ['FPage.hasData']: false
@@ -81,24 +77,22 @@ Page({
     this.setData({
       tabSelectedId: id,
       orderList: [],
+      ['FPage.hasData']: true,
       ['FPage.pageNum']: 1,
     }, () => {
       this.getOrderData(id);
     })
   },
-
+  // 下拉刷新
   onPullDownRefresh: function () {
     this.setData({
-      ['FPage.pageNum']: 1,
-      orderList: []
+      orderList: [],
+      ['FPage.hasData']: true,
+      ['FPage.pageNum']: 1
     }, () => {
       this.getOrderData(this.data.tabSelectedId)
     })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
     this.getOrderData(this.data.tabSelectedId)
   }

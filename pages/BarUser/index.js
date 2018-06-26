@@ -87,7 +87,6 @@ Page({
                   wx.navigateTo({
                     url: `/pages/ComGoodsList/index?distribution=1`,
                   })
-                  // goto('goods_list_model', { distribution: 1 })
                 }, 800);
               }
             } else {

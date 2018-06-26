@@ -1,4 +1,6 @@
 const APP = getApp();
+import GetPData from '../../utils/pagesRequest.js';
+
 Page({
   data: {
     tabList: [{
@@ -16,7 +18,6 @@ Page({
     }],
     tabSelectedId: 0,
     orderList: [],
-    orderData: {},
     // 分页功能
     FPage: {
       pageNum: 1,
@@ -25,77 +26,40 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-
+  // 初始化
   onLoad: function (options) {
     this.getOrderData(this.data.tabSelectedId)
   },
-
+  // 上拉加载
+  onReachBottom: function () {
+    this.getOrderData(this.data.tabSelectedId)
+  },
+  // 下拉刷新
+  onPullDownRefresh: function () {
+    GetPData.pullRefresh({
+      that:this,
+      pushData:'orderList',
+      fn:this.getOrderData
+    })
+  },
+  // 获取分页数据
   getOrderData(status) {
-    // 数据请求完了
-    if (!this.data.FPage.hasData) {
-      return;
-    }
     let data = status != 0 ? { order_status: status } : {}
-    APP.ajax({
-      url: APP.api.bonusOrderList,
-      data: data,
-      header: {
-        'page-limit': 10,
-        'page-num': this.data.FPage.pageNum,
-      },
-      success: (res) => {
-        if (res.data.orders.length) {
-          this.setData({
-            orderData: res.data,
-            orderList: this.data.orderList.concat(res.data.orders),
-            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
-            ['FPage.noContent']: false,
-          })
-        } else {
-          // 如果是第一页就位空
-          if (this.data.pageNum == 1) {
-            this.setData({
-              ['FPage.noContent']: true,
-              ['FPage.hasData']: false
-            })
-          } else {
-            this.setData({
-              ['FPage.hasData']: false
-            })
-          }
-        }
-      }
+    GetPData.getPagesData({
+      type:1,
+      that:this,
+      url:'bonusOrderList',
+      pushData:'orderList',
+      getStr:'orders',
+      postData: data
     })
   },
   // 点击切换顶部的标签
-  tabchange(e) {
-    let id = this.selectComponent("#tab").data.selectedId
-    // 禁止重复点击
-    if (id == this.data.tabSelectedId) {
-      return;
-    }
-    this.setData({
-      tabSelectedId: id,
-      orderList: [],
-      ['FPage.pageNum']: 1,
-    }, () => {
-      this.getOrderData(id);
+  tabchange() {
+    GetPData.tabChange({
+      that:this,
+      pushData:'orderList',
+      fn:this.getOrderData
     })
-  },
-
-  onPullDownRefresh: function () {
-    this.setData({
-      ['FPage.pageNum']: 1,
-      orderList: []
-    }, () => {
-      this.getOrderData(this.data.tabSelectedId)
-    })
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    this.getOrderData(this.data.tabSelectedId)
   }
-
 })

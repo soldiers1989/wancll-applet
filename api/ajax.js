@@ -35,7 +35,11 @@ function request(option, header) {
   let fail = options.fail;
   // 0.8秒后显示加载的动态
   // 暂时取消请求的loding
-
+  // setTimeout(()=>{
+  //   wx.showLoading({
+  //     title: '数据加载中...',
+  //   })
+  // })
   // 请求的封装
   wx.request({
     url: url,
@@ -46,6 +50,7 @@ function request(option, header) {
     responseType: 'text',
     success: res => {
       // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
+      // wx.hideLoading();
       if (res.data.code == 1) {
         success(res.data);
       } else if (res.data.code == 0) {

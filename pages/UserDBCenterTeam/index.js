@@ -3,9 +3,13 @@ Page({
   data: {
     teamUsers:[],
     user:{},
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
   onLoad: function (options) {
     this.getOrderData()
@@ -14,23 +18,40 @@ Page({
     })
   },
   getOrderData() {
+    // 数据请求完了
+    if (!this.data.FPage.hasData) {
+      return;
+    }
+    wx.showLoading({
+      title: '加载中...',
+    })
     APP.ajax({
       url: APP.api.bonusTeamUser,
+      data: data,
       header: {
         'page-limit': 10,
-        'page-num': this.data.pageNum,
+        'page-num': this.data.FPage.pageNum,
       },
       success: (res) => {
+        wx.hideLoading();
         if (res.data.team_users.length) {
           this.setData({
             teamUsers: this.data.teamUsers.concat(res.data.team_users),
-            pageNum: ++(this.data.pageNum),
-            noContent: false,
+            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
+            ['FPage.noContent']: false,
           })
-        } else if (this.data.pageNum == 1) {
-          this.setData({
-            noContent: true
-          })
+        } else {
+          // 如果是第一页就位空
+          if (this.data.FPage.pageNum == 1) {
+            this.setData({
+              ['FPage.noContent']: true,
+              ['FPage.hasData']: false
+            })
+          } else {
+            this.setData({
+              ['FPage.hasData']: false
+            })
+          }
         }
       }
     })
@@ -38,7 +59,8 @@ Page({
 
   onPullDownRefresh: function () {
     this.setData({
-      pageNum: 1,
+      ['FPage.pageNum']: 1,
+      ['FPage.hasData']: true,
       teamUsers: []
     }, () => {
       this.getOrderData()

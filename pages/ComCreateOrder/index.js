@@ -22,14 +22,17 @@ Page({
     hasPopup: true,
   },
   onLoad(options) {
+  
     this.setData({
       goodsList: wx.getStorageSync('orderConfirmGoodsList'),
       isDiscountGoods: Number(options.isDiscountGoods) || 0,
     });
-    getDefaultAddress(this);
+    // getDefaultAddress(this);
   },
   // 页面显示的时候重新加载 地址数据
   onShow() {
+    getDefaultAddress(this);
+    // console.log('show')
     this.selectComponent("#address").refresh();
   },
   // 点击地址刷新数据 然后关闭弹窗
@@ -62,7 +65,6 @@ Page({
       })
     });
     orderView(this);
-
   },
   // 优惠券选择
   selectCoupon(e) {
@@ -137,14 +139,18 @@ Page({
     this.setData({
       showPopupAddress: !this.data.showPopupAddress,
       hasPopup: !this.data.hasPopup
+    },()=>{
+      getDefaultAddress(this);
     })
   },
+  // 切换折扣弹窗
   toggilPopupCoupon() {
     this.setData({
       showPopupCoupon: !this.data.showPopupCoupon,
       hasPopup: !this.data.hasPopup
     })
   },
+  // 切换减慢弹窗
   toggilPopupFull() {
     this.setData({
       showPopupFull: !this.data.showPopupFull,

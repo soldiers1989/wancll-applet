@@ -46,7 +46,7 @@ Page({
         this.setData({
           isNeedCompleteUserInfo: res.data.is_need_complete_user_info
         }, () => {
-          if (!this.data.isNeedCompleteUserInfo) {
+          if (this.data.isNeedCompleteUserInfo) {
             APP.ajax({
               url: APP.api.user,
               success: res => {

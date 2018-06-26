@@ -65,7 +65,7 @@ export function handleWechatLogin(that, userinfo) {
                 iv: userinfo.iv
               },
               success(res) {
-                queryUserInfoByUnionId(JSON.parse(res.data).unionId, that);
+                queryUserInfoByUnionId(JSON.parse(res.data), that);
               },
             })
           }
@@ -75,7 +75,10 @@ export function handleWechatLogin(that, userinfo) {
   })
 }
 // 根据 unionId 查询用户信息
-function queryUserInfoByUnionId(unionId, that) {
+function queryUserInfoByUnionId(resData, that) {
+  let unionId = resData.unionId;
+  let avatar = resData.avatar;
+  let nickName = resData.nick_name;
   let user = wx.getStorageSync('user');
   // 登录状态直接绑定uniondId
   if (user) {

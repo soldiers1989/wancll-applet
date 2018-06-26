@@ -38,7 +38,7 @@ Component({
     } else {
       APP.ajax({
         url: APP.api.addressRegions,
-        success(res) {
+        success:(res)=> {
           wx.setStorageSync('citys', res.data)
           this.setData({
             cityData: res.data

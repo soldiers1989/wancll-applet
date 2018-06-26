@@ -1,11 +1,17 @@
 const APP = getApp();
+import GetPData from '../../utils/pagesRequest.js';
+
 Page({
   data: {
     custsUser: [],
     user: {},
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
   onLoad: function (options) {
     this.getOrderData()
@@ -14,38 +20,20 @@ Page({
     })
   },
   getOrderData() {
-    APP.ajax({
-      url: APP.api.bonusChildUser,
-      header: {
-        'page-limit': 10,
-        'page-num': this.data.pageNum,
-      },
-      success: (res) => {
-        console.log(res.data)
-        if (res.data.length) {
-          this.setData({
-            custsUser: this.data.custsUser.concat(res.data),
-            pageNum: ++(this.data.pageNum),
-            noContent: false,
-          })
-        } else if (this.data.pageNum == 1) {
-          this.setData({
-            noContent: true
-          })
-        }
-      }
+    GetPData.getPagesData({
+      type:2,
+      that:this,
+      url:'bonusChildUser',
+      pushData:'custsUser',
     })
   },
-
   onPullDownRefresh: function () {
-    this.setData({
-      pageNum: 1,
-      custsUser: []
-    }, () => {
-      this.getOrderData()
+    GetPData.pullRefresh({
+      that:this,
+      pushData:'custsUser',
+      fn:this.getOrderData
     })
   },
-
   onReachBottom: function () {
     this.getOrderData()
   }

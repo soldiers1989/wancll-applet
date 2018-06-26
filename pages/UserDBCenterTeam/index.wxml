@@ -23,6 +23,10 @@
         <view class='text money'>+{{item.user_info.already_drawcash_bonus_money}}元</view>
         <view class='text'>{{item.team_num}} 成员</view>
       </zan-col>
-  </zan-row>
+    </zan-row>
+  </view>
+  <view wx:if="{{FPage.noContent}}" class="no-content-image">
+    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+    <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </view>

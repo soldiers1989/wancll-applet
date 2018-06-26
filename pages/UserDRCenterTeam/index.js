@@ -14,9 +14,13 @@ Page({
     tabSelectedId: 1,
     teamUsers:[],
     user:{},
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
   onLoad: function (options) {
     this.getOrderData(this.data.tabSelectedId)
@@ -25,25 +29,36 @@ Page({
     })
   },
   getOrderData(id) {
+    // 数据请求完了
+    if (!this.data.FPage.hasData) {
+      return;
+    }
     APP.ajax({
       url: APP.api.drpTeamUser,
       data: { team_type:id},
       header: {
         'page-limit': 10,
-        'page-num': this.data.pageNum,
+        'page-num': this.data.FPage.pageNum,
       },
       success: (res) => {
-        console.log(res.data.team_users.length, this.data.pageNum);
-        if (res.data.team_users.length!=0) {
+        if (res.data.team_users.length) {
           this.setData({
             teamUsers: this.data.teamUsers.concat(res.data.team_users),
-            pageNum: ++(this.data.pageNum),
-            noContent: false,
+            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
+            ['FPage.noContent']: false,
           })
-        } else if (this.data.pageNum == 1) {
-          this.setData({
-            noContent: true
-          })
+        } else {
+          // 如果是第一页就位空
+          if (this.data.FPage.pageNum == 1) {
+            this.setData({
+              ['FPage.noContent']: true,
+              ['FPage.hasData']: false
+            })
+          } else {
+            this.setData({
+              ['FPage.hasData']: false
+            })
+          }
         }
       }
     })
@@ -51,21 +66,22 @@ Page({
   // 点击切换顶部的标签
   tabchange(e) {
     let id = this.selectComponent("#tab").data.selectedId
-    // 禁止重复点击
     if (id == this.data.tabSelectedId) {
       return;
     }
     this.setData({
       tabSelectedId: id,
       teamUsers: [],
-      pageNum: 1,
+      ['FPage.hasData']: true,
+      ['FPage.pageNum']: 1,
     }, () => {
       this.getOrderData(id);
     })
   },
   onPullDownRefresh: function () {
     this.setData({
-      pageNum: 1,
+      ['FPage.pageNum']: 1,
+      ['FPage.hasData']: true,
       teamUsers: []
     }, () => {
       this.getOrderData(this.data.tabSelectedId)

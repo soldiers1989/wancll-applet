@@ -20,9 +20,13 @@ Page({
     }],
     tabSelectedId: 0,
     dbList: [],
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -30,31 +34,45 @@ Page({
   onLoad: function (options) {
     this.getOrderData(this.tabSelectedId)
   },
-  // 获取数据
+
+
   getOrderData(status) {
-    let data = status != 0 ? { status: status } : {}
+    // 数据请求完了
+    if (!this.data.FPage.hasData) {
+      return;
+    }
+    let data = status != 0 ? { order_status: status } : {}
     APP.ajax({
       url: APP.api.bonusApplysList,
       data: data,
       header: {
         'page-limit': 10,
-        'page-num': this.data.pageNum,
+        'page-num': this.data.FPage.pageNum,
       },
-      success:(res)=> {
+      success: (res) => {
         if (res.data.applys.length) {
           this.setData({
             dbList: this.data.dbList.concat(res.data.applys),
-            pageNum: ++(this.data.pageNum),
-            noContent: false,
+            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
+            ['FPage.noContent']: false,
           })
-        } else if (this.data.pageNum == 1) {
-          this.setData({
-            noContent: true
-          })
+        } else {
+          // 如果是第一页就位空
+          if (this.data.FPage.pageNum == 1) {
+            this.setData({
+              ['FPage.noContent']: true,
+              ['FPage.hasData']: false
+            })
+          } else {
+            this.setData({
+              ['FPage.hasData']: false
+            })
+          }
         }
       }
     })
   },
+
   // 点击切换顶部的标签
   tabchange(e) {
     let id = this.selectComponent("#tab").data.selectedId
@@ -65,21 +83,22 @@ Page({
     this.setData({
       tabSelectedId: id,
       dbList: [],
-      pageNum: 1,
+      ['FPage.hasData']: true,
+      ['FPage.pageNum']: 1,
     }, () => {
       this.getOrderData(id);
     })
   },
-  goDetailInfo(e){
-    let id = APP.utils.getDataSet(e,'id');
+  goDetailInfo(e) {
+    let id = APP.utils.getDataSet(e, 'id');
     wx.navigateTo({
       url: `/pages/UserDBCenterDetailInfo/index?id=${id}`,
     })
   },
-  
+
   onPullDownRefresh: function () {
     this.setData({
-      pageNum: 1,
+      ['FPage.pageNum']: 1,
       dbList: []
     }, () => {
       this.getOrderData(this.tabSelectedId)
