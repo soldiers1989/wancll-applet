@@ -1,5 +1,8 @@
 const APP = getApp();
-import { headers, imageHost } from '../api/config.js';
+import {
+  headers,
+  imageHost
+} from '../api/config.js';
 // 获取base64格式的图片
 export function uploadFile(callback) {
   wx.chooseImage({
@@ -53,22 +56,18 @@ export function handleWechatLogin(that, userinfo) {
         },
         success(res) {
           wx.hideLoading();
-          if (res.data.unionid) {
-            queryUserInfoByUnionId(res.data.unionid, that);
-          } else {
-            // 通过服务端的接口解密数据
-            APP.ajax({
-              url: APP.api.getWechatUserInfo,
-              data: {
-                session_key: res.data.session_key,
-                encrypted_data: userinfo.encryptedData,
-                iv: userinfo.iv
-              },
-              success(res) {
-                queryUserInfoByUnionId(JSON.parse(res.data), that);
-              },
-            })
-          }
+          // 通过服务端的接口解密数据
+          APP.ajax({
+            url: APP.api.getWechatUserInfo,
+            data: {
+              session_key: res.data.session_key,
+              encrypted_data: userinfo.encryptedData,
+              iv: userinfo.iv
+            },
+            success(res) {
+              queryUserInfoByUnionId(JSON.parse(res.data), that);
+            },
+          })
         }
       })
     }
@@ -156,7 +155,7 @@ export function handleWechatPay(orderNo, payType) {
           },
           success(res) {
             wx.hideLoading();
-            res.data.success = function (res) {
+            res.data.success = function(res) {
               wx.redirectTo({
                 url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
               })
