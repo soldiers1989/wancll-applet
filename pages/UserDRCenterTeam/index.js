@@ -1,5 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     tabList: [{
@@ -23,38 +24,31 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-  onLoad: function (options) {
-    this.getOrderData(this.data.tabSelectedId)
+  onLoad (options) {
     this.setData({
       user:wx.getStorageSync('user')
     })
-  },
-  getOrderData(id) {
-    GetPData.getPagesData({
+    Paging.init({
       type:1,
       that:this,
       url:'drpTeamUser',
       pushData:'teamUsers',
       getStr:'team_users',
-      postData: {team_type:id}
+      callback: this.getOrderData
     })
+    this.getOrderData(this.data.tabSelectedId)
+  },
+  getOrderData(id) {
+    Paging.getPagesData({postData: {team_type:id}})
   },
   // 点击切换顶部的标签
-  tabchange(e) {
-    GetPData.tabChange({
-      that:this,
-      pushData:'teamUsers',
-      fn:this.getOrderData
-    })
+  tabchange() {
+    Paging.tabChange()
   },
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'teamUsers',
-      fn:this.getOrderData
-    })
+  onPullDownRefresh () {
+    Paging.refresh()
   },
-  onReachBottom: function () {
+  onReachBottom () {
     this.getOrderData(this.data.tabSelectedId)
   }
 })

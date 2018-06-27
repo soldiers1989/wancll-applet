@@ -22,7 +22,3 @@ export function getCarts(that) {
     }
   })
 }
-
-export function updateCart(that) {
-
-}

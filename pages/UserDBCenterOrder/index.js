@@ -1,5 +1,4 @@
 const APP = getApp();
-// import GetPData from '../../utils/pagesRequest.js';
 import PagingData from '../../utils/PagingData';
 const Paging = new PagingData();
 Page({
@@ -28,24 +27,23 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-  // 获取分页数据
-  getOrderData(status) {
-    let data = status != 0 ? {
-      order_status: status
-    } : {}
-    Paging.getPagesData({
+  
+  // 初始化
+  onLoad(options) {
+    Paging.init({
       type: 1,
       that: this,
       url: 'bonusOrderList',
       pushData: 'orderList',
       getStr: 'orders',
-      postData: data,
       callback: this.getOrderData
     })
-  },
-  // 初始化
-  onLoad(options) {
     this.getOrderData(this.data.tabSelectedId)
+  },
+  // 获取分页数据
+  getOrderData(status) {
+    let data = status != 0 ? { order_status: status } : {}
+    Paging.getPagesData({ postData: data })
   },
   // 上拉加载
   onReachBottom() {

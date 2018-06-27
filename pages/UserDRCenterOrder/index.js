@@ -1,5 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     tabList: [{
@@ -25,36 +26,28 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-
-  onLoad: function (options) {
-    this.getOrderData(this.data.tabSelectedId)
-  },
-  getOrderData(status) {
-    let data = status != 0 ? { order_status: status } : {}
-    GetPData.getPagesData({
+  onLoad (options) {
+    Paging.init({
       type:1,
       that:this,
       url:'drpOrderList',
       pushData:'orderList',
       getStr:'orders',
-      postData: data
+      callback: this.getOrderData
     })
+    this.getOrderData(this.data.tabSelectedId)
+  },
+  getOrderData(status) {
+    let data = status != 0 ? { order_status: status } : {}
+    Paging.getPagesData({postData: data})
   },
   // 点击切换顶部的标签
   tabchange(e) {
-    GetPData.tabChange({
-      that:this,
-      pushData:'orderList',
-      fn:this.getOrderData
-    })
+    Paging.tabChange()
   },
   // 下拉刷新
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'orderList',
-      fn:this.getOrderData
-    })
+  onPullDownRefresh () {
+    Paging.refresh()
   },
   onReachBottom: function () {
     this.getOrderData(this.data.tabSelectedId)

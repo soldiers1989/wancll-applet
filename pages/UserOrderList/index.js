@@ -1,5 +1,6 @@
 const APP = getApp();
-import { getOrderData } from './data.js'
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     tabList: [{
@@ -20,58 +21,44 @@ Page({
     }],
     tabSelectedId: 0,
     orderList: [],
-    pageNum: 1,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }
   },
   onLoad(options) {
-    // 设置跳转目标并对应请求
-    if (options.target) {
-      wx.setStorageSync('thisOrderList', Number(options.target))
-      this.setData({
-        tabSelectedId: options.target
-      }, () => {
-        getOrderData(this, options.target);
-      })
-    }
-  },
-  //重新加载数据
-  refreshGet() {
-    this.setData({
-      orderList: [],
-      pageNum: 1,
+    Paging.init({
+      type:2,
+      that:this,
+      url:'orderAll',
+      pushData:'orderList',
+      callback: this.getOrderData
     })
-    getOrderData(this, this.data.tabSelectedId);
+    this.setData({
+      tabSelectedId: options.target
+    }, () => {
+      this.getOrderData(options.target)
+    })
+  },
+  getOrderData(status) {
+    let data = status != 0 ? { status: status } : {}
+    Paging.getPagesData({postData: data})
+  },
+  // 重新加载数据
+  refreshGet() {
+    Paging.refresh()
   },
   // 点击切换顶部的标签
-  tabchange(e) {
-    let id = this.selectComponent("#tab").data.selectedId
-    // 禁止重复点击
-    if (id == this.data.tabSelectedId) {
-      return;
-    }
-    wx.setStorageSync('thisOrderList', id)
-    this.setData({
-      tabSelectedId: id,
-      orderList: [],
-      pageNum: 1,
-    }, () => {
-      getOrderData(this, id);
-    })
+  tabchange() {
+    Paging.tabChange()
   },
   onPullDownRefresh() {
-    wx.stopPullDownRefresh();
-    this.setData({
-      orderList: [],
-      pageNum: 1,
-    })
-    wx.setStorageSync('orderList', []);
-    getOrderData(this, this.data.tabSelectedId);
+    Paging.refresh()
   },
   onReachBottom: function () {
-    getOrderData(this, this.data.tabSelectedId);
-  },
-  onShareAppMessage() {
-
+    this.getOrderData(this.data.tabSelectedId)
   }
 })

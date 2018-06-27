@@ -1,5 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     teamUsers:[],
@@ -12,30 +13,27 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-  onLoad: function (options) {
-    this.getOrderData()
+  onLoad(options) {
     this.setData({
       user:wx.getStorageSync('user')
     })
+    Paging.init({
+      type: 1,
+      that: this,
+      url: 'bonusTeamUser',
+      pushData: 'teamUsers',
+      getStr: 'team_users',
+      callback: this.getOrderData
+    })
+    this.getOrderData()
   },
   getOrderData() {
-    GetPData.getPagesData({
-      type:1,
-      that:this,
-      postData:{},
-      url:'bonusTeamUser',
-      pushData:'teamUsers',
-      getStr:'team_users'
-    })
+    Paging.getPagesData()
   },
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'teamUsers',
-      fn:this.getOrderData
-    })
+  onPullDownRefresh() {
+    Paging.refresh()
   },
-  onReachBottom: function () {
+  onReachBottom() {
     this.getOrderData()
   }
 })

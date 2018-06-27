@@ -1,6 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
-
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     tabList: [{
@@ -28,39 +28,32 @@ Page({
   },
   // 初始化
   onLoad: function (options) {
-    this.getOrderData(this.tabSelectedId)
-  },
-  // 上拉加载
-  onReachBottom: function () {
-    this.getOrderData(this.tabSelectedId)
-  },
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'dbList',
-      fn:this.getOrderData
-    })
-  },
-  // 获取分页数据
-  getOrderData(status) {
-    let data = status != 0 ? { status: status } : {}
-    GetPData.getPagesData({
+    Paging.init({
       type:1,
       that:this,
       url:'bonusApplysList',
       pushData:'dbList',
       getStr:'applys',
-      postData: data
+      callback: this.getOrderData
     })
+    this.getOrderData(this.data.tabSelectedId)
+  },
+  // 上拉加载
+  onReachBottom() {
+    this.getOrderData(this.data.tabSelectedId)
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    Paging.refresh()
+  },
+  // 获取分页数据
+  getOrderData(status) {
+    let data = status != 0 ? { status: status } : {}
+    Paging.getPagesData({postData: data})
   },
   // 点击切换顶部的标签
   tabchange() {
-    GetPData.tabChange({
-      that:this,
-      pushData:'dbList',
-      fn:this.getOrderData
-    })
+    Paging.tabChange()
   },
   // 进入详情
   goDetailInfo(e) {

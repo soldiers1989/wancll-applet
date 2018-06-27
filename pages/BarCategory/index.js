@@ -30,7 +30,7 @@ Page({
   },
   onLoad(options) {
     getGoodsTree(this)
-    this.getGoodsData()
+    getGoodsData(this)
   },
   // 小分类的点击
   changeSubNav(e) {
@@ -77,7 +77,7 @@ Page({
       pageNum: 1,
       id: id,
     }, () => { 
-      this.getGoodsData(id) 
+      getGoodsData(this,id) 
     })
   },
   // 跳转到商品详情页
@@ -87,17 +87,18 @@ Page({
       url: `/pages/ComDetail/index?id=${id}`,
     })
   },
-  // 获取商品数据
-  getGoodsData(id=''){
-    let data = {goods_cate_id: id}
-    GetPData.getPagesData({
-      type:2,
-      that:this,
-      url:'goods',
-      pushData:'goods',
-      postData: data
-    })
-  },
+
+  // // 获取商品数据
+  // getGoodsData(id=''){
+  //   let data = {goods_cate_id: id}
+  //   GetPData.getPagesData({
+  //     type:2,
+  //     that:this,
+  //     url:'goods',
+  //     pushData:'goods',
+  //     postData: data
+  //   })
+  // },
 
 
   onPullDownRefresh() {

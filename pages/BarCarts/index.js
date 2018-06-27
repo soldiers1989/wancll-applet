@@ -1,5 +1,5 @@
 const APP = getApp();
-import { getCarts, updateCart } from './data.js';
+import { getCarts } from './data.js';
 Page({
   data: {
     cartsList: [], // 购物车商品信息列表包含了sku信息组合
@@ -21,6 +21,7 @@ Page({
   },
   // 页面新显示的时候
   onShow: function () {
+    // 初始化数据
     this.setData({
       selectObj: {},
       selectAll: false,

@@ -1,16 +1,19 @@
 const APP = getApp();
 export default class Request {
   constructor() {}
-  // 数据请求主方法 
-  getPagesData(options) {
+  // 初始化数据
+  init(options){
     this.that = options.that;
     this.url = options.url;
     this.type = options.type || 1;
-    this.postData = options.postData || {}
     this.getStr = options.getStr || ''
     this.pushData = options.pushData || ''
     this.callback = options.callback 
     this.selectTable= options.selectTable || 'tabSelectedId'
+  }
+  // 数据请求主方法 
+  getPagesData(options) {
+    this.postData = options ? options.postData : {}
     // 数据请求完了
     if (!this.that.data.FPage.hasData) {
       return;
@@ -26,16 +29,16 @@ export default class Request {
         wx.stopPullDownRefresh();
         if (this.type == 1) {
           // 子参数中取到
-          this.setdata1(res)
+          this._setdata1(res)
         } else if (this.type == 2) {
           // 直接 data 中取到
-          this.setdata2(res)
+          this._setdata2(res)
         }
       }
     })
   }
   // private 类型 子参数中取到
-  setdata1(res) {
+  _setdata1(res) {
     if (res.data[this.getStr].length) {
       this.that.setData({
         [this.pushData]: this.that.data[this.pushData].concat(res.data[this.getStr]),
@@ -57,7 +60,7 @@ export default class Request {
     }
   }
   // private 类型 直接data中取到
-  setdata2(res) {
+  _setdata2(res) {
     if (res.data.length) {
       this.that.setData({
         [this.pushData]: this.that.data[this.pushData].concat(res.data),
@@ -85,14 +88,15 @@ export default class Request {
       ['FPage.hasData']: true,
       [this.pushData]: []
     }, () => {
-      this.callback()
+      // 始终传递一个当前的选择id过去。给table选项
+      this.callback(this.that.data[this.selectTable])
     })
   }
   // public 类型 点击 tab 切换数据
   tabChange() {
     let id = this.that.selectComponent("#tab").data.selectedId
     // 禁止重复点击
-    if (id == this.that.data.tabSelectedId) {
+    if (id == this.that.data[this.selectTable]) {
       return;
     }
     this.that.setData({

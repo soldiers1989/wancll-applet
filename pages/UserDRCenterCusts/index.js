@@ -1,6 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
-
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     custsUser: [],
@@ -14,28 +14,25 @@ Page({
     }
   },
   onLoad: function (options) {
-    this.getOrderData()
     this.setData({
       user: wx.getStorageSync('user')
     })
-  },
-  getOrderData() {
-    GetPData.getPagesData({
+    Paging.init({
       type:2,
       that:this,
-      postData:{},
       url:'drpChildUser',
-      pushData:'custsUser'
-    })
-  },
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
       pushData:'custsUser',
-      fn:this.getOrderData
+      callback: this.getOrderData
     })
+    this.getOrderData()
   },
-  onReachBottom: function () {
+  getOrderData() {
+    Paging.getPagesData()
+  },
+  onPullDownRefresh () {
+    Paging.refresh()
+  },
+  onReachBottom () {
     this.getOrderData()
   }
 })

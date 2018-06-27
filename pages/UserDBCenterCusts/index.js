@@ -1,6 +1,6 @@
 const APP = getApp();
-import GetPData from '../../utils/pagesRequest.js';
-
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     user: {},
@@ -16,30 +16,28 @@ Page({
   },
   // 初始化
   onLoad: function (options) {
-    this.getOrderData()
     this.setData({
       user: wx.getStorageSync('user')
     })
-  },
-  // 获取分页数据
-  getOrderData() {
-    GetPData.getPagesData({
+    Paging.init({
       type:2,
       that:this,
       url:'bonusChildUser',
       pushData:'custsUser',
+      callback: this.getOrderData
     })
+    this.getOrderData()
+  },
+  // 获取分页数据
+  getOrderData() {
+    Paging.getPagesData()
   },
   // 下拉刷新
-  onPullDownRefresh: function () {
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'custsUser',
-      fn:this.getOrderData
-    })
+  onPullDownRefresh() {
+    Paging.refresh()
   },
   // 上拉加载
-  onReachBottom: function () {
+  onReachBottom() {
     this.getOrderData()
   }
 })
