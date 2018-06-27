@@ -54,10 +54,12 @@ function request(option, header) {
       if (res.data.code == 1) {
         success(res.data);
       } else if (res.data.code == 0) {
-        wx.showToast({
-          title: res.data.msg,
-          icon: 'none',
-        })
+        if (res.data.msg != -41003){
+          wx.showToast({
+            title: res.data.msg.toString(),
+            icon: 'none',
+          })
+        }
       } else {
         // 异常操作 清除本地存储 跳转到首页
         wx.clearStorageSync();

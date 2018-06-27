@@ -8,10 +8,16 @@ Page({
     status: true, //  发送成功
     countDown: 91,
     unionId: '',
+    avatar: '',
+    nick_name: '',
+    real_openid: '',
   },
   onLoad(options) {
     this.setData({
-      unionId: options.unionId
+      unionId: options.unionId,
+      avatar: options.avatar,
+      nick_name: options.nick_name,
+      real_openid: options.real_openid,
     })
   },
   // 手机号码输入
@@ -74,7 +80,10 @@ Page({
       mobile: this.data.mobile,
       code: this.data.code,
       openid: this.data.unionId,
-      openid_type: 'wechat'
+      openid_type: 'wechat',
+      avatar: this.data.avatar,
+      nick_name: decodeURIComponent(this.data.nick_name),
+      real_openid: this.data.real_openid
     };
     APP.ajax({
       url: APP.api.bindMobileInNoLogin,
@@ -95,6 +104,7 @@ Page({
   // 倒计时
   countDown() {
     let that = this
+
     function settime() {
       let countdown = that.data.countDown;
       if (countdown == 0) {

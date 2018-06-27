@@ -76,8 +76,9 @@ export function handleWechatLogin(that, userinfo) {
 // 根据 unionId 查询用户信息
 function queryUserInfoByUnionId(resData, that) {
   let unionId = resData.unionId;
-  let avatar = resData.avatar;
-  let nickName = resData.nick_name;
+  let avatar = resData.avatarUrl;
+  let nick_name = resData.nickName;
+  let real_openid = resData.openId
   let user = wx.getStorageSync('user');
   // 登录状态直接绑定uniondId
   if (user) {
@@ -126,11 +127,11 @@ function queryUserInfoByUnionId(resData, that) {
             success(res) {
               if (res.tapIndex == 0) {
                 wx.navigateTo({
-                  url: `/pages/ComBindMobile/index?unionId=${unionId}`,
+                  url: `/pages/ComBindMobile/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
                 })
               } else if (res.tapIndex == 1) {
                 wx.navigateTo({
-                  url: `/pages/ComRegister/index?unionId=${unionId}`,
+                  url: `/pages/ComRegister/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
                 })
               }
             }

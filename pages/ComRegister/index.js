@@ -4,32 +4,38 @@ Page({
     type: 1,
     logo: APP.imgs.logo,
     mobile: '',
-    pMobile:'',
+    pMobile: '',
     code: '',
     password: '',
     rpassword: '',
-    status: true,    // 发送成功？
+    status: true, // 发送成功？
     countDown: 91,
     unionId: '',
-    ischecked:false,
+    avatar: '',
+    nick_name: '',
+    real_openid: '',
+    ischecked: false,
     is_open_bonus: '',
     is_open_drp: '',
   },
   onLoad(options) {
     options.unionId && this.setData({
-      unionId: options.unionId
+      unionId: options.unionId,
+      avatar: options.avatar,
+      nick_name: options.nick_name,
+      real_openid: options.real_openid,
     })
     APP.ajax({
       url: APP.api.userInfo,
-      success:(res) =>{
+      success: (res) => {
         this.setData({
           is_open_bonus: res.data.is_open_bonus,
-          is_open_drp : res.data.is_open_drp,
+          is_open_drp: res.data.is_open_drp,
         });
       }
     })
   },
-  bindtjMobile(e){
+  bindtjMobile(e) {
     this.setData({
       pMobile: e.detail.value
     })
@@ -59,7 +65,7 @@ Page({
     })
   },
   // 跳转到文章详情页面
-  goArticle(e){
+  goArticle(e) {
     let id = APP.utils.getDataSet(e, 'id');
     let type = APP.utils.getDataSet(e, 'type');
     let param = APP.utils.paramsJoin({
@@ -83,7 +89,7 @@ Page({
       url: APP.api.userSettingCode,
       data: {
         mobile: this.data.mobile,
-        type: 1
+        type: 1,
       },
       success: res => {
         wx.showToast({
@@ -99,7 +105,7 @@ Page({
     })
   },
   // 同意条款
-  ischecked(){
+  ischecked() {
     this.setData({
       ischecked: !this.data.ischecked
     })
@@ -107,11 +113,11 @@ Page({
   // 确认
   sendData() {
     if (this.data.pMobile && APP.validator.mobile(this.data.pMobile)) {
-        wx.showToast({
-          title: '填写正确的手机号',
-          icon: 'none'
-        })
-        return;
+      wx.showToast({
+        title: '填写正确的手机号',
+        icon: 'none'
+      })
+      return;
     }
     if (!this.data.mobile) {
       wx.showToast({
@@ -152,7 +158,7 @@ Page({
       })
       return;
     }
-    if (!this.data.ischecked){
+    if (!this.data.ischecked) {
       wx.showToast({
         title: '请同意条款',
         icon: 'none'
@@ -166,7 +172,10 @@ Page({
       code: this.data.code,
     };
     if (this.data.unionId) {
-      data.wechat_openid = this.data.unionId
+      data.wechat_openid = this.data.unionId,
+      data.nick_name = decodeURIComponent(this.data.nick_name);
+      data.avatar = this.data.avatar;
+      data.real_openid = this.data.real_openid;
     }
     APP.ajax({
       url: APP.api.userRegister,
@@ -193,7 +202,8 @@ Page({
   },
   // 倒计时
   countDown() {
-    let that = this
+    let that = this;
+
     function settime() {
       let countdown = that.data.countDown;
       if (countdown == 0) {
