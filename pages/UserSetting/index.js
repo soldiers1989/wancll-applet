@@ -23,7 +23,6 @@ Page({
   changeAvatar() {
     let that = this;
     uploadFile((imgPath) => {
-      console.log(imgPath);
       updateUserInfo(that, { avatar: imgPath });
     })
   },
