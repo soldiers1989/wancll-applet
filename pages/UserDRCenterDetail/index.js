@@ -33,7 +33,7 @@ Page({
       url:'drpApplysList',
       pushData:'dbList',
       getStr:'applys',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData(this.tabSelectedId)
   },

@@ -1,6 +1,7 @@
 const APP = getApp();
 import { getOtherData } from './data.js';
-import GetPData from '../../utils/pagesRequest.js'
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     // 轮播参数
@@ -37,6 +38,13 @@ Page({
     noStockImage: APP.imgs.noStock,
   },
   onLoad() {
+    Paging.init({
+      type:2,
+      that:this,
+      url:'goods',
+      pushData:'goods',
+      getFunc: this.getGoodsData
+    })
     // 获取所有数据
     wx.showLoading({
       title: '加载中...',
@@ -47,7 +55,20 @@ Page({
       clearTimeout(timer)
     }, 500)
   },
-  
+  // 获取商品数据
+  getGoodsData(){
+    let data = {goods_cate_id: ''}
+    Paging.getPagesData({postData: data })
+  },
+  // 下拉刷新事件
+  onPullDownRefresh() {
+    getOtherData(this);
+    Paging.refresh()
+  },
+  // 上拉加载事件
+  onReachBottom() {
+    this.getGoodsData();
+  },
   // 跳转到商品的详情页面 仅存在于商品列表模块
   goDetail(e) {
     let id = APP.utils.getDataSet(e, 'id');
@@ -111,30 +132,7 @@ Page({
       url: `/pages/ComGoodsList/index?${param}`,
     })
   },
-  // 获取商品数据
-  getGoodsData(){
-    let data = {goods_cate_id: ''}
-    GetPData.getPagesData({
-      type:2,
-      that:this,
-      url:'goods',
-      pushData:'goods',
-      postData: data
-    })
-  },
-  // 下拉刷新事件
-  onPullDownRefresh() {
-    getOtherData(this);
-    GetPData.pullRefresh({
-      that:this,
-      pushData:'goods',
-      fn:this.getGoodsData
-    })
-  },
-  // 上拉加载事件
-  onReachBottom() {
-    this.getGoodsData();
-  },
+  
   // 分享
   onShareAppMessage: function () {
     return {

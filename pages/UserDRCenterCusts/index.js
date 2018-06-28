@@ -22,7 +22,7 @@ Page({
       that:this,
       url:'drpChildUser',
       pushData:'custsUser',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData()
   },

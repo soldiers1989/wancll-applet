@@ -40,11 +40,7 @@ Page({
         this.setData({
           article: res.data
         })
-        // console.log(res.data);
       }
     })
   },
-  onShareAppMessage: function () {
-    // 
-  }
 })

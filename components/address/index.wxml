@@ -39,8 +39,8 @@
       </zan-button>
     </zan-panel>
   </view>
-  <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">
-    <image mode="widthFix" src="{{noContentImg}}" style="width: 18%;margin: 0 auto;"></image>
+  <view wx:if="{{FPage.noContent}}" style="text-align: center;margin-top: 20%;">
+    <image mode="widthFix" src="{{FPage.noContentImg}}" style="width: 18%;margin: 0 auto;"></image>
     <view style="color: #777;">啊哦,这里什么都没有~</view>
   </view>
 </view>

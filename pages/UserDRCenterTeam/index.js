@@ -34,7 +34,7 @@ Page({
       url:'drpTeamUser',
       pushData:'teamUsers',
       getStr:'team_users',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData(this.data.tabSelectedId)
   },

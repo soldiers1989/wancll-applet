@@ -34,7 +34,7 @@ Page({
       url:'bonusApplysList',
       pushData:'dbList',
       getStr:'applys',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData(this.data.tabSelectedId)
   },

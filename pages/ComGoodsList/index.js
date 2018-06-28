@@ -1,4 +1,6 @@
 const APP = getApp();
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     // 渲染数据列表
@@ -17,6 +19,13 @@ Page({
 
   },
   onLoad: function (options) {
+    Paging.init({
+      type: 2,
+      that: this,
+      url: 'goods',
+      pushData: 'goodsList',
+      getFunc: this.getGoodsList
+    })
     // 加载页面的判断
     let data = {};
     if (options.cateId) {
@@ -46,51 +55,14 @@ Page({
   },
   // 分页数据请求
   getGoodsList() {
-    // 判断是否数据请求完了
-    if (!this.data.FPage.hasData) {
-      return;
-    }
-    wx.showLoading({
-      title: '加载中...',
-    })
-    APP.ajax({
-      url: APP.api.goods,
-      data: this.data.data,
-      header: {
-        'page-limit': 10,
-        'page-num': this.data.FPage.pageNum,
-      },
-      success: res => {
-        wx.hideLoading();
-        if (res.data.length) {
-          this.setData({
-            goodsList: this.data.goodsList.concat(res.data),
-            ['FPage.pageNum']: ++(this.data.FPage.pageNum),
-            ['FPage.noContent']: false,
-          })
-        } else {
-          // 如果是第一页就为空
-          if (this.data.FPage.pageNum == 1) {
-            this.setData({
-              ['FPage.noContent']: true,
-              ['FPage.hasData']: false
-            })
-          } else {
-            this.setData({
-              ['FPage.hasData']: false
-            })
-          }
-        }
-      }
-    })
+    Paging.getPagesData({ postData: this.data.data })
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    Paging.refresh()
   },
   // 上拉加载
   onReachBottom() {
     this.getGoodsList();
-  },
-  // 下拉刷新
-
-  onShareAppMessage() {
-
   }
 })

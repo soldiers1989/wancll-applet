@@ -1,44 +1,41 @@
 const APP = getApp();
-import { getList, setDefaultAddress, deleteAddress } from './indexData.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Component({
   // 传递过来的参数
-  properties: {
-
-  },
+  properties: {},
   // 默认参数
   data: {
     addressList: [],
-    pageNum: 1,
-    pageLimit: 20,
-    loading: true,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    },
   },
-  // // 组件生成到页面获取的参数
-  // attached() {
-  //   // 渲染即 获取全国城市列表    
-  //   if (!wx.getStorageSync('citys')) {
-  //     APP.ajax({
-  //       url: APP.api.addressRegions,
-  //       success(res) {
-  //         wx.setStorageSync('citys', res.data)
-  //       }
-  //     })
-  //   }
-  // },
+  attached() {
+    Paging.init({
+      type: 2,
+      that: this,
+      url: 'addressList',
+      pushData: 'addressList',
+      getFunc: this.getList
+    })
+  },
   // 组件的方法列表 
   methods: {
     // 刷新数据
     refresh() {
-      this.setData({
-        addressList: [],
-        pageNum: 1
-      });
-      getList(this);
+      Paging.refresh()
+    },
+    getList(){
+      Paging.getPagesData()
     },
     // 下拉加载数据
     concat() {
-      getList(this);
+      this.getList();
     },
     // 将点击每个地址列表得到的值传递出去 用 getclickid 接收
     selectAddress(e) {
@@ -50,7 +47,7 @@ Component({
     // 点击设置默认地址
     setDefaultAddress(e) {
       let id = APP.utils.getDataSet(e, 'id');
-      setDefaultAddress(this, id);
+      this.getDefaultAddress(id);
     },
     // 判断点击的是新增还是编辑 然后跳转到编辑页面
     editAddress(e) {
@@ -63,7 +60,53 @@ Component({
     // 删除地址操作
     deleteAddress(e) {
       let id = APP.utils.getDataSet(e, 'id');
-      deleteAddress(this, id);
+      this.deleteAdd(id);
     },
+    getDefaultAddress(id) {
+      APP.ajax({
+        url: APP.api.addressSetDefault,
+        data: {
+          is_default: 1,
+          id: id
+        },
+        success: res => {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none'
+          });
+          this.setData({
+            addressList: this.data.addressList.map(i => {
+              i.is_default = i.id == id ? true : false;
+              return i;
+            })
+          })
+        }
+      })
+    },
+    deleteAdd(id) {
+      wx.showModal({
+        title: '提示',
+        content: '确定要删除该地址吗？',
+        success: res => {
+          if (res.confirm) {
+            APP.ajax({
+              url: APP.api.addressDelete,
+              data: { id: id },
+              success: res => {
+                wx.showToast({
+                  title: res.msg,
+                  icon: 'none',
+                });
+                let newAddressList = this.data.addressList.filter(i => i.id != id)
+                this.setData({
+                  addressList: newAddressList,
+                  noContent: newAddressList.length > 0 ? false : true,
+                })
+              }
+            })
+          }
+        }
+      })
+    }
   }
 })

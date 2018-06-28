@@ -1,5 +1,5 @@
 <view>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap='changeNav' />
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bindtap='tabChange' fixed/>
   <!-- 弹出的 -->
   <view class='popup-nav' wx:if="{{popupNav}}">
     <view class='list' wx:for="{{childNav}}" wx:key="{{index}}" bindtap='changeSubNav' data-id='{{item.id}}'>
@@ -25,11 +25,9 @@
       </view>
     </view>
   </view>
-  <view class='loading' wx:if="{{loading}}">
-    <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
-  </view>
-  <view wx:if="{{noContent}}" class="no-content-image">
-    <image mode="widthFix" src="{{noContentImg}}"></image>
+
+  <view wx:if="{{FPage.noContent}}" class="no-content-image">
+    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
     <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </view>

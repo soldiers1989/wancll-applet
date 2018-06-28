@@ -37,7 +37,7 @@ Page({
           item.bg_img = APP.imgs.couponGet;
           item.change_value = parseFloat(item.change_value)
         });
-        console.log(res.data)
+        // console.log(res.data)
         this.setData({ coupon: res.data })
       }
     })

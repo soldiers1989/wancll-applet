@@ -36,7 +36,7 @@ Page({
       url: 'bonusOrderList',
       pushData: 'orderList',
       getStr: 'orders',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData(this.data.tabSelectedId)
   },

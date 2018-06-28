@@ -35,7 +35,7 @@ Page({
       that:this,
       url:'orderAll',
       pushData:'orderList',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.setData({
       tabSelectedId: options.target

@@ -24,7 +24,7 @@ Page({
       that:this,
       url:'bonusChildUser',
       pushData:'custsUser',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData()
   },

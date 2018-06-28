@@ -38,7 +38,7 @@
   </zan-panel>
 </view>
 
-<zan-panel>
+<zan-panel wx:if="{{!FPage.noContent}}">
   <view class="select-all">
     <view class="select" bindtap="selectAll" wx:if="{{!selectAll}}">
       <zan-icon style="color:#358cff" class="icon" type="check"></zan-icon>
@@ -65,7 +65,7 @@
   </view>
 </zan-popup>
 
-<view wx:if="{{noContent}}" class="no-content-image">
-  <image mode="widthFix" src="{{noContentImg}}"></image>
+<view wx:if="{{FPage.noContent}}" class="no-content-image">
+  <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
   <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>

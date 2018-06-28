@@ -23,7 +23,7 @@ Page({
       url: 'bonusTeamUser',
       pushData: 'teamUsers',
       getStr: 'team_users',
-      callback: this.getOrderData
+      getFunc: this.getOrderData
     })
     this.getOrderData()
   },

@@ -1,19 +1,25 @@
 const APP = getApp();
-import { getCarts } from './data.js';
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     cartsList: [], // 购物车商品信息列表包含了sku信息组合
+
     selectObj: {}, // 选择的商品列表
     allPreice: 0.00, // 商品的总价
     goodsInfo: '',    // 商品详细信息
     thisClickId: '', // 当前编辑的那个商品
     selectAll: false,
     showBottomPopup: false,
-    pageNum: 1,
-    pageLimit: 10,
-    noContent: false,
-    noContentImg: APP.imgs.noContentImg,
-    // 
+    
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    },
+    
     selectObjlen: 0,
   },
   onLoad(options) {
@@ -27,18 +33,39 @@ Page({
       selectAll: false,
       cartsList: [],
       allPreice: 0.00,
-      pageNum: 1,
+      'FPage.pageNum': 1,
       thisClickId: '',
       selectObjlen: 0
-    })
-    // 判断登录状态
-    if (!wx.getStorageSync('token')) {
-      wx.redirectTo({
-        url: '/pages/ComLogin/index',
+    },()=>{
+      // 初始化加载
+      Paging.init({
+        type: 2,
+        that: this,
+        url: 'getCartsAll',
+        pushData: 'cartsList',
+        getFunc: this.getOrderData
       })
-    } else {
-      getCarts(this)
-    }
+      // 判断登录状态
+      if (!wx.getStorageSync('token')) {
+        wx.redirectTo({
+          url: '/pages/ComLogin/index',
+        })
+      } else {
+        this.getOrderData()
+      }
+    })
+  },
+  // 获取分页数据
+  getOrderData() {
+    Paging.getPagesData()
+  },
+  // 上拉加载
+  onReachBottom() {
+    this.getOrderData()
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    Paging.refresh()
   },
   // 更新sku数据
   confirm(e) {
@@ -228,7 +255,7 @@ Page({
                 thisClickId: '',
                 selectObjlen: 0
               }, () => {
-                getCarts(this)
+                Paging.refresh()
               })
             }
           })
@@ -284,16 +311,5 @@ Page({
     wx.navigateTo({
       url: '/pages/ComCreateOrder/index'
     })
-  },
-  onPullDownRefresh() {
-    wx.stopPullDownRefresh();
-    this.setData({
-      cartsList: [],
-      pageNum: 1
-    })
-    getCarts(this);
-  },
-  onReachBottom() {
-    getCarts(this);
-  },
+  }
 })
