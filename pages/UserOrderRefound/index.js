@@ -11,17 +11,9 @@ Page({
     refoundTexts: ''
   },
   onLoad(options) {
-    // 获取本地存储的订单列表
-    APP.utils.getOrderById(options.orderId, (res) => {
-      let goodsList = res.order_goods_info
-      this.setData({
-        orderId: options.orderId,
-      }, () => {
-        let goodsInfo = APP.utils.getGoodsById(goodsList, options.goodsId)
-        this.setData({ goodsInfo: goodsInfo })
-      })
+    this.setData({
+      goodsInfo: wx.getStorageSync('refundGoods')
     })
-
   },
   // 输入绑定
   textareaInput(e) {
@@ -44,7 +36,9 @@ Page({
             paths.push(item)
           }
         })
-        that.setData({ tempFilePaths: paths })
+        that.setData({
+          tempFilePaths: paths
+        })
       }
     })
   },
@@ -62,7 +56,9 @@ Page({
     let id = APP.utils.getDataSet(e, 'id')
     let arr = this.data.tempFilePaths
     arr.splice(id, 1);
-    this.setData({ tempFilePaths: arr })
+    this.setData({
+      tempFilePaths: arr
+    })
   },
   // 退款 
   send() {
@@ -75,14 +71,14 @@ Page({
       return
     }
     // 添加了图片的时候
-    if(that.data.tempFilePaths.length){
+    if (that.data.tempFilePaths.length) {
       let i = 0;
       let imgs = [];
       wx.showLoading({
         title: '图片上传中',
       })
       this.uploadDIY(i, imgs);
-    }else{
+    } else {
       this.uploadData([]);
     }
   },
@@ -98,7 +94,7 @@ Page({
         return_type: 1
       },
       success: res => {
-        if(this.data.tempFilePaths.length){
+        if (this.data.tempFilePaths.length) {
           wx.hideLoading();
         }
         wx.showToast({

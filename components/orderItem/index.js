@@ -159,12 +159,12 @@ Component({
     },
     // 进入退款
     refundOrder(e) {
-      let params = APP.utils.paramsJoin({
-        orderId: this.data.data.id,
-        goodsId: APP.utils.getDataSet(e, 'id'),
-      })
+      let refundGood = this.data.data.order_goods_info.filter(item => {
+        return item.goods_id == APP.utils.getDataSet(e, 'id')
+      })[0]
+      wx.setStorageSync('refundGoods', refundGood)
       wx.navigateTo({
-        url: `/pages/UserOrderRefound/index?${params}`,
+        url: `/pages/UserOrderRefound/index`,
       })
     },
     // ----------------- 待收货
