@@ -85,6 +85,10 @@
             <icon class='icon color-y' type="star"></icon>
             <view class='text'>我的收藏</view>
           </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserTracks">
+            <icon class='icon color-y' type="star"></icon>
+            <view class='text'>我的足迹</view>
+          </view>          
           <view class='pending' catchtap='goSubPages' data-target="UserAddress">
             <icon class='icon color-y' type="dizhi-01"></icon>
             <view class='text'>我的地址</view>

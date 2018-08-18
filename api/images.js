@@ -29,7 +29,7 @@ export const imgs = {
   noStock: `${imageHost.images}/shouxin.png`,
 
   // 我的二维码背景
-  myEwmCode: `${imageHost.wapImages}/yaoqing.png`,
+  // myEwmCode: `${imageHost.wapImages}/yaoqing.png`,
   // 分红中心背景
   DRcenter: `${imageHost.wapImages}/distribution_bg.png`,
 

@@ -9,13 +9,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    bgImg: APP.imgs.myEwmCode,
+    bgImg: '',
+
   },
   canvasId: "canvas", 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 请求背景图片
+    APP.ajax({
+      url: APP.api.qrcodeImg,
+      data:{
+        position:'qrcode'
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          bgImg:res.data[0].img
+        });
+      },
+    });
+
     // 组装url
     let host = config.defaultHost;
     let str = '/wap/index/handle_qrcode.html?parent_mobile=';    

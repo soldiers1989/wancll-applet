@@ -126,6 +126,8 @@ Page({
           // 判断是否是登录状态 然后获取收藏状态
           if (wx.getStorageSync('token')) {
             this.isCollect()
+            this.addTrack();
+
           }
         })
       }
@@ -148,6 +150,17 @@ Page({
     })
   },
   // 倒计时
+
+  // 添加浏览足迹
+  addTrack(){
+    console.log(111);
+    APP.ajax({
+      url: APP.api.detailTrackSave,
+      data:{
+        goods_id: this.data.goodsId,
+      },
+    });
+  },
 
   // 默认加载时候判断是否收藏的商品
   isCollect() {

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -12,8 +12,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.98",
-	"appid": "wx52581b0db255061b",
-	"projectname": "wancll-applet",
+	"appid": "wx13094e599d4cbbc7",
+	"projectname": "ylyy",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -32,8 +32,21 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": 0,
+					"name": "普通商品详情页",
+					"pathName": "pages/ComDetail/index",
+					"query": "id=19"
+				},
+				{
+					"id": 1,
+					"name": "个人中心",
+					"pathName": "pages/BarUser/index",
+					"query": ""
+				}
+			]
 		}
 	}
 }

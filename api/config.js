@@ -6,17 +6,24 @@ export const headers = {
   'clientType': 'applet'
 }
 // 主机名称
-export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
+// export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
+export const defaultHost = 'http://192.168.31.140/'
 
 // 图片地址
 export const imageHost = {
-  wapImages: 'https://wancllshop.wx.wygoo.com/public/static/wap/images',
-  images: 'https://wancllshop.wx.wygoo.com/public/static/images',
-  appletUploadImages: 'https://wancllshop.wx.wygoo.com/public/upload/applet/'
+  wapImages: defaultHost + '/public/static/wap/images',
+  images: defaultHost + '/public/static/images',
+  appletUploadImages: defaultHost + '/public/upload/applet/'
 }
 
 // 支付类型 
 export const payType = {
   goodsOrderPay: 'goodsOrderPay',
   rechargeOrderPay: 'rechargeOrderPay'
+}
+
+// 后台参数
+export const params = {
+  commonMember:1, // 普通会员
+  bcMember: 9,  // 黑卡会员
 }

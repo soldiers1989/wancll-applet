@@ -30,6 +30,7 @@ export const api = {
   detailComments: `${defaultHost}/api_query/goods/comments`,
   detailTemplate: `${defaultHost}/api_query/goods_cates/template`,
   detailCartsSave: `${defaultHost}/api_goods/carts/save`,
+  detailTrackSave: `${defaultHost}/api_goods/goods_history/save`,
 
   // 确认订单
   orderAffimAddress: `${defaultHost}/api_query/users/default_address`,
@@ -72,6 +73,12 @@ export const api = {
   userCompleteInfo: `${defaultHost}/api_users/users/complete_user_info`,
   userDrp: `${defaultHost}/api_drp/rules/become_distributor_info`,
   userDrpRead: `${defaultHost}/api_drp/user_apply_distributor/read`,
+
+  // 我的二维码
+  qrcodeImg: `${defaultHost}/api_query/contents/wap_advertisements`,
+  // 我的足迹
+  tracks: `${defaultHost}/api_goods/goods_history/lists`,
+  tracksDelete: `${defaultHost}/api_goods/goods_history/delete`,
   
   
 

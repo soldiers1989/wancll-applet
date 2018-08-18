@@ -1,7 +1,10 @@
 const APP = getApp()
 import { getUserData, queryAuthStatus } from './data.js';
+import { imageHost,params } from '../../api/config.js';
 Page({
   data: {
+    // params:params,
+    imageHost: imageHost,
     user: {},
     count: {},
     asset: {},
@@ -9,7 +12,10 @@ Page({
     is_open_drp: '',
   },
   onLoad(options) {
-
+  },
+  dealMember(){
+    // if(params)
+    console.log(this.user);
   },
   // 跳转到订单状态页面
   goOrderList(e) {
