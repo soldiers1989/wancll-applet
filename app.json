@@ -59,7 +59,12 @@
     "pages/UserDRCenterDetailInfo/index",
     "pages/UserDBAndDRApply/index",
     "pages/UserInfoComplete/index",
-    "pages/UserTracks/index"
+    "pages/UserTracks/index",
+    "pages/UserDRCenterNew/index",
+    "pages/UserDRCenterNewOrder/index",
+    "pages/UserDRCenterNewTeam/index",
+    "pages/UserDRCenterNewCusts/index",
+    "pages/UserDRCenterNewRegister/index"        
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

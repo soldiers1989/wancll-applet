@@ -7,7 +7,7 @@ export const headers = {
 }
 // 主机名称
 // export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
-export const defaultHost = 'http://192.168.31.140/'
+export const defaultHost = 'http://192.168.31.140'
 
 // 图片地址
 export const imageHost = {

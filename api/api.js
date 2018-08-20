@@ -173,6 +173,12 @@ export const api = {
   drpChildUser: `${defaultHost}/api_drp/team/child_users`,
   drpTeamUser: `${defaultHost}/api_drp/team/team_users`,
   
+  // 新分销中心
+  drpCenterNew: `${defaultHost}/api_query/drp_new/distributor_info`,
+  drpOrderListNew: `${defaultHost}/api_drp_new/drp_orders/lists`,
+  drpChildUserNew: `${defaultHost}/api_drp_new/drp_users/child_users`,
+  drpRegister: `${defaultHost}/api_drp_new/register_award_logs/logs`,
+  
 
   // 分红中心
   bonusCenter: `${defaultHost}/api_query/bonus/bonus_info`,

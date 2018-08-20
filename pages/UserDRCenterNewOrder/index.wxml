@@ -1,0 +1,54 @@
+<view>
+  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
+    <view class='list' wx:for="{{orderList}}" wx:key="item">
+      <view class='list-info'>
+        <zan-row >
+          <zan-col col="18" col-class="left">
+            <view style='margin-bottom:5px;'>{{item.user_info.nick_name || item.user_info.mobile}}  {{item.create_time}}</view>
+            <view>{{item.order_no}}</view>
+          </zan-col>
+        </zan-row>
+      </view>
+      <view class='order-goods' wx:for="{{item.logs}}" wx:for-item="goods" wx:key="goods">
+        <zan-row>
+          <zan-col col="4" col-class="image">
+            <image src='{{goods.order_goods_info.thum}}' mode='widthFix'></image>
+          </zan-col>
+          <zan-col col="14" col-class="center">
+            <view>订单状态：</view>
+            <view class='title'>{{goods.order_goods_info.name}}</view>
+            <view class='number'>x{{goods.order_goods_info.num}}</view>
+          </zan-col>
+          <zan-col col="6" col-class="right">
+            <view>
+              <template is='status' data="{{...goods}}" />
+            </view>
+            <view class='text'>
+              <template is="get" data="{{...goods}}" />
+            </view>
+            <view class='buns'>+{{goods.expect_money}}</view>
+          </zan-col>
+        </zan-row>
+      </view>
+    </view>
+    <view wx:if="{{FPage.noContent}}" class="no-content-image">
+      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+      <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+    </view>
+  </zan-tab>
+</view>
+
+<!-- 状态 -->
+<template name="status">
+  <text class='text status' wx:if="{{order_status==1}}">待付款</text>
+  <text class='text status' wx:if="{{order_status==2}}">已付款</text>
+  <text class='text status' wx:if="{{order_status==3}}">已完成</text>
+  <text class='text status' wx:if="{{order_status==8}}">已退货</text>
+  <text class='text status' wx:if="{{order_status==9}}">已取消</text>
+  <!-- <text class='text' wx:else>无效</text> -->
+</template>
+<!-- 状态 -->
+<template name="get">
+  <text class='text' wx:if="{{order_status==3}}">已获得佣金</text>
+  <text class='text' wx:else>预计佣金</text>
+</template>

@@ -1,0 +1,45 @@
+<view class='content'>
+  <image class="bg-image" src="{{bgImg}}" mode='widthFix'></image>
+  <view class='info-box'>
+    <view class='user-info'>
+      <view class='avatar-box'>
+        <image class="avatar" src="{{user.avatar}}" mode='widthFix'></image>
+      </view>
+      <view class='name'>{{user.nick_name?user.nick_name:'匿名用户'}}</view>
+      <view class='name'>{{drpData.level_name}}</view>
+      <view class='name'>{{user.create_time}}</view>
+    </view>
+    <view class='moneys'>
+      <view class='money bonus-money'>
+        <view class='number'>{{drpData.except_money}}</view>
+        <view class='text'>待结算佣金</view>
+      </view>
+      <view class='money pay-money'>
+        <view class='number'>{{drpData.total_money}}</view>
+        <view class='text'>累计佣金</view>
+      </view>
+    </view>
+    <view class='selects-subpage'>
+      <view class='subpage' bindtap="goSubPage" data-target="Order">
+        <icon class='icon icon-r' type='chengjiaodingdan'></icon>
+        <view class='text'>分红订单</view>
+        <view class='other'>{{drpData.order_num}}个</view>
+      </view>
+      <view class='subpage' bindtap="goSubPage" data-target="Custs">
+        <icon class='icon icon-b' type='huiyuan1'></icon>
+        <view class='text'>我的客户</view>
+        <view class='other'>{{drpData.child_user_num}}个</view>
+      </view>
+      <view class='subpage' bindtap="goSubPage" data-target="Team">
+        <icon class='icon icon-b' type='tubiao-'></icon>
+        <view class='text'>我的团队</view>
+        <view class='other'>{{drpData.team_user_num}}个</view>
+      </view>
+      <view class='subpage' bindtap="goSubPage" data-target="Register">
+        <icon class='icon icon-b' type='tubiao-'></icon>
+        <view class='text'>注册奖励金</view>
+        <view class='other'>奖励金明细</view>
+      </view>      
+    </view>
+  </view>
+</view>
