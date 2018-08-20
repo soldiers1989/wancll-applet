@@ -26,11 +26,33 @@ Component({
   },
   // 组件的方法列表 
   methods: {
+    // 获取微信地址
+    addFromWechat() {
+      wx.chooseAddress({
+        success: function(res) {
+          APP.ajax({
+            url: APP.api.addressSaveFromWechat,
+            data: {
+              address: res.detailInfo,
+              area_code: res.nationalCode,
+              consignee_name: res.userName,
+              mobile: res.telNumber,
+            },
+            success: function(res) {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
+            },
+          })
+        }
+      });
+    },
     // 刷新数据
     refresh() {
       Paging.refresh()
     },
-    getList(){
+    getList() {
       Paging.getPagesData()
     },
     // 下拉加载数据
@@ -91,7 +113,9 @@ Component({
           if (res.confirm) {
             APP.ajax({
               url: APP.api.addressDelete,
-              data: { id: id },
+              data: {
+                id: id
+              },
               success: res => {
                 wx.showToast({
                   title: res.msg,

@@ -154,10 +154,10 @@
             <icon class='icon color-y' type="shouhou"></icon>
             <view class='text'>分红中心</view>
           </view> -->
-          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{is_open_bonus || is_open_drp}}">
+          <!-- <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{is_open_bonus || is_open_drp}}">
             <icon class='icon color-r' type="qianbao1"></icon>
             <view class='text'>收款账户</view>
-          </view>
+          </view> -->
         </view>
       </zan-panel>
     </zan-cell-group>

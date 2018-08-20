@@ -35,8 +35,11 @@
   <view class='add-address'>
     <zan-panel >
       <zan-button bindbtnclick="editAddress" type="info" data-id='new'>
-        <zan-icon type="add"></zan-icon> 添加新地址
+        <zan-icon type="add"></zan-icon> 手动添加
       </zan-button>
+      <zan-button bindbtnclick="addFromWechat" type="info" data-id='new'>
+        <zan-icon type="add"></zan-icon> 微信添加
+      </zan-button>      
     </zan-panel>
   </view>
   <view wx:if="{{FPage.noContent}}" style="text-align: center;margin-top: 20%;">

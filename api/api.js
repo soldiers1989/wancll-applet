@@ -122,6 +122,7 @@ export const api = {
   addressRegions: `${defaultHost}/api_systems/regions/index`,
   addressSave: `${defaultHost}/api_users/addresses/save`,
   addressUpdate: `${defaultHost}/api_users/addresses/update`,
+  addressSaveFromWechat: `${defaultHost}/api_users/addresses/save_by_wechat`,
 
   // 我的评论
   itemComments: `${defaultHost}/api_goods/goods_comments/lists`,

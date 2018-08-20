@@ -51,12 +51,6 @@
 					"name": "分销中心",
 					"pathName": "pages/UserDRCenterNew/index",
 					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "分销订单",
-					"pathName": "pages/UserDRCenterNewOrder/index",
-					"query": ""
 				}
 			]
 		}
