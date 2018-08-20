@@ -6,27 +6,36 @@
       </view>
       <view class='info'>
         <view class="name">{{user.nick_name || '匿名用户'}}</view>
-        <view class="phone">
-          <icon class='icon' type='shouji'></icon>
-          <text> {{user.mobile}}</text>
-        </view>
-        <view class="other">
-          <view class='vip'>
-            <icon class='icon' type='huiyuan'></icon><text> {{user.user_level}}</text>
-          </view>
-          <view class='grow' bindtap='showGrow'>
-            <icon class='icon' type='tubiao312'></icon> 
-            <text> 成长值: {{asset.score}} </text>
-            <icon class='icon' type='xiangyou1'></icon> 
-          </view>
-        </view>
+        <view>会员到期日：2018-7-9 00:00:00</view>
       </view>
+      <view class='sign'>
+        <view>签到</view>
+        <view>续费</view>
+      </view>
+
       <view class='setting' bindtap='settingInfo'>
         <icon class='icon' type='shezhi-xue'></icon>
       </view>
+
+      <view class='money'>
+        <view class='money-item'>
+          <view>0</view>
+          <view>待结算佣金</view>
+        </view>
+        <view class='money-item'>
+          <view>0</view>
+          <view>我的钱包</view>
+        </view>
+      </view>
+
     </view>
   </zan-panel>
 </view>
+<view class='panel open-member'>
+  <view>开通金卡会员，享受会员优惠</view>
+  <view>立即开通</view>
+</view>
+
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
@@ -88,7 +97,7 @@
           <view class='pending' catchtap='goSubPages' data-target="UserTracks">
             <icon class='icon color-y' type="star"></icon>
             <view class='text'>我的足迹</view>
-          </view>          
+          </view>
           <view class='pending' catchtap='goSubPages' data-target="UserAddress">
             <icon class='icon color-y' type="dizhi-01"></icon>
             <view class='text'>我的地址</view>
