@@ -145,6 +145,7 @@ export const api = {
   myDiscountReceive: `${defaultHost}/api_users/user_coupons/receive`,
   myDiscountCoupon: `${defaultHost}/api_query/market/coupon`,
   myDiscountCouponSave: `${defaultHost}/api_users/user_coupons/save`,
+  myCoupon: `${defaultHost}/api_query/market/user_coupons`,
 
   // 商品搜索
   goodsKeywordsList: `${defaultHost}/api_goods/goods_keywords/lists`,

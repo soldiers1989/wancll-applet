@@ -28,7 +28,7 @@ Page({
     Paging.init({
       type: 2,
       that: this,
-      url: 'myDiscount',
+      url: 'myCoupon',
       pushData: 'discountList',
       getFunc: this.getList
     })
@@ -61,7 +61,7 @@ Page({
   },
   // 显示刷新
   onShow() {
-    Paging.refresh()
+    // Paging.refresh()
   },
   // 下拉刷新
   onPullDownRefresh() {

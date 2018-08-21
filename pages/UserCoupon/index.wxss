@@ -48,7 +48,7 @@
 }
 .discount-list .discount .center .num{
   line-height: 40px;
-  font-size: 30rpx;
+  font-size: 26rpx;
 }
 .discount-list .discount .center .text{
   line-height: 20px;

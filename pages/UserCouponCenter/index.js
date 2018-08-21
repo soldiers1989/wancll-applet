@@ -1,4 +1,6 @@
 const APP = getApp();
+import PagingData from '../../utils/PagingData';
+const Paging = new PagingData();
 Page({
   data: {
     // 轮播参数
@@ -12,41 +14,56 @@ Page({
     nextMargin: 0,
     imgUrls: [], // 轮播图片
     coupon: [],
+    // 分页功能
+    FPage: {
+      pageNum: 1,
+      hasData: true,
+      noContent: false,
+      noContentImg: APP.imgs.noContentImg
+    }    
   },
 
   onLoad(options) {
     this.getBanners();
-    this.getCoupons()
+    Paging.init({
+      type: 2,
+      that: this,
+      url: 'myDiscountCoupon',
+      pushData: 'coupon',
+      getFunc: this.getCoupons
+    })
+    this.getCoupons(this.data.tabSelectedId);
   },
-
   getBanners() {
     APP.ajax({
       url: APP.api.indexBanners,
-      data: { type: "wap领券中心轮播" },
+      data: {
+        type_id: 32
+      },
       success: (res) => {
-        this.setData({ imgUrls: res.data })
+        this.setData({
+          imgUrls: res.data
+        })
       }
     })
   },
   getCoupons() {
-    APP.ajax({
-      url: APP.api.myDiscountCoupon,
-      data: {},
-      success: res => {
-        res.data.forEach(item => {
+    Paging.getPagesData({
+      handler:(data)=>{
+        data.forEach(item => {
           item.bg_img = APP.imgs.couponGet;
           item.change_value = parseFloat(item.change_value)
         });
-        // console.log(res.data)
-        this.setData({ coupon: res.data })
-      }
-    })
+        return data;
+    }});
   },
   draw(e) {
     let id = APP.utils.getDataSet(e, 'id');
     APP.ajax({
       url: APP.api.myDiscountCouponSave,
-      data: { activity_coupon_id: id },
+      data: {
+        activity_coupon_id: id
+      },
       success(res) {
         wx.showToast({
           title: res.msg,
@@ -55,15 +72,4 @@ Page({
       }
     })
   },
-  // 下拉刷新
-  onPullDownRefresh() {
-    wx.stopPullDownRefresh();
-    this.setData({
-      imgUrls: [], 
-      coupon: [],
-    },()=>{
-      this.getBanners()
-      this.getCoupons()
-    })
-  }
 })
