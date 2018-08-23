@@ -52,7 +52,7 @@ function request(option, header) {
       // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
       // wx.hideLoading();
       if (res.data.code == 1) {
-        success(res.data);
+        success && success(res.data);
       } else if (res.data.code == 0) {
         if (res.data.msg != -41003){
           wx.showToast({

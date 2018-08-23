@@ -7,19 +7,21 @@
   </zan-panel>
   <view class='image-warpper'>
     <image src='{{goodsinfo.thum}}' widthFix></image>
-    <block wx:if="{{findSku}}">
-      <template is="findSkuPrice" data="{{...findSku}}" />
+    <block wx:if="{{selectedSku.id}}">
+      <template is="selectedSkuPrice" data="{{...selectedSku}}" />
     </block>
-    <block wx:else="{{findSku}}">
-      <template is="defaultPrice" data="{{...defaultSku[0]}}" />
+    <block wx:else>
+      <!-- 默认显示商品价格和库存量 -->
+      <template is="defaultPrice" data="{{...goodsinfo}}" />
     </block>
   </view>
-  <zan-panel wx:for="{{skuData}}" wx:key="key">
+  <zan-panel wx:for="{{skuData}}" wx:for-item="spec" wx:for-index="speckey" wx:key="key">
     <view class='sku'>
-      <view class='title'>{{item.name.name}}</view>
+      <view class='title'>{{spec.name}}</view>
       <view class='lists'>
-        <zan-button bindtap="changeSelect" class="sku-list" size="small" wx:for="{{item.select}}" wx:for-item="select" data-nameId="{{item.name.id}}" data-id="{{select.id}}" type="{{lineValue[item.name.id] == select.id ? 'info' : ''}}" wx:key="index">
-          {{select.option}}
+        <zan-button bindtap="changeSelect" class="sku-list" size="small" wx:for="{{spec.options}}" wx:for-item="option" wx:for-index="optionkey" type="{{option.isSelected ? 'info' : ''}}" wx:key="index" data-spec="{{spec}}" data-option="{{option}}" data-optionkey="{{optionkey}}"
+          data-speckey="{{speckey}}">
+          {{option.option}}
         </zan-button>
       </view>
     </view>
@@ -40,7 +42,7 @@
   </view>
 </template>
 
-<template name="findSkuPrice">
+<template name="selectedSkuPrice">
   <view class='price-warpper'>
     <view class='price'>
       <text style="font-size: 30rpx;">￥</text>{{sell_price}}</view>

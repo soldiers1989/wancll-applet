@@ -8,7 +8,7 @@
     "icon": "../../components/icon/index",
     "zan-popup": "../../dist/popup/index",
     "zan-button": "../../dist/btn/index",
+    "zan-icon": "../../dist/icon/index",
     "wancll-selectsku": "../../components/selectSku/index"
   }
 }
-

@@ -28,7 +28,6 @@ export const api = {
   detailCollectCancel: `${defaultHost}/api_goods/goods_collections/cancel`,
   detailCollectSave: `${defaultHost}/api_goods/goods_collections/save`,
   detailComments: `${defaultHost}/api_query/goods/comments`,
-  detailTemplate: `${defaultHost}/api_query/goods_cates/template`,
   detailCartsSave: `${defaultHost}/api_goods/carts/save`,
   detailTrackSave: `${defaultHost}/api_goods/goods_history/save`,
 

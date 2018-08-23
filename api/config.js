@@ -6,8 +6,9 @@ export const headers = {
   'clientType': 'applet'
 }
 // 主机名称
-// export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
-export const defaultHost = 'http://192.168.31.140'
+// export const defaultHost = 'http://192.168.31.140'
+// export const defaultHost = 'http://aimaiyoupin.com'
+export const defaultHost = 'http://test_yilei.wx.wygoo.com'
 
 // 图片地址
 export const imageHost = {
