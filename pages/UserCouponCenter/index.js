@@ -20,7 +20,7 @@ Page({
       hasData: true,
       noContent: false,
       noContentImg: APP.imgs.noContentImg
-    }    
+    }
   },
 
   onLoad(options) {
@@ -49,13 +49,22 @@ Page({
   },
   getCoupons() {
     Paging.getPagesData({
-      handler:(data)=>{
+      handler: (data) => {
         data.forEach(item => {
           item.bg_img = APP.imgs.couponGet;
           item.change_value = parseFloat(item.change_value)
         });
         return data;
-    }});
+      }
+    });
+  },
+  // 下拉刷新
+  onPullDownRefresh() {
+    Paging.refresh()
+  },
+  // 上拉加载
+  onReachBottom() {
+    this.getCoupons();
   },
   draw(e) {
     let id = APP.utils.getDataSet(e, 'id');
