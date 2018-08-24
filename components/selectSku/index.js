@@ -5,10 +5,6 @@ Component({
       type: Object,
       description: '传递过来的商品详情数据'
     },
-    iscart: {
-      type: Boolean,
-      description: '是不是购物车'
-    },
     sendSelectedSku: {
       type: Object,
       description: '传递过来的选择的sku'
@@ -129,7 +125,8 @@ Component({
       let data = {
         selectedSku: this.data.selectedSku,
       }
-      this.triggerEvent('confirm', data)
+      this.triggerEvent('confirm', data);
+      this.close();
     },
     // 点击关闭按钮关闭
     close() {

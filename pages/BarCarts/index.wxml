@@ -1,14 +1,13 @@
-
-<view class="edit" wx:if="{{selectObjlen}}">
-  <zan-button class="btn" bindbtnclick="deleteCarts" type="danger" size="small">删除</zan-button>
-  <zan-button class="btn" bindbtnclick="collectCarts" type="info" size="small">加入收藏夹</zan-button>
+<view class="edit" hidden="{{!isShowDeleteAndCollection}}">
+  <zan-button class="btn" bindbtnclick="batchDelete" type="danger" size="small">删除</zan-button>
+  <zan-button class="btn" bindbtnclick="batchAddCollection" type="info" size="small">加入收藏夹</zan-button>
 </view>
 
-<view class="item-list" wx:for="{{cartsList}}" wx:key="key">
+<view class="item-list" wx:for="{{carts}}" wx:key="key">
   <zan-panel>
     <view class='item-content'>
       <view class="select-button">
-        <zan-icon style="color:#358cff" bindtap="select" data-id="{{item.id}}" class="icon" type="{{selectObj[item.id] ? 'checked':'check'}}">
+        <zan-icon style="color:#358cff" bindtap="changeSelected" data-index="{{index}}" class="icon" type="{{item.isSelected ? 'checked':'check'}}">
         </zan-icon>
       </view>
       <view class='center-info'>
@@ -16,22 +15,44 @@
           <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title'>{{item.goods_info.name}}</view>
-          <view class='intro'>{{item.goods_info.intro}}</view>
-          <zan-button size="mini" class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}" bindbtnclick='openBottomPopup'>
-            规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
-          </zan-button>
-          <view class='price-warpper'>
-            <view class='price wancll-text-price wancll-font-size-14'>
-              <text class='price wancll-text-price wancll-font-size-10'>￥</text> 
-              {{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price * item.num}}
+          <block wx:if="{{item.isEdit}}">
+            <view class="left">
+              <view class='title'>{{item.goods_info.name}}</view>
+              <view class='intro'>{{item.goods_info.intro}}</view>
+              <zan-button size="mini" class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}" bindbtnclick='openBottomPopup'>
+                规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
+              </zan-button>
+              <view class='price-warpper'>
+                <view class='price wancll-text-price wancll-font-size-14'>
+                  <text class='price wancll-text-price wancll-font-size-10'>￥</text> {{item.spec_group_info.sell_price?item.spec_group_info.sell_price:item.goods_info.sell_price * item.num}}
+                </view>
+              </view>
             </view>
-            <view class='count wancll-flex'>
-              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="minus"></i>
-              <text class="wancll-padded-5"> {{item.num}} </text>
-              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-id="{{item.id}}" data-index="{{index}}" bindtap="plus"></i>
+            <view class='right'>
+              <view>
+                <zan-icon class="edit" type="edit" bindtap="editCart" data-index="{{index}}"></zan-icon>
+              </view>
+              <text class="num">×{{item.num}}</text>
             </view>
-          </view>
+          </block>
+          <!-- 编辑模式 -->
+          <block wx:else>
+            <view class="edit-mode">
+              <view class="left">
+                <view class="top">
+                  <view bindtap="changeNum" data-index="{{index}}" data-type="minus">-</view>
+                  <view>{{item.num}}</view>
+                  <view bindtap="changeNum" data-index="{{index}}" data-type="plus">+</view>
+                </view>
+                <!-- <view class="bottom" bindtap="changeSkuShow" data-index="{{index}}"> -->
+                <view class="bottom" bindtap="openSkuShow" data-index="{{index}}">
+                  <view>规格:{{item.spec_group_info.spec_option_group || '规格已修改,请重新选择'}}</view>
+                  <view>选择</view>
+                </view>
+              </view>
+              <view class="right" bindtap="editCart" data-index="{{index}}">完成</view>
+            </view>
+          </block>
         </view>
       </view>
     </view>
@@ -40,18 +61,14 @@
 
 <zan-panel wx:if="{{!FPage.noContent}}">
   <view class="select-all">
-    <view class="select" bindtap="selectAll" wx:if="{{!selectAll}}">
-      <zan-icon style="color:#358cff" class="icon" type="check"></zan-icon>
+    <view class="select" bindtap="selectAll">
+      <zan-icon style="color:#358cff" class="icon" type="{{isSelectedAll ? 'checked' : 'check'}}"></zan-icon>
       <text> 全选</text>
-    </view>
-    <view class="select" bindtap="selectAll" wx:if="{{selectAll}}">
-      <zan-icon style="color:#358cff" class="icon" type="checked"></zan-icon>
-      <text> 取消</text>
     </view>
     <view class="price">
       总价：
       <text class="wancll-text-price wancll-font-size-15">￥</text>
-      <text class="wancll-text-price wancll-font-size-20">{{allPreice}}</text>
+      <text class="wancll-text-price wancll-font-size-20">{{totalPrice}}</text>
     </view>
     <view class="send wancll-text-white" bindtap="sendOrderAffirm">
       去结算
@@ -69,3 +86,12 @@
   <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
   <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>
+
+<block wx:if="{{selectedCart.goods_info.spec_info.length}}">
+  <zan-popup show="{{ isShowSkuPopup }}" type="bottom" bind:close="closeSkuShow">
+    <view class="pop-example__container pop-example__container--bottom">
+      <wancll-selectsku id="selectsku" goodsinfo="{{selectedCart.goods_info}}" sendSelectedSku="{{selectedCart.spec_group_info}}" bind:confirm="selectSpec" bind:close="closeSkuShow">
+      </wancll-selectsku>
+    </view>
+  </zan-popup>
+</block>

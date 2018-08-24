@@ -117,7 +117,6 @@ Page({
         })
       }
     })
-
     // 分页请求评论数据
     Paging.init({
       type: 2,
@@ -127,24 +126,6 @@ Page({
       getFunc: this.getComments
     })
     this.getComments();
-
-    // 请求评论数据
-    // APP.ajax({
-    //   url: APP.api.detailComments,
-    //   data: {
-    //     goods_id: options.id
-    //   },
-    //   success: res => {
-    //     this.setData({
-    //       comments: res.data.map(comment => {
-    //         comment.user_info.nick_name = comment.user_info.nick_name ? comment.user_info.nick_name : '匿名用户';
-    //         comment.user_info.avatar = comment.user_info.avatar ? comment.user_info.avatar : APP.imgs.avatar;;
-    //         return comment;
-    //       })
-    //     })
-    //   }
-    // })
-
     // 处理金卡会员
     if (this.data.user && this.data.user.member_level == params.bcMember) {
       this.setData({
@@ -269,25 +250,25 @@ Page({
   confirm(e) {
     this.setData({
       selectedSku: e.detail.selectedSku,
-      showSkuPopup: false,
-    }, () => {
-      if (this.data.afterSelectSku == 'buy') {
-        setTimeout(() => {
-          this.sendBuyNow();
-          this.setData({
-            afterSelectSku: '',
-          });
-        }, 500)
-      } else if (this.data.afterSelectSku == 'cart') {
-        setTimeout(() => {
-          this.addCarts();
-          this.setData({
-            afterSelectSku: '',
-          });
-        }, 500)
-      }
     });
+    if (this.data.afterSelectSku == 'buy') {
+      setTimeout(() => {
+        this.sendBuyNow();
+        this.setData({
+          afterSelectSku: '',
+        });
+      }, 500)
+    } else if (this.data.afterSelectSku == 'cart') {
+      setTimeout(() => {
+        this.addCarts();
+        this.setData({
+          afterSelectSku: '',
+        });
+      }, 500)
+    }
   },
+
+
   // 点击加入购物车
   addCarts() {
     if (!this.checkBeforeDo()) {

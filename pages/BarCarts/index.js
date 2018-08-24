@@ -3,15 +3,6 @@ import PagingData from '../../utils/PagingData';
 const Paging = new PagingData();
 Page({
   data: {
-    cartsList: [], // 购物车商品信息列表包含了sku信息组合
-
-    selectObj: {}, // 选择的商品列表
-    allPreice: 0.00, // 商品的总价
-    goodsInfo: '',    // 商品详细信息
-    thisClickId: '', // 当前编辑的那个商品
-    selectAll: false,
-    showBottomPopup: false,
-    
     // 分页功能
     FPage: {
       pageNum: 1,
@@ -19,30 +10,44 @@ Page({
       noContent: false,
       noContentImg: APP.imgs.noContentImg
     },
-    
+
+    carts: [], // 购物车商品信息列表包含了sku信息组合
+    isSelectedAll: false,
+    isShowDeleteAndCollection: false,
+    totalPrice: 0.00, // 商品的总价
+
+    selectedCart: {},
+    selectedCartIndex: -1,
+    isShowSkuPopup: false,
+
+
+
+    selectObj: {}, // 选择的商品列表
+    goodsInfo: '', // 商品详细信息
+    thisClickId: '', // 当前编辑的那个商品
+    selectAll: false,
+    showBottomPopup: false,
     selectObjlen: 0,
   },
-  onLoad(options) {
-
-  },
   // 页面新显示的时候
-  onShow: function () {
+  onShow: function() {
     // 初始化数据
     this.setData({
       selectObj: {},
       selectAll: false,
-      cartsList: [],
+      carts: [],
       allPreice: 0.00,
       'FPage.pageNum': 1,
+      'FPage.hasData': true,
       thisClickId: '',
       selectObjlen: 0
-    },()=>{
+    }, () => {
       // 初始化加载
       Paging.init({
         type: 2,
         that: this,
         url: 'getCartsAll',
-        pushData: 'cartsList',
+        pushData: 'carts',
         getFunc: this.getOrderData
       })
       // 判断登录状态
@@ -51,13 +56,204 @@ Page({
           url: '/pages/ComLogin/index',
         })
       } else {
+        this.resetCartData();
         this.getOrderData()
       }
     })
   },
   // 获取分页数据
   getOrderData() {
-    Paging.getPagesData()
+    Paging.getPagesData({
+      handler: carts => {
+        return carts.map(cart => {
+          // 添加是否选择和是否编辑属性
+          cart.isSelected = false;
+          cart.isEdit = false;
+          cart.isShowSkuPopup = false;
+          // 如果购物车商品有规格
+          if (cart.spec_group_id_str != 0 && cart.spec_group_info.spec_option_group) {
+            cart.spec_group_info.spec_option_group = cart.spec_group_info.spec_option_group.replace(/_/g, ',');
+          }
+          cart.goods_info.spec_group_info = cart.goods_info.spec_group_info.map(function(info) {
+            info.spec_option_group = info.spec_option_group.split('_').sort().toString();
+            return info;
+          });
+          return cart;
+        });
+      }
+    })
+  },
+  // 操作后重置购物车数据
+  resetCartData() {
+    if (!this.data.carts.length) {
+      // 购物车无商品
+      this.setData({
+        isSelectedAll: false,
+        isShowDeleteAndCollection: false,
+        totalPrice: 0.00,
+      });
+    } else {
+      // 是否显示删除和加入收藏夹; 全选
+      this.setData({
+        isSelectedAll: this.data.carts.every(cart => {
+          return cart.isSelected;
+        }),
+        isShowDeleteAndCollection: this.data.carts.some(cart => {
+          return cart.isSelected;
+        }),
+        totalPrice: this.calcTotalPrice(),
+      });
+    }
+  },
+  // 编辑购物车
+  editCart(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    this.setData({
+      [`carts[${index}].isEdit`]: !this.data.carts[index].isEdit
+    });
+  },
+  // 打开规格面板
+  openSkuShow(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    this.setData({
+      isShowSkuPopup: true,
+      selectedCartIndex: index,
+      selectedCart: this.data.carts[index],
+    });
+    this.selectComponent('#selectsku').beforeOpen();
+  },
+  // 关闭规格面板
+  closeSkuShow() {
+    this.setData({
+      isShowSkuPopup: true,
+      selectedCartIndex: -1,
+      selectedCart: {},
+    });
+  },
+  // 确定选择规格
+  selectSpec(e) {
+    let index = this.data.selectedCartIndex;
+    let cart = this.data.carts[index];
+    APP.ajax({
+      url: APP.api.getCartsUpdate,
+      data: {
+        id: cart.id,
+        goods_id: cart.goods_id,
+        num: cart.num,
+        spec_group_id_str: e.detail.selectedSku.id_str
+      },
+      success: res => {
+        this.setData({
+          [`carts[${index}]`]: res.data
+        });
+        this.resetCartData();
+      }
+    });
+  },
+  // 改变数量
+  changeNum(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    let type = APP.utils.getDataSet(e, 'type');
+    let cart = this.data.carts[index];
+    let num = type == 'plus' ? 1 : -1;
+    if (num == -1 && cart.num < 2) {
+      return;
+    }
+    APP.ajax({
+      url: APP.api.getCartsUpdate,
+      data: {
+        id: cart.id,
+        goods_id: cart.goods_id,
+        num: cart.num + num,
+        spec_group_id_str: cart.spec_group_id_str
+      },
+      success: res => {
+        this.setData({
+          [`carts[${index}].num`]: cart.num + num
+        });
+        this.resetCartData();
+      }
+    })
+  },
+  // 单选
+  changeSelected(e) {
+    let index = APP.utils.getDataSet(e, 'index');
+    this.setData({
+      [`carts[${index}].isSelected`]: !this.data.carts[index].isSelected
+    });
+    this.resetCartData();
+  },
+  // 全选
+  selectAll(e) {
+    this.setData({
+      carts: this.data.carts.map(cart => {
+        cart.isSelected = !this.data.isSelectedAll;
+        return cart;
+      }),
+      isSelectedAll: !this.data.isSelectedAll,
+    });
+    this.resetCartData();
+  },
+  // 批量删除
+  batchDelete() {
+    let ids = this.data.carts.filter(cart => {
+      return cart.isSelected;
+    }).map(cart => {
+      return cart.id;
+    });
+    wx.showModal({
+      title: '提示',
+      content: '确定要从购物车移除选中商品？',
+      success: res => {
+        if (res.confirm) {
+          APP.ajax({
+            url: APP.api.getCartsDelete,
+            data: {
+              id: ids
+            },
+            success: res => {
+              wx.showToast({
+                title: res.msg,
+                icon: 'none'
+              })
+              Paging.refresh();
+            }
+          })
+        }
+      }
+    })
+  },
+  // 批量加入购物车
+  batchAddCollection() {
+    let ids = this.data.carts.filter(cart => {
+      return cart.isSelected;
+    }).map(cart => {
+      return cart.goods_id;
+    });
+    APP.ajax({
+      url: APP.api.getCartsColleSave,
+      data: {
+        goods_ids: ids
+      },
+      success: res => {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none'
+        })
+      }
+    })
+  },
+  // 计算总价
+  calcTotalPrice() {
+    return this.data.carts.filter(cart => {
+      return cart.isSelected;
+    }).reduce((total, cart) => {
+      if (cart.spec_group_id_str != 0) {
+        return total + Number(cart.spec_group_info.sell_price) * cart.num;
+      } else {
+        return total + Number(cart.goods_info.sell_price) * cart.num;
+      }
+    }, 0).toFixed(2);
   },
   // 上拉加载
   onReachBottom() {
@@ -65,7 +261,8 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh() {
-    Paging.refresh()
+    Paging.refresh();
+    this.resetCartData();
   },
   // 更新sku数据
   confirm(e) {
@@ -77,7 +274,7 @@ Page({
   // 更新数量数据数据
   update(data) {
     let index = data.index;
-    let cartsList = this.data.cartsList;
+    let carts = this.data.carts;
     APP.ajax({
       url: APP.api.getCartsUpdate,
       data: data,
@@ -88,121 +285,11 @@ Page({
           duration: 500
         });
         this.setData({
-          [`cartsList[${index}]`]: res.data
+          [`carts[${index}]`]: res.data
         }, () => {
           this.allPreice()
         })
       }
-    })
-  },
-  // 找到当前编辑的那个宝贝信息
-  findItemById() {
-    let cartsList = this.data.cartsList;
-    let index = cartsList.findIndex(item => {
-      return item.id == this.data.thisClickId
-    })
-    let oneItem = cartsList[index]
-    // 返回需要发送的信息
-    return {
-      index: index,
-      id: this.data.thisClickId,
-      goods_id: oneItem.goods_id,
-      num: oneItem.num,
-      spec_group_id: oneItem.spec_group_id,
-    }
-  },
-  // 校验当前是全选还是非全选
-  checkSelectAll() {
-    let listLen = this.data.cartsList.length;
-    let objLen = Object.keys(this.data.selectObj).length;
-    let selectAll = objLen == listLen ? true : false;
-    this.setData({
-      selectAll: selectAll
-    })
-  },
-  // 全选按钮
-  selectAll() {
-    this.setData({
-      selectAll: !this.data.selectAll
-    }, () => {
-      let cartsList = this.data.cartsList;
-      let selectObj = {};
-      if (this.data.selectAll) {
-        cartsList.forEach(item => {
-          selectObj[item.id] = true;
-        });
-      }
-      this.setData({
-        selectObj: selectObj,
-        selectObjlen: Object.keys(selectObj).length
-      }, () => {
-        this.allPreice()
-      })
-    })
-  },
-  // 总价计算
-  allPreice() {
-    let selectObj = this.data.selectObj;
-    let cartsList = this.data.cartsList;
-    let allPreice = 0;
-    cartsList.forEach(item => {
-      if (selectObj[item.id]) {
-        let num = item.num;
-        let price = 0;
-        if (item.spec_group_info.sell_price) {
-          price = item.spec_group_info.sell_price;
-        } else {
-          price = item.goods_info.sell_price;
-        }
-        let sum = price * num;
-        allPreice += sum;
-      }
-    });
-    this.setData({
-      allPreice: allPreice
-    })
-  },
-  // 单个宝贝的选择
-  select(e) {
-    let selectObj = this.data.selectObj;
-    let id = APP.utils.getDataSet(e, 'id');
-    if (selectObj[id]) {
-      delete selectObj[id];
-    } else {
-      selectObj[id] = true
-    }
-    this.setData({
-      selectObj: selectObj,
-      selectObjlen: Object.keys(selectObj).length
-    }, () => {
-      this.checkSelectAll()
-      this.allPreice()
-    })
-  },
-  // 点击减的按钮
-  minus(e) {
-    let id = APP.utils.getDataSet(e, 'id');
-    this.setData({
-      thisClickId: id,
-    }, () => {
-      let sendData = this.findItemById();
-      if (sendData.num == 1) {
-        return;
-      } else {
-        sendData.num -= 1;
-      }
-      this.update(sendData)
-    })
-  },
-  // 点击加的按钮
-  plus(e) {
-    let id = APP.utils.getDataSet(e, 'id');
-    this.setData({
-      thisClickId: id,
-    }, () => {
-      let sendData = this.findItemById();
-      sendData.num += 1;
-      this.update(sendData);
     })
   },
   // 打开弹出层
@@ -216,8 +303,8 @@ Page({
     this.setData({
       showBottomPopup: true,
       thisClickId: id,
-      goodsInfo: this.data.cartsList[index].goods_info,
-      sendfindsku: this.data.cartsList[index].spec_group_info,
+      goodsInfo: this.data.carts[index].goods_info,
+      sendfindsku: this.data.carts[index].spec_group_info,
     }, () => {
       this.selectComponent("#selectsku").refresh();
     })
@@ -228,70 +315,11 @@ Page({
       showBottomPopup: false
     })
   },
-  // 批量删除购物车
-  deleteCarts() {
-    let keys = Object.keys(this.data.selectObj);
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除这些商品吗？',
-      success: res => {
-        if (res.confirm) {
-          APP.ajax({
-            url: APP.api.getCartsDelete,
-            data: {
-              id: keys
-            },
-            success: res => {
-              wx.showToast({
-                title: res.msg,
-                icon: 'none'
-              })
-              this.setData({
-                selectObj: {},
-                selectAll: false,
-                cartsList: [],
-                allPreice: 0.00,
-                pageNum: 1,
-                thisClickId: '',
-                selectObjlen: 0
-              }, () => {
-                Paging.refresh()
-              })
-            }
-          })
-        }
-      }
-    })
-  },
-  // 批量加入收藏夹
-  collectCarts() {
-    let keys = Object.keys(this.data.selectObj);
-    wx.showModal({
-      title: '提示',
-      content: '全部添加到收藏夹吗？',
-      success: res => {
-        if (res.confirm) {
-          APP.ajax({
-            url: APP.api.getCartsColleSave,
-            data: {
-              goods_ids: keys
-            },
-            success: res => {
-              wx.showToast({
-                title: res.msg,
-                icon: 'none'
-              })
-            }
-          })
-        }
-      }
-    })
-  },
   // 跳转到订单确认页面
   sendOrderAffirm() {
     let that = this;
     let orderConfirmGoodsList = [];
-    this.data.cartsList.forEach(item => {
+    this.data.carts.forEach(item => {
       if (that.data.selectObj[item.id]) {
         orderConfirmGoodsList.push({
           goodsInfo: item.goods_info,

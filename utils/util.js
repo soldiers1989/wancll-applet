@@ -25,7 +25,8 @@ function timeDown(that, endTime) {
 }
 // 获取点击参数
 function getDataSet(e, field) {
-  if (e.currentTarget.dataset[field]) {
+  // 注意0的情况
+  if (e.currentTarget.dataset[field] || e.currentTarget.dataset[field] == 0) {
     return e.currentTarget.dataset[field]
   } else {
     return e.target.dataset[field]

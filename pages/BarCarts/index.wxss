@@ -58,6 +58,57 @@
 
 .center-info .title-warpper {
   flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.center-info .title-warpper .left {
+  flex: 70%;
+  padding-right: 5%;
+  text-align: left;
+}
+
+.center-info .title-warpper .right {
+  flex: 1;
+}
+
+.center-info .title-warpper .right .edit {
+  font-size: 30rpx;
+}
+
+.center-info .title-warpper .right .num {
+  position: absolute;
+  right: 1.1rem;
+  bottom: 1.3rem;
+  font-size: 26rpx;
+}
+
+.center-info .title-warpper .edit-mode {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.center-info .title-warpper .edit-mode .left {
+  flex: 80%;
+}
+
+.center-info .title-warpper .edit-mode .left .top {
+  display: flex;
+}
+
+
+
+.center-info .title-warpper .edit-mode .right {
+  flex: 1;
+  background: #f00;
+  color: #fff;
+  font-size: 0.6rem;
+  text-align: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  display: flex;
+  padding: 0 0.5rem;
 }
 
 .center-info .title-warpper .title {
@@ -120,14 +171,15 @@
   flex: 200rpx 0 0;
 }
 
-zan-icon .zan-icon-checked{
+zan-icon .zan-icon-checked {
   color: #358cff !important;
 }
 
-.edit{
+.edit {
   padding: 10px;
-  text-align: right
+  text-align: right;
 }
-.edit .btn{
+
+.edit .btn {
   margin-left: 10px;
 }
