@@ -15,7 +15,7 @@
           <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <block wx:if="{{item.isEdit}}">
+          <block wx:if="{{!item.isEdit}}">
             <view class="left">
               <view class='title'>{{item.goods_info.name}}</view>
               <view class='intro'>{{item.goods_info.intro}}</view>
@@ -44,7 +44,6 @@
                   <view>{{item.num}}</view>
                   <view bindtap="changeNum" data-index="{{index}}" data-type="plus">+</view>
                 </view>
-                <!-- <view class="bottom" bindtap="changeSkuShow" data-index="{{index}}"> -->
                 <view class="bottom" bindtap="openSkuShow" data-index="{{index}}">
                   <view>规格:{{item.spec_group_info.spec_option_group || '规格已修改,请重新选择'}}</view>
                   <view>选择</view>
@@ -70,23 +69,18 @@
       <text class="wancll-text-price wancll-font-size-15">￥</text>
       <text class="wancll-text-price wancll-font-size-20">{{totalPrice}}</text>
     </view>
-    <view class="send wancll-text-white" bindtap="sendOrderAffirm">
+    <view class="send wancll-text-white" bindtap="goOrderConfirm">
       去结算
     </view>
   </view>
 </zan-panel>
-<zan-popup show="{{ showBottomPopup }}" type="bottom" bindclose="closeBottomPopup">
-  <view class="pop-example__container pop-example__container--bottom">
-    <wancll-selectsku id="selectsku" iscart sendfindsku="{{sendfindsku}}" wx:if="{{goodsInfo}}" goodsinfo="{{goodsInfo}}" bind:confirm="confirm" bind:close="closeBottomPopup">
-    </wancll-selectsku>
-  </view>
-</zan-popup>
 
 <view wx:if="{{FPage.noContent}}" class="no-content-image">
   <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
   <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>
 
+<!-- 规格组件 -->
 <block wx:if="{{selectedCart.goods_info.spec_info.length}}">
   <zan-popup show="{{ isShowSkuPopup }}" type="bottom" bind:close="closeSkuShow">
     <view class="pop-example__container pop-example__container--bottom">

@@ -11,36 +11,25 @@ Page({
       noContentImg: APP.imgs.noContentImg
     },
 
-    carts: [], // 购物车商品信息列表包含了sku信息组合
-    isSelectedAll: false,
-    isShowDeleteAndCollection: false,
+    carts: [], // 购物车商品信息列表
+    isSelectedAll: false, // 全选
+    isShowDeleteAndCollection: false, //是否显示删除和收藏
     totalPrice: 0.00, // 商品的总价
 
-    selectedCart: {},
-    selectedCartIndex: -1,
-    isShowSkuPopup: false,
-
-
-
-    selectObj: {}, // 选择的商品列表
-    goodsInfo: '', // 商品详细信息
-    thisClickId: '', // 当前编辑的那个商品
-    selectAll: false,
-    showBottomPopup: false,
-    selectObjlen: 0,
+    // 规格相关
+    selectedCart: {}, // 正在编辑规格的商品
+    selectedCartIndex: -1, // 正在编辑规格的商品在购物车数组中的索引
+    isShowSkuPopup: false, // 是否显示规格面板
   },
   // 页面新显示的时候
   onShow: function() {
     // 初始化数据
     this.setData({
-      selectObj: {},
       selectAll: false,
       carts: [],
       allPreice: 0.00,
       'FPage.pageNum': 1,
       'FPage.hasData': true,
-      thisClickId: '',
-      selectObjlen: 0
     }, () => {
       // 初始化加载
       Paging.init({
@@ -57,7 +46,7 @@ Page({
         })
       } else {
         this.resetCartData();
-        this.getOrderData()
+        this.getOrderData();
       }
     })
   },
@@ -143,6 +132,8 @@ Page({
         spec_group_id_str: e.detail.selectedSku.id_str
       },
       success: res => {
+        res.data.isEdit = false;
+        res.data.isSelected = cart.isSelected;
         this.setData({
           [`carts[${index}]`]: res.data
         });
@@ -264,80 +255,28 @@ Page({
     Paging.refresh();
     this.resetCartData();
   },
-  // 更新sku数据
-  confirm(e) {
-    this.closeBottomPopup()
-    let data = this.findItemById()
-    data.spec_group_id = e.detail.findSku.id;
-    this.update(data)
-  },
-  // 更新数量数据数据
-  update(data) {
-    let index = data.index;
+  // 结算
+  goOrderConfirm() {
     let carts = this.data.carts;
-    APP.ajax({
-      url: APP.api.getCartsUpdate,
-      data: data,
-      success: res => {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-          duration: 500
-        });
-        this.setData({
-          [`carts[${index}]`]: res.data
-        }, () => {
-          this.allPreice()
-        })
-      }
-    })
-  },
-  // 打开弹出层
-  openBottomPopup(e) {
-    let goodsinfo = APP.utils.getDataSet(e, 'goodsinfo');
-    let index = APP.utils.getDataSet(e, 'index');
-    let id = APP.utils.getDataSet(e, 'id');
-    if (!goodsinfo.goods_spec_group_info.length) {
-      return
-    }
-    this.setData({
-      showBottomPopup: true,
-      thisClickId: id,
-      goodsInfo: this.data.carts[index].goods_info,
-      sendfindsku: this.data.carts[index].spec_group_info,
-    }, () => {
-      this.selectComponent("#selectsku").refresh();
-    })
-  },
-  // 关闭弹出层
-  closeBottomPopup() {
-    this.setData({
-      showBottomPopup: false
-    })
-  },
-  // 跳转到订单确认页面
-  sendOrderAffirm() {
-    let that = this;
-    let orderConfirmGoodsList = [];
-    this.data.carts.forEach(item => {
-      if (that.data.selectObj[item.id]) {
-        orderConfirmGoodsList.push({
-          goodsInfo: item.goods_info,
-          specGroupInfo: item.spec_group_info,
-          num: item.num
-        })
-      }
+    let selectedCarts = carts.filter(cart => {
+      return cart.isSelected;
     });
-    if (!orderConfirmGoodsList.length) {
+    if (!selectedCarts.length) {
       wx.showToast({
-        title: '请选择商品',
+        title: '没选中任何商品',
         icon: 'none'
       })
-      return;
     }
+    let orderConfirmGoodsList = selectedCarts.map(cart => {
+      return {
+        goods_info: cart.goods_info,
+        select_spec_group_info: cart.spec_group_info,
+        num: cart.num
+      };
+    });
     wx.setStorageSync('orderConfirmGoodsList', orderConfirmGoodsList);
     wx.navigateTo({
       url: '/pages/ComCreateOrder/index'
     })
-  }
+  },
 })
