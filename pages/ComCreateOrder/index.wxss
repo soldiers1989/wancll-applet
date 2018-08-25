@@ -7,84 +7,113 @@
   width: 100vw;
 }
 
-.pop-example__container--left,
-.pop-example__container--right {
+.pop-example__container--left, .pop-example__container--right {
   height: 100vh;
 }
-.order-address{
+
+.order-address {
   margin-bottom: 10px;
 }
-.item-list{
+
+.item-list {
   margin-bottom: 10px;
 }
-.top-close{
+
+.top-close {
   font-size: 28rpx;
   padding: 10px;
 }
-.top-close .icon{
+
+.top-close .icon {
   font-size: 28rpx;
   float: right;
 }
-.item-content{
+
+.item-content {
   padding: 10px;
   background: #fff;
 }
-.center-info{
+
+.center-info {
   background: #fafafa;
   padding: 10rpx;
   display: flex;
   margin-bottom: 10rpx;
 }
-.center-info .image-warpper{
-  flex: 180rpx 0 0;  
+
+.center-info .image-warpper {
+  flex: 180rpx 0 0;
 }
-.center-info .image{
+
+.center-info .image {
   width: 160rpx;
   height: 160rpx;
   background: #ccc;
   display: block;
 }
-.center-info .title-warpper{
+
+.center-info .title-warpper {
   flex: 1;
 }
 
-.center-info .title-warpper .price-warpper{
+.center-info .title-warpper .price-warpper {
   display: flex;
 }
-.center-info .title-warpper .price-warpper .price{
+
+.center-info .title-warpper .price-warpper .price {
   flex: 1;
 }
-.center-info .title-warpper .price-warpper .count{
+
+.center-info .title-warpper .price-warpper .count {
   flex: 1;
   justify-content: flex-end;
 }
-.other-price{
+
+.other-price {
   display: block;
   background: #fff;
 }
-.other-price .panel{
+
+.other-price .panel {
   padding: 10px;
 }
-.other-price .panel .discont{
+
+.other-price .panel .discont {
   float: right;
 }
-.total-box{
+
+.total-box {
   background: #fff;
   text-align: right;
   margin-bottom: 10px;
 }
-.total-box .total{
+
+.total-box .total {
   font-size: 20px;
   padding: 10px;
 }
-.memo{
+
+.memo {
   display: flex;
   padding: 10px;
 }
-.memo .title{
+
+.memo .title {
   flex: 150rpx 0 0;
 }
-.memo .content{
+
+.memo .content {
   flex: 1;
   height: 100px;
+}
+
+.user-info {
+  padding:10px;
+}
+
+.user-info .title {
+  color: #f00;
+  font-size: 0.75rem;
+  height: 2rem;
+  line-height: 2rem;
 }

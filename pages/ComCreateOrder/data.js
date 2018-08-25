@@ -29,42 +29,51 @@ export function orderView(that) {
     },
     success(res) {
       that.setData({
-        view: res.data,
+        totalPrice: res.data.total_money,
+        freightMoney: res.data.freight_money,
+        goodsMoney: res.data.goods_money,
         selectedActivity: {},
         selectedActivityText: '',
         selectedActivityType: '',
       }, () => {
-        getMarketInfo(that);
+        getMarketInfo(that, res.data);
       })
     }
   })
 }
 // 查询可参与的优惠活动
-export function getMarketInfo(that) {
+export function getMarketInfo(that, moneyData) {
   APP.ajax({
     url: APP.api.orderAffimUser,
     data: {
       goods_ids: packageOrderGoodsIds(that.data.goodsList),
-      money: that.data.view.total_money
+      money: moneyData.total_money,
+      cates_goods_money: moneyData.cates_goods_money,
+      freight_money: moneyData.freight_money
     },
     success(res) {
       that.setData({
         activities: res.data
       }, () => {
-        if (that.data.isDiscountGoods && !res.data.discount) {
-          wx.showModal({
-            title: '提示',
-            content: '您不能享受该折扣商品',
-            showCancel: false,
-            success(res) {
-              if (res.confirm) {
-                wx.navigateBack();
+        if (that.data.isDiscountGoods) {
+          if (res.data.discount.length) {
+            that.setData({
+              discountsPrice: res.data.discount[0].discount_price * that.goodsList[0].num
+            });
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '您不能享受该折扣商品',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack();
+                }
               }
-            }
-          })
-        } else {
-          that.computeTotalPrice();
+            })
+          }
         }
+        that.caclTotalPrice();
       })
     }
   })
@@ -79,7 +88,12 @@ export function submit(that) {
       goods_info: packageOrderGoodsInfo(that.data.goodsList),
       market_activity_id: that.data.selectedActivity.id || 0,
       market_activity_type: that.data.selectedActivityType || 0,
-      memo: that.data.memo
+      memo: that.data.memo,
+      new_user_coupons_id: that.data.newUserCouponId || 0,
+      user_info: {
+        name: that.data.user.name,
+        id_card: that.data.user.id_card
+      }
     },
     success(res) {
       wx.setStorageSync('buyOrder', res.data)
@@ -92,27 +106,27 @@ export function submit(that) {
           url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}`
         })
       }, 1000)
-    }
+    },
+    complete: res => {
+      that.setData({
+        submitButtonStatus: true,
+      });
+    },
   })
 }
 // 组装订单商品信息
 function packageOrderGoodsInfo(goodsList) {
-  let orderGoodsData = goodsList.map(item => {
-    let data = {
-      goods_id: item.goodsInfo.id,
+  return goodsList.map(item => {
+    return {
+      goods_id: item.goods_info.id,
       num: item.num,
-      spec_group_id: 0,
+      spec_group_id_str: item.select_spec_group_info.id ? item.select_spec_group_info.id_str : 0,
     }
-    if (item.specGroupInfo.id) {
-      data.spec_group_id = item.specGroupInfo.id;
-    }
-    return data;
   });
-  return JSON.stringify(orderGoodsData);
 }
 // 组装订单ids
 function packageOrderGoodsIds(goodsList) {
   return goodsList.map(item => {
-    return item.goodsInfo.id;
+    return item.goods_info.id;
   })
 }

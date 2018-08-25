@@ -1,5 +1,7 @@
 // 引入配置文件
-import {headers} from './config.js';
+import {
+  headers
+} from './config.js';
 
 // 封装原来的请求 添加公共请求头的配置
 export function ajax(option) {
@@ -10,15 +12,17 @@ export function ajax(option) {
   }
   // 合并 header 参数
   let header = {};
-  if(option.header){
+  if (option.header) {
     header = Object.assign(option.header, headerMust);
-  }else{
+  } else {
     header = headerMust;
   }
   //判断本地是否有token
   let token = wx.getStorageSync('token');
   if (token) {
-    let tokenHeader = Object.assign({ 'token': token.token }, header)
+    let tokenHeader = Object.assign({
+      'token': token.token
+    }, header)
     request(option, tokenHeader)
   } else {
     request(option, header)
@@ -33,6 +37,7 @@ function request(option, header) {
   let method = options.method || 'POST';
   let success = options.success;
   let fail = options.fail;
+  let complete = options.complete;
   // 0.8秒后显示加载的动态
   // 暂时取消请求的loding
   // setTimeout(()=>{
@@ -54,12 +59,13 @@ function request(option, header) {
       if (res.data.code == 1) {
         success && success(res.data);
       } else if (res.data.code == 0) {
-        if (res.data.msg != -41003){
+        if (res.data.msg != -41003) {
           wx.showToast({
             title: res.data.msg.toString(),
             icon: 'none',
           })
         }
+
       } else {
         // 异常操作 清除本地存储 跳转到首页
         wx.clearStorageSync();
@@ -75,6 +81,9 @@ function request(option, header) {
       // 错误内容
       console.log(err);
       fail && fail(err);
-    }
+    },
+    complete: res => {
+      complete && complete(res);
+    },
   })
 }

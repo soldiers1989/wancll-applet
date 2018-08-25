@@ -22,21 +22,21 @@
     <view class='item-content' wx:for="{{goodsList}}" wx:key="key">
       <view class='center-info'>
         <view class='image-warpper'>
-          <image class='image' src='{{item.goodsInfo.thum}}' mode="widthFix"></image>
+          <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title wancll-margin-b-5'>{{item.goodsInfo.name}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goodsInfo.intro}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.specGroupInfo.id}}">规格: {{item.specGroupInfo.spec_option_group}}
+          <view class='title wancll-margin-b-5'>{{item.goods_info.name}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goods_info.intro}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.select_spec_group_info.id}}">规格: {{item.select_spec_group_info.spec_option_group}}
           </view>
           <view class='price-warpper'>
             <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
-              <text class="wancll-font-size-10">￥</text>{{item.specGroupInfo.sell_price?item.specGroupInfo.sell_price:item.goodsInfo.sell_price*item.num}}
+              <text class="wancll-font-size-10">￥</text>{{item.select_spec_group_info.sell_price?item.select_spec_group_info.sell_price*item.num:item.goods_info.sell_price*item.num}}
             </view>
             <view class='count wancll-flex'>
-              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num - 1}}"></i>
+              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="minus"></i>
               <text class="wancll-padded-5"> {{item.num}} </text>
-              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num + 1}}"></i>
+              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="plus"></i>
             </view>
           </view>
         </view>
@@ -51,13 +51,13 @@
       <text class='discont wancll-text-price wancll-font-size-16'><text class="wancll-font-size-10">￥</text>{{activities.discount[0].discount_price}}</text>
     </view>
   </zan-panel>
-  <zan-panel wx:if="{{activities.full && !isDiscountGoods}}">
+  <zan-panel wx:if="{{activities.full.length && !isDiscountGoods}}">
     <view class='panel' bindtap="toggilPopupFull">
       <text class='title'>选择减满优惠</text>
       <text class='discont'>{{selectedActivityType == 'full' ? selectedActivityText : ''}}</text>
     </view>
   </zan-panel>
-  <view wx:if="{{activities.coupon && !isDiscountGoods}}" class='panel' bindtap="toggilPopupCoupon">
+  <view wx:if="{{activities.coupon.length && !isDiscountGoods}}" class='panel' bindtap="toggilPopupCoupon">
     <text class='title'>选择优惠券</text>
     <text class='discont'>{{selectedActivityType == 'coupon' ? selectedActivityText : ''}}</text>
   </view>
@@ -65,14 +65,22 @@
     <view class='panel'>
       <text class='title'>运费</text>
       <text class='discont'>
-      <text class="wancll-font-size-10">￥</text>{{view.freight_money}}
+      <text class="wancll-font-size-10">￥</text>{{freightMoney}}
       </text>
     </view>
   </zan-panel>
   <zan-panel>
     <view class='memo' wx:if="{{hasPopup}}">
       <text class='title'>买家留言</text>
-      <textarea class="content" bindinput="memoInput" placeholder="说点什么吧"></textarea>
+      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
+    </view>
+  </zan-panel>
+  <!-- 身份信息 -->
+  <zan-panel wx:if="{{hasForeignGoods}}">
+    <view class="user-info">
+      <view class="title">根据海关要求，购买跨境商品必须提供实名认证:</view>
+      <input type="text" placeholder="请输入姓名" value="{{user.name}}" bindinput="liscenInput" data-type="name"></input>
+      <input type="text" placeholder="请输入身份证号码" value="{{user.id_card}}" bindinput="liscenInput" data-type="idcard"></input>
     </view>
   </zan-panel>
 </view>
@@ -128,8 +136,9 @@
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
       <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
-        <view wx:if="{{item.coupon_type=='discount'}}">满{{item.reach_money}}打{{item.change_value}}折</view>
-        <view wx:else>满{{item.reach_money}}减{{item.change_value}}元</view>
+
+        <view wx:if="{{item.coupon_type=='discount'}}">({{item.cate_name}}类) 满{{item.reach_money}}打{{item.change_value}}折</view>
+        <view wx:else>({{item.cate_name}}类) 满{{item.reach_money}}减{{item.change_value}}元</view>
         <view class="wancll-margin-t-5">失效时间{{item.expiry_time}}</view>
       </view>
     </scroll-view>

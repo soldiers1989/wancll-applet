@@ -82,6 +82,11 @@ Page({
         totalPrice: 0.00,
       });
     } else {
+      let result = this.data.carts.some(cart => {
+        return cart.isSelected;
+      });
+      console.log(result);
+
       // 是否显示删除和加入收藏夹; 全选
       this.setData({
         isSelectedAll: this.data.carts.every(cart => {
@@ -207,7 +212,7 @@ Page({
                 title: res.msg,
                 icon: 'none'
               })
-              Paging.refresh();
+              this.onPullDownRefresh();
             }
           })
         }
@@ -266,6 +271,7 @@ Page({
         title: '没选中任何商品',
         icon: 'none'
       })
+      return;
     }
     let orderConfirmGoodsList = selectedCarts.map(cart => {
       return {
