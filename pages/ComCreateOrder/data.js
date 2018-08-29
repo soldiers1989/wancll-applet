@@ -58,7 +58,9 @@ export function getMarketInfo(that, moneyData) {
         if (that.data.isDiscountGoods) {
           if (res.data.discount.length) {
             that.setData({
-              discountsPrice: res.data.discount[0].discount_price * that.goodsList[0].num
+              discountsPrice: res.data.discount[0].discount_price * that.data.goodsList[0].num,
+              selectedActivityType: 'discount',
+              selectedActivity: res.data.discount[0]
             });
           } else {
             wx.showModal({
@@ -114,6 +116,20 @@ export function submit(that) {
     },
   })
 }
+
+// 获取会员参数
+export function getMemberParams(that) {
+  APP.ajax({
+    url: APP.api.memberParams,
+    data: {},
+    success(res) {
+      that.setData({
+        memberParams: res.data
+      });
+    },
+  })
+}
+
 // 组装订单商品信息
 function packageOrderGoodsInfo(goodsList) {
   return goodsList.map(item => {

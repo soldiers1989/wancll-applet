@@ -358,7 +358,7 @@ Page({
   // 跳转到订单详情页
   sendBuyNow() {
     wx.setStorageSync('orderConfirmGoodsList', [{
-      goodsInfo: this.data.goodsInfo,
+      goods_info: this.data.goodsInfo,
       select_spec_group_info: this.data.selectedSku,
       num: 1
     }])

@@ -2,8 +2,12 @@ const APP = getApp();
 import {
   getDefaultAddress,
   orderView,
-  submit
+  submit,
+  getMemberParams,
 } from './data.js';
+import {
+  params
+} from '../../api/config.js';
 Page({
   data: {
     goodsList: [], // 商品信息
@@ -33,8 +37,9 @@ Page({
     showPopupFull: false,
     hasPopup: true,
     submitButtonStatus: true, // 提交订单按钮状态
-    hasForeignGoods: false // 是否含有海外商品
-
+    hasForeignGoods: false, // 是否含有海外商品
+    memberParams: {}, // 会员相关参数
+    isMember: false,
   },
   onLoad(options) {
     let goodsList = wx.getStorageSync('orderConfirmGoodsList');
@@ -45,11 +50,22 @@ Page({
         return goods.goods_info.is_foreign;
       }),
     });
+
+    getMemberParams(this);
+    this.checkIsMember();
   },
   // 页面显示的时候重新加载 地址数据
   onShow() {
     getDefaultAddress(this);
     this.selectComponent("#address").refresh();
+  },
+  // 判断是否金卡会员
+  checkIsMember() {
+    if (this.data.user && this.data.user.member_level == params.bcMember) {
+      this.setData({
+        isMember: true
+      });
+    }
   },
   // 改变商品数量
   changeNum(e) {
@@ -63,7 +79,7 @@ Page({
     this.setData({
       [`goodsList[${index}].num`]: goods.num + num
     });
-    this.orderView();
+    orderView(this);
   },
   // 优惠券选择
   selectCoupon(e) {
@@ -158,7 +174,7 @@ Page({
     let price = this.data.goodsMoney;
     // 处理优惠活动
     if (this.data.isDiscountGoods) {
-      price = this.data.discountPrice;
+      price = this.data.discountsPrice;
     } else if (this.data.selectedActivityType == 'full') {
       price -= this.data.selectedActivity.reduce_money;
     } else if (this.data.selectedActivityType == 'coupon') {
@@ -169,7 +185,9 @@ Page({
       }
     }
     // 处理金卡会员折扣
-
+    if (this.data.isMember) {
+      price *= this.data.memberParams.user.discount * 0.1;
+    }
     // 处理运费
     price += this.data.freightMoney;
     this.setData({

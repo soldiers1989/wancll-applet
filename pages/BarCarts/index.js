@@ -85,7 +85,6 @@ Page({
       let result = this.data.carts.some(cart => {
         return cart.isSelected;
       });
-      console.log(result);
 
       // 是否显示删除和加入收藏夹; 全选
       this.setData({

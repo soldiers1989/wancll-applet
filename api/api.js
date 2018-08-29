@@ -1,5 +1,7 @@
 // 引入配置文件
-import { defaultHost } from './config.js';
+import {
+  defaultHost
+} from './config.js';
 // 请求的api
 export const api = {
   // 主页
@@ -42,8 +44,8 @@ export const api = {
   getCartsUpdate: `${defaultHost}/api_goods/carts/update`,
   getCartsDelete: `${defaultHost}/api_goods/carts/batch_delete`,
   getCartsColleSave: `${defaultHost}/api_goods/goods_collections/batch_save`,
-  
-  
+
+
 
   // 登录注册相关
   userLogin: `${defaultHost}/api_users/user_accounts/login`,
@@ -67,7 +69,7 @@ export const api = {
   userAsset: `${defaultHost}/api_query/users/asset`,
   userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
   userInfo: `${defaultHost}/api_query/systems/info`,
-  userBonus:`${defaultHost}/api_bonus/rules/become_bonus_info`,
+  userBonus: `${defaultHost}/api_bonus/rules/become_bonus_info`,
   userBonusRead: `${defaultHost}/api_bonus/user_apply_bonus/read`,
   userCompleteInfo: `${defaultHost}/api_users/users/complete_user_info`,
   userDrp: `${defaultHost}/api_drp/rules/become_distributor_info`,
@@ -78,8 +80,8 @@ export const api = {
   // 我的足迹
   tracks: `${defaultHost}/api_goods/goods_history/lists`,
   tracksDelete: `${defaultHost}/api_goods/goods_history/delete`,
-  
-  
+
+
 
   // 个人中心设置
   userSettingCode: `${defaultHost}/api_systems/helper/send_code`,
@@ -173,13 +175,13 @@ export const api = {
   drpApplysRead: `${defaultHost}/api_drp/commission_applys/read`,
   drpChildUser: `${defaultHost}/api_drp/team/child_users`,
   drpTeamUser: `${defaultHost}/api_drp/team/team_users`,
-  
+
   // 新分销中心
   drpCenterNew: `${defaultHost}/api_query/drp_new/distributor_info`,
   drpOrderListNew: `${defaultHost}/api_drp_new/drp_orders/lists`,
   drpChildUserNew: `${defaultHost}/api_drp_new/drp_users/child_users`,
   drpRegister: `${defaultHost}/api_drp_new/register_award_logs/logs`,
-  
+
 
   // 分红中心
   bonusCenter: `${defaultHost}/api_query/bonus/bonus_info`,
@@ -190,10 +192,14 @@ export const api = {
   bonusTeamUser: `${defaultHost}/api_bonus/team/team_users`,
   bonusChildUser: `${defaultHost}/api_bonus/team/child_users`,
   bonusRules: `${defaultHost}/api_bonus/rules/index`,
-  
+
   // 收款账户
   userRhirdAcc: `${defaultHost}/api_users/user_third_accounts/lists`,
   userRhirdUpdate: `${defaultHost}/api_users/user_third_accounts/update`,
   // userRhirdWxBind: `${defaultHost}/api_users/user_third_accounts/update`,
-  
+
+
+  // 系统相关
+  memberParams: `${defaultHost}/api_query/systems/member_info`,
+
 }

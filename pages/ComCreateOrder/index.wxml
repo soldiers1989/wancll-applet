@@ -70,6 +70,14 @@
     </view>
   </zan-panel>
   <zan-panel>
+    <view class='panel' wx:if="{{isMember}}">
+      <text class='title'>金卡会员享</text>
+      <text class='discont'>
+      <text>折扣 {{memberParams.user.discount}}</text>
+      </text>
+    </view>
+  </zan-panel>
+  <zan-panel>
     <view class='memo' wx:if="{{hasPopup}}">
       <text class='title'>买家留言</text>
       <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>

@@ -11,7 +11,7 @@
     <view class='price'>
       <block wx:for="{{discountActivity.rule_info}}" wx:if="{{item.goods_id==goodsId}}" wx:key="key">
         <text style='font-size: 20rpx;'>￥</text>
-        <text style='margin-right:10px;'>{{item.discount_price}}</text>
+         <text style='margin-right:10px;'>{{item.discount_price}}</text>
       </block>
       <text style='font-size: 20rpx;text-decoration: line-through'>￥{{goodsInfo.sell_price}}</text>
     </view>
