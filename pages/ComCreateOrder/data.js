@@ -97,7 +97,7 @@ export function submit(that) {
         id_card: that.data.user.id_card
       }
     },
-    success(res) {
+    success: res=> {
       wx.setStorageSync('buyOrder', res.data)
       wx.showToast({
         title: res.msg,
@@ -122,7 +122,7 @@ export function getMemberParams(that) {
   APP.ajax({
     url: APP.api.memberParams,
     data: {},
-    success(res) {
+    success:(res) => {
       that.setData({
         memberParams: res.data
       });

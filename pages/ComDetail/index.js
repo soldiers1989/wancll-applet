@@ -31,6 +31,7 @@ Page({
 
     user: wx.getStorageSync('user'),
     isMember: false,
+    memberParams: {}, // 会员相关参数
 
     // 限时折扣活动
     isDiscountGoods: 0, // 是否限时折扣商品
@@ -67,6 +68,8 @@ Page({
     this.setData({
       goodsId: options.id
     });
+
+    this.getMemberParams();
 
     // 请求活动数据
     if (options.isDiscountGoods) {
@@ -132,6 +135,17 @@ Page({
         isMember: true
       });
     }
+  },
+  getMemberParams() {
+    APP.ajax({
+      url: APP.api.memberParams,
+      data: {},
+      success:res => {
+        this.setData({
+          memberParams: res.data
+        });
+      },
+    })
   },
   // 请求评论数据
   getComments() {

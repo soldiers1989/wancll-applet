@@ -11,7 +11,7 @@
     <view class='price'>
       <block wx:for="{{discountActivity.rule_info}}" wx:if="{{item.goods_id==goodsId}}" wx:key="key">
         <text style='font-size: 20rpx;'>￥</text>
-         <text style='margin-right:10px;'>{{item.discount_price}}</text>
+        <text style='margin-right:10px;'>{{item.discount_price}}</text>
       </block>
       <text style='font-size: 20rpx;text-decoration: line-through'>￥{{goodsInfo.sell_price}}</text>
     </view>
@@ -21,7 +21,7 @@
     <view class='price' wx:if="{{!discountActivity.id}}">
       <text class="sell-price">￥</text> {{goodsInfo.sell_price}}
       <text class="market-price">市场价：{{goodsInfo.market_price}}</text>
-      <text wx:if="{{isMember}}" class="discount">9.5折</text>
+      <text wx:if="{{isMember}}" class="discount">{{memberParams.user.discount}}折</text>
     </view>
     <view class='name'>{{goodsInfo.name}}</view>
     <view class='intro'>{{goodsInfo.intro}}</view>
@@ -41,14 +41,14 @@
   <view class="member">
     <view class="is-not-member" wx:if="{{!isMember}}">
       <view>金卡会员下单立享
-        <span class="discount">9.5折</span>
+        <span class="discount">{{memberParams.user.discount}}折</span>
       </view>
       <view class="open" bindtap="goMember">立即开通</view>
     </view>
     <view wx:else>
       <view class="is-member">
         金卡会员下单立享
-        <span class="discount">9.5折</span>
+        <span class="discount">{{memberParams.user.discount}}折</span>
       </view>
     </view>
   </view>
