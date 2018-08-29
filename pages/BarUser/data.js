@@ -3,13 +3,17 @@ export function getUserData(that) {
   APP.ajax({
     url: APP.api.userCount,
     success(res) {
-      that.setData({ count: res.data })
+      that.setData({
+        count: res.data
+      })
     }
   })
   APP.ajax({
     url: APP.api.userAsset,
     success(res) {
-      that.setData({ asset: res.data })
+      that.setData({
+        asset: res.data
+      })
     }
   })
   APP.ajax({
@@ -30,7 +34,7 @@ export function getUserData(that) {
     success(res) {
       that.setData({
         is_open_bonus: res.data.is_open_bonus,
-        is_open_drp : res.data.is_open_drp,
+        is_open_drp: res.data.is_open_drp,
       });
     }
   })
@@ -60,6 +64,25 @@ export function queryAuthStatus(that) {
           url: '/pages/UserIdInfo/index',
         })
       }
+    }
+  })
+}
+
+// 签到
+export function signIn(that) {
+  if (that.data.user.is_sign) {
+    return;
+  }
+  APP.ajax({
+    url: APP.api.singIn,
+    success(res) {
+      that.setData({
+        ['user.is_sign']: 1,
+      });
+      wx.showToast({
+        title: res.msg,
+        icon: 'none'
+      });
     }
   })
 }

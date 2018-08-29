@@ -80,6 +80,7 @@ export const api = {
   // 我的足迹
   tracks: `${defaultHost}/api_goods/goods_history/lists`,
   tracksDelete: `${defaultHost}/api_goods/goods_history/delete`,
+  singIn: `${defaultHost}/api_users/users/sign_in`,
 
 
 
@@ -198,8 +199,14 @@ export const api = {
   userRhirdUpdate: `${defaultHost}/api_users/user_third_accounts/update`,
   // userRhirdWxBind: `${defaultHost}/api_users/user_third_accounts/update`,
 
+  // 积分商城
+  scoreOrders: `${defaultHost}/api_score_shop/orders/count`,
+  scoreGoods: `${defaultHost}/api_score_shop/score_goods/lists`,
+
 
   // 系统相关
   memberParams: `${defaultHost}/api_query/systems/member_info`,
+
+
 
 }

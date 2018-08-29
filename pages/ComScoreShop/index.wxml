@@ -1,0 +1,71 @@
+<view class='panel'>
+  <zan-panel>
+    <view class='user'>
+      <view class='avatar'>
+        <image src="{{user.avatar}}"></image>
+      </view>
+      <view class='info'>
+        <view class="name">{{user.nick_name || '匿名用户'}}</view>
+        <view>{{user.mobile}}</view>
+        <view>积分：{{asset.score}}</view>
+      </view>
+      <view class='sign'>
+        <view class="real-sign" wx:if="{{user.is_sign}}">已签到</view>
+        <view class="real-sign" bindtap="signIn" wx:else>签到</view>
+        <view class="detail">
+          明细
+        </view>
+      </view>
+
+    </view>
+  </zan-panel>
+</view>
+
+<!-- 订单 -->
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="积分订单" value="全部订单" is-link catchtap='goOrderList' data-target="0">
+      </zan-cell>
+      <zan-panel>
+        <view class='pending-list'>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="2">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_ship_num}}">{{orderCount.wait_ship_num}}</zan-badge>
+              <icon class='icon' type="daifahuo"></icon>
+            </view>
+            <view class='text'>待发货</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="3">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_finish_num}}">{{orderCount.wait_finish_num}}</zan-badge>
+              <icon class='icon' type="yifahuo"></icon>
+            </view>
+            <view class='text'>待收货</view>
+          </view>
+        </view>
+      </zan-panel>
+    </zan-cell-group>
+  </zan-panel>
+</view>
+<!-- 积分商品 -->
+<view class='goods-list wancll-padded-3 wancll-bg-pray'>
+  <view class='goods wancll-bg-pray' wx:for="{{goodsList}}" wx:key="index">
+    <view class='wancll-padded-3 wancll-bg-pray'>
+      <view class='image' data-id='{{item.goods_info.id}}' catchtap='goDetail'>
+        <image mode="widthFix" class="wancll-col-xs-12" src='{{item.goods_info.thum}}'></image>
+      </view>
+      <view class='info wancll-bg-white'>
+        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.goods_info.name}}</view>
+        <view class='wancll-padded-10 wancll-text-price'>
+          <text class="wancll-fl wancll-font-size-10"></text>{{item.score}} 积分
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{FPage.noContent}}" class="no-content-image">
+  <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+</view>

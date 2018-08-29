@@ -15,6 +15,7 @@
     "pages/ComBindMobile/index",
     "pages/ComModifyMobile/index",
     "pages/ComPayWaiting/index",
+    "pages/ComScoreShop/index",
     "pages/UserSetting/index",
     "pages/UserCard/index",
     "pages/UserCardEidt/index",

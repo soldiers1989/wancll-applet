@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": 0,
@@ -87,6 +87,11 @@
 					"name": "限时折扣订单预览",
 					"pathName": "pages/ComCreateOrder/index",
 					"query": "isDiscountGoods=1"
+				},
+				{
+					"id": -1,
+					"name": "积分商城",
+					"pathName": "pages/ComScoreShop/index"
 				}
 			]
 		}

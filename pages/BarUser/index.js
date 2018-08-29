@@ -1,5 +1,5 @@
 const APP = getApp()
-import { getUserData, queryAuthStatus } from './data.js';
+import { getUserData, queryAuthStatus,signIn } from './data.js';
 import { imageHost,params } from '../../api/config.js';
 Page({
   data: {
@@ -238,6 +238,10 @@ Page({
       // 发起请求
       getUserData(this);
     }
+  },
+  // 签到
+  signIn(){
+    signIn(this);
   },
   auth() {
     queryAuthStatus();
