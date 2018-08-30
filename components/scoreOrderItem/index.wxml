@@ -5,7 +5,7 @@
         <view class='left'>{{data.create_time}}</view>
         <template is="pay-actions" data="{{...data}}" />
       </view>
-      <view class='center-info' catchtap="goGoodsDetail" data-id="{{item.goods_id}}" wx:for="{{data.order_goods_info}}" wx:key="key">
+      <view class='center-info' data-id="{{item.goods_id}}" wx:for="{{data.order_goods_info}}" wx:key="key">
         <view class='image-warpper'>
           <image class='image' src='{{item.thum}}' mode="widthFix"></image>
         </view>
@@ -15,8 +15,8 @@
         </view>
         <view class='price-warpper'>
           <view class='price'>
-            <view class='real_price'>￥{{item.real_price}}</view>
-            <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view>
+            <!-- <view class='real_price'>￥{{item.real_price}}</view>
+            <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view> -->
           </view>
           <view class='count'>x{{item.num}}</view>
         </view>

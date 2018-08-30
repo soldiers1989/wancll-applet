@@ -69,7 +69,8 @@
     "pages/UserScoreLog/index",
     "pages/ComScoreGoodsDetail/index",
     "pages/ComScoreCreateOrder/index",
-    "pages/UserScoreOrderList/index"
+    "pages/UserScoreOrderList/index",
+    "pages/UserScoreOrderDetail/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
