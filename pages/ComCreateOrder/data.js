@@ -117,19 +117,6 @@ export function submit(that) {
   })
 }
 
-// 获取会员参数
-export function getMemberParams(that) {
-  APP.ajax({
-    url: APP.api.memberParams,
-    data: {},
-    success:(res) => {
-      that.setData({
-        memberParams: res.data
-      });
-    },
-  })
-}
-
 // 组装订单商品信息
 function packageOrderGoodsInfo(goodsList) {
   return goodsList.map(item => {

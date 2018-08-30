@@ -202,6 +202,8 @@ export const api = {
   // 积分商城
   scoreOrders: `${defaultHost}/api_score_shop/orders/count`,
   scoreGoods: `${defaultHost}/api_score_shop/score_goods/lists`,
+  scoreGoodsDetail: `${defaultHost}/api_score_shop/score_goods/read`,
+  scoreParams: `${defaultHost}/api_score_shop/rules/index`,
 
 
   // 系统相关

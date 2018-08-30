@@ -3,11 +3,11 @@ import {
   getDefaultAddress,
   orderView,
   submit,
-  getMemberParams,
 } from './data.js';
 import {
   params
 } from '../../api/config.js';
+import { getMemberParams } from '../BarUser/data.js';
 Page({
   data: {
     goodsList: [], // 商品信息

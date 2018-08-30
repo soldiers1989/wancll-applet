@@ -34,3 +34,15 @@ export function getUser(that) {
   })
 }
 
+// 获取积分相关参数
+export function getScoreParams(that) {
+  APP.ajax({
+    url: APP.api.scoreParams,
+    data: {},
+    success: res => {
+      that.setData({
+        scoreParams: res.data
+      });
+    },
+  })
+}

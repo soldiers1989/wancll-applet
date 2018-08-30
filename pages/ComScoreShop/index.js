@@ -54,12 +54,16 @@ Page({
   signIn() {
     signIn(this);
   },
-
-  goDetail(e) {
-    let id = e.currentTarget.dataset.id
+  goScoreLog() {
     wx.navigateTo({
-      url: `/pages/ComDetail/index?id=${id}`,
+      url: `/pages/UserScoreLog/index`,
+    });
+  },
+  goGoodsDetail(e) {
+    let id = APP.utils.getDataSet(e, 'id');
+    let goodsId = APP.utils.getDataSet(e, 'goodsId');
+    wx.navigateTo({
+      url: `/pages/ComScoreGoodsDetail/index?id=${id}&goodsId=${goodsId}`,
     })
   },
-
 })

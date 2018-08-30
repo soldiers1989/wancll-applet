@@ -4,6 +4,8 @@ const Paging = new PagingData();
 import {
   params
 } from '../../api/config.js';
+import { getMemberParams } from '../BarUser/data.js'
+
 
 Page({
   data: {
@@ -69,7 +71,7 @@ Page({
       goodsId: options.id
     });
 
-    this.getMemberParams();
+    getMemberParams(this);
 
     // 请求活动数据
     if (options.isDiscountGoods) {
@@ -135,17 +137,6 @@ Page({
         isMember: true
       });
     }
-  },
-  getMemberParams() {
-    APP.ajax({
-      url: APP.api.memberParams,
-      data: {},
-      success:res => {
-        this.setData({
-          memberParams: res.data
-        });
-      },
-    })
   },
   // 请求评论数据
   getComments() {

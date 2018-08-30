@@ -86,3 +86,16 @@ export function signIn(that) {
     }
   })
 }
+
+// 获取会员相关参数
+export function getMemberParams(that) {
+  APP.ajax({
+    url: APP.api.scoreParams,
+    data: {},
+    success: res => {
+      that.setData({
+        scoreParams: res.data
+      });
+    },
+  })
+}

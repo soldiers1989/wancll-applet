@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 11,
 			"list": [
 				{
 					"id": 0,
@@ -91,7 +91,20 @@
 				{
 					"id": -1,
 					"name": "积分商城",
-					"pathName": "pages/ComScoreShop/index"
+					"pathName": "pages/ComScoreShop/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分明细",
+					"pathName": "pages/UserScoreLog/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "积分商品详情",
+					"pathName": "pages/ComScoreGoodsDetail/index",
+					"query": "id=9&goodsId=1337"
 				}
 			]
 		}

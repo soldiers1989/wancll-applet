@@ -25,7 +25,7 @@
         </view>
         <view class='money-item'>
           <view>0</view>
-          <view catchtap='goSubPages' data-target="UserWallet ">我的钱包</view>
+          <view catchtap='goSubPages' data-target="UserWallet">我的钱包</view>
         </view>
       </view>
 
@@ -67,7 +67,7 @@
           </view>
           <view class='pending pending-order' catchtap='goOrderList' data-target="4">
             <view class='icon-badge'>
-              <zan-badge wx:if="{{count.wait_comment_num}} ">{{count.wait_comment_num}}</zan-badge>
+              <zan-badge wx:if="{{count.wait_comment_num}}">{{count.wait_comment_num}}</zan-badge>
               <icon class='icon' type="daipingjia "></icon>
             </view>
             <view class='text'>待评价</view>
@@ -100,11 +100,11 @@
             <view class='text'>购物车</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="UserAddress">
-            <icon class='icon color-y' type="dizhi-01 "></icon>
+            <icon class='icon color-y' type="dizhi-01"></icon>
             <view class='text'>我的地址</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="UserComment">
-            <icon class='icon color-r' type="dingdan1 "></icon>
+            <icon class='icon color-r' type="dingdan1"></icon>
             <view class='text'>我的评价</view>
           </view>
         </view>
