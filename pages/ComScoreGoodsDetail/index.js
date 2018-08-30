@@ -4,7 +4,9 @@ const Paging = new PagingData();
 import {
   params
 } from '../../api/config.js';
-import { getScoreParams } from '../ComScoreShop/data.js'
+import {
+  getScoreParams
+} from '../ComScoreShop/data.js'
 
 Page({
   data: {
@@ -19,11 +21,11 @@ Page({
     nextMargin: 0,
 
     user: wx.getStorageSync('user'),
-    scoreParams: {},  // 积分相关参数
+    scoreParams: {}, // 积分相关参数
 
     // 数据
     goods: {
-      goods_info:{
+      goods_info: {
         attr_info: [],
         spec_info: [],
       },
@@ -103,7 +105,7 @@ Page({
       return false;
     }
 
-    if(!this.data.scoreParams.is_open){
+    if (!this.data.scoreParams.is_open) {
       wx.showToast({
         title: "积分商城未开放",
         icon: 'none',
@@ -133,15 +135,13 @@ Page({
   },
   // 跳转到订单详情页
   sendBuyNow() {
-
-    wx.setStorageSync('orderConfirmGoodsList', [{
-      goods_info: this.data.goods.goods_info,
+    wx.setStorageSync('scoreGoodsList', [{
+      goods: this.data.goods,
       select_spec_group_info: this.data.selectedSku,
       num: 1
     }])
-    // 处理限时折扣
     wx.navigateTo({
-      url: this.data.isDiscountGoods ? `/pages/ComCreateOrder/index?isDiscountGoods=1` : `/pages/ComCreateOrder/index`,
+      url: `/pages/ComScoreCreateOrder/index`,
     })
   },
   // 打开弹出层sku选择器

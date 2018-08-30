@@ -204,6 +204,10 @@ export const api = {
   scoreGoods: `${defaultHost}/api_score_shop/score_goods/lists`,
   scoreGoodsDetail: `${defaultHost}/api_score_shop/score_goods/read`,
   scoreParams: `${defaultHost}/api_score_shop/rules/index`,
+  scoreOrderView: `${defaultHost}/api_score_shop/orders/view`,
+  scoreOrderSave: `${defaultHost}/api_score_shop/orders/save`,
+  checkPayPassword: `${defaultHost}/api_query/users/check_pay_password`,
+  
 
 
   // 系统相关

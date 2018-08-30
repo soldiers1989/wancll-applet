@@ -77,18 +77,18 @@
       </text>
     </view>
   </zan-panel>
-  <zan-panel>
-    <view class='memo' wx:if="{{hasPopup}}">
-      <text class='title'>买家留言</text>
-      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
-    </view>
-  </zan-panel>
   <!-- 身份信息 -->
   <zan-panel wx:if="{{hasForeignGoods}}">
     <view class="user-info">
       <view class="title">根据海关要求，购买跨境商品必须提供实名认证:</view>
       <input type="text" placeholder="请输入姓名" value="{{user.name}}" bindinput="liscenInput" data-type="name"></input>
       <input type="text" placeholder="请输入身份证号码" value="{{user.id_card}}" bindinput="liscenInput" data-type="idcard"></input>
+    </view>
+  </zan-panel>
+  <zan-panel>
+    <view class='memo' wx:if="{{hasPopup}}">
+      <text class='title'>买家留言</text>
+      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
     </view>
   </zan-panel>
 </view>
