@@ -200,13 +200,14 @@ export const api = {
   // userRhirdWxBind: `${defaultHost}/api_users/user_third_accounts/update`,
 
   // 积分商城
-  scoreOrders: `${defaultHost}/api_score_shop/orders/count`,
+  scoreOrderCount: `${defaultHost}/api_score_shop/orders/count`,
   scoreGoods: `${defaultHost}/api_score_shop/score_goods/lists`,
   scoreGoodsDetail: `${defaultHost}/api_score_shop/score_goods/read`,
   scoreParams: `${defaultHost}/api_score_shop/rules/index`,
   scoreOrderView: `${defaultHost}/api_score_shop/orders/view`,
   scoreOrderSave: `${defaultHost}/api_score_shop/orders/save`,
   checkPayPassword: `${defaultHost}/api_query/users/check_pay_password`,
+  scoreOrderList: `${defaultHost}/api_score_shop/orders/lists`,  
   
 
 

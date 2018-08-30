@@ -54,6 +54,12 @@ Page({
   signIn() {
     signIn(this);
   },
+  goOrderList(e) {
+    let target = APP.utils.getDataSet(e, 'target')
+    wx.navigateTo({
+      url: `/pages/UserScoreOrderList/index?target=${target}`,
+    })
+  },
   goScoreLog() {
     wx.navigateTo({
       url: `/pages/UserScoreLog/index`,

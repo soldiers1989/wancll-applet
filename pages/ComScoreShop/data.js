@@ -13,7 +13,7 @@ export function getUserAsset(that) {
 // 获取积分订单
 export function getScoreOrdersCount(that) {
   APP.ajax({
-    url: APP.api.scoreOrders,
+    url: APP.api.scoreOrderCount,
     success(res) {
       that.setData({
         orderCount: res.data

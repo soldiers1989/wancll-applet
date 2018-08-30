@@ -68,7 +68,8 @@
     "pages/UserDRCenterNewRegister/index",
     "pages/UserScoreLog/index",
     "pages/ComScoreGoodsDetail/index",
-    "pages/ComScoreCreateOrder/index"    
+    "pages/ComScoreCreateOrder/index",
+    "pages/UserScoreOrderList/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
