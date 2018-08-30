@@ -70,7 +70,8 @@
     "pages/ComScoreGoodsDetail/index",
     "pages/ComScoreCreateOrder/index",
     "pages/UserScoreOrderList/index",
-    "pages/UserScoreOrderDetail/index"
+    "pages/UserScoreOrderDetail/index",
+    "pages/ComGroupShop/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

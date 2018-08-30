@@ -1,0 +1,103 @@
+  <!-- 轮播图 -->
+  <view class='banner'>
+    <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{banner}}" wx:key="key">
+        <swiper-item>
+          <image src="{{item.img}}" class="slide-image" mode="widthFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+
+<!-- 订单 -->
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="团购订单" value="全部订单" is-link catchtap='goOrderList' data-target="0">
+      </zan-cell>
+      <zan-panel>
+        <view class='pending-list'>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="1">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{count.wait_pay_num}} ">{{orderCount.wait_pay_num}}</zan-badge>
+              <icon class='icon' type="daifukuan "></icon>
+            </view>
+            <view class='text'>待付款</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="2">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_team_num}}">{{orderCount.wait_team_num}}</zan-badge>
+              <icon class='icon' type="daifahuo"></icon>
+            </view>
+            <view class='text'>拼团中</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="3">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_ship_num}}">{{orderCount.wait_ship_num}}</zan-badge>
+              <icon class='icon' type="yifahuo"></icon>
+            </view>
+            <view class='text'>待发货</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="4">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_finish_num}}">{{orderCount.wait_finish_num}}</zan-badge>
+              <icon class='icon' type="yifahuo"></icon>
+            </view>
+            <view class='text'>待收货</view>
+          </view>
+        </view>
+      </zan-panel>
+    </zan-cell-group>
+  </zan-panel>
+</view>
+
+
+
+<!-- 团购商品 -->
+
+<view class="goods-list">
+ <view class="goods" wx:for="{{goodsList}}" wx:key="index">
+  <view class="left">
+    <image src="{{item.goods_info.thum}}"></image>
+  </view>
+  <view class="right">
+    <view class="top">
+      {{item.goods_info.name}}
+    </view>
+    <view class="bottom">
+      <view class="price">
+        <view>
+        单买价：<text style="">{{item.goods_info.sell_price}}</text>
+        </view>
+        <view>{{item.money}}</view>
+      </view>
+      <view class="buy" bindtap="goGoodsDetail" data-id="{{item.id}}" data-goods-id="{{item.goods_id}}">
+        去拼团
+      </view>
+    </view>
+  </view>
+  </view>
+</view>
+
+
+<!-- <view class='goods-list wancll-padded-3 wancll-bg-pray'>
+  <view class='goods wancll-bg-pray' wx:for="{{goodsList}}" wx:key="index">
+    <view class='wancll-padded-3 wancll-bg-pray'>
+      <view class='image' data-id='{{item.id}}' data-goods-id='{{item.goods_id}}' catchtap='goGoodsDetail'>
+        <image mode="widthFix" class="wancll-col-xs-12" src='{{item.goods_info.thum}}'></image>
+      </view>
+      <view class='info wancll-bg-white'>
+        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.goods_info.name}}</view>
+        <view class='wancll-padded-10 wancll-text-price'>
+          <text class="wancll-fl wancll-font-size-10"></text>{{item.score}} 积分
+        </view>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<view wx:if="{{FPage.noContent}}" class="no-content-image">
+  <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+</view>

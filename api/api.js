@@ -208,6 +208,12 @@ export const api = {
   scoreOrderSave: `${defaultHost}/api_score_shop/orders/save`,
   checkPayPassword: `${defaultHost}/api_query/users/check_pay_password`,
   scoreOrderList: `${defaultHost}/api_score_shop/orders/lists`,  
+
+  // 团购商城
+  groupOrderCount: `${defaultHost}/api_query/orders/group_shop_count`,
+  groupGoods: `${defaultHost}/api_group_buy/group_buy_user_goods/lists`,
+  groupParams: `${defaultHost}/api_group_buy/rules/index`,
+  
   
 
 
