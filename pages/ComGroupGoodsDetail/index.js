@@ -178,7 +178,7 @@ Page({
       order_pid:pid,
     }])
     wx.navigateTo({
-      url: `/pages/ComScoreCreateOrder/index`,
+      url: `/pages/ComGroupCreateOrder/index`,
     })
   },
   // 打开弹出层sku选择器

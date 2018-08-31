@@ -1,0 +1,97 @@
+<view class="order-address" bindtap="toggilPopupAddress">
+  <zan-panel>
+    <block wx:if="{{selectedAddress.id}}">
+      <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
+        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
+        <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10" style="width:100%">
+          <view class="wancll-font-weight"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
+          <view class="clearfix wancll-margin-t-10">
+            <text>{{selectedAddress.consignee_name}}</text>
+            <text class="wancll-fr">{{selectedAddress.mobile}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class=" wancll-margin-t-10 wancll-margin-b-10  wancll-padded-15 wancll-bg-white">请先添加收货地址</view>
+    </block>
+  </zan-panel>
+</view>
+<view class="item-list">
+  <zan-panel>
+    <view class='item-content' wx:for="{{goodsList}}" wx:key="key">
+      <view class='center-info'>
+        <view class='image-warpper'>
+          <image class='image' src='{{item.goods.goods_info.thum}}' mode="widthFix"></image>
+        </view>
+        <view class='title-warpper'>
+          <view class='title wancll-margin-b-5'>{{item.goods.goods_info.name}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goods.goods_info.intro}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.select_spec_group_info.spec_group_id_str}}">规格: {{item.select_spec_group_info.spec_option_group}}
+          </view>
+          <view class='price-warpper'>
+            <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
+              <text class="wancll-font-size-10">￥</text>{{item.select_spec_group_info.money?item.select_spec_group_info.money : item.goods.money}}
+            </view>
+            <view class='count wancll-flex'>
+              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="minus"></i>
+              <text class="wancll-padded-5"> {{item.num}} </text>
+              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="plus"></i>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </zan-panel>
+</view>
+<view class='other-price'>
+  <zan-panel>
+    <view class='panel' wx:if="{{isMember}}">
+      <text class='title'>金卡会员享</text>
+      <text class='discont'>
+      <text>折扣 {{memberParams.user.discount}}</text>
+      </text>
+    </view>
+  </zan-panel>
+  <!-- 身份信息 -->
+  <zan-panel wx:if="{{hasForeignGoods}}">
+    <view class="user-info">
+      <view class="title">根据海关要求，购买跨境商品必须提供实名认证:</view>
+      <input type="text" placeholder="请输入姓名" value="{{user.name}}" bindinput="liscenInput" data-type="name"></input>
+      <input type="text" placeholder="请输入身份证号码" value="{{user.id_card}}" bindinput="liscenInput" data-type="idcard"></input>
+    </view>
+  </zan-panel>
+  <zan-panel>
+    <view class='memo' wx:if="{{hasPopup}}">
+      <text class='title'>买家留言</text>
+      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
+    </view>
+  </zan-panel>
+</view>
+
+<view class="total-box">
+  <view class="total">
+    <text class="wancll-font-size-14">合计：</text>
+    <text class="wancll-text-price wancll-font-size-12">￥</text>
+    <text class="wancll-text-price">{{totalPrice}}</text>
+  </view>
+</view>
+
+<view class="wancll-padded-5">
+  <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
+</view>
+
+<!-- 地址选择 -->
+<zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
+  <view class="pop-example__container pop-example__container--bottom">
+    <zan-panel>
+      <view class='top-close'>
+        <text>请选择收货地址</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupAddress">关闭</text>
+      </view>
+    </zan-panel>
+    <scroll-view scroll-y style="height: 450px;">
+      <wancll-address id="address" bind:getclickid="getClickId"></wancll-address>
+    </scroll-view>
+  </view>
+</zan-popup>

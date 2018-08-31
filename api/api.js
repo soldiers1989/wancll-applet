@@ -214,7 +214,10 @@ export const api = {
   groupGoods: `${defaultHost}/api_group_buy/group_buy_user_goods/lists`,
   groupParams: `${defaultHost}/api_group_buy/rules/index`,
   groupGoodsDetail: `${defaultHost}/api_group_buy/group_buy_user_goods/read`,
-  groupTeams: `${defaultHost}/api_group_buy/group_buy_user_teams/lists`,  
+  groupTeams: `${defaultHost}/api_group_buy/group_buy_user_teams/lists`,
+  groupOrderView: `${defaultHost}/api_group_buy/orders/view`,
+  groupOrderSave: `${defaultHost}/api_group_buy/orders/save`,
+  groupOrderJoin: `${defaultHost}/api_group_buy/orders/join`,
   
   
 

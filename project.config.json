@@ -131,10 +131,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 16,
 					"name": "团购商品详情",
 					"pathName": "pages/ComGroupGoodsDetail/index",
-					"query": "id=40&goodsId=449"
+					"query": "id=43&goodsId=430"
+				},
+				{
+					"id": -1,
+					"name": "创建团购订单",
+					"pathName": "pages/ComGroupCreateOrder/index",
+					"query": ""
 				}
 			]
 		}
