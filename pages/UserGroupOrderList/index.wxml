@@ -1,0 +1,18 @@
+
+<view>
+  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
+    <block wx:for="{{orderList}}" wx:key="key">
+        <order-item
+          data="{{item}}" 
+          gotype='orderdetail' 
+          haveinfo 
+          bind:refreshGet="refreshGet"
+          ></order-item>
+    </block>
+
+    <view wx:if="{{FPage.noContent}}" class="no-content-image">
+      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+      <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+    </view>
+  </zan-tab>
+</view>

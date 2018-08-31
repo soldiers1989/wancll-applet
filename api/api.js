@@ -218,6 +218,7 @@ export const api = {
   groupOrderView: `${defaultHost}/api_group_buy/orders/view`,
   groupOrderSave: `${defaultHost}/api_group_buy/orders/save`,
   groupOrderJoin: `${defaultHost}/api_group_buy/orders/join`,
+  groupOrderList: `${defaultHost}/api_group_buy/orders/lists`,
   
   
 

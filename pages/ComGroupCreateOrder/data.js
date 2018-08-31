@@ -62,7 +62,7 @@ export function submit(that) {
         })
         setTimeout(() => {
           wx.redirectTo({
-            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}`
+            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&order_id=res.data.id&type=res.data.type`
           })
         }, 1000)
       },
