@@ -1,0 +1,44 @@
+<view class='panel'>
+  <zan-panel>
+    <view class='user'>
+      <view class='avatar'>
+        <image src="{{user.avatar}}"></image>
+      </view>
+      <view class='info'>
+        <view class="name">{{user.nick_name || '匿名用户'}}</view>
+        <view>{{user.mobile}}</view>
+        <view>积分：{{asset.score}}</view>
+      </view>
+      <view class='sign'>
+        <view class="real-sign" wx:if="{{user.is_sign}}">已签到</view>
+        <view class="real-sign" bindtap="signIn" wx:else>签到</view>
+        <view class="detail" bindtap="goScoreLog">
+          明细
+        </view>
+      </view>
+
+    </view>
+  </zan-panel>
+</view>
+
+<!-- 积分商品 -->
+<view class='goods-list wancll-padded-3 wancll-bg-pray'>
+  <view class='goods wancll-bg-pray' wx:for="{{goodsList}}" wx:key="index">
+    <view class='wancll-padded-3 wancll-bg-pray'>
+      <view class='image' data-id='{{item.id}}' catchtap='goGoodsDetail'>
+        <image mode="widthFix" class="wancll-col-xs-12" src='{{item.thum}}'></image>
+      </view>
+      <view class='info wancll-bg-white'>
+        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
+        <view class='wancll-padded-10 wancll-text-price'>
+          <text class="wancll-fl wancll-font-size-10">￥</text>{{item.sell_price}} 
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{FPage.noContent}}" class="no-content-image">
+  <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+</view>

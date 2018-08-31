@@ -70,7 +70,7 @@ function request(option, header) {
         // 异常操作 清除本地存储 跳转到首页
         wx.clearStorageSync();
         wx.reLaunch({
-          url: '/pages/index/index'
+          url: '/pages/BarHome/index'
         })
       }
     },

@@ -75,7 +75,8 @@
     "pages/ComGroupGoodsDetail/index",
     "pages/ComGroupCreateOrder/index",
     "pages/UserGroupOrderList/index",
-    "pages/UserGroupOrderDetail/index"
+    "pages/UserGroupOrderDetail/index",
+    "pages/BarMemberShop/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -100,6 +101,12 @@
         "pagePath": "pages/BarCategory/index",
         "text": "商品"
       },
+      {
+        "iconPath": "static/images/cate.png",
+        "selectedIconPath": "static/images/cate-2.png",
+        "pagePath": "pages/BarMemberShop/index",
+        "text": "会员"
+      },      
       {
         "iconPath": "static/images/cart.png",
         "selectedIconPath": "static/images/cart-2.png",

@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
@@ -153,6 +153,12 @@
 					"name": "团购订单详情",
 					"pathName": "pages/UserGroupOrderDetail/index",
 					"query": "id=289"
+				},
+				{
+					"id": -1,
+					"name": "会员专区",
+					"pathName": "pages/BarMemberShop/index",
+					"query": ""
 				}
 			]
 		}
