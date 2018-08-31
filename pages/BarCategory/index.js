@@ -36,7 +36,7 @@ Page({
   },
   // 获取分页数据
   getGoodsData(id = '') {
-    let data = { goods_cate_id: id }
+    let data = { goods_cate_id: id , is_member_good:0}
     Paging.getPagesData({ postData: data })
   },
   // 获取树结构

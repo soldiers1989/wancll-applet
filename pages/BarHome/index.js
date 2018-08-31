@@ -1,5 +1,8 @@
 const APP = getApp();
-import { getOtherData } from './data.js';
+import {
+  getOtherData,
+  getBackground
+} from './data.js';
 import PagingData from '../../utils/PagingData';
 const Paging = new PagingData();
 Page({
@@ -15,17 +18,25 @@ Page({
     nextMargin: 0,
 
     // 数据参数
-    imgUrls: [],  // 轮播图片
-    notice: {},   // 首页公告
-    goods: [],    // 商品列表
+    imgUrls: [], // 轮播图片
+    notice: {}, // 首页公告
+    goods: [], // 商品列表
     sellList: [], // 促销列表广告(5个圆形图片)
     discount: [], // 限时折扣活动列表
-    full: [],     // 减免活动列表
+    full: [], // 减免活动列表
     wapIndex: [], // 广告轮播产品
+    tags: [],
+
+    foreignGoods: [], // 海外专区商品
+    groupGoods: [], // 团购专区商品
+    scoreGoods: [], // 积分专区商品
+
+    backgroundImgs: {}, // 背景图片
+
     timeDown: '0天 00 : 00 : 00', // 倒计时
 
     // 控制参数
-    ready: false,  // 数据是否请求成功？
+    ready: false, // 数据是否请求成功？
 
     // 分页功能
     FPage: {
@@ -38,11 +49,13 @@ Page({
     noStockImage: APP.imgs.noStock,
   },
   onLoad() {
+    getBackground(this);
+
     Paging.init({
-      type:2,
-      that:this,
-      url:'goods',
-      pushData:'goods',
+      type: 2,
+      that: this,
+      url: 'goods',
+      pushData: 'goods',
       getFunc: this.getGoodsData
     })
     // 获取所有数据
@@ -56,9 +69,14 @@ Page({
     }, 500)
   },
   // 获取商品数据
-  getGoodsData(){
-    let data = {goods_cate_id: ''}
-    Paging.getPagesData({postData: data })
+  getGoodsData() {
+    let data = {
+      goods_cate_id: '',
+      is_member_good: 0
+    }
+    Paging.getPagesData({
+      postData: data
+    })
   },
   // 下拉刷新事件
   onPullDownRefresh() {
@@ -85,16 +103,42 @@ Page({
     let discountid = APP.utils.getDataSet(e, 'discountid');
     let param = APP.utils.paramsJoin({
       id: id,
-      discountid: discountid
+      isDiscountGoods: 1
     })
     wx.navigateTo({
       url: `/pages/ComDetail/index?${param}`,
     })
   },
-  // 跳转到文章详情页面
-  goArticle(e){
+  // 跳转积分商品详情
+  goScoreGoodsDetail(e) {
     let id = APP.utils.getDataSet(e, 'id');
-    let type = APP.utils.getDataSet(e, 'type');    
+    let goods_id = APP.utils.getDataSet(e, 'goodsId');
+    let param = APP.utils.paramsJoin({
+      id: id,
+      goodsId: goods_id
+    })
+    wx.navigateTo({
+      url: `/pages/ComScoreGoodsDetail/index?${param}`,
+    })
+  },
+
+  // 跳转团购商品详情
+  goGroupGoodsDetail(e) {
+    let id = APP.utils.getDataSet(e, 'id');
+    let goods_id = APP.utils.getDataSet(e, 'goodsId');
+    let param = APP.utils.paramsJoin({
+      id: id,
+      goodsId: goods_id
+    })
+    wx.navigateTo({
+      url: `/pages/ComGroupGoodsDetail/index?${param}`,
+    })
+  },
+
+  // 跳转到文章详情页面
+  goArticle(e) {
+    let id = APP.utils.getDataSet(e, 'id');
+    let type = APP.utils.getDataSet(e, 'type');
     let param = APP.utils.paramsJoin({
       id: id,
       type: type
@@ -115,6 +159,14 @@ Page({
       url: `/pages/BarCategory/index`,
     })
   },
+
+  // 去限时折扣广场
+  goDiscountCenter() {
+    wx.navigateTo({
+      url: '',
+    })
+  },
+
   // 去搜索页面
   goSearchPage() {
     wx.navigateTo({
@@ -132,9 +184,9 @@ Page({
       url: `/pages/ComGoodsList/index?${param}`,
     })
   },
-  
+
   // 分享
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
       path: '/pages/BarHome/index'
     }

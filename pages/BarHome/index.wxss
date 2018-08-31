@@ -52,12 +52,13 @@
 
 .banner-list {
   display: flex;
+  flex-wrap: wrap;
   padding: 30rpx 0;
   text-align: center;
 }
 
 .banner-list .list {
-  flex: 1;
+  flex: 20%;
 }
 
 .banner-list image {
@@ -122,7 +123,9 @@
 .scroll-items .item .info .discount_price {
   font-size: 14px;
   color: #df0303;
+  font-weight: 600;
 }
+
 .scroll-items .item .info .sell_price {
   text-decoration: line-through;
   color: #777;
@@ -153,12 +156,15 @@
   float: right;
   margin-right: 10px;
 }
-.wap-index{
+
+.wap-index {
   margin-bottom: 10px;
 }
-.wap-index .lists image{
+
+.wap-index .lists image {
   width: 100%;
 }
+
 .wap-index .scroll-items .item .info {
   text-align: left;
 }
@@ -166,9 +172,53 @@
 .scroll-items .item .info .name {
   color: #000;
   height: 40px;
-  white-space: pre-wrap
+  white-space: pre-wrap;
 }
+
 .scroll-items .item .info .price {
   font-size: 14px;
   color: #df0303;
+  font-weight: 600;
+}
+
+.activity {
+  height: 13rem;
+  background-size: 100% 100%;
+  padding: 3rem 0.5rem 0.5rem;
+}
+
+.activity .box {
+  display: flex;
+  margin-top:50rpx;
+}
+
+.activity .left {
+  flex: 1;
+  margin-right: 0.25rem;
+}
+
+.activity .right {
+  flex: 1;
+}
+
+.activity .left image {
+  width: 100%;
+}
+
+.activity .right image {
+  width: 100%;
+}
+
+.area image{
+  width:100%;
+}
+
+.area .name{
+  height: 1.5rem;
+  overflow: hidden;
+}
+
+
+.goods-list .price{
+  font-weight: 700;
 }

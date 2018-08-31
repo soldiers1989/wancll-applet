@@ -6,7 +6,7 @@
       <view class='input'>搜索商品</view>
     </view>
   </view>
-  
+
   <!-- 轮播图 -->
   <view class='banner'>
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -18,15 +18,101 @@
     </swiper>
   </view>
 
-  <!-- 促销活动 -->
+  <!-- 标签 -->
   <view class='banner-list'>
-    <view class='list' wx:for="{{sellList}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
+    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
       <view class='img'>
-        <image mode="widthFix" src='{{item.img}}'></image>
+        <image mode="widthFix" src='{{item.thum}}'></image>
       </view>
-      <view class='text'>{{item.title}}</view>
+      <view class='text'>{{item.name}}</view>
     </view>
   </view>
+
+  <!-- 活动专区 -->
+  <view class="activity" style="background-image:{{backgroundImgs.activity.url}}">
+    <view class="box">
+      <view class="left">
+        <image mode="widthFix" src="{{backgroundImgs.xinren.url}}"></image>
+      </view>
+      <view class="right">
+        <view class="item">
+          <image mode="widthFix" src="{{backgroundImgs.coupon.url}}"></image>
+        </view>
+        <view class="item">
+          <image mode="widthFix" src="{{backgroundImgs.full.url}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <!--限时折扣 -->
+  <view class='discount'>
+    <zan-cell is-link bindtap="goDiscountCenter">
+      <text style="color: #df0303;">限时折扣</text> {{discount[0].name}} {{timeDown}}</zan-cell>
+    <scroll-view class='scroll-items' scroll-x="true">
+      <view wx:for="{{discount[0].rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
+        <view class="info">
+          <image src="{{item.goods_info.thum}}" mode="widthFix" />
+          <view class="discount_price">￥{{item.discount_price}}</view>
+          <view class="sell_price">原价{{item.goods_info.sell_price}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 海外专区 -->
+  <view class="area">
+    <image mode="widthFix" src="{{backgroundImgs.foreign.img}}"></image>
+    <view class="wap-index">
+      <scroll-view class='scroll-items' scroll-x="true">
+        <view wx:for="{{foreignGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">
+          <view class="info">
+            <image src="{{goods.thum}}" mode="widthFix" />
+            <view class="name">{{goods.name}}</view>
+            <view class="price">￥{{goods.sell_price}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 拼团专区 -->
+  <view class="area">
+    <image mode="widthFix" src="{{backgroundImgs.group.img}}"></image>
+    <view class="wap-index">
+      <scroll-view class='scroll-items' scroll-x="true">
+        <view wx:for="{{groupGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goGroupGoodsDetail">
+          <view class="info">
+            <image src="{{goods.goods_info.thum}}" mode="widthFix" />
+            <view class="name">{{goods.goods_info.name}}</view>
+            <view>
+              拼团价
+              <text class="price">￥{{goods.money}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 积分专区 -->
+  <view class="area">
+    <image mode="widthFix" src="{{backgroundImgs.score.img}}"></image>
+    <view class="wap-index">
+      <scroll-view class='scroll-items' scroll-x="true">
+        <view wx:for="{{scoreGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goScoreGoodsDetail">
+          <view class="info">
+            <image src="{{goods.goods_info.thum}}" mode="widthFix" />
+            <view class="name">{{goods.goods_info.name}}</view>
+            <view class="price">{{goods.score}}积分</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+
 
   <!-- 首页公告 -->
   <view class='notice'>
@@ -38,48 +124,6 @@
     </view>
   </view>
 
-  <!--限时折扣 -->
-  <view class='discount'>
-    <zan-cell is-link>
-      <text style="color: #df0303;">限时折扣</text> {{discount[0].name}} {{timeDown}}</zan-cell>
-    <scroll-view class='scroll-items' scroll-x="true">
-      <view wx:for="{{discount[0].rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
-        <view class="info">
-          <image src="{{item.goods_info.thum}}" mode="widthFix" />
-          <view class="discount_price">￥{{item.discount_price}}</view>
-          <view class="sell_price">￥{{item.goods_info.sell_price}}</view>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-
-  <!-- 图片连接 -->
-  <view class='links'>
-    <view class='link' bindtap="goDiscountCenter" style="border-right:1px solid #eee">
-      <text class="text">优惠券</text>
-      <image src="http://wancllshop.wx.wygoo.com/public/static/wap/images/index_coupon.png" mode="widthFix" />
-    </view>
-    <view class='link' bindtap="goCategory">
-      <text class="text">满减促销</text>
-      <image src="http://wancllshop.wx.wygoo.com/public/static/wap/images/index_full.png" mode="widthFix" />
-    </view>
-  </view>
-
-  <!-- 轮播商品 -->
-  <view class="wap-index">
-    <view class='lists' wx:for="{{wapIndex}}" wx:key="key">
-      <image src="{{item.ad_img}}" mode="widthFix" />
-      <scroll-view class='scroll-items' scroll-x="true">
-        <view wx:for="{{item.goods_info}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">
-          <view class="info">
-            <image src="{{goods.thum}}" mode="widthFix" />
-            <view class="name">{{goods.name}}</view>
-            <view class="price">￥{{goods.sell_price}}</view>
-          </view>
-        </view>
-      </scroll-view>
-    </view>
-  </view>
 
   <!--商品列表 -->
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
@@ -92,7 +136,7 @@
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
           <view class='wancll-padded-10 wancll-text-price'>
-            <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
+            <text class="wancll-font-size-10 price">￥</text>{{item.sell_price}}</view>
         </view>
       </view>
     </view>

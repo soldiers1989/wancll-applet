@@ -11,6 +11,8 @@ export const api = {
   indexActivity: `${defaultHost}/api_query/market/activity`,
   indexAdvertisements: `${defaultHost}/api_articles/advertisements/lists`,
   indexWapIndex: `${defaultHost}/api_query/configs/wap_index`,
+  indexTags: `${defaultHost}/api_goods/tags/lists`,
+  indexBackground: `${defaultHost}/api_query/contents/wap_advertisements`,
 
   // 通用文章页面
   articlesReg: `${defaultHost}/api_articles/rules/read`,
