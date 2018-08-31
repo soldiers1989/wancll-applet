@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 15,
+			"current": 16,
 			"list": [
 				{
 					"id": 0,
@@ -129,6 +129,12 @@
 					"name": "团购商城",
 					"pathName": "pages/ComGroupShop/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "团购商品详情",
+					"pathName": "pages/ComGroupGoodsDetail/index",
+					"query": "id=40&goodsId=449"
 				}
 			]
 		}

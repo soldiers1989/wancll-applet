@@ -213,6 +213,8 @@ export const api = {
   groupOrderCount: `${defaultHost}/api_query/orders/group_shop_count`,
   groupGoods: `${defaultHost}/api_group_buy/group_buy_user_goods/lists`,
   groupParams: `${defaultHost}/api_group_buy/rules/index`,
+  groupGoodsDetail: `${defaultHost}/api_group_buy/group_buy_user_goods/read`,
+  groupTeams: `${defaultHost}/api_group_buy/group_buy_user_teams/lists`,  
   
   
 

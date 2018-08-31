@@ -1,0 +1,112 @@
+<!--pages/ComDetail/index.wxml-->
+<view class='content'>
+  <swiper class='detail-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{goods.goods_info.imgs}}" wx:key="key">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='detail-info'>
+    <view class='name'>{{goods.goods_info.name}}</view>
+    <view class='intro'>{{goods.goods_info.intro}}</view>
+    <view class='price'>
+      <text class="sell-price">￥</text> {{goods.money}}
+      <text class="market-price">￥{{goods.goods_info.sell_price}}</text>
+      <text class="sales-number">销量：{{goods.goods_info.sell_num}}</text> 
+    </view>
+  </view>
+  <!-- 标签文案 -->
+  <view class="document" show="(goods.goods_info.documents && goods.goods_info.documents.length)}}">
+    <view class="tag" wx:for="{{goods.goods_info.documents}}" wx:key="key">
+      <zan-icon type="passed" class="icon" />
+      <span>{{item}}</span>
+    </view>
+  </view>
+
+  <view class='select-sku'>
+    <zan-panel>
+      <!-- <block wx:if="{{goods.spec_group_info.length}}">
+        <zan-panel>
+          <view class='go-select' bindtap='openSkuPopup'>
+            <view class="left">选择商品规格</view>
+            <view class="right">{{selectedSku.spec_option_group || ''}}</view>
+          </view>
+        </zan-panel>
+      </block> -->
+      <block wx:if="{{goods.goods_info.attr_info.length}}">
+        <view class='go-select' bindtap='openAttrPopup'>
+          <view class="left">产品属性参数</view>
+          <view class="right"></view>
+        </view>
+      </block>
+    </zan-panel>
+
+<!-- 拼团团队信息 -->
+    <view class="team">
+      <view class="top">
+        {{teams.length}}人在拼单
+      </view>
+      <view class="list">
+        <block wx:for="{{teams}}" wx:key="index" wx:for-item="team">
+        <view class="item" wx:for="{{team.info}}" wx:key="index" wx:for-item="user">
+          <view class="avatar">
+            <image src="{{user.user_info.avatar || userAvatar}}"></image>
+          </view>
+          <view class="name">{{user.user_info.nick_name || '匿名用户'}}</view>
+          <view class="info">
+            <view>还差{{team.person_num - team.info.length}}人拼成</view>
+            <view>剩余</view>
+          </view>
+          <view class="join" bindtap="groupBuy" data-type="join" data-pid="{{team.group_buy_order_pid}}">去拼团</view>
+        </view>
+        </block>
+      </view>
+    </view>
+
+
+
+    <block wx:if="{{goods.spec_group_info.length}}">
+      <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
+        <view class="pop-example__container pop-example__container--bottom">
+          <wancll-selectsku id="selectsku" wx:if="{{goods}}" goods="{{goods}}"  sendSelectedSku="{{selectedSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
+          </wancll-selectsku>
+        </view>
+      </zan-popup>
+    </block>
+    <block wx:if="{{goods.goods_info.attr_info.length}}">
+      <zan-popup show="{{ showAttrPopup }}" type="bottom" bindclose="closeAttrPopup">
+        <view class="pop-example__container pop-example__container--bottom">
+          <zan-panel>
+            <view class='top-close'>
+              <text>产品属性</text>
+              <text class="icon" data-type="icon" bindtap="closeAttrPopup">关闭</text>
+            </view>
+          </zan-panel>
+          <zan-cell-group>
+            <zan-cell wx:for="{{goods.goods_info.attr_info}}" title="{{item.name}}" value="{{item.value}}" wx:key="key">
+            </zan-cell>
+          </zan-cell-group>
+        </view>
+      </zan-popup>
+    </block>
+  </view>
+  <view style="height: 20rpx;"></view>
+  <zan-panel>
+    <view class="buy-buttons">
+          <view class="add-cart" data-id="{{goods.goods_id}}" bindtap="goBuyOnly">
+            <view>￥{{goods.goods_info.sell_price}}</view>
+            <view>单独购买</view>
+          </view>
+      <view class="buy-now" data-type="buy" bindtap="groupBuy" data-type="create" data-pid="0">
+        <view>￥{{goods.money}}</view>
+        <view>{{goods.person_num}} 人团</view>
+      </view>
+    </view>
+  </zan-panel>
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <!-- 详情 -->
+  <view class='particulars'>
+    <rich-text nodes="{{goods.goods_info.desc}}"></rich-text>
+  </view>
+</view>

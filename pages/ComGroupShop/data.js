@@ -35,7 +35,7 @@ export function getGroupParams(that) {
     data: {},
     success: res => {
       that.setData({
-        scoreParams: res.data
+        groupParams: res.data
       });
     },
   })

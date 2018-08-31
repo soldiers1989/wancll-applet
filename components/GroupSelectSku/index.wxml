@@ -1,0 +1,48 @@
+<view class="zan-btns">
+  <zan-panel>
+    <view class='top-close'>
+      <text class="left">请选择规格</text>
+      <text class="right icon" data-type="icon" bindtap="close">关闭</text>
+    </view>
+  </zan-panel>
+  <view class='image-warpper'>
+    <image src='{{goodsInfo.thum}}' widthFix></image>
+    <block wx:if="{{selectedSku.spec_group_id_str}}">
+      <template is="selectedSkuPrice" data="{{...selectedSku}}" />
+    </block>
+    <block wx:else>
+      <!-- 默认显示商品价格和库存量 -->
+      <template is="defaultPrice" data="{{...goods}}" />
+    </block>
+  </view>
+  <zan-panel wx:for="{{skuData}}" wx:for-item="spec" wx:for-index="speckey" wx:key="key">
+    <view class='sku'>
+      <view class='title'>{{spec.name}}</view>
+      <view class='lists'>
+        <zan-button bindtap="changeSelect" class="sku-list" size="small" wx:for="{{spec.options}}" wx:for-item="option" wx:for-index="optionkey" type="{{option.isSelected ? 'info' : ''}}" wx:key="index" data-spec="{{spec}}" data-option="{{option}}" data-optionkey="{{optionkey}}"
+          data-speckey="{{speckey}}">
+          {{option.option}}
+        </zan-button>
+      </view>
+    </view>
+  </zan-panel>
+  <view class='send'>
+    <zan-button type="info" bindtap='confirm'>确定选择</zan-button>
+  </view>
+</view>
+
+<template name="selectedSkuPrice">
+  <view class='price-warpper'>
+    <view class='price'>
+      <text style="font-size: 30rpx;">￥</text>{{money}}</view>
+    <view class='stock'>库存：{{stock}}</view>
+  </view>
+</template>
+
+<template name="defaultPrice">
+  <view class='price-warpper'>
+    <view class='price wancll-text-price'>
+      <text style="font-size: 30rpx;">￥</text>{{money}}</view>
+    <view class='stock'>库存：{{stock}}</view>
+  </view>
+</template>
