@@ -172,9 +172,13 @@ Page({
     })
   },
   onShareAppMessage: function() {
+    let path = `${this.route}?id=${this.data.goods.id}&goodsId=${this.data.goods.goods_id}`;
+    if (this.data.user) {
+      path += '&parent_mobile=' + this.data.user.mobile;
+    }
     return {
       title: this.data.goods.goods_info.name,
-      path: `${this.route}?id=${this.data.goodsId}`
+      path: path
     }
   }
 })

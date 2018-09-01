@@ -221,6 +221,7 @@ export const api = {
   groupOrderSave: `${defaultHost}/api_group_buy/orders/save`,
   groupOrderJoin: `${defaultHost}/api_group_buy/orders/join`,
   groupOrderList: `${defaultHost}/api_group_buy/orders/lists`,
+  groupGoodsInfo: `${defaultHost}/api_query/group_buy_goods/goods_info`,
   
   
 

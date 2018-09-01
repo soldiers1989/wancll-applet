@@ -50,7 +50,7 @@ Page({
     showSkuPopup: false,
     showAttrPopup: false,
     afterSelectSku: '', // 选择sku后操作：加入购物车或购买或不操作
-    pid:0   // 父订单id
+    pid: 0 // 父订单id
   },
   onLoad(options) {
     getGroupParams(this);
@@ -123,7 +123,7 @@ Page({
       selectedSku: e.detail.selectedSku,
     });
     setTimeout(() => {
-      this.goGroupBuy(this.data.afterSelectSku,this.data.pid);
+      this.goGroupBuy(this.data.afterSelectSku, this.data.pid);
     }, 500)
   },
   // 操作前检验
@@ -162,20 +162,20 @@ Page({
     if (this.data.goods.goods_info.spec_info.length) {
       this.setData({
         afterSelectSku: type,
-        pid:pid
+        pid: pid
       });
       this.openSkuPopup();
     } else {
-      this.goGroupBuy(type,pid);
+      this.goGroupBuy(type, pid);
     }
   },
   // 跳转到订单详情页
-  goGroupBuy(type,pid) {
+  goGroupBuy(type, pid) {
     wx.setStorageSync('groupGoodsList', [{
       goods: this.data.goods,
       select_spec_group_info: this.data.selectedSku,
       num: 1,
-      order_pid:pid,
+      order_pid: pid,
     }])
     wx.navigateTo({
       url: `/pages/ComGroupCreateOrder/index`,
@@ -208,9 +208,13 @@ Page({
     })
   },
   onShareAppMessage: function() {
+    let path = `${this.route}?id=${this.data.goods.id}&goodsId=${this.data.goods.goods_id}`;
+    if (this.data.user) {
+      path += '&parent_mobile=' + this.data.user.mobile;
+    }
     return {
       title: this.data.goods.goods_info.name,
-      path: `${this.route}?id=${this.data.goodsId}`
+      path: path
     }
   }
 })

@@ -67,6 +67,7 @@ Page({
     afterSelectSku: '', // 选择sku后操作：加入购物车或购买或不操作
   },
   onLoad(options) {
+
     this.setData({
       goodsId: options.id
     });
@@ -399,10 +400,14 @@ Page({
       showAttrPopup: false
     })
   },
-  onShareAppMessage: function() {
+  onShareAppMessage() {
+    let path = `${this.route}?id=${this.data.goodsId}`;
+    if(this.data.user){
+      path += '&parent_mobile=' + this.data.user.mobile;
+    }
     return {
       title: this.data.goodsInfo.name,
-      path: `${this.route}?id=${this.data.goodsId}`
+      path: path
     }
   }
 })
