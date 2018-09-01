@@ -53,6 +53,10 @@ Page({
     pid: 0 // 父订单id
   },
   onLoad(options) {
+    if (options.parent_mobile && !this.data.user) {
+      APP.globalData.parent_mobile = options.parent_mobile;
+    }
+
     getGroupParams(this);
     // 请求商品数据
     APP.ajax({

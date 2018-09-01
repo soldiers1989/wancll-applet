@@ -19,6 +19,10 @@ Page({
     is_open_drp: '',
   },
   onLoad(options) {
+    if(APP.globalData.parent_mobile){
+      this.data.pMobile = APP.globalData.parent_mobile;
+    }
+
     options.unionId && this.setData({
       unionId: options.unionId,
       avatar: options.avatar,
@@ -35,11 +39,11 @@ Page({
       }
     })
   },
-  bindtjMobile(e) {
-    this.setData({
-      pMobile: e.detail.value
-    })
-  },
+  // bindtjMobile(e) {
+  //   this.setData({
+  //     pMobile: e.detail.value
+  //   })
+  // },
   // 手机号码输入
   bindMobile(e) {
     this.setData({
@@ -112,7 +116,7 @@ Page({
   },
   // 确认
   sendData() {
-    if (this.data.pMobile && APP.validator.mobile(this.data.pMobile)) {
+    if (this.data.pMobile && !APP.validator.mobile(this.data.pMobile)) {
       wx.showToast({
         title: '填写正确的手机号',
         icon: 'none'
@@ -177,6 +181,7 @@ Page({
       data.avatar = this.data.avatar;
       data.real_openid = this.data.real_openid;
     }
+
     APP.ajax({
       url: APP.api.userRegister,
       data: data,

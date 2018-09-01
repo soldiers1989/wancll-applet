@@ -28,7 +28,8 @@ App({
   globalData: {
     hasLogin: false,
     token: '',
-    user:{}
+    user:{},
+    parent_mobile:0,
   },
   // ---------------------
   // 添加一些内置方法

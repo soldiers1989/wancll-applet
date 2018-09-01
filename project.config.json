@@ -32,13 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "普通商品详情页",
 					"pathName": "pages/ComDetail/index",
-					"query": "id=1862"
+					"query": "id=1862&parent_mobile=15581646116"
 				},
 				{
 					"id": 1,
@@ -164,6 +164,12 @@
 					"id": 21,
 					"name": "商品分类",
 					"pathName": "pages/BarCategory/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "注册",
+					"pathName": "pages/ComRegister/index",
 					"query": ""
 				}
 			]

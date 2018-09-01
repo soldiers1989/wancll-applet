@@ -48,6 +48,10 @@ Page({
     afterSelectSku: '', // 选择sku后操作：加入购物车或购买或不操作
   },
   onLoad(options) {
+    if (options.parent_mobile && !this.data.user) {
+      APP.globalData.parent_mobile = options.parent_mobile;
+    }
+
     getScoreParams(this);
     // 请求商品数据
     APP.ajax({
