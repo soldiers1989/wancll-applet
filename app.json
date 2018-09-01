@@ -87,7 +87,7 @@
   },
   "tabBar": {
     "color": "#757575",
-    "selectedColor": "#2479e9",
+    "selectedColor": "#ff0000",
     "list": [
       {
         "iconPath": "static/images/index.png",
@@ -102,8 +102,8 @@
         "text": "商品"
       },
       {
-        "iconPath": "static/images/cate.png",
-        "selectedIconPath": "static/images/cate-2.png",
+        "iconPath": "static/images/member.png",
+        "selectedIconPath": "static/images/member-2.png",
         "pagePath": "pages/BarMemberShop/index",
         "text": "会员"
       },      

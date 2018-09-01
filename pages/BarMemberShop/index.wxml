@@ -1,3 +1,6 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+
 <view class='panel'>
   <zan-panel>
     <view class='user'>
@@ -31,7 +34,7 @@
       <view class='info wancll-bg-white'>
         <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
         <view class='wancll-padded-10 wancll-text-price'>
-          <text class="wancll-fl wancll-font-size-10">￥</text>{{item.sell_price}} 
+          <text class="wancll-fl wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}} 
         </view>
       </view>
     </view>

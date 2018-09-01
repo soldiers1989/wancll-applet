@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "积分商城",
+  "navigationBarTitleText": "会员专区",
   "usingComponents": {
     "zan-icon": "../../dist/icon/index",
     "zan-panel": "../../dist/panel/index",

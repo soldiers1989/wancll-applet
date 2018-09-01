@@ -1,5 +1,7 @@
 /* pages/User/index.wxss */
 
+@import "../../static/wxss/iconfont2.wxss";
+
 .panel {
   margin-bottom: 20rpx;
 }

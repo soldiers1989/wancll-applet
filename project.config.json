@@ -161,8 +161,8 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "商品分离",
+					"id": 21,
+					"name": "商品分类",
 					"pathName": "pages/BarCategory/index",
 					"query": ""
 				}
