@@ -64,3 +64,57 @@
   font-size: 24rpx;
   line-height: 60rpx;
 }
+
+.goods-list-new .goods {
+  display: flex;
+  margin: 0 10rpx 0 10 rpx;
+  padding: 20rpx 20rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.goods-list-new .goods .left {
+  width: 4.5rem;
+  margin-right: 30rpx;
+}
+
+.goods-list-new .goods .left image {
+  width: 100%;
+}
+
+.goods-list-new .goods .right .top {
+  font-size: 0.7rem;
+  color: #212121;
+  height: 76rpx;
+  overflow: hidden;
+}
+
+.goods-list-new .goods .right .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-list-new .goods .right .bottom .price {
+  width: 410rpx;
+}
+
+.goods-list-new .goods .right .bottom .sell-price-box {
+  color: #777;
+}
+
+.goods-list-new .goods .right .bottom .sell-price {
+  text-decoration: line-through;
+}
+
+.goods-list-new .goods .right .bottom .group-price {
+  color: #df0303;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.goods-list-new .goods .right .bottom .buy {
+  background: red;
+  color: #fff;
+  padding: 0.2rem 0.3rem;
+  border-radius: 10%;
+  font-size: 0.7rem;
+}
