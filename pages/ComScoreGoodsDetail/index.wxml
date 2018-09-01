@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <!--pages/ComDetail/index.wxml-->
 <view class='content'>
   <swiper class='detail-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -9,7 +11,7 @@
   </swiper>
   <view class='detail-info'>
     <view class='price'>
-      <text class="sell-price"></text>积分 {{goods.score}}
+      <text class="sell-price"></text>积分 {{tools.beautyPrice(goods.score)}}
     </view>
     <view class='name'>{{goods.goods_info.name}}</view>
     <view class='intro'>{{goods.goods_info.intro}}</view>

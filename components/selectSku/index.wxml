@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class="zan-btns">
   <zan-panel>
     <view class='top-close'>
@@ -45,7 +47,7 @@
 <template name="selectedSkuPrice">
   <view class='price-warpper'>
     <view class='price'>
-      <text style="font-size: 30rpx;">￥</text>{{sell_price}}</view>
+      <text style="font-size: 30rpx;">￥</text>{{tools.beautyPrice(sell_price)}}</view>
     <view class='stock'>库存：{{stock}}</view>
   </view>
 </template>
@@ -53,7 +55,7 @@
 <template name="defaultPrice">
   <view class='price-warpper'>
     <view class='price wancll-text-price'>
-      <text style="font-size: 30rpx;">￥</text>{{sell_price}}</view>
+      <text style="font-size: 30rpx;">￥</text>{{tools.beautyPrice(sell_price)}}</view>
     <view class='stock'>库存：{{stock}}</view>
   </view>
 </template>
