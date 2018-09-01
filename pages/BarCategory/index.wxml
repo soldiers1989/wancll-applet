@@ -1,3 +1,6 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+
 <view>
   <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bindtap='tabChange' fixed/>
   <!-- 弹出的 -->
@@ -19,9 +22,15 @@
         <image wx:if="{{item.stock == 0}}" class="no-stock" src="{{noStockImage}}" mode='widthFix'></image>
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
-          <view class='wancll-padded-10 wancll-text-price'>
-            <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
+          <view class="price">
+            <view class='wancll-padded-10 wancll-text-price'>
+              <text class="wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}
+            </view>
+            <view class="market-price" wx:if="{{item.market_price}}">市场价{{tools.beautyPrice(item.market_price)}}</view>
+          </view>
+
         </view>
+
       </view>
     </view>
   </view>

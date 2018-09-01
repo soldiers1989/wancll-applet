@@ -22,3 +22,23 @@
 .zan-tab__item--selected .zan-tab__title{
   color: #358cff !important;
 }
+
+.price{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.market-price {
+  text-decoration: line-through;
+  color:#777;
+  padding: 20rpx;
+  flex:40%;
+  text-align: right;
+}
+
+.wancll-text-price {
+  font-weight: 700;
+  flex:1;
+  font-size: 17px;
+}

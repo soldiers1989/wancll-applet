@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <!--search-->
 <view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
@@ -54,8 +56,8 @@
       <view wx:for="{{discount[0].rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
         <view class="info">
           <image src="{{item.goods_info.thum}}" mode="widthFix" />
-          <view class="discount_price">￥{{item.discount_price}}</view>
-          <view class="sell_price">原价{{item.goods_info.sell_price}}</view>
+          <view class="discount_price">￥{{tools.beautyPrice(item.discount_price)}}</view>
+          <view class="sell_price">原价{{tools.beautyPrice(item.goods_info.sell_price)}}</view>
         </view>
       </view>
     </scroll-view>
@@ -70,7 +72,7 @@
           <view class="info">
             <image src="{{goods.thum}}" mode="widthFix" />
             <view class="name">{{goods.name}}</view>
-            <view class="price">￥{{goods.sell_price}}</view>
+            <view class="price">￥{{tools.beautyPrice(goods.sell_price)}}</view>
           </view>
         </view>
       </scroll-view>
@@ -88,7 +90,7 @@
             <view class="name">{{goods.goods_info.name}}</view>
             <view>
               拼团价
-              <text class="price">￥{{goods.money}}</text>
+              <text class="price">￥{{tools.beautyPrice(goods.money)}}</text>
             </view>
           </view>
         </view>
@@ -105,7 +107,7 @@
           <view class="info">
             <image src="{{goods.goods_info.thum}}" mode="widthFix" />
             <view class="name">{{goods.goods_info.name}}</view>
-            <view class="price">{{goods.score}}积分</view>
+            <view class="price">{{tools.beautyPrice(goods.score)}}积分</view>
           </view>
         </view>
       </scroll-view>
@@ -136,7 +138,7 @@
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
           <view class='wancll-padded-10 wancll-text-price'>
-            <text class="wancll-font-size-10 price">￥</text>{{item.sell_price}}</view>
+            <text class="wancll-font-size-10 price">￥</text>{{tools.beautyPrice(item.sell_price)}}</view>
         </view>
       </view>
     </view>

@@ -1,0 +1,7 @@
+// 去掉小数
+var beautyPrice = function(price) {
+  return Number(price).toPrecision();
+}
+module.exports = {
+  beautyPrice:beautyPrice
+};
