@@ -1,27 +1,43 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 
-<view class='panel'>
+<view class="panel" wx:if="{{!user || !isMember}}">
   <zan-panel>
-    <view class='user'>
-      <view class='avatar'>
-        <image src="{{user.avatar}}"></image>
+    <view class="not-member">
+      <view class="title2">
+        <image class="v" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
+        开通金卡，享受会员优惠
       </view>
-      <view class='info'>
-        <view class="name">{{user.nick_name || '匿名用户'}}</view>
-        <view>{{user.mobile}}</view>
-        <view>积分：{{asset.score}}</view>
-      </view>
-      <view class='sign'>
-        <view class="real-sign" wx:if="{{user.is_sign}}">已签到</view>
-        <view class="real-sign" bindtap="signIn" wx:else>签到</view>
-        <view class="detail" bindtap="goScoreLog">
-          明细
-        </view>
-      </view>
-
+      <view class="open-now" bindtap="goBuyMember">现在开通</view>
     </view>
   </zan-panel>
+</view>
+
+<view class='panel' wx:else>
+  <zan-panel>
+    <view class='user'>
+      <image class="logo" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/member_logo.png"></image>
+      <view class='avatar'>
+        <image mode="widthFix" src="{{user.avatar}}"></image>
+      </view>
+      <view class='info'>
+        <view class="name">
+          <image class="v" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
+          {{user.nick_name || '匿名用户'}}
+        </view>
+        <view>会员到期日：{{user.end_time}}</view>
+      </view>
+      <view class='sign'>
+        <view class="real-sign" wx:if="{{user.is_sign}}" bindtap="goBuyMember">续费</view>
+      </view>
+    </view>
+  </zan-panel>
+</view>
+
+<view class="title">
+  <view class="word">
+    <text class="iconfont icon-huiyuan"></text> 会员商品
+  </view>
 </view>
 
 <!-- 积分商品 -->
@@ -34,7 +50,7 @@
       <view class='info wancll-bg-white'>
         <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
         <view class='wancll-padded-10 wancll-text-price'>
-          <text class="wancll-fl wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}} 
+          <text class="wancll-fl wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}
         </view>
       </view>
     </view>

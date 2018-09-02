@@ -2,39 +2,72 @@
   margin-bottom: 20rpx;
 }
 
-.user {
+.not-member {
   position: relative;
-  height: 405rpx;
-  background-image: url('http://192.168.31.140/public/static/wap/images/home_bg.png');
+  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  padding: 2rem 0.5rem 2rem 1.3rem;
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+}
+
+.not-member .title2 {
+  margin-top: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.not-member .title2 .v {
+  display: inline-block;
+  width: 1.6rem;
+  transform: translateY(20%);
+}
+
+.not-member .open-now {
+  background-color: #fff;
+  padding: 0.15rem 0.8rem;
+  width: 6rem;
+  margin: 1rem auto;
+  border-radius: 3rem;
+  color: #c59343;
+}
+
+.user {
+  position: relative;
+  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 2rem 0.5rem 2rem 1.3rem;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 80rpx;
+  align-items: center;
+}
+
+.user .logo {
+  position: absolute;
+  width: 4rem;
+  top: 0.4rem;
+  left: 0.4rem;
 }
 
 .user .avatar {
-  /* flex: 250rpx 0 0; */
-  flex: 33% 0 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150rpx;
-  border-radius: 50%;
+  width: 3rem;
+  vertical-align: center;
 }
 
 .user .avatar image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 100%;
   background: #eee;
   border-radius: 50%;
 }
 
 .user .info {
-  /* flex: 1; */
-  flex: 56%;
+  flex: 2 0 auto;
+  /* flex: 56%; */
   color: #fff;
-  padding: 80rpx 0;
+  padding-left: 50rpx;
 }
 
 .user .info .icon {
@@ -43,26 +76,17 @@
 
 .user .info .name {
   font-size: 36rpx;
-  /* margin-bottom: 15rpx; */
 }
 
-.user .info .phone {
-  line-height: 50rpx;
-}
-
-.user .info .other {
-  display: flex;
-}
-
-.user .info .other .vip {
-  margin-right: 50rpx;
+.user .v {
+  display: inline-block;
+  width: 1.2rem;
+  transform: translateY(20%);
 }
 
 .user .sign {
   color: #fff;
-  flex: 10%;
-  padding: 80rpx 0;
-  /* line-height: 200rpx; */
+  flex: 1 0 auto;
 }
 
 .user .sign .real-sign {
@@ -75,9 +99,17 @@
   vertical-align: middle;
 }
 
-.user .detail{
-  font-size:36rpx;
+.user .detail {
+  font-size: 36rpx;
   color: #fff;
+}
+
+.title {
+  text-align: center;
+  color: #f00;
+  font-size: 32rpx;
+  margin: 0.5rem;
+  font-style: normal;
 }
 
 .pending-list {

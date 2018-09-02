@@ -2,13 +2,8 @@ const APP = getApp();
 import PagingData from '../../utils/PagingData';
 const Paging = new PagingData();
 import {
-  getUserAsset,
-  getUser
-} from './data.js';
-import {
-  signIn
-} from '../BarUser/data.js';
-
+  params
+} from '../../api/config.js';
 Page({
   data: {
     goodsList: [],
@@ -24,9 +19,14 @@ Page({
       hasData: true,
       noContent: false,
       noContentImg: APP.imgs.noContentImg
-    }
+    },
+    isMember: false,
   },
   onLoad() {
+    this.setData({
+      user: wx.getStorageSync('user'),
+    });
+    this.checkIsMember();
     Paging.init({
       type: 2,
       that: this,
@@ -36,14 +36,25 @@ Page({
     })
     this.getList();
   },
-  onShow() {
-    getUser(this);
-    getUserAsset(this);
-  },
   getList() {
     Paging.getPagesData({
-      postData:{is_member_good:1},
+      postData: {
+        is_member_good: 1
+      },
     });
+  },
+  // 判断是否金卡会员
+  checkIsMember() {
+    if (this.data.user && this.data.user.member_level == params.bcMember) {
+      this.setData({
+        isMember: true
+      });
+    }
+  },
+  goBuyMember(){
+    wx.navigateTo({
+      url: '/pages/ComBuyMember/Index',
+    })
   },
   onPullDownRefresh() {
     Paging.refresh()
