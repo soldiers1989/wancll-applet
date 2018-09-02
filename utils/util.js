@@ -1,6 +1,8 @@
 
 // 活动倒计时 格式 00天 00：00：00
 function timeDown(that, endTime) {
+  console.log(endTime);
+
   let date1 = new Date(); //开始时间  
   let date2 = endTime; //结束时间 
   let date3 = new Date(date2).getTime() - date1.getTime(); //时间差的毫秒数   

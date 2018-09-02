@@ -1,7 +1,19 @@
-<view class="order-top wancll-text-white wancll-padded-20 wancll-flex">
-  <i class="{{'iconfont '+ statusFontClass[orderData.status]}}" style="font-size:80rpx;"></i>
-  <text class="wancll-font-size-18 wancll-padded-l-15"> {{statusName}}</text>
+<!-- 拼团中 -->
+<view class="grouping" wx:if="{{orderData.status == 2 && orderData.group_buy_status == 1}}">
+  <view class="avatar" wx:for="{{team.info}}" wx:key="index">
+    <image mode="widthFix" src="{{item.user_info.avatar || avatar}}"></image>
+  </view>
+  <view class="info">还差{{team.person_num - team.info.length}}人，剩余 <text class="time">{{timeDown}}</text>结束</view>
+  <view class="share">点击右上角，邀请好友拼团</view>
 </view>
+<!-- 其它订单状态 -->
+<view wx:else class="order-top wancll-text-white wancll-padded-20 wancll-flex">
+  <i class="{{'iconfont '+ status.fontClass}}" style="font-size:80rpx;"></i>
+  <text class="wancll-font-size-18 wancll-padded-l-15"> {{status.name}}</text>
+</view>
+
+
+
 <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
   <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
   <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10">
@@ -29,7 +41,7 @@
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.deliver_time}}">发货时间：{{orderData.deliver_time}}</view>
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.finish_time}}">确认收货时间：{{orderData.finish_time}}</view>
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.cancel_time}}">订单取消时间：{{orderData.cancel_time}}</view>
-     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.apply_return_time}}">申请退款时间：{{orderData.apply_return_time}}</view>
-         <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.return_time}}">同意/拒绝退款时间：{{orderData.return_time}}</view>   
+    <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.apply_return_time}}">申请退款时间：{{orderData.apply_return_time}}</view>
+    <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.return_time}}">同意/拒绝退款时间：{{orderData.return_time}}</view>
   </view>
 </zan-panel>

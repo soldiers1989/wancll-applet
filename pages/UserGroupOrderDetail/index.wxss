@@ -1,10 +1,45 @@
-.order-top{
+.order-top {
   background: linear-gradient(to bottom, #3de5ff, #39bbff, #358dff);
   align-items: flex-start;
 }
 
-.order-bottom{
+.order-bottom {
   background: #fff;
   padding: 15px;
   margin: 10px 0;
+}
+
+.grouping {
+  width: 100%;
+  background-size: 100%;
+  height: 360rpx;
+  line-height: 70rpx;
+  background-image: url('http://aimaiyoupin.com/public/static/wap/images/group_team.jpg');
+  text-align: center;
+}
+
+.grouping .avatar image {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.grouping .info {
+  font-size: 0.7rem;
+}
+
+.grouping .time {
+  color: #fff;
+  background: #000;
+  padding: 2px;
+}
+
+.grouping .share {
+  background: red;
+  width: 220px;
+  height: 30px;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  margin: 0px auto;
+  border-radius: 12px;
 }

@@ -1,5 +1,4 @@
 const APP = getApp();
-const STAUTS = ['', '等待付款', '等待发货', '已发货', '交易完成']
 Page({
   data: {
     statusName: '',
@@ -7,13 +6,13 @@ Page({
     orderGoods: [],
     id: '',
     group_goods_id: -1,
-
-    statusFontClass: {
-      1: 'icon-daifukuan',
-      2: 'icon-daifahuo',
-      3: 'icon-yifahuo',
-      4: 'icon-iconwxz'
-    }
+    // 订单状态显示
+    status: {
+      name: '',
+      fontClass: '',
+    },
+    avatar: APP.imgs.avatar,
+    timeDown:'',
   },
   onLoad(options) {
     this.setData({
@@ -21,6 +20,38 @@ Page({
     });
     this.getData();
   },
+  setStatus() {
+    let status = {
+      name: '',
+      fontClass: 'icon-daifahuo',
+    };
+    if (this.data.orderData.status == 1) {
+      status.name += '等待付款';
+      status.fontClass = 'icon-daifukuan';
+    } else if (this.data.orderData.status == 2 && this.data.orderData.group_buy_status == 1) {
+      status.name += '拼团中';
+    } else if (this.data.orderData.group_buy_status == 2 || this.data.orderData.group_buy_status == 4) {
+      status.name += '拼团失败(退款中)';
+    } else if (this.data.orderData.group_buy_status == 5) {
+      status.name += '拼团失败(已退款)';
+    } else if (this.data.orderData.status == 2 && this.data.orderData.group_buy_status == 3) {
+      status.name += '待发货';
+    } else if (this.data.orderData.status == 3 && this.data.orderData.group_buy_status == 3) {
+      status.name += '已发货';
+      status.fontClass = 'icon-yifahuo';
+    } else if (this.data.orderData.status == 4 && this.data.orderData.group_buy_status == 3) {
+      status.name += '交易完成';
+    } else if (this.data.orderData.status == 9) {
+      status.name += '订单已取消';
+      status.fontClass = 'icon-iconwxz';
+    }
+
+    this.setData({
+      status: status,
+    });
+
+  },
+
   getGroupGoodsId() {
     APP.ajax({
       url: APP.api.groupGoodsInfo,
@@ -44,11 +75,28 @@ Page({
       },
       success: res => {
         that.setData({
-          statusName: STAUTS[res.data.status],
           orderData: res.data,
           orderGoods: res.data.order_goods_info,
         });
         this.getGroupGoodsId();
+        this.setStatus();
+        this.getTeamInfo();
+      }
+    })
+  },
+  getTeamInfo() {
+    APP.ajax({
+      url: APP.api.groupTeamDetail,
+      data: {
+        order_pid: this.data.orderData.group_buy_order_pid || this.data.orderData.id
+      },
+      success: res => {
+        setInterval(() => {
+          APP.utils.timeDown(this, res.data.end_time_stamp * 1000)
+        }, 1000)
+        this.setData({
+          team: res.data
+        });
       }
     })
   },

@@ -16,7 +16,7 @@
   text-align: left;
 }
 .top-info .right{
-  flex: 100px 0 0;
+  flex: 110px 0 0;
   text-align: right;
 }
 .center-info{
