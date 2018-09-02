@@ -63,7 +63,7 @@ Page({
         }
       })
     } else if (this.data.payType == 2) {
-      handleWechatPay(that.data.orderNo, payType.goodsOrderPay);
+      handleWechatPay(that.data.orderNo, payType.goodsOrderPay, that.data.orderId, that.data.type);
     }
   },
   sendMoney() {

@@ -1,5 +1,7 @@
 const APP = getApp();
-import { payType } from '../../api/config.js';
+import {
+  payType
+} from '../../api/config.js';
 Page({
   data: {
     payType: '',
@@ -9,6 +11,8 @@ Page({
     let that = this;
     this.setData({
       payType: options.payType,
+      type: options.type,
+      id: options.id
     });
     let interverInt = setInterval(() => {
       APP.ajax({
@@ -29,9 +33,15 @@ Page({
   },
   goOtherPage(e) {
     if (this.data.payType == payType.goodsOrderPay) {
-      wx.redirectTo({
-        url: '/pages/UserOrderList/index?target=0',
-      })
+      if (this.data.type == 1) {
+        wx.redirectTo({
+          url: '/pages/UserOrderList/index',
+        })
+      } else if (this.data.type == 3) {
+        wx.redirectTo({
+          url: '/pages/UserGroupOrderList/index',
+        })
+      }
     } else if (this.data.payType == payType.rechargeOrderPay) {
       wx.redirectTo({
         url: '/pages/UserWallet/index',

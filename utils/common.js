@@ -143,7 +143,7 @@ function queryUserInfoByUnionId(resData, that) {
 }
 
 // 代理微信支付
-export function handleWechatPay(orderNo, payType) {
+export function handleWechatPay(orderNo, payType, orderId, type) {
   wx.showLoading()
   wx.login({
     success(res) {
@@ -158,7 +158,7 @@ export function handleWechatPay(orderNo, payType) {
             wx.hideLoading();
             res.data.success = function(res) {
               wx.redirectTo({
-                url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
+                url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}&`,
               })
             }
             wx.requestPayment(res.data)
