@@ -1,17 +1,17 @@
 <view class='panel'>
   <zan-panel>
-    <view class='user'>
+    <view class="user {{isMember ? 'is-member' : 'is-not-member'}}">
       <view class='avatar'>
         <image src="{{user.avatar}}"></image>
       </view>
       <view class='info'>
         <view class="name">{{user.nick_name || '匿名用户'}}</view>
-        <view>会员到期日：2018-7-9 00:00:00</view>
+        <view wx:if="{{isMember}}">会员到期日：{{user.end_time}}</view>
       </view>
       <view class='sign'>
         <view wx:if="{{user.is_sign}}">已签到</view>
         <view bindtap="signIn" wx:else>签到</view>
-        <view>续费</view>
+        <view wx:if="{{isMember}}" catchtap='goSubPages' data-target="ComBuyMember">续费</view>
       </view>
 
       <view class='setting' bindtap='settingInfo'>
@@ -20,11 +20,11 @@
 
       <view class='money'>
         <view class='money-item'>
-          <view>0</view>
+          <view>{{distributorInfo.except_money}}</view>
           <view>待结算佣金</view>
         </view>
         <view class='money-item'>
-          <view>0</view>
+          <view>{{asset.money}}</view>
           <view catchtap='goSubPages' data-target="UserWallet">我的钱包</view>
         </view>
       </view>
@@ -34,7 +34,7 @@
 </view>
 <view class='panel open-member'>
   <view>开通金卡会员，享受会员优惠</view>
-  <view>立即开通</view>
+  <view catchtap='goSubPages' data-target="ComBuyMember">立即开通</view>
 </view>
 
 <view class='panel'>

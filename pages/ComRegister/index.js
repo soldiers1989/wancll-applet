@@ -30,7 +30,7 @@ Page({
       real_openid: options.real_openid,
     })
     APP.ajax({
-      url: APP.api.userInfo,
+      url: APP.api.systemInfo,
       success: (res) => {
         this.setData({
           is_open_bonus: res.data.is_open_bonus,

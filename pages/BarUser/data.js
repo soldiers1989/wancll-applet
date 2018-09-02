@@ -27,14 +27,23 @@ export function getUserData(that) {
         key: 'user',
         data: res.data,
       })
+      that.checkIsMember();
     }
   })
   APP.ajax({
-    url: APP.api.userInfo,
+    url: APP.api.systemInfo,
     success(res) {
       that.setData({
         is_open_bonus: res.data.is_open_bonus,
         is_open_drp: res.data.is_open_drp,
+      });
+    }
+  })
+  APP.ajax({
+    url: APP.api.drpCenterNew,
+    success(res) {
+      that.setData({
+        distributorInfo:res.data,
       });
     }
   })

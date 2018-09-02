@@ -1,21 +1,34 @@
 const APP = getApp()
-import { getUserData, queryAuthStatus,signIn } from './data.js';
-import { imageHost,params } from '../../api/config.js';
+import {
+  getUserData,
+  queryAuthStatus,
+  signIn,
+  getMemberParams
+} from './data.js';
+import {
+  imageHost,params
+} from '../../api/config.js';
 Page({
   data: {
-    // params:params,
     imageHost: imageHost,
     user: {},
     count: {},
     asset: {},
     is_open_bonus: '',
     is_open_drp: '',
+
+    distributorInfo:{},  
+    isMember: false,
   },
   onLoad(options) {
   },
-  dealMember(){
-    // if(params)
-    console.log(this.user);
+  // 判断是否金卡会员
+  checkIsMember() {
+    if (this.data.user && this.data.user.member_level == params.bcMember) {
+      this.setData({
+        isMember: true
+      });
+    }
   },
   // 跳转到订单状态页面
   goOrderList(e) {
@@ -32,9 +45,9 @@ Page({
     // }else if (target == 'UserDRCenter') {
     //   this.checkDRPage(target)
     // }else{
-      wx.navigateTo({
-        url: `/pages/${target}/index`,
-      })
+    wx.navigateTo({
+      url: `/pages/${target}/index`,
+    })
     // }
   },
   // checkDRPage(target) {
@@ -228,7 +241,7 @@ Page({
       url: `/pages/UserSetting/index`,
     })
   },
-  onShow: function () {
+  onShow: function() {
     // 判断登录状态
     if (!wx.getStorageSync('token')) {
       wx.redirectTo({
@@ -240,7 +253,7 @@ Page({
     }
   },
   // 签到
-  signIn(){
+  signIn() {
     signIn(this);
   },
   auth() {

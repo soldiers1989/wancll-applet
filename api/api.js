@@ -70,7 +70,7 @@ export const api = {
   userCount: `${defaultHost}/api_query/orders/count`,
   userAsset: `${defaultHost}/api_query/users/asset`,
   userGrowLogs: `${defaultHost}/api_users/score_logs/lists`,
-  userInfo: `${defaultHost}/api_query/systems/info`,
+  systemInfo: `${defaultHost}/api_query/systems/info`,
   userBonus: `${defaultHost}/api_bonus/rules/become_bonus_info`,
   userBonusRead: `${defaultHost}/api_bonus/user_apply_bonus/read`,
   userCompleteInfo: `${defaultHost}/api_users/users/complete_user_info`,

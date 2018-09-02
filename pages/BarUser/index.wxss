@@ -1,5 +1,4 @@
 /* pages/User/index.wxss */
-
 @import "../../static/wxss/iconfont2.wxss";
 
 .panel {
@@ -9,12 +8,19 @@
 .user {
   position: relative;
   height: 405rpx;
-  background-image: url('http://192.168.31.140/public/static/wap/images/home_bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 80rpx;
+}
+
+.is-not-member {
+  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/home_bg.png');
+}
+
+.is-member {
+  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/member_home.png');
 }
 
 .user .avatar {
