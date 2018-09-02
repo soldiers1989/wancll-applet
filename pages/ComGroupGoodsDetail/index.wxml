@@ -58,7 +58,7 @@
           <view class="name">{{user.user_info.nick_name || '匿名用户'}}</view>
           <view class="info">
             <view>还差{{team.person_num - team.info.length}}人拼成</view>
-            <view>剩余 0天 01:58:30</view>
+            <view>剩余 {{timeDowns[index]}}</view>
           </view>
           <view class="join" bindtap="groupBuy" data-type="join" data-pid="{{team.group_buy_order_pid}}">去拼团</view>
         </view>

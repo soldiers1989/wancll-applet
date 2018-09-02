@@ -36,6 +36,7 @@ Page({
     selectedSku: {}, // 点击后筛选出的sku
 
     teams: [], // 团队
+    timeDowns: [], // 倒计时
 
     // tab组件参数
     tabList: [{
@@ -93,25 +94,17 @@ Page({
         goods_id: this.data.goods.goods_id,
       },
       success: res => {
-        let nowTime = Date.now();
-        res.data.forEach(item => {
-          item.end_time_stamp = item.end_time_stamp * 1000 - nowTime;
+        let endTimeStamps = res.data.map(team => {
+          return team.end_time_stamp * 1000;
         });
+        setInterval(() => {
+          APP.utils.timeDowns(this, endTimeStamps)
+        }, 1000)
         this.setData({
           teams: res.data
         });
-        // this.setTimer();
       }
     });
-  },
-
-  // 倒计时
-  setTimer() {
-    setInterval(() => {
-      this.teams.forEach((item) => {
-        item.end_time_stamp -= 1000;
-      })
-    }, 1000)
   },
 
   // 单独购买
