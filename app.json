@@ -78,7 +78,8 @@
     "pages/UserGroupOrderDetail/index",
     "pages/BarMemberShop/index",
     "pages/ComMoneyPayWaiting/index",
-    "pages/ComBuyMember/index"
+    "pages/ComBuyMember/index",
+    "pages/ComBuyMemberSelect/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

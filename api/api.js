@@ -226,7 +226,8 @@ export const api = {
   groupGoodsInfo: `${defaultHost}/api_query/group_buy_goods/goods_info`,
   groupTeamDetail: `${defaultHost}/api_group_buy/group_buy_user_teams/read`,
   
-  
+  // 金卡会员
+  buyMemberSave: `${defaultHost}/api_users/buy_member_logs/save`,
 
 
   // 系统相关

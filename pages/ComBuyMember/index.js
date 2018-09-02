@@ -27,7 +27,7 @@ Page({
   },
   goBuy(){
     wx.navigateTo({
-      url: '/pages/ComBuyMemberSelect/index',
+      url: '/pages/ComBuyMemberSelect/index?money=' + this.data.memberParams.user.per_money,
     })
   },
 })

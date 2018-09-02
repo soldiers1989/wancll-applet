@@ -1,0 +1,10 @@
+<view class="wancll-bg-white wancll-padded-5 wancll-margin-t-10 wancll-margin-b-10">
+  <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="2">
+    <i class="wancll-padded-10 iconfont icon-weixinzhifu" style="font-size:50rpx;color:#09bb07;"></i>
+    <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">微信支付</text>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18 wancll-text-info"></i>
+  </view>
+</view>
+<view class="wancll-margin-10">
+  <button class="wancll-bg-info wancll-text-white" catchtap='payMoney'>确认付款</button>
+</view>

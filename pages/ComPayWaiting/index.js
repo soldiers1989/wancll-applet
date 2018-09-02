@@ -46,6 +46,10 @@ Page({
       wx.redirectTo({
         url: '/pages/UserWallet/index',
       })
+    } else if (this.data.payType == payType.buyMember){
+      wx.redirectTo({
+        url: '/pages/BarUser/index',
+      })
     }
   },
   onShareAppMessage() {

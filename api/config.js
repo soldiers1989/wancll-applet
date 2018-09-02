@@ -20,7 +20,8 @@ export const imageHost = {
 // 支付类型 
 export const payType = {
   goodsOrderPay: 'goodsOrderPay',
-  rechargeOrderPay: 'rechargeOrderPay'
+  rechargeOrderPay: 'rechargeOrderPay',
+  buyMember:'buyMember'
 }
 
 // 后台参数
