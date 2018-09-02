@@ -53,7 +53,7 @@ Page({
   },
   goBuyMember(){
     wx.navigateTo({
-      url: '/pages/ComBuyMember/Index',
+      url: '/pages/ComBuyMember/index',
     })
   },
   onPullDownRefresh() {

@@ -1,0 +1,29 @@
+<view class='article'>
+  <view class="user">
+    <view>会员账号：{{user.mobile}}</view>
+    <view>到期日：{{user.end_time}}</view>
+  </view>
+
+  <view class="tags">
+    <view class="title">金卡会员专属权益</view>
+    <view class="content">
+      <view class="tag" wx:for="{{articles}}" wx:key="index">
+        <image mode="widthFix" src="{{item.thum}}"></image>
+        <view class="word">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="price">
+    <!-- <text class="left">365天金卡会员</text>
+      <text class="right">￥{{memberParams.user.per_money}}</text> -->
+    <view class="left">365天金卡会员</view>
+    <view class="right">￥{{memberParams.user.per_money}}</view>
+  </view>
+
+  <view class="button" bindtap="goBuy">
+    立即支付
+  </view>
+
+
+</view>

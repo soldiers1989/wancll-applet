@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 24,
+			"current": 25,
 			"list": [
 				{
 					"id": 0,
@@ -183,6 +183,12 @@
 					"name": "支付选择",
 					"pathName": "pages/ComPay/index",
 					"query": "orderNo=N2018082916034431229&orderMoney=1272.05"
+				},
+				{
+					"id": -1,
+					"name": "购买金卡会员",
+					"pathName": "pages/ComBuyMember/index",
+					"query": ""
 				}
 			]
 		}

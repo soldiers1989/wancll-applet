@@ -1,0 +1,56 @@
+.article {
+  color: #000;
+  font-size: 0.8rem;
+}
+
+.article .user {
+  padding: 26rpx;
+  background: #fff;
+  line-height: 60rpx;
+}
+
+.article .tags {
+  background: #fff;
+  margin: 30rpx;
+  padding: 20rpx;
+}
+
+.article .tags .title {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.article .tags .content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.article .tags .content .tag {
+  flex: 25%;
+  padding-bottom: 30rpx;
+  color: rgb(178, 162, 137);
+}
+
+.article .tags .content .tag image {
+  padding: 0 0.75rem;
+  width: 48px;
+}
+
+.article .price {
+  background: #fff;
+  margin: 30rpx;
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.article .button {
+  background: red;
+  margin: 30rpx;
+  padding:0.5rem;
+  color: #fff;
+  text-align: center;
+  font-size: 0.8rem;
+  border-radius: 3rem;
+}

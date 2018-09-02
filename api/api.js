@@ -17,6 +17,8 @@ export const api = {
   // 通用文章页面
   articlesReg: `${defaultHost}/api_articles/rules/read`,
   articlesNotice: `${defaultHost}/api_articles/annoncements/read`,
+  memberArticle: `${defaultHost}/api_query/contents/member_articles`,
+
 
   // 商品页面 
   goodsTree: `${defaultHost}/api_goods/goods_cates/lists_tree`,
