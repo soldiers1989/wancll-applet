@@ -134,7 +134,7 @@ Component({
           if (res.code == 1) {
             // 前往支付页面
             wx.navigateTo({
-              url: `/pages/ComPay/index?orderNo=${that.data.data.order_no}&orderMoney=${that.data.data.total_money}`,
+              url: `/pages/ComPay/index?orderNo=${that.data.data.order_no}&orderMoney=${that.data.data.total_money}&orderId=${that.data.data.id}&type=1`,
             })
           }
         }

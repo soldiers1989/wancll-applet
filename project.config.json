@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 24,
 			"list": [
 				{
 					"id": 0,
@@ -171,6 +171,18 @@
 					"name": "注册",
 					"pathName": "pages/ComRegister/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "余额支付成功",
+					"pathName": "pages/ComMoneyPayWaiting/index",
+					"query": "id=300&type=2"
+				},
+				{
+					"id": -1,
+					"name": "支付选择",
+					"pathName": "pages/ComPay/index",
+					"query": "orderNo=N2018082916034431229&orderMoney=1272.05"
 				}
 			]
 		}

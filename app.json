@@ -76,7 +76,8 @@
     "pages/ComGroupCreateOrder/index",
     "pages/UserGroupOrderList/index",
     "pages/UserGroupOrderDetail/index",
-    "pages/BarMemberShop/index"
+    "pages/BarMemberShop/index",
+    "pages/ComMoneyPayWaiting/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
@@ -106,7 +107,7 @@
         "selectedIconPath": "static/images/member-2.png",
         "pagePath": "pages/BarMemberShop/index",
         "text": "会员"
-      },      
+      },
       {
         "iconPath": "static/images/cart.png",
         "selectedIconPath": "static/images/cart-2.png",

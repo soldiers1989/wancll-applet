@@ -57,11 +57,11 @@ export function submit(that) {
         title: res.msg,
         icon: 'none',
       })
-      // setTimeout(() => {
-      //   wx.redirectTo({
-      //     url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}`
-      //   })
-      // }, 1000)
+      setTimeout(() => {
+        wx.redirectTo({
+          url: `/pages/ComMoneyPayWaiting/index?id=${res.data.id}&type=2`
+        })
+      }, 1000)
     },
   })
 }

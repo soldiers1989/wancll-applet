@@ -62,7 +62,7 @@ export function submit(that) {
         })
         setTimeout(() => {
           wx.redirectTo({
-            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&order_id=res.data.id&type=res.data.type`
+            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&orderId=${res.data.id}&type=3`
           })
         }, 1000)
       },
@@ -95,7 +95,7 @@ export function submit(that) {
         })
         setTimeout(() => {
           wx.redirectTo({
-            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&order_id=res.data.id&type=res.data.type`
+            url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&orderId=${res.data.id}&type=3`
           })
         }, 1000)
       },

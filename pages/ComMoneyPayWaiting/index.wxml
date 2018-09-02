@@ -1,0 +1,14 @@
+<view>
+  <view class="status  wancll-text-center">
+    <view>
+      <i class="iconfont icon-roundcheckfill pay-success"></i>
+      <view class="wancll-margin-20">支付成功</view>
+    </view>
+  </view>
+
+  <view class="wancll-margin-10">
+    <button class="go-home" bindtap="goHome">返回首页</button>
+    <button class="order wancll-text-black" bindtap='goOrder'>查看我的订单</button>
+
+  </view>
+</view>

@@ -191,7 +191,6 @@ Page({
     if (this.data.user) {
       path += '?parent_mobile=' + this.data.user.mobile;
     }
-    console.log(path);
     return {
       title: '爱买优品：坚持经营高性价比产品，爱买优选任你挑～',
       path: path,

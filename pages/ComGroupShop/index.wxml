@@ -23,7 +23,7 @@
         <view class='pending-list'>
           <view class='pending pending-order' catchtap='goOrderList' data-target="1">
             <view class='icon-badge'>
-              <zan-badge wx:if="{{count.wait_pay_num}}">{{orderCount.wait_pay_num}}</zan-badge>
+              <zan-badge wx:if="{{orderCount.wait_pay_num}}">{{orderCount.wait_pay_num}}</zan-badge>
               <icon class='icon' type="daifukuan"></icon>
             </view>
             <view class='text'>待付款</view>

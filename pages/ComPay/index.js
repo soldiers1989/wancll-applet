@@ -1,18 +1,25 @@
 const APP = getApp();
-import { handleWechatPay } from '../../utils/common.js';
-import { payType } from '../../api/config.js';
+import {
+  handleWechatPay
+} from '../../utils/common.js';
+import {
+  payType
+} from '../../api/config.js';
 Page({
   data: {
     showPopup: false,
     orderNo: '',
     orderMoney: '',
     password: "",
-    payType: '1'
+    payType: '1',
+    orderId: -1,
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       orderNo: options.orderNo,
-      orderMoney: options.orderMoney
+      orderMoney: options.orderMoney,
+      orderId: options.orderId,
+      type: options.type
     })
   },
   // 数据绑定
@@ -79,27 +86,32 @@ Page({
           title: res.msg,
           icon: 'none',
           success() {
-            let params = APP.utils.paramsJoin({
-              // target: wx.getStorageSync('thisOrderList')
-              target: 2
-            })
-            setTimeout(() => {
-              wx.redirectTo({
-                url: `/pages/UserOrderList/index?${params}`,
-              })
-            }, 1000)
+            if (that.data.type == 3) {
+              setTimeout(() => {
+                wx.redirectTo({
+                  url: `/pages/UserGroupOrderDetail/index?id=${that.data.orderId}`
+                })
+              }, 1000)
+            } else {
+              setTimeout(() => {
+                wx.redirectTo({
+                  url: `/pages/ComMoneyPayWaiting/index?id=${that.data.orderId}&type=${that.data.type}`
+                })
+              }, 1000)
+            }
+
           }
         })
       }
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

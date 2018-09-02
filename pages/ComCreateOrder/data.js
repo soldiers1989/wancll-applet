@@ -105,7 +105,7 @@ export function submit(that) {
       })
       setTimeout(() => {
         wx.redirectTo({
-          url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}`
+          url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&orderId=${res.data.id}&type=1`
         })
       }, 1000)
     },

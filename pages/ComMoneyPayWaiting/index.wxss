@@ -1,0 +1,23 @@
+.status {
+  margin: 100rpx 0 100rpx 0;
+}
+
+.pay-success {
+  font-size: 70rpx;
+  color: #21c002;
+}
+
+.go-home {
+  color: #fff;
+  background: red;
+  margin-bottom: 20rpx;
+  padding: 0.5rem;
+  border-radius: 3rem;
+  border: 1px solid #000;
+}
+
+.order {
+  padding: 0.5rem;
+  border-radius: 3rem;
+  border: 1px solid #000;
+}
