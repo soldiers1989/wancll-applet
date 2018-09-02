@@ -11,7 +11,7 @@ import {
 Page({
   data: {
     goodsList: [], // 商品信息
-    user: wx.getStorageSync('user'), // 用户
+    user: {}, // 用户
     totalScore: 0,
     freightMoney: 0, // 运费
     selectedAddress: '', // 选择的地址
@@ -25,6 +25,10 @@ Page({
     hasForeignGoods: false, // 是否含有海外商品
   },
   onLoad(options) {
+    this.setData({
+      user: wx.getStorageSync('user')
+    });
+
     let goodsList = wx.getStorageSync('scoreGoodsList');
     this.setData({
       goodsList: goodsList,

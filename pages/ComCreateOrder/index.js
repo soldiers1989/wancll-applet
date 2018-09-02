@@ -13,7 +13,7 @@ Page({
     goodsList: [], // 商品信息
     isDiscountGoods: 0, // 是否折扣商品提交
 
-    user: wx.getStorageSync('user'), // 用户
+    user: {}, // 用户
 
     totalPrice: 0, // 订单总价
     freightMoney: 0, // 运费
@@ -42,6 +42,10 @@ Page({
     isMember: false,
   },
   onLoad(options) {
+    this.setData({
+      user: wx.getStorageSync('user'),
+    });
+
     let goodsList = wx.getStorageSync('orderConfirmGoodsList');
     this.setData({
       goodsList: goodsList,

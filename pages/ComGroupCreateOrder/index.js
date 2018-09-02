@@ -7,11 +7,13 @@ import {
 import {
   params
 } from '../../api/config.js';
-import { getMemberParams } from '../BarUser/data.js';
+import {
+  getMemberParams
+} from '../BarUser/data.js';
 Page({
   data: {
     goodsList: [], // 商品信息
-    user: wx.getStorageSync('user'), // 用户
+    user: {}, // 用户
 
     totalPrice: 0, // 订单总价
     selectedAddress: '', // 选择的地址
@@ -27,6 +29,7 @@ Page({
   onLoad(options) {
     let goodsList = wx.getStorageSync('groupGoodsList');
     this.setData({
+      user: wx.getStorageSync('user'),
       goodsList: goodsList,
       hasForeignGoods: goodsList.some(goods => {
         return goods.goods.goods_info.is_foreign;

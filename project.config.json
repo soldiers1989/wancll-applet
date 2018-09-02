@@ -38,7 +38,7 @@
 					"id": 0,
 					"name": "普通商品详情页",
 					"pathName": "pages/ComDetail/index",
-					"query": "id=1862&parent_mobile=15581646116"
+					"query": "id=1862"
 				},
 				{
 					"id": 1,
