@@ -342,9 +342,6 @@
   font-size: 0.7rem;
 }
 
-.team .list {
-}
-
 .team .list .item {
   border-top: 1px rgb(245, 245, 245) solid;
   display: flex;
@@ -352,6 +349,7 @@
   padding: 0.5rem;
   height: 160rpx;
 }
+
 
 .team .list .item .avatar image {
   width: 65px;
