@@ -19,7 +19,7 @@ Page({
   onLoad: function (options) {
     // 请求背景图片
     APP.ajax({
-      url: APP.api.qrcodeImg,
+      url: APP.api.indexBackground,
       data:{
         position:'qrcode'
       },
