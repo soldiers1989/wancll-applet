@@ -23,10 +23,10 @@
     <input bindinput="bindCode" placeholder="输入验证码" class="" />
   </view>
   <view class='panle'>
-    <input bindinput="bindPassword" password placeholder="输入密码" class="" />
+    <input bindinput="bindPassword" password placeholder="输入登陆密码" class="" />
   </view>
   <view class='panle'>
-    <input bindinput="bindRPassword" password placeholder="确认密码" class="" />
+    <input bindinput="bindPayPassword" password placeholder="输入支付密码" class="" />
   </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
     <button class="wancll-bg-info wancll-text-white" bindtap="sendData">注册</button>

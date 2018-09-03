@@ -7,7 +7,7 @@ Page({
     pMobile: '',
     code: '',
     password: '',
-    rpassword: '',
+    payPassword: '',
     status: true, // 发送成功？
     countDown: 91,
     unionId: '',
@@ -63,9 +63,9 @@ Page({
     })
   },
   // 重复密码输入
-  bindRPassword(e) {
+  bindPayPassword(e) {
     this.setData({
-      rpassword: e.detail.value
+      payPassword: e.detail.value
     })
   },
   // 跳转到文章详情页面
@@ -139,26 +139,22 @@ Page({
     }
     if (!this.data.password) {
       wx.showToast({
-        title: '密码不能为空',
+        title: '登陆密码不能为空',
         icon: 'none'
       })
       return;
     }
+    if (!this.data.payPassword) {
+      wx.showToast({
+        title: '支付密码不能为空',
+        icon: 'none'
+      })
+      return;
+    }    
     if (!APP.validator.password(this.data.password)) {
       wx.showToast({
         title: '密码限制6-20位大小写字母数字组合',
         icon: 'none'
-      })
-      return;
-    }
-    if (this.data.rpassword != this.data.password) {
-      wx.showToast({
-        title: '两次密码不一样',
-        icon: 'none'
-      })
-      this.setData({
-        rpassword: '',
-        password: ''
       })
       return;
     }
@@ -173,6 +169,7 @@ Page({
       parent_mobile: this.data.pMobile,
       mobile: this.data.mobile,
       password: this.data.password,
+      paypassword:this.data.payPassword,
       code: this.data.code,
     };
     if (this.data.unionId) {
