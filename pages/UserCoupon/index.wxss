@@ -34,20 +34,20 @@
   color: #358cff;
 }
 .discount-list .discount .left .num{
-  line-height: 40px;
+  line-height: 24px;
   font-size: 40rpx;
 }
 .discount-list .discount .left text{
   font-size: 24rpx;
 }
 .discount-list .discount .left .text{
-  line-height: 20px;
+  line-height: 24px;
 }
 .discount-list .discount .center{
   flex: 1;
 }
 .discount-list .discount .center .num{
-  line-height: 40px;
+  line-height: 24px;
   font-size: 26rpx;
 }
 .discount-list .discount .center .text{
