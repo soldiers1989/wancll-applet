@@ -6,17 +6,16 @@
 
 .user {
   position: relative;
-  height: 405rpx;
   background-image: url('http://192.168.31.140/public/static/wap/images/home_bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 80rpx;
+  height: 7rem;
+  border-radius: 0.3rem;
 }
 
 .user .avatar {
-  /* flex: 250rpx 0 0; */
   flex: 33% 0 0;
   display: flex;
   justify-content: center;
@@ -33,7 +32,6 @@
 }
 
 .user .info {
-  /* flex: 1; */
   flex: 56%;
   color: #fff;
   padding: 80rpx 0;
@@ -77,8 +75,12 @@
   vertical-align: middle;
 }
 
-.user .detail{
-  font-size:36rpx;
+.user .sign .detail{
+  margin-top:20rpx;
+}
+
+.user .detail {
+  font-size: 36rpx;
   color: #fff;
 }
 
