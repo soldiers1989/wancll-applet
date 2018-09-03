@@ -48,7 +48,7 @@
         <image mode="widthFix" class="wancll-col-xs-12" src='{{item.thum}}'></image>
       </view>
       <view class='info wancll-bg-white'>
-        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
+        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2'>{{item.name}}</view>
         <view class='wancll-padded-10 wancll-text-price'>
           <text class="wancll-fl wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}
         </view>
