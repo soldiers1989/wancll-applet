@@ -26,12 +26,13 @@ Page({
       pushData: 'goodsList',
       getFunc: this.getGoodsList
     })
+
     // 加载页面的判断
     let data = {};
     if (options.cateId) {
       data.goods_cate_id = options.cateId
-    } else if (options.keyword) {
-      data.keyword = options.keyword;
+    } else if (options.type == 'keyword') {
+      data.keyword = options.value;
     } else if (options.tag) {
       data.tag = options.tag;
     } else if (options.distribution) {
