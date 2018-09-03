@@ -32,3 +32,9 @@
 .bottom .click-button .zan-button{
   margin-left: 20rpx;
 }
+
+.button{
+  display: flex;
+  justify-content: space-around;
+  padding:16rpx;
+}

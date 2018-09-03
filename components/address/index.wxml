@@ -33,13 +33,15 @@
     </zan-panel>
   </view>
   <view class='add-address'>
-    <zan-panel >
-      <zan-button bindbtnclick="editAddress" type="info" data-id='new'>
-        <zan-icon type="add"></zan-icon> 手动添加
-      </zan-button>
-      <zan-button bindbtnclick="addFromWechat" type="info" data-id='new'>
-        <zan-icon type="add"></zan-icon> 微信添加
-      </zan-button>      
+    <zan-panel>
+      <view class="button">
+        <zan-button bindbtnclick="editAddress" type="info" data-id='new'>
+          <zan-icon type="add"></zan-icon> 手动添加
+        </zan-button>
+        <zan-button bindbtnclick="addFromWechat" type="primary" data-id='new'>
+          <zan-icon type="add"></zan-icon> 微信添加
+        </zan-button>
+      </view>
     </zan-panel>
   </view>
   <view wx:if="{{FPage.noContent}}" style="text-align: center;margin-top: 20%;">
