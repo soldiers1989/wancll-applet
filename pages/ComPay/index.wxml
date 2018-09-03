@@ -34,7 +34,7 @@
       <zan-panel>
         <view class='title'>请输入支付密码</view>
       </zan-panel>
-      <input bindinput='passwordInput' type='password'></input>
+      <input bindinput='passwordInput' type='password' value="{{password}}"></input>
       <view class='select'>
         <zan-button class='yes' catchtap='sendMoney'> 确定 </zan-button>
         <zan-button class='no' catchtap="togglePopup"> 取消 </zan-button>

@@ -68,7 +68,8 @@ Page({
   // 切换弹出层隐显
   togglePopupPay() {
     this.setData({
-      showPopPay: !this.data.showPopPay
+      showPopPay: !this.data.showPopPay,
+      password:'',
     });
   },
 

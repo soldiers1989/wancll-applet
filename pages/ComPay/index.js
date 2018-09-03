@@ -31,7 +31,8 @@ Page({
   // 切换弹出层隐显
   togglePopup() {
     this.setData({
-      showPopup: !this.data.showPopup
+      showPopup: !this.data.showPopup,
+      password:'',
     });
   },
   // 选择

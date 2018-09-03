@@ -61,6 +61,13 @@ Page({
     if (type == 'minus' && goods.num < 2) {
       return;
     }
+    if (type == 'plus' && goods.num == this.data.goodsList[0].goods.person_buy_num) {
+      wx.showToast({
+        title: '当前团购商品限购' + goods.num + '件',
+        icon: 'none'
+      })
+      return;
+    }
     this.setData({
       [`goodsList[${index}].num`]: goods.num + num
     });

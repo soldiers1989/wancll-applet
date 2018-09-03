@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 31,
 			"list": [
 				{
 					"id": 0,
@@ -218,6 +218,12 @@
 					"id": -1,
 					"name": "搜索",
 					"pathName": "pages/ComSearch/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登陆",
+					"pathName": "pages/ComLogin/index",
 					"query": ""
 				}
 			]
