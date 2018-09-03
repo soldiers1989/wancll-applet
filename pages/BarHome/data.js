@@ -171,9 +171,12 @@ export function getOtherData(that) {
         clearTimeout(timer);
       }, 500)
       // 设置倒计时
-      setInterval(() => {
-        APP.utils.timeDown(that, that.data.discount[0].end_timestamp * 1000)
-      }, 1000)
+      if (that.data.discount.length) {
+        setInterval(() => {
+          APP.utils.timeDown(that, that.data.discount[0].end_timestamp * 1000)
+        }, 1000)
+      }
+
     })
   })
 }

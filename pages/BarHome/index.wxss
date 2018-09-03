@@ -25,7 +25,7 @@
   height: 3rem;
   position: absolute;
   top: 0;
-  right: 0;
+  right: -20rpx;
 }
 
 .search_box {
@@ -217,7 +217,7 @@
 
 .activity .box {
   display: flex;
-  margin-top: 50rpx;
+  margin-top: 96rpx;
 }
 
 .activity .left {

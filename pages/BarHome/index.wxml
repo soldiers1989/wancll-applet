@@ -55,7 +55,7 @@
 
 
   <!--限时折扣 -->
-  <view class='discount'>
+  <view class='discount' wx:if="{{discount.length}}">
     <zan-cell is-link bindtap="goDiscountCenter">
       <text style="color: #df0303;">限时折扣</text> {{discount[0].name}} {{timeDown}}</zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">
