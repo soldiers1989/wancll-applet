@@ -1,3 +1,4 @@
+
 .item-content {
   padding: 10px;
   background: #fff;
@@ -60,7 +61,7 @@
   flex: 1;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .center-info .title-warpper .left {
@@ -86,7 +87,8 @@
 
 .center-info .title-warpper .edit-mode {
   display: flex;
-  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .center-info .title-warpper .edit-mode .left {
@@ -97,7 +99,30 @@
   display: flex;
 }
 
+.center-info .title-warpper .edit-mode .left .box {
+  border-left-width: 1px;
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+  border-color: #dedede;
+  width: 32%;
+  line-height: 1.6rem;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 0;
+  position: relative;
+  border-width: 1px;
+  border-style: solid;
+  margin-top:20rpx;
+}
 
+.center-info .title-warpper .edit-mode .left .bottom{
+  width:100%;
+  text-align: left;
+}
+
+.center-info .title-warpper .edit-mode .left .bottom .word{
+  padding-left:20rpx;
+}
 
 .center-info .title-warpper .edit-mode .right {
   flex: 1;

@@ -15,7 +15,7 @@
           <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <block wx:if="{{!item.isEdit}}">
+          <block wx:if="{{item.isEdit}}">
             <view class="left">
               <view class='title'>{{item.goods_info.name}}</view>
               <view class='intro'>{{item.goods_info.intro}}</view>
@@ -40,13 +40,12 @@
             <view class="edit-mode">
               <view class="left">
                 <view class="top">
-                  <view bindtap="changeNum" data-index="{{index}}" data-type="minus">-</view>
-                  <view>{{item.num}}</view>
-                  <view bindtap="changeNum" data-index="{{index}}" data-type="plus">+</view>
+                  <view  class="box" bindtap="changeNum" data-index="{{index}}" data-type="minus">-</view>
+                  <view class="box">{{item.num}}</view>
+                  <view class="box" bindtap="changeNum" data-index="{{index}}" data-type="plus">+</view>
                 </view>
-                <view class="bottom" bindtap="openSkuShow" data-index="{{index}}">
-                  <view>规格:{{item.spec_group_info.spec_option_group || '规格已修改,请重新选择'}}</view>
-                  <view>选择</view>
+                <view class="bottom box" bindtap="openSkuShow" data-index="{{index}}">
+                  <view class="word">规格:{{item.spec_group_info.spec_option_group || '规格已修改,请重新选择'}}</view>
                 </view>
               </view>
               <view class="right" bindtap="editCart" data-index="{{index}}">完成</view>
