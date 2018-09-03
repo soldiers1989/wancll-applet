@@ -69,16 +69,21 @@
   </zan-panel>
 </view>
 
-<view class="total-box">
+<!-- <view class="total-box">
   <view class="total">
     <text class="wancll-font-size-14">合计：</text>
     <text class="wancll-text-price wancll-font-size-12">￥</text>
     <text class="wancll-text-price">{{totalPrice}}</text>
   </view>
-</view>
+</view> -->
 
-<view class="wancll-padded-5">
-  <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
+<!-- <view class="wancll-padded-5"> -->
+<view class="bottom">
+  <view class="total">合计：
+    <text class="wancll-font-size-12">￥</text> {{totalPrice}}
+  </view>
+  <view class="submit" catchtap='submit'>提交订单</view>
+  <!-- <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button> -->
 </view>
 
 <!-- 地址选择 -->

@@ -15,7 +15,7 @@
           <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <block wx:if="{{item.isEdit}}">
+          <block wx:if="{{!item.isEdit}}">
             <view class="left">
               <view class='title'>{{item.goods_info.name}}</view>
               <view class='intro'>{{item.goods_info.intro}}</view>

@@ -108,7 +108,7 @@
 }
 
 .user-info {
-  padding:10px;
+  padding: 10px;
 }
 
 .user-info .title {
@@ -116,4 +116,40 @@
   font-size: 0.75rem;
   height: 2rem;
   line-height: 2rem;
+}
+
+.bottom {
+  height: 2.5rem;
+  border-top: 1px solid #f4f4f4;
+  overflow: hidden;
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  table-layout: fixed;
+  background-color: #fff;
+  color: #757575;
+  width: 100%;
+  display: flex;
+  z-index: 999;
+}
+
+.bottom .total {
+  width: 75%;
+  text-align: right;
+  display: inline-block;
+  line-height: 2.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
+  height: 2.5rem;
+  color: #fff;
+  background-color: rgb(160, 160, 160);
+}
+
+.bottom .submit {
+  flex:1;
+  text-align: center;
+  line-height: 2.5rem;
+  color:#fff;
+  font-size: 28rpx;
+  background: linear-gradient(to bottom, #fc5458, #f4334b, #ee5176);
 }
