@@ -35,6 +35,9 @@ Page({
 
     timeDown: '0天 00 : 00 : 00', // 倒计时
 
+    isShowPacket: false, // 是否显示注册弹窗
+    user: {},
+
     // 控制参数
     ready: false, // 数据是否请求成功？
 
@@ -50,7 +53,6 @@ Page({
   },
   onLoad() {
     getBackground(this);
-
     Paging.init({
       type: 2,
       that: this,
@@ -67,6 +69,22 @@ Page({
       this.getGoodsData();
       clearTimeout(timer)
     }, 500)
+  },
+  onShow() {
+    this.setData({
+      user: wx.getStorageSync('user'),
+    });
+    if (!this.data.user) {
+      this.setData({
+        isShowPacket: true
+      });
+    }
+  },
+  // 关闭弹窗
+  closePacket() {
+    this.setData({
+      isShowPacket: false
+    });
   },
   // 获取商品数据
   getGoodsData() {

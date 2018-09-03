@@ -1,5 +1,33 @@
 /**index.wxss**/
 
+.packet-bg {
+  background: #333;
+  opacity: 0.5;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: inline-block;
+}
+
+.packet {
+  position: fixed;
+  width: 80%;
+  z-index: 100;
+  left: 46%;
+  transform: translate(-50%);
+  top: 15%;
+  display: inline-block;
+}
+
+.packet .close {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .search_box {
   display: flex;
   height: 80rpx;
@@ -233,5 +261,5 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  height:2rem;
+  height: 2rem;
 }

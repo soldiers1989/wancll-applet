@@ -1,5 +1,11 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
+<view class="packet-bg" wx:if="{{isShowPacket}}"></view>
+<view class="packet" wx:if="{{isShowPacket}}">
+  <view class="close" bindtap="closePacket"></view>
+  <image mode="widthFix" src="{{backgroundImgs.register.url}}"></image>
+</view>
+
 <!--search-->
 <view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
