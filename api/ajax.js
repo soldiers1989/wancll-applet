@@ -2,6 +2,9 @@
 import {
   headers
 } from './config.js';
+import {
+  api
+} from './api.js'
 
 // 封装原来的请求 添加公共请求头的配置
 export function ajax(option) {
@@ -65,7 +68,8 @@ function request(option, header) {
             icon: 'none',
           })
         }
-
+      } else if (res.data.code == 100402) {
+        refreseToken(options, header);
       } else {
         // 异常操作 清除本地存储 跳转到首页
         wx.clearStorageSync();
@@ -86,4 +90,31 @@ function request(option, header) {
       complete && complete(res);
     },
   })
+}
+
+// 刷新token
+function refreseToken(options, header) {
+  let APP = getApp();
+  if (APP.globalData.isDoRefreshToken) {
+    return;
+  }
+  APP.globalData.isDoRefreshToken = true;
+
+  let token = wx.getStorageSync('token');
+  ajax({
+    url: api.refreshToken,
+    data: {
+      token: token.token,
+      refresh_token: token.refresh_token
+    },
+    success: res => {
+      wx.setStorageSync("token", res.data);
+      console.log(header.token);
+      console.log(res.data.token);
+      header = Object.assign(header, {
+        'token': res.data.token
+      })
+      request(options, header);
+    }
+  });
 }

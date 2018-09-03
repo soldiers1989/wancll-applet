@@ -232,6 +232,8 @@ export const api = {
 
   // 系统相关
   memberParams: `${defaultHost}/api_query/systems/member_info`,
+  // 刷新token
+  refreshToken: `${defaultHost}/api_systems/helper/refresh_token`,
 
 
 

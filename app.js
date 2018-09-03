@@ -30,6 +30,7 @@ App({
     token: '',
     user:{},
     parent_mobile:0,
+    isDoRefreshToken:false,
   },
   // ---------------------
   // 添加一些内置方法

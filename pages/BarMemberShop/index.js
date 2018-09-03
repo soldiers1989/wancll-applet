@@ -23,6 +23,12 @@ Page({
     isMember: false,
   },
   onLoad() {
+    if (!wx.getStorageSync('token')) {
+      wx.redirectTo({
+        url: '/pages/ComLogin/index',
+      })
+    }
+
     this.setData({
       user: wx.getStorageSync('user'),
     });
@@ -51,7 +57,7 @@ Page({
       });
     }
   },
-  goBuyMember(){
+  goBuyMember() {
     wx.navigateTo({
       url: '/pages/ComBuyMember/index',
     })
