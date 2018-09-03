@@ -2,7 +2,7 @@
   <zan-panel>
     <zan-cell-group>
       <zan-cell class="cell" title="真实姓名">
-        <input slot="footer" type="text" bindinput='nameChange' placeholder="请输入真实姓名" value="{{name }}" />
+        <input slot="footer" type="text" bindinput='nameChange' placeholder="请输入真实姓名" value="{{name}}" />
       </zan-cell>
       <zan-cell class="cell" title="身份证号">
         <input slot="footer" type="idcard" bindinput='idcardChange' placeholder="请输入身份证号" value="{{idcard}}" />

@@ -16,7 +16,7 @@
   <zan-panel>
     <view class='panel'>
       <view class='title'>输入卡号：</view>
-      <input bindinput='enterCard' placeholder='请输入卡号' value='{{enterCard}}'></input>
+      <input bindinput='enterCard' type="number" placeholder='请输入卡号' value='{{enterCard}}'></input>
     </view>
   </zan-panel>
 </zan-panel>

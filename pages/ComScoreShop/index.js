@@ -57,7 +57,7 @@ Page({
   goOrderList(e) {
     let target = APP.utils.getDataSet(e, 'target')
     wx.navigateTo({
-      url: `/pages/UserScoreOrderList/index?target=${target}`,
+      url: `/pages/UserScoreOrderList/index?status=${target}`,
     })
   },
   goScoreLog() {
