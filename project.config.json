@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 16,
 			"list": [
 				{
 					"id": 0,
@@ -134,7 +134,7 @@
 					"id": 16,
 					"name": "团购商品详情",
 					"pathName": "pages/ComGroupGoodsDetail/index",
-					"query": "id=43&goodsId=430"
+					"query": "id=44&goodsId=1865"
 				},
 				{
 					"id": -1,
@@ -206,6 +206,12 @@
 					"id": -1,
 					"name": "我的优惠卷",
 					"pathName": "pages/UserCoupon/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "领劵中心",
+					"pathName": "pages/UserCouponCenter/index",
 					"query": ""
 				}
 			]

@@ -15,7 +15,7 @@
 .detail-info .price {
   font-size: 36rpx;
   color: #df0303;
-  margin-top:10rpx;
+  margin-top: 10rpx;
   margin-bottom: 10rpx;
 }
 
@@ -61,7 +61,7 @@
   font-size: 12px;
   color: #757575;
   float: right;
-  margin-top:10rpx;
+  margin-top: 10rpx;
 }
 
 .document {
@@ -225,7 +225,7 @@
   align-items: center;
   color: #fff;
   background-color: rgb(0, 0, 0);
-  text-align:center;
+  text-align: center;
   padding-top: 8px;
 }
 
@@ -234,7 +234,7 @@
   height: 100%;
   color: #fff;
   background-color: #df0303;
-  text-align:center;
+  text-align: center;
   padding-top: 8px;
 }
 
@@ -338,7 +338,7 @@
 }
 
 .team .top {
-  color:#212121;
+  color: #212121;
   font-size: 0.7rem;
 }
 
@@ -346,17 +346,36 @@
 }
 
 .team .list .item {
-  /* border-top:1px # solid; */
+  border-top: 1px rgb(245, 245, 245) solid;
   display: flex;
-  height: 65rpx;
-  line-height: 65rpx;
+  align-items: center;
+  padding: 0.5rem;
+  height: 160rpx;
 }
 
 .team .list .item .avatar image {
   width: 65px;
-  height: 65px;
+  border-radius: 50%;
 }
 
 .team .list .item .name {
   font-size: 0.8rem;
+  margin-left: 20rpx;
+}
+
+.team .list .item .info {
+  text-align: right;
+  flex: 20%;
+}
+
+.team .list .item .join {
+  flex: 1;
+  text-align:center;
+  background: red;
+  color: #fff;
+  padding: 0.2rem 0.3rem;
+  border-radius: 10%;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 34rpx;
 }
