@@ -1,11 +1,10 @@
 const APP = getApp();
-const TITLE1 = ['登录密码修改', '支付密码修改'];
-const TITLE2 = ['登录密码修改', '支付密码设置'];
+
 Page({
   data: {
     type: 1,
     logo: APP.imgs.logo,
-    showInfo:'',
+    showInfo: '确认重置',
     mobile: '',
     code: 0,
     password: '',
@@ -14,39 +13,33 @@ Page({
     countDown: 91,
     hasLogin: false,
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     // 1代表的登录密码  2代表的是支付密码
     let type = (options.id == 0) ? 1 : 2;
-    APP.ajax({
-      url: APP.api.setPayPass,
-      success:(res) =>{
-        // 登录密码
-        if(type==1){
-          wx.setNavigationBarTitle({
-            title: TITLE2[options.id]
-          })
-          this.setData({ showInfo: '确认重置' })
-        }else if(type==2){
-          if (res.data.is_set_pay_password == 1) {
-            wx.setNavigationBarTitle({
-              title: TITLE1[options.id]
-            })
-            this.setData({ showInfo:'确认重置'})
-          }else{
-            wx.setNavigationBarTitle({
-              title: TITLE2[options.id]
-            })
-            this.setData({ showInfo: '确认设置' })
-          }
-        }
-      }
-    })
+    this.setTitle(type);
     let user = wx.getStorageSync('user');
     this.setData({
       mobile: user ? user.mobile : '',
       type: type,
       hasLogin: user ? true : false
     })
+  },
+  // 设置标题
+  setTitle(type) {
+    if (type == 1) {
+      wx.setNavigationBarTitle({
+        title: '登陆密码修改',
+      })
+    } else if (type == 2) {
+      APP.ajax({
+        url: APP.api.setPayPass,
+        success: (res) => {
+          wx.setNavigationBarTitle({
+            title: res.data.is_set_pay_password == 1 ? '支付密码修改' : '支付密码设置',
+          })
+        }
+      })
+    }
   },
   // 手机号码输入
   bindMobile(e) {
@@ -180,6 +173,7 @@ Page({
   // 倒计时
   countDown() {
     let that = this
+
     function settime() {
       let countdown = that.data.countDown;
       if (countdown == 0) {
