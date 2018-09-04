@@ -9,13 +9,13 @@ Component({
       type: Boolean,
       description: '是否显示价格栏位'
     },
-    gotype:{
+    gotype: {
       type: String,
       description: '跳转的类型'
     }
   },
   data: {
-    bindInput:'',
+    bindInput: '',
     hiddenmodalput: true,
     noContent: false,
     noContentImg: APP.imgs.noContentImg
@@ -24,19 +24,19 @@ Component({
     // 进入订单详情
     goOrderDetail() {
       // console.log(this.data.data)
-      if(this.data.gotype == 'orderdetail'){
+      if (this.data.gotype == 'orderdetail') {
         let id = this.data.data.id;
         wx.navigateTo({
           url: `/pages/UserOrderDetail/index?id=${id}`
         })
       }
     },
-    goGoodsDetail(e){
-      if(this.data.gotype == 'orderdetail'){
+    goGoodsDetail(e) {
+      if (this.data.gotype == 'orderdetail') {
         this.goOrderDetail()
       }
-      if(this.data.gotype == 'goodsdetail'){
-        let id = APP.utils.getDataSet(e,'id')
+      if (this.data.gotype == 'goodsdetail') {
+        let id = APP.utils.getDataSet(e, 'id')
         wx.navigateTo({
           url: `/pages/ComDetail/index?id=${id}`,
         })
@@ -50,23 +50,23 @@ Component({
       let itemList = ['不想买了', '信息填写错误，重新下单', '商家缺货', '其他原因']
       wx.showActionSheet({
         itemList: itemList,
-        success:(res)=>{
+        success: (res) => {
           if (res.tapIndex == 3) {
             this.setData({
               hiddenmodalput: !this.data.hiddenmodalput,
-              bindInput:''
+              bindInput: ''
             })
-          }else{
+          } else {
             this.setData({
-              bindInput:itemList[res.tapIndex]
-            },()=>{
+              bindInput: itemList[res.tapIndex]
+            }, () => {
               APP.ajax({
                 url: APP.api.orderCancel,
                 data: {
                   order_id: id,
                   cancel_reason: this.data.bindInput
                 },
-                success:(res2) =>{
+                success: (res2) => {
                   wx.showToast({
                     title: res2.msg,
                     icon: 'none',
@@ -80,7 +80,7 @@ Component({
       })
     },
     //输入绑定
-    bindInput(e){
+    bindInput(e) {
       this.setData({
         bindInput: e.detail.value
       });
@@ -93,8 +93,8 @@ Component({
       });
     },
     //确认  
-    modalConfirm () {
-      if(!this.data.bindInput){
+    modalConfirm() {
+      if (!this.data.bindInput) {
         wx.showToast({
           title: '请输入原因',
           icon: 'none',
@@ -103,14 +103,14 @@ Component({
       }
       this.setData({
         hiddenmodalput: true
-      },()=>{
+      }, () => {
         APP.ajax({
           url: APP.api.orderCancel,
           data: {
             order_id: this.data.data.id,
             cancel_reason: this.data.bindInput
           },
-          success:(res2) =>{
+          success: (res2) => {
             wx.showToast({
               title: res2.msg,
               icon: 'none',
@@ -120,7 +120,7 @@ Component({
         })
       })
     },
-    
+
 
     // 预支付
     payOrder() {
@@ -175,7 +175,7 @@ Component({
       wx.showModal({
         title: '提示',
         content: '确定货物已经收到，再点击确定收货按钮，',
-        success: function (res) {
+        success: function(res) {
           if (res.confirm) {
             APP.ajax({
               url: APP.api.orderUserSing,
@@ -203,12 +203,11 @@ Component({
     },
     // 评价
     estimateGoods(e) {
-      let params = APP.utils.paramsJoin({
-        orderId: this.data.data.id,
-        goodsId: APP.utils.getDataSet(e, 'id'),
-      })
+      let index = APP.utils.getDataSet(e, 'index');
+      wx.setStorageSync('estimateGoods', this.data.data.order_goods_info[index]);
+
       wx.navigateTo({
-        url: `/pages/UserOrderEstimate/index?${params}`,
+        url: `/pages/UserOrderEstimate/index`,
       })
     },
   }

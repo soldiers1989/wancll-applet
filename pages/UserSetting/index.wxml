@@ -10,7 +10,7 @@
     </zan-panel>
     <zan-cell-group>
       <zan-cell class="cell" title="昵称">
-        <input slot="footer" type="text" bindblur='changeName' placeholder="请输入昵称" value="{{user.nick_name || '匿名用户'}}" />
+        <input slot="footer" type="text" bindblur='changeName' placeholder="匿名用户" value="{{user.nick_name}}" />
       </zan-cell>
       <zan-cell title="性别">
         <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>

@@ -27,7 +27,7 @@
               <template is="refound" data="{{...item}}" />
             </block>
             <block wx:if="{{item.return_goods_status != 3 }}">
-              <template is="estimate" data="{{...item}}" />
+              <template is="estimate" data="{{goods:item, index:index}}" />
             </block>
           </block>
         </view>
@@ -82,8 +82,8 @@
 <!-- 评价按钮 -->
 <template name="estimate">
   <view class='action'>
-    <zan-button wx:if="{{is_comment===0}}" data-id="{{goods_id}}" type="info" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
-    <zan-button wx:if="{{is_comment===1}}" data-id="{{goods_id}}" class='zan-button' size="mini"> 已评论 </zan-button>
+    <zan-button wx:if="{{goods.is_comment===0}}" data-index="{{index}}" type="info" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
+    <zan-button wx:else class='zan-button' size="mini"> 已评论 </zan-button>
   </view>
 </template>
 

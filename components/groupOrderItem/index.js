@@ -190,15 +190,5 @@ Component({
         url: `/pages/UserOrderExpress/index?id=${id}`,
       })
     },
-    // 评价
-    estimateGoods(e) {
-      let params = APP.utils.paramsJoin({
-        orderId: this.data.data.id,
-        goodsId: APP.utils.getDataSet(e, 'id'),
-      })
-      wx.navigateTo({
-        url: `/pages/UserOrderEstimate/index?${params}`,
-      })
-    },
   }
 })

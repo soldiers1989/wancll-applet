@@ -5,25 +5,16 @@ import {
 } from '../../api/config.js';
 Page({
   data: {
-    orderId: 0,
     goodsInfo: {},
     tempFilePaths: [],
     score: 0,
     commentTexts: ''
   },
-  onLoad: function (options) {
-    // 获取本地存储的订单列表
-    APP.utils.getOrderById(options.orderId, (res) => {
-      let goodsList = res.order_goods_info
-      this.setData({
-        orderId: options.orderId,
-      }, () => {
-        let goodsInfo = APP.utils.getGoodsById(goodsList, options.goodsId)
-        this.setData({
-          goodsInfo: goodsInfo
-        })
-      })
-    })
+  onLoad: function(options) {
+
+    this.setData({
+      goodsInfo: wx.getStorageSync('estimateGoods')
+    });
   },
   // 添加图片
   addImage() {
@@ -102,17 +93,17 @@ Page({
       })
       return
     }
-    if(this.data.tempFilePaths.length){
+    if (this.data.tempFilePaths.length) {
       let i = 0;
       let imgs = [];
       wx.showLoading({
         title: '图片上传中',
       })
       this.uploadDIY(i, imgs);
-    }else{
+    } else {
       this.uploadData([])
     }
-    
+
   },
   // 上传数据
   uploadData(imgs) {
@@ -127,7 +118,7 @@ Page({
         status: 1
       },
       success: res => {
-        if(this.data.tempFilePaths.length){
+        if (this.data.tempFilePaths.length) {
           wx.hideLoading();
         }
         wx.showToast({
@@ -177,14 +168,4 @@ Page({
       }
     });
   },
-
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  }
 })
