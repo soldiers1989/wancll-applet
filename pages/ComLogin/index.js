@@ -74,6 +74,12 @@ Page({
       url: `/pages/UserSettingPass/index?id=0`,
     })
   },
+  // 跳转首页
+  goIndex(){
+    wx.switchTab({
+      url: '/pages/BarHome/index',
+    })
+  },
   // 微信登陆监听
   onGotUserInfo(res) {
     handleWechatLogin(this, res.detail)

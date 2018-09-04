@@ -1,5 +1,5 @@
 <view class="container">
-  <image src="{{logo}}" mode="widthFix" class="wancll-col-xs-7 logo"></image>
+  <image src="{{logo}}" bindtap="goIndex" mode="widthFix" class="wancll-col-xs-7 logo"></image>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
     <input bindinput="bindMobileInput" type="number" placeholder="输入手机号码" class="item wancll-bg-white wancll-margin-t-20 wancll-text-left wancll-padded-l-20"></input>
     <input bindinput="bindPasswordInput" type="text" password="true" placeholder="输入密码" class="item wancll-bg-white wancll-margin-t-20 wancll-text-left wancll-padded-l-20"></input>

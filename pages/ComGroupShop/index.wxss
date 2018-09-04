@@ -77,11 +77,14 @@
   margin-right: 30rpx;
 }
 
+.goods-list-new .goods .right {
+  width: 100%;
+}
+
 .goods-list-new .goods .right .top {
   font-size: 0.7rem;
   color: #212121;
   height: 76rpx;
-  
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -91,12 +94,9 @@
 }
 
 .goods-list-new .goods .right .bottom {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.goods-list-new .goods .right .bottom .price {
-  width: 410rpx;
 }
 
 .goods-list-new .goods .right .bottom .sell-price-box {
@@ -118,5 +118,7 @@
   color: #fff;
   padding: 0.2rem 0.3rem;
   border-radius: 10%;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
 }
