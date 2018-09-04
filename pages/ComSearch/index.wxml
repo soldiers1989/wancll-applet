@@ -2,7 +2,7 @@
   <view class='search_box'>
     <view class='search_input'>
       <icon class='icon' type='sousuo' data-keywords="{{keywords}}" bindtap='search'></icon>
-      <input class='input' placeholder='搜索商品' bindinput='keywordsInput'></input>
+      <input class='input' data-keywords="{{keywords}}" placeholder='搜索商品' bindinput='keywordsInput' bindconfirm="search"></input>
     </view>
   </view>
   <view class="wancll-content wancll-bg-white wancll-padded-t-10" style="padding: 0 1.5rem;">
