@@ -70,6 +70,7 @@ Page({
     this.setData({
       showPopPay: !this.data.showPopPay,
       password:'',
+      hasPopup: !this.data.hasPopup,
     });
   },
 
