@@ -71,11 +71,11 @@ Page({
       return;
     }
     // 更新数据
-    this.setData({
-      tabSelectedId: id,
-    }, () => {
+    // this.setData({
+    //   tabSelectedId: id,
+    // }, () => {
       Paging.refresh(id)
-    })
+    // })
   },
   // 大分类的点击
   tabChange() {
