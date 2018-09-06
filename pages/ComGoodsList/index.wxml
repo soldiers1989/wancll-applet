@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view>
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goodsList}}" wx:key="index">
@@ -9,7 +11,7 @@
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2'>{{item.name}}</view>
           <view class='wancll-padded-10 wancll-text-price'>
-            <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
+            <text class="wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}</view>
         </view>
       </view>
     </view>

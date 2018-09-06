@@ -71,7 +71,7 @@
 
   <!-- 海外专区 -->
   <view class="area">
-    <image mode="widthFix" src="{{backgroundImgs.foreign.img}}"></image>
+    <image bindtap="goModel" mode="widthFix" src="{{backgroundImgs.foreign.img}}" data-redirect="{{backgroundImgs.foreign.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
         <view wx:for="{{foreignGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">

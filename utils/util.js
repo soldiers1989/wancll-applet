@@ -1,3 +1,7 @@
+import {
+  params
+} from '../api/config.js';
+
 // 活动倒计时 格式 00天 00：00：00
 function timeDown(that, endTime) {
   let date1 = new Date(); //开始时间  
@@ -89,6 +93,58 @@ function getGoodsById(goodsArr, goodsId) {
   return obj[0]
 }
 
+
+// 跳转模型
+function goModel(model) {
+  console.log(model);
+  let type = model.type;
+  let curParams = model.params;
+  let redirectType = params.redirect_type
+  switch (type) {
+    // case params.redirect_type.outer_link:
+
+    //   break;
+    case params.redirect_type.tag:
+      wx.navigateTo({
+        url: '/pages/ComGoodsList/index?tag=' + curParams.name,
+      })
+      break;
+    case params.redirect_type.category:
+
+      break;
+    case params.redirect_type.inner_link:
+      wx.navigateTo({
+        url: '/pages/' + model.inner_link.mini_program + '/index',
+      })
+      break;
+    case params.redirect_type.goods_discount:
+      wx.navigateTo({
+        url: '/pages/ComDetail/index?id=' + curParams.id + '&isDiscountGoods=1',
+      })
+      break;
+    case params.redirect_type.goods_group:
+      wx.navigateTo({
+        url: '/pages/ComGroupGoodsDetail/index?id=' + curParams.id + '&goodsId=' + curParams.goods_id
+      })
+      break;
+    case params.redirect_type.goods_score:
+      wx.navigateTo({
+        url: '/pages/ComScoreGoodsDetail/index?id=' + curParams.id + '&goodsId=' + curParams.goods_id
+      })
+      break;
+    case redirectType.foreign:
+      wx.switchTab({
+        url: '/pages/BarCategory/index?to_foreign_list=1',
+      });
+      break;
+    case params.redirect_type.article:
+      wx.navigateTo({
+        url: '/pages/ComArticle/index?id=' + curParams.id + '&type=article',
+      })
+      break;
+  }
+}
+
 module.exports = {
   getDataSet,
   paramsJoin,
@@ -96,4 +152,5 @@ module.exports = {
   getGoodsById,
   timeDown,
   timeDowns,
+  goModel
 }

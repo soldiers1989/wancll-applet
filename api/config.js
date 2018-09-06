@@ -21,11 +21,24 @@ export const imageHost = {
 export const payType = {
   goodsOrderPay: 'goodsOrderPay',
   rechargeOrderPay: 'rechargeOrderPay',
-  buyMember:'buyMember'
+  buyMember: 'buyMember'
 }
 
 // 后台参数
 export const params = {
-  commonMember:1, // 普通会员
-  bcMember: 9,  // 黑卡会员
+  commonMember: 1, // 普通会员
+  bcMember: 9, // 黑卡会员
+  // 跳转类型
+  redirect_type: {
+    not_used: 0,
+    outer_link: 1,
+    inner_link: 2,
+    tag: 3,
+    category: 4,
+    goods_discount: 5,
+    goods_group: 6,
+    goods_score: 7,
+    foreign: 8,
+    article: 9
+  }
 }

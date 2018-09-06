@@ -202,6 +202,11 @@ Page({
       url: `/pages/ComGoodsList/index?${param}`,
     })
   },
+  // 跳转处理
+  goModel(e){
+    let redirectData = APP.utils.getDataSet(e, 'redirect');
+    APP.utils.goModel(redirectData);
+  },
 
   // 分享
   onShareAppMessage: function() {

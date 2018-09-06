@@ -7,7 +7,7 @@
   <view class="tags">
     <view class="title">金卡会员专属权益</view>
     <view class="content">
-      <view class="tag" wx:for="{{articles}}" wx:key="index">
+      <view class="tag" wx:for="{{articles}}" wx:key="index" bindtap='goArticle' data-id="{{item.id}}">
         <image mode="widthFix" src="{{item.thum}}"></image>
         <view class="word">{{item.title}}</view>
       </view>
