@@ -7,11 +7,24 @@ Page({
     type: 0,
     id: -1,
     isShowShare: true,
+    shareImg: '',
   },
   onLoad(options) {
     this.setData({
       type: options.type,
       id: options.id
+    });
+    // 请求分享封面图
+    APP.ajax({
+      url: APP.api.indexBackground,
+      data: {
+        position: 'share'
+      },
+      success: res => {
+        this.setData({
+          shareImg: res.data[0].img
+        });
+      },
     });
   },
   // 关闭弹窗
@@ -43,6 +56,7 @@ Page({
     return {
       title: '爱买优品：坚持经营高性价比产品，爱买优选任你挑～',
       path: path,
+      imageUrl: this.data.shareImg
     }
   }
 })
