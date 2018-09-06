@@ -10,8 +10,8 @@ Page({
       yuantong: '圆通快递',
       yunda: '韵达快运',
       zhongtong: '中通速递',
-      zhaijisong:'宅急送',
-      youzhengguonei:'邮政快递'
+      zhaijisong: '宅急送',
+      youzhengguonei: '邮政快递'
     },
     logisticsStatus: [
       '运输中',
@@ -23,38 +23,33 @@ Page({
       '退回中',
     ],
     orderInfo: {},
-    expressInfo:{}, // 物流信息
-    footData:[],  // 快件足迹
+    expressInfo: {}, // 物流信息
+    footData: [], // 快件足迹
   },
   onLoad(options) {
-    // 获取本地存储的订单列表
-    APP.utils.getOrderById(options.id, (res) => {
-      // console.log(res)
-      this.setData({
-        orderInfo: res
-      }, () => {
-        APP.ajax({
-          url: APP.api.orderExpress100,
-          data: {
-            express_type: this.data.orderInfo.express_type,
-            express_no: this.data.orderInfo.express_no
-          },
-          success:(res)=>{
-            this.setData({
-              expressInfo:res.data
-            })
-          }
+    this.setData({
+      orderInfo: wx.getStorageSync('expressOrder')
+    });
+    APP.ajax({
+      url: APP.api.orderExpress100,
+      data: {
+        express_type: this.data.orderInfo.express_type,
+        express_no: this.data.orderInfo.express_no
+      },
+      success: (res) => {
+        this.setData({
+          expressInfo: res.data
         })
-      })
+      }
     })
   },
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

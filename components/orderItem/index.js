@@ -196,9 +196,9 @@ Component({
     },
     // 查看物流
     goExpress() {
-      let id = this.data.data.id
+      wx.setStorageSync('expressOrder', this.data.data);
       wx.navigateTo({
-        url: `/pages/UserOrderExpress/index?id=${id}`,
+        url: `/pages/UserOrderExpress/index`,
       })
     },
     // 评价
