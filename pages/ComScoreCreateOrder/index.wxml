@@ -94,7 +94,7 @@
   </zan-popup>
 
   <!-- 支付密码 -->
-  <zan-popup show="{{ showPopPay }}" bindclose="togglePopupPay">
+  <zan-popup show="{{showPopPay}}" bindclose="togglePopupPay">
     <view class="zan-btns">
       <view class='popup-warpper'>
         <zan-panel>

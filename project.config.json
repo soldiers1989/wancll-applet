@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 35,
 			"list": [
 				{
 					"id": 0,
@@ -225,6 +225,29 @@
 					"name": "登陆",
 					"pathName": "pages/ComLogin/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "实名认证",
+					"pathName": "pages/UserIdSubmit/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "绑定银行卡",
+					"pathName": "pages/UserCardEidt/index",
+					"query": ""
+				},
+				{
+					"id": 34,
+					"name": "待评价",
+					"pathName": "pages/UserOrderList/index",
+					"query": "target=4"
+				},
+				{
+					"id": -1,
+					"name": "钱包明细",
+					"pathName": "pages/UserWalletLog/index"
 				}
 			]
 		}
