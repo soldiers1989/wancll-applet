@@ -25,13 +25,13 @@ Page({
       }
     });
   },
-  goArticle(e){
+  goArticle(e) {
     let id = APP.utils.getDataSet(e, 'id');
     wx.navigateTo({
-      url: '/pages/ComArticle/index?id=' + id + '&type=article',
+      url: '/pages/ComMemberArticle/index?id=' + id,
     })
   },
-  goBuy(){
+  goBuy() {
     wx.navigateTo({
       url: '/pages/ComBuyMemberSelect/index?money=' + this.data.memberParams.user.per_money,
     })

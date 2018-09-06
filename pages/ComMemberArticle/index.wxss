@@ -1,0 +1,7 @@
+.article{
+  padding: 15px;
+  color: #777;
+}
+.article .content{
+  font-size: 28rpx;
+}
