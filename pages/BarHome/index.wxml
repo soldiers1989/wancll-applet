@@ -3,7 +3,7 @@
 <view class="packet-bg" wx:if="{{isShowPacket}}"></view>
 <view class="packet" wx:if="{{isShowPacket}}">
   <view class="close" bindtap="closePacket"></view>
-  <image mode="widthFix" src="{{backgroundImgs.register.url}}"></image>
+  <image mode="widthFix" bindtap="goModel" src="{{backgroundImgs.register.url}}" data-redirect="{{backgroundImgs.register.redirect_data}}"></image>
 </view>
 
 <!--search-->
@@ -20,7 +20,7 @@
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="key">
         <swiper-item>
-          <image src="{{item.img}}" class="slide-image" mode="widthFix" />
+          <image bindtap="goModel" data-redirect="{{item.redirect_data}}" src="{{item.img}}" class="slide-image" mode="widthFix" />
         </swiper-item>
       </block>
     </swiper>
@@ -37,17 +37,17 @@
   </view>
 
   <!-- 活动专区 -->
-  <view class="activity" style="background-image:{{backgroundImgs.activity.url}}">
+  <view class="activity" style="background-image:{{backgroundImgs.activity.url}}" bindtap='goModel' data-redirect="{{backgroundImgs.activity.redirect_data}}">
     <view class="box">
       <view class="left">
-        <image mode="widthFix" src="{{backgroundImgs.xinren.url}}"></image>
+        <image mode="widthFix" src="{{backgroundImgs.xinren.url}}" bindtap='goModel' data-redirect="{{backgroundImgs.xinren.redirect_data}}"></image>
       </view>
       <view class="right">
         <view class="item">
-          <image mode="widthFix" src="{{backgroundImgs.coupon.url}}"></image>
+          <image mode="widthFix" src="{{backgroundImgs.coupon.url}}" bindtap='goModel' data-redirect="{{backgroundImgs.coupon.redirect_data}}"></image>
         </view>
         <view class="item">
-          <image mode="widthFix" src="{{backgroundImgs.full.url}}"></image>
+          <image mode="widthFix" src="{{backgroundImgs.full.url}}" bindtap='goModel' data-redirect="{{backgroundImgs.full.redirect_data}}"></image>
         </view>
       </view>
     </view>
@@ -87,7 +87,7 @@
 
   <!-- 拼团专区 -->
   <view class="area">
-    <image mode="widthFix" src="{{backgroundImgs.group.img}}"></image>
+    <image mode="widthFix" src="{{backgroundImgs.group.img}}" bindtap="goModel" data-redirect="{{backgroundImgs.group.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
         <view wx:for="{{groupGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goGroupGoodsDetail">
@@ -106,7 +106,7 @@
 
   <!-- 积分专区 -->
   <view class="area">
-    <image mode="widthFix" src="{{backgroundImgs.score.img}}"></image>
+    <image mode="widthFix" src="{{backgroundImgs.score.img}}" bindtap="goModel" data-redirect="{{backgroundImgs.score.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
         <view wx:for="{{scoreGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goScoreGoodsDetail">

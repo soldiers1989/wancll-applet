@@ -58,6 +58,11 @@ Page({
       }
     });
   },
+  // 跳转处理
+  goModel(e) {
+    let redirectData = APP.utils.getDataSet(e, 'redirect');
+    APP.utils.goModel(redirectData);
+  },
   // 下拉刷新
   onPullDownRefresh() {
     Paging.refresh()

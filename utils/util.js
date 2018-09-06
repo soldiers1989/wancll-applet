@@ -96,7 +96,6 @@ function getGoodsById(goodsArr, goodsId) {
 
 // 跳转模型
 function goModel(model) {
-  console.log(model);
   let type = model.type;
   let curParams = model.params;
   let redirectType = params.redirect_type

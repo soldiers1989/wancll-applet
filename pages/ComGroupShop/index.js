@@ -22,13 +22,13 @@ Page({
     previousMargin: 0,
     nextMargin: 0,
 
-    banner:[],  // 轮播图
+    banner: [], // 轮播图
 
     goodsList: [],
     user: {}, // 用户
     asset: {},
     orderCount: {
-      wait_pay_num:0,
+      wait_pay_num: 0,
       wait_team_num: 0,
       wait_finish_num: 0,
       wait_ship_num: 0,
@@ -70,6 +70,11 @@ Page({
     wx.navigateTo({
       url: `/pages/UserGroupOrderList/index?target=${target}`,
     })
+  },
+  // 跳转处理
+  goModel(e) {
+    let redirectData = APP.utils.getDataSet(e, 'redirect');
+    APP.utils.goModel(redirectData);
   },
   goGoodsDetail(e) {
     let id = APP.utils.getDataSet(e, 'id');

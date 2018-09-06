@@ -6,7 +6,7 @@
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{banner}}" wx:key="key">
         <swiper-item>
-          <image src="{{item.img}}" class="slide-image" mode="widthFix" />
+          <image bindtap='goModel' data-redirect="{{item.redirect_data}}" src="{{item.img}}" class="slide-image" mode="widthFix" />
         </swiper-item>
       </block>
     </swiper>
