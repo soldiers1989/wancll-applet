@@ -87,7 +87,7 @@ Page({
     APP.ajax({
       url: APP.api.orderRefound,
       data: {
-        order_id: Number(this.data.orderId),
+        order_id: Number(this.data.goodsInfo.order_id),
         order_goods_id: this.data.goodsInfo.id,
         imgs: imgs,
         return_reason: this.data.refoundTexts,

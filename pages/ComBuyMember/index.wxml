@@ -1,7 +1,7 @@
 <view class='article'>
   <view class="user">
     <view>会员账号：{{user.mobile}}</view>
-    <view>到期日：{{user.end_time}}</view>
+    <view wx:if="{{isMember}}">到期日：{{user.end_time}}</view>
   </view>
 
   <view class="tags">

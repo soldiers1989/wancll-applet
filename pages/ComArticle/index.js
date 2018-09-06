@@ -52,6 +52,9 @@ Page({
       url: options.url,
       data: options.data,
       success: res => {
+        wx.setNavigationBarTitle({
+          title: res.data.title,
+        });
         this.setData({
           article: res.data
         })
