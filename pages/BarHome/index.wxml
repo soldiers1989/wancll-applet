@@ -28,7 +28,7 @@
 
   <!-- 标签 -->
   <view class='banner-list'>
-    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
+    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goModel' data-redirect="{{item.redirect_data}}">
       <view class='img'>
         <image mode="widthFix" src='{{item.thum}}'></image>
       </view>

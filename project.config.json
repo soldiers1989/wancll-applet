@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 35,
+			"current": 37,
 			"list": [
 				{
 					"id": 0,
@@ -247,7 +247,20 @@
 				{
 					"id": -1,
 					"name": "钱包明细",
-					"pathName": "pages/UserWalletLog/index"
+					"pathName": "pages/UserWalletLog/index",
+					"query": ""
+				},
+				{
+					"id": 36,
+					"name": "会员权益文章",
+					"pathName": "pages/ComMemberArticle/index",
+					"query": "id=21"
+				},
+				{
+					"id": -1,
+					"name": "跳转商品分类页",
+					"pathName": "pages/ComCategory/index",
+					"query": "id=31"
 				}
 			]
 		}

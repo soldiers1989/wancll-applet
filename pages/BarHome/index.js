@@ -191,17 +191,6 @@ Page({
       url: '/pages/ComSearch/index',
     })
   },
-  // 标签商品页
-  goTagGoods(e) {
-    let tag = APP.utils.getDataSet(e, 'tag');
-    let param = APP.utils.paramsJoin({
-      value: tag,
-      type: 'tag'
-    })
-    wx.navigateTo({
-      url: `/pages/ComGoodsList/index?${param}`,
-    })
-  },
   // 跳转处理
   goModel(e){
     let redirectData = APP.utils.getDataSet(e, 'redirect');

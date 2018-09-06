@@ -109,8 +109,11 @@ function goModel(model) {
         url: '/pages/ComGoodsList/index?tag=' + curParams.name,
       })
       break;
+      // 商品分类
     case params.redirect_type.category:
-
+      wx.navigateTo({
+        url: '/pages/ComCategory/index?id=' + curParams.id,
+      })
       break;
     case params.redirect_type.inner_link:
       wx.navigateTo({
@@ -132,10 +135,11 @@ function goModel(model) {
         url: '/pages/ComScoreGoodsDetail/index?id=' + curParams.id + '&goodsId=' + curParams.goods_id
       })
       break;
+      // 海外专区 
     case redirectType.foreign:
-      wx.switchTab({
-        url: '/pages/BarCategory/index?to_foreign_list=1',
-      });
+      wx.navigateTo({
+        url: '/pages/ComCategory/index?to_foreign_list=1',
+      })
       break;
     case params.redirect_type.article:
       wx.navigateTo({
