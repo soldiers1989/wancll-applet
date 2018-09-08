@@ -13,3 +13,8 @@
   font-size: 65rpx;
   color: #09bb07;
 }
+
+.button {
+  background-color:#ff0000;
+  letter-spacing: 0.2rem;
+}

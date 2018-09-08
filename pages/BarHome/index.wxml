@@ -3,15 +3,16 @@
 <view class="packet-bg" wx:if="{{isShowPacket}}"></view>
 <view class="packet" wx:if="{{isShowPacket}}">
   <view class="close" bindtap="closePacket"></view>
-  <image mode="widthFix" bindtap="goModel" src="{{backgroundImgs.register.url}}" data-redirect="{{backgroundImgs.register.redirect_data}}"></image>
+  <image mode="widthFix" bindtap="goModel" src="{{backgroundImgs.register.url}}" data-redirect="{{backgroundImgindicator-dotss.register.redirect_data}}"></image>
 </view>
 
 <!--search-->
 <view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
+      <image mode="widthFix" src="http://aimaiyoupin.com/public/static/wap/images/index_logo.png"></image>
       <icon class='icon' type='sousuo'></icon>
-      <view class='input'>搜索商品</view>
+      <view class='input'>大家正在搜：水果</view>
     </view>
   </view>
 
