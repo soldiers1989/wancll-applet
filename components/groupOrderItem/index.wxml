@@ -16,7 +16,8 @@
         <view class='price-warpper'>
           <view class='price'>
             <view class='real_price'>￥{{item.real_price}}</view>
-            <view class='sell_price' wx:if="{{item.real_price * 100 < item.sell_price * 100}}">￥{{item.sell_price}}</view>
+            <view class='sell_price' wx:if="{{item.real_price * 100 < item.sell_price * 100}}">
+              <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
           </view>
           <view class='count'>x{{item.num}}</view>
         </view>
@@ -53,14 +54,14 @@
 
 <!-- 付款状态 -->
 <template name="pay-actions">
-  <view wx:if="{{status === 1}}" class='right' style="color:#358cff">待付款</view>
-  <view wx:elif="{{status === 2 && group_buy_status === 1}}" class='right' style="color:#358cff">拼团中</view>
-  <view wx:elif="{{group_buy_status === 2 || group_buy_status === 4}}" class='right' style="color:#358cff">拼团失败（退款中）</view>  
-  <view wx:elif="{{group_buy_status === 5}}" class='right' style="color:#358cff">拼团失败（已退款）</view>    
-  <view wx:elif="{{status === 2 && group_buy_status === 3}}" class='right' style="color:#358cff">待发货</view>
-  <view wx:elif="{{status === 3 && group_buy_status === 3}}" class='right' style="color:#358cff">已发货</view>
-  <view wx:elif="{{status === 4 && group_buy_status === 3}}" class='right' style="color:#358cff">交易完成</view>
-  <view wx:elif="{{status === 9}}" class='right' style="color:#358cff">订单已取消</view>
+  <view wx:if="{{status === 1}}" class='right status'>待付款</view>
+  <view wx:elif="{{status === 2 && group_buy_status === 1}}" class='right status'>拼团中</view>
+  <view wx:elif="{{group_buy_status === 2 || group_buy_status === 4}}" class='right status'>拼团失败（退款中）</view>
+  <view wx:elif="{{group_buy_status === 5}}" class='right status'>拼团失败（已退款）</view>
+  <view wx:elif="{{status === 2 && group_buy_status === 3}}" class='right status'>待发货</view>
+  <view wx:elif="{{status === 3 && group_buy_status === 3}}" class='right status'>已发货</view>
+  <view wx:elif="{{status === 4 && group_buy_status === 3}}" class='right status'>交易完成</view>
+  <view wx:elif="{{status === 9}}" class='right status'>订单已取消</view>
 </template>
 
 <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">

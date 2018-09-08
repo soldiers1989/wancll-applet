@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的订单",
+  "navigationBarTitleText": "拼团订单",
   "usingComponents": {
     "zan-tab": "../../dist/tab/index",
     "zan-icon": "../../dist/icon/index",
