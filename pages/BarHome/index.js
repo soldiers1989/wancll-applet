@@ -165,23 +165,10 @@ Page({
       url: `/pages/ComArticle/index?${param}`,
     })
   },
-  // 去领券中心
-  goDiscountCenter() {
-    wx.navigateTo({
-      url: `/pages/UserCouponCenter/index`,
-    })
-  },
-  // 减满促销
-  goCategory() {
-    wx.switchTab({
-      url: `/pages/BarCategory/index`,
-    })
-  },
-
   // 去限时折扣广场
   goDiscountCenter() {
     wx.navigateTo({
-      url: '',
+      url: '/pages/ComDiscountCenter/index',
     })
   },
 

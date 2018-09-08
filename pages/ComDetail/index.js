@@ -33,7 +33,7 @@ Page({
     tabListScroll: true,
     tabListHeight: 45,
 
-    user: wx.getStorageSync('user'),
+    user: {},
     isMember: false,
     memberParams: {}, // 会员相关参数
 
@@ -74,7 +74,8 @@ Page({
     }
 
     this.setData({
-      goodsId: options.id
+      goodsId: options.id,
+      user: wx.getStorageSync('user'),
     });
 
     getMemberParams(this);

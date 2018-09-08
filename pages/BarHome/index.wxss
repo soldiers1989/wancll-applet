@@ -1,4 +1,5 @@
 /**index.wxss**/
+@import "../../static/wxss/iconfont2.wxss";
 
 .packet-bg {
   background: #333;
@@ -79,7 +80,7 @@
 
 .banner_swiper {
   width: 100%;
-  height: 432rpx;
+  height: 375rpx;
 }
 
 .banner_swiper image {
@@ -89,7 +90,7 @@
 .banner-list {
   display: flex;
   flex-wrap: wrap;
-  padding: 30rpx 0;
+  padding: 0.75rem 0;
   text-align: center;
 }
 
@@ -97,8 +98,14 @@
   flex: 20%;
 }
 
-.banner-list image {
-  width: 88rpx;
+.banner-list .list image {
+  max-width: 100rpx;
+  padding: 0.5rem;
+}
+
+.banner-list .list .text {
+  color: #a3a3a3;
+  font-size: 0.7rem;
 }
 
 .notice {
@@ -218,7 +225,7 @@
 }
 
 .activity {
-  height: 13rem;
+  height: 12rem;
   background-size: 100% 100%;
   padding: 3rem 0.5rem 0.5rem;
 }
@@ -270,4 +277,23 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   height: 2rem;
+}
+
+.discount {
+  font-size: 0.7rem;
+}
+
+.discount .icon {
+  color: rgb(255, 0, 0);
+  font-size: 16px;
+}
+
+.discount .title {
+  color: rgb(255, 0, 0);
+  font-size: 0.8rem;
+}
+
+.discount .time {
+  color: rgb(163, 163, 163);
+  font-size: 0.5rem;
 }

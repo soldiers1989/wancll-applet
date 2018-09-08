@@ -29,10 +29,8 @@
 
   <!-- 标签 -->
   <view class='banner-list'>
-    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goModel' data-redirect="{{item.redirect_data}}">
-      <view class='img'>
-        <image mode="widthFix" src='{{item.thum}}'></image>
-      </view>
+    <view class='list' wx:for="{{tags}}" wx:key="index" bindtap='goModel' data-redirect="{{item.redirect_data}}">
+      <image mode="widthFix" src='{{item.thum}}'></image>
       <view class='text'>{{item.name}}</view>
     </view>
   </view>
@@ -58,7 +56,11 @@
   <!--限时折扣 -->
   <view class='discount' wx:if="{{discount.length}}">
     <zan-cell is-link bindtap="goDiscountCenter">
-      <text style="color: #df0303;">限时折扣</text> {{discount[0].name}} {{timeDown}}</zan-cell>
+      <text class="iconfont icon-shizhong_l icon"></text>
+      <text class="title"> 限时折扣 </text>
+      <text class=""> {{discount[0].name}} </text>
+      <text class="time"> {{timeDown}}</text>
+    </zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">
       <view wx:for="{{discount[0].rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
         <view class="info">

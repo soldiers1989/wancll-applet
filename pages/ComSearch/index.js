@@ -1,13 +1,19 @@
 const APP = getApp();
-import { getKeywords, deleteKeywords } from './data.js';
+import {
+  getKeywords,
+  deleteKeywords
+} from './data.js';
 Page({
   data: {
     keywords: '',
     userKeywordsList: [],
     hotKeywordsList: [],
   },
-  onLoad(options) {
+  onShow() {
     getKeywords(this);
+    this.setData({
+      keywords: '',
+    });
   },
   // 搜索输入框监听
   keywordsInput(e) {
