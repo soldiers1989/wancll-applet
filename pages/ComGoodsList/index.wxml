@@ -1,5 +1,17 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
+<!-- 搜索 -->
+<view class='search_box' bindtap='goSearchPage'>
+  <view class='search_input'>
+    <icon class='icon' type='sousuo'></icon>
+    <view class='input'>请输入搜索内容</view>
+  </view>
+</view>
+
+<view class="ad" wx:if="{{adImg.length}}">
+  <image mode="widthFix" src="{{adImg[0].img}}"></image>
+</view>
+
 <view>
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goodsList}}" wx:key="index">
@@ -19,8 +31,8 @@
   <!-- <view class='loading' wx:if="{{loading}}">
     <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
   </view> -->
-  <view wx:if="{{noContent}}" class="no-content-image">
-    <image mode="widthFix" src="{{noContentImg}}"></image>
+  <view wx:if="{{FPage.noContent}}" class="no-content-image">
+    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
     <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </view>

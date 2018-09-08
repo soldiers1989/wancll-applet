@@ -17,8 +17,10 @@ Page({
     // 售罄
     noStockImage: APP.imgs.noStock,
 
+    adImg: [], // 广告图
+
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     Paging.init({
       type: 2,
       that: this,
@@ -35,18 +37,34 @@ Page({
       data.keyword = options.value;
     } else if (options.tag) {
       data.tag = options.tag;
-    } else if (options.distribution) {
-      data.system_type = 'drp'
-    } else if (options.bonus) {
-      data.system_type = 'bonus'
+
+      // 新人专区 要加载广告图
+      if (options.tag == '新人专区') {
+        APP.ajax({
+          url: APP.api.indexBackground,
+          success: res => {
+            this.setData({
+              adImg: res.data.filter(item => {
+                return item.position == '新人专区';
+              })
+            });
+          }
+        });
+      }
     }
+
     this.setData({
       data: data
     }, () => {
       this.getGoodsList();
     })
   },
-
+  // 去搜索页面
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/ComSearch/index',
+    })
+  },
   // 获取商品数据
   goDetail(e) {
     let id = e.currentTarget.dataset.id
@@ -56,7 +74,9 @@ Page({
   },
   // 分页数据请求
   getGoodsList() {
-    Paging.getPagesData({ postData: this.data.data })
+    Paging.getPagesData({
+      postData: this.data.data
+    })
   },
   // 下拉刷新
   onPullDownRefresh() {
