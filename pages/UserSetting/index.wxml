@@ -15,8 +15,8 @@
       <zan-cell title="性别">
         <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>
       </zan-cell>
-      <zan-cell title="手机号码" bindtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
-      <zan-cell title="密码设置" catchtap='changePassword' value="点击修改" is-link></zan-cell>
+      <zan-cell title="我的手机号码" bindtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
+      <zan-cell title="密码设置" catchtap='changePassword'></zan-cell>
     </zan-cell-group>
   </zan-panel>
 </view>
@@ -31,12 +31,12 @@
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
-      <zan-cell title="帮助与反馈" value="点击发表" is-link bindtap="goHelpAndOption"></zan-cell>
+      <zan-cell title="帮助与反馈" is-link bindtap="goHelpAndOption"></zan-cell>
       <zan-cell title="爱买优品" value=""></zan-cell>
     </zan-cell-group>
   </zan-panel>
 </view>
 <view class='btn'>
   <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bind" wx:if="{{!hasBindWechat}}"  type="primary">绑定微信</button>
-  <button class="wancll-bg-info wancll-text-white wancll-margin-t-15" bindtap="logout">退出登录</button>
+  <button class="button wancll-text-white wancll-margin-t-15" bindtap="logout">退出登录</button>
 </view>

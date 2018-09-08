@@ -91,20 +91,22 @@
     "backgroundColor": "#f9f9f9"
   },
   "tabBar": {
+    "backgroundColor":"#ffffff",
     "color": "#757575",
     "selectedColor": "#ff0000",
+    "borderStyle":"white",
     "list": [
       {
         "iconPath": "static/images/index.png",
         "selectedIconPath": "static/images/index-2.png",
         "pagePath": "pages/BarHome/index",
-        "text": "主页"
+        "text": "首页"
       },
       {
         "iconPath": "static/images/cate.png",
         "selectedIconPath": "static/images/cate-2.png",
         "pagePath": "pages/BarCategory/index",
-        "text": "商品"
+        "text": "分类"
       },
       {
         "iconPath": "static/images/member.png",
