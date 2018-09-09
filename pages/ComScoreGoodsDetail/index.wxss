@@ -230,9 +230,10 @@
   height: 100%;
   display: flex;
   color: #fff;
-  background-color: #df0303;
+  background-color:rgb(255,0,0);
   justify-content: center;
   align-items: center;
+  font-size: 0.8rem;
 }
 
 .discountPrice {

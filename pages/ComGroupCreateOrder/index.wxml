@@ -2,10 +2,10 @@
   <zan-panel>
     <block wx:if="{{selectedAddress.id}}">
       <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
-        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-text-info wancll-padded-10"></i>
+        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-padded-10" style="color:#ff0000"></i>
         <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10" style="width:100%">
-          <view class="wancll-font-weight"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
-          <view class="clearfix wancll-margin-t-10">
+          <view class="wancll-font-weight address"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
+          <view class="clearfix wancll-margin-t-10 user-info">
             <text>{{selectedAddress.consignee_name}}</text>
             <text class="wancll-fr">{{selectedAddress.mobile}}</text>
           </view>

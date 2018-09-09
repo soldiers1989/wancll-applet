@@ -43,3 +43,13 @@
   margin: 0px auto;
   border-radius: 12px;
 }
+
+.address {
+  font-size: 0.8rem;
+  color: #212121;
+}
+
+.user-info {
+  font-size: 0.7rem;
+  color: #757575;
+}

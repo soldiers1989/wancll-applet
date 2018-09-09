@@ -2,7 +2,7 @@
   <zan-panel>
     <view class='item-content' catchtap="goOrderDetail">
       <view class='top-info'>
-        <view class='left'>订单编号：{{data.order_no}}</view>
+        <view class='left'>{{data.create_time}}</view>
         <template is="pay-actions" data="{{...data}}" />
       </view>
       <view class='center-info' catchtap="goGoodsDetail" data-id="{{item.goods_id}}" wx:for="{{data.order_goods_info}}" wx:key="key">

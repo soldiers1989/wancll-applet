@@ -29,7 +29,7 @@
     </view>
   </zan-panel>
   <view class='send'>
-    <zan-button type="info" bindtap='confirm'>确定选择</zan-button>
+    <zan-button bindtap='confirm'>确定</zan-button>
   </view>
 </view>
 

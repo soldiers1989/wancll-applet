@@ -153,3 +153,13 @@
   font-size: 28rpx;
   background: linear-gradient(to bottom, #fc5458, #f4334b, #ee5176);
 }
+
+.address {
+  font-size: 0.8rem;
+  color: #212121;
+}
+
+.user-info {
+  font-size: 0.7rem;
+  color: #757575;
+}
