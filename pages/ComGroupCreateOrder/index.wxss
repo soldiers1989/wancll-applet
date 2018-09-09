@@ -62,6 +62,9 @@
 
 .center-info .title-warpper .price-warpper .price {
   flex: 1;
+  font-size: 0.7rem;
+  color: #df0303;
+  font-weight: 700;
 }
 
 .center-info .title-warpper .price-warpper .count {
@@ -121,6 +124,12 @@
   font-size: 0.75rem;
   height: 2rem;
   line-height: 2rem;
+}
+
+.other-price .user-info input {
+  height: 2.2rem;
+  color: #424242;
+  font-size: 0.8rem;
 }
 
 .bottom {
