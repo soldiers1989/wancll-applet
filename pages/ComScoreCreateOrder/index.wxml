@@ -2,7 +2,7 @@
   <zan-panel>
     <block wx:if="{{selectedAddress.id}}">
       <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
-        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-padded-10" style="color:#ff0000"></i>
+        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-padded-10 ylyy-red" ></i>
         <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10" style="width:100%">
           <view class="wancll-font-weight address"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
           <view class="clearfix wancll-margin-t-10 user-info">
@@ -25,18 +25,18 @@
           <image class='image' src='{{item.goods.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title wancll-margin-b-5'>{{item.goods.goods_info.name}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goods.goods_info.intro}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.select_spec_group_info.spec_group_id_str}}">规格: {{item.select_spec_group_info.spec_option_group}}
+          <view class='title wancll-margin-b-5 wancll-order-goods-name'>{{item.goods.goods_info.name}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5 wancll-order-goods-intro wancll-ellipsis-2'>{{item.goods.goods_info.intro}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-order-goods-intro wancll-margin-b-5' wx:if="{{item.select_spec_group_info.spec_group_id_str}}">规格: {{item.select_spec_group_info.spec_option_group}}
           </view>
           <view class='price-warpper'>
             <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
               积分 {{item.select_spec_group_info.score}}
             </view>
             <view class='count wancll-flex'>
-              <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="minus"></i>
-              <text class="wancll-padded-5"> {{item.num}} </text>
-              <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="plus"></i>
+              <i class="iconfont icon-jian wancll-font-size-18 ylyy-red" data-index="{{index}}" bindtap="changeNum" data-type="minus"></i>
+              <text class="wancll-padded-5 ylyy-red"> {{item.num}} </text>
+              <i class="iconfont icon-jia wancll-font-size-18 ylyy-red" data-index="{{index}}" bindtap="changeNum" data-type="plus"></i>
             </view>
           </view>
         </view>
