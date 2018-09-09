@@ -2,9 +2,9 @@
   <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
     <view class='list' wx:for="{{orderList}}" wx:key="item">
       <view class='list-info'>
-        <zan-row >
+        <zan-row>
           <zan-col col="18" col-class="left">
-            <view style='margin-bottom:5px;'>{{item.user_info.nick_name || item.user_info.mobile}}  {{item.create_time}}</view>
+            <view style='margin-bottom:5px;'>{{item.user_info.nick_name || item.user_info.mobile}} {{item.create_time}}</view>
             <view>{{item.order_no}}</view>
           </zan-col>
         </zan-row>
@@ -14,19 +14,23 @@
           <zan-col col="4" col-class="image">
             <image src='{{goods.order_goods_info.thum}}' mode='widthFix'></image>
           </zan-col>
-          <zan-col col="14" col-class="center">
-            <view>订单状态：</view>
-            <view class='title'>{{goods.order_goods_info.name}}</view>
-            <view class='number'>x{{goods.order_goods_info.num}}</view>
-          </zan-col>
-          <zan-col col="6" col-class="right">
-            <view>
-              <template is='status' data="{{...goods}}" />
+          <zan-col col="20" col-class="center">
+            <view class="flex">
+              <view  style="color:#777">订单状态：</view>
+              <view>
+                <template is='status' data="{{...goods}}" />
+              </view>
             </view>
-            <view class='text'>
-              <template is="get" data="{{...goods}}" />
+            <view class="flex">
+              <view class='title wancll-ellipsis-2'>{{goods.order_goods_info.name}}</view>
+              <view class='text' style="color:#777">
+                <template is="get" data="{{...goods}}" />
+              </view>
             </view>
-            <view class='buns'>+{{goods.expect_money}}</view>
+            <view class="flex">
+              <view class='number' style="color:#777">x{{goods.order_goods_info.num}}</view>
+              <view class='buns' style="color:#777">+{{goods.expect_money}}</view>
+            </view>
           </zan-col>
         </zan-row>
       </view>
