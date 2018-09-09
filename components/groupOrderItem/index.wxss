@@ -94,7 +94,7 @@
 .center-info .price-warpper .count {
   height: 40rpx;
   line-height: 1;
-  margin:0.25rem;
+  margin: 0.25rem;
 }
 
 .bottom-info .all-price {
@@ -108,8 +108,27 @@
 
 .bottom-info .click-button {
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .bottom-info .click-button .zan-button {
   margin-left: 20rpx;
+}
+
+.button {
+  text-align: center;
+  width: 23%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid #a8a8a8;
+  color: #555;
+  margin: 6px 2px 0 6px;
+  font-size: 12px;
+}
+
+.button-red {
+  color: #f00;
+  border: 1px solid #f00;
 }

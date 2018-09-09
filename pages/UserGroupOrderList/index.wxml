@@ -1,13 +1,7 @@
-
 <view>
   <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
     <block wx:for="{{orderList}}" wx:key="key">
-        <order-item
-          data="{{item}}" 
-          gotype='orderdetail' 
-          haveinfo 
-          bind:refreshGet="refreshGet"
-          ></order-item>
+      <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet" calss-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
     </block>
 
     <view wx:if="{{FPage.noContent}}" class="no-content-image">

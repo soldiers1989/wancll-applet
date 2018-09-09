@@ -510,3 +510,26 @@ page {
   width: 30%;
   transform: translate(-50%, -50%);
 }
+
+/* 订单价格相关 */
+
+.wancll-order-price-icon {
+  font-size: 0.5rem;
+}
+
+.wancll-order-real-price {
+  font-size: 0.7rem;
+  color: #df0303;
+  font-weight: 700;
+}
+
+.wancll-order-sell-price {
+  font-size: 0.7rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.wancll-order-goods-num {
+  color: #777;
+  font-size: 0.7rem;
+}

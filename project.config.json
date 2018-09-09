@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 38,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -143,10 +143,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 18,
 					"name": "团购订单列表",
 					"pathName": "pages/UserGroupOrderList/index",
-					"query": ""
+					"query": "target=1"
 				},
 				{
 					"id": 19,
@@ -266,6 +266,18 @@
 					"id": -1,
 					"name": "普通订单列表",
 					"pathName": "pages/UserOrderList/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "个人设置页面",
+					"pathName": "pages/UserSetting/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/Test/index",
 					"query": ""
 				}
 			]

@@ -15,17 +15,21 @@
         </view>
         <view class='price-warpper'>
           <view class='price'>
-            <view class='real_price'>￥{{item.real_price}}</view>
-            <view class='sell_price' wx:if="{{item.real_price * 100 < item.sell_price * 100}}">
-              <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
+            <view class='class-real-price'>
+              <text class="class-price-icon">￥</text> {{item.real_price}}
+            </view>
+            <view class="class-sell-price" wx:if="{{item.real_price * 100 < item.sell_price * 100}}">
+              <text class="class-price-icon">￥</text>{{item.sell_price}}</view>
           </view>
-          <view class='count'>x{{item.num}}</view>
+          <view class='class-goods-num'>x{{item.num}}</view>
         </view>
       </view>
       <view class='bottom-info'>
         <view class='all-price' wx:if="{{haveinfo}}">
           <text>共 {{data.order_goods_info.length}} 件商品 合计: </text>
-          <text class='text-price'>￥{{data.total_money}}</text>
+          <text class='class-real-price'>
+          <text class="class-price-icon">￥</text> {{data.total_money}}
+          </text>
         </view>
         <template is="finsh-actions" data="{{...data}}" />
       </view>
@@ -37,17 +41,17 @@
 <template name="finsh-actions">
   <!-- 待付款 -->
   <view wx:if="{{status === 1}}" class='click-button'>
-    <zan-button catchtap='cancelOrder' class='zan-button' size="small">取消订单</zan-button>
-    <zan-button catchtap='payOrder' type="info" class='zan-button' size="small">立即付款</zan-button>
+    <button catchtap='cancelOrder' class='button' size="small">取消订单</button>
+    <button class="button button-red" catchtap='payOrder' type="info" size="small">立即付款</button>
   </view>
   <!-- 待发货 -->
   <view wx:if="{{status === 2 && group_buy_status == 3}}" class='click-button'>
-    <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
+    <button catchtap="tipOrder" type="info" class='button' size="small">提醒发货</button>
   </view>
   <!-- 待收货  -->
   <view wx:if="{{status === 3}}" class='click-button'>
-    <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
-    <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
+    <button class='button' catchtap='goExpress' size="small">查看物流</button>
+    <button class='button button-red' type="info" catchtap="userSing" size="small">确认收货</button>
   </view>
 
 </template>

@@ -91,10 +91,10 @@
     "backgroundColor": "#f9f9f9"
   },
   "tabBar": {
-    "backgroundColor":"#ffffff",
+    "backgroundColor": "#ffffff",
     "color": "#757575",
     "selectedColor": "#ff0000",
-    "borderStyle":"white",
+    "borderStyle": "white",
     "list": [
       {
         "iconPath": "static/images/index.png",
