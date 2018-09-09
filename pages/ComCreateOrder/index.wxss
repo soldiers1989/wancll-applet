@@ -62,6 +62,9 @@
 
 .center-info .title-warpper .price-warpper .price {
   flex: 1;
+  font-size: 0.7rem;
+  color: #df0303;
+  font-weight: 700;
 }
 
 .center-info .title-warpper .price-warpper .count {
@@ -77,7 +80,7 @@
 
 .other-price .panel {
   padding: 10px;
-  margin:10rpx 0;
+  margin: 10rpx 0;
 }
 
 .other-price .panel .discont {
@@ -110,7 +113,7 @@
   border: 1px solid rgb(247, 247, 247);
   width: 100%;
   font-size: 0.8rem;
-  color:#424242;
+  color: #424242;
   height: 5rem;
 }
 
@@ -125,10 +128,10 @@
   line-height: 2rem;
 }
 
-.other-price .user-info input{
-  height:2.2rem;
+.other-price .user-info input {
+  height: 2.2rem;
   font-size: 0.8rem;
-  color:#424242;
+  color: #424242;
 }
 
 .bottom {
