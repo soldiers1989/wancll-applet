@@ -64,7 +64,7 @@
   <zan-panel>
     <view class='memo' wx:if="{{hasPopup}}">
       <text class='title'>买家留言</text>
-      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
+      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="选填"></textarea>
     </view>
   </zan-panel>
 </view>
@@ -79,7 +79,8 @@
 
 <!-- <view class="wancll-padded-5"> -->
 <view class="bottom">
-  <view class="total">合计：
+  <view class="total">
+    <text style="font-size:0.7rem;color: rgb(222, 221, 221);">合计：</text>
     <text class="wancll-font-size-12">￥</text> {{totalPrice}}
   </view>
   <view class="submit" catchtap='submit'>提交订单</view>

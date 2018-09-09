@@ -56,7 +56,7 @@
   <zan-panel>
     <view class='memo' wx:if="{{hasPopup}}">
       <text class='title'>买家留言</text>
-      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="说点什么吧"></textarea>
+      <textarea class="content" bindinput="liscenInput" data-type="memo" placeholder="选填"></textarea>
     </view>
   </zan-panel>
 </view>
@@ -69,42 +69,42 @@
   </view>
 </view> -->
 
-  <!-- <view class="wancll-padded-5"> -->
-  <view class="bottom">
-    <view class="total">合计：
-     积分 {{totalScore}}
-    </view>
-    <view class="submit" catchtap='submit'>提交订单</view>
-    <!-- <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button> -->
+<!-- <view class="wancll-padded-5"> -->
+<view class="bottom">
+  <view class="total">
+    <text style="font-size:0.7rem;color: rgb(222, 221, 221);">合计：</text> 积分 {{totalScore}}
   </view>
+  <view class="submit" catchtap='submit'>提交订单</view>
+  <!-- <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button> -->
+</view>
 
-  <!-- 地址选择 -->
-  <zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
-    <view class="pop-example__container pop-example__container--bottom">
+<!-- 地址选择 -->
+<zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
+  <view class="pop-example__container pop-example__container--bottom">
+    <zan-panel>
+      <view class='top-close'>
+        <text>请选择收货地址</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupAddress">关闭</text>
+      </view>
+    </zan-panel>
+    <scroll-view scroll-y style="height: 450px;">
+      <wancll-address id="address" bind:getclickid="getClickId"></wancll-address>
+    </scroll-view>
+  </view>
+</zan-popup>
+
+<!-- 支付密码 -->
+<zan-popup show="{{showPopPay}}" bindclose="togglePopupPay">
+  <view class="zan-btns">
+    <view class='popup-warpper'>
       <zan-panel>
-        <view class='top-close'>
-          <text>请选择收货地址</text>
-          <text class="icon" data-type="icon" bindtap="toggilPopupAddress">关闭</text>
-        </view>
+        <view class='title'>请输入支付密码</view>
       </zan-panel>
-      <scroll-view scroll-y style="height: 450px;">
-        <wancll-address id="address" bind:getclickid="getClickId"></wancll-address>
-      </scroll-view>
-    </view>
-  </zan-popup>
-
-  <!-- 支付密码 -->
-  <zan-popup show="{{showPopPay}}" bindclose="togglePopupPay">
-    <view class="zan-btns">
-      <view class='popup-warpper'>
-        <zan-panel>
-          <view class='title'>请输入支付密码</view>
-        </zan-panel>
-        <input bindinput='liscenInput' data-type="password" type='password' value="{{password}}"></input>
-        <view class='select'>
-          <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
-          <zan-button class='no' catchtap="togglePopupPay"> 取消 </zan-button>
-        </view>
+      <input bindinput='liscenInput' data-type="password" type='password' value="{{password}}"></input>
+      <view class='select'>
+        <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
+        <zan-button class='no' catchtap="togglePopupPay"> 取消 </zan-button>
       </view>
     </view>
-  </zan-popup>
+  </view>
+</zan-popup>
