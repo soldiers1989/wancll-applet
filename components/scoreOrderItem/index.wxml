@@ -18,13 +18,13 @@
             <!-- <view class='real_price'>￥{{item.real_price}}</view>
             <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view> -->
           </view>
-          <view class='count'>x{{item.num}}</view>
+          <view class='count class-goods-num'>x{{item.num}}</view>
         </view>
       </view>
       <view class='bottom-info'>
         <view class='all-price' wx:if="{{haveinfo}}">
-          <text>共 {{data.order_goods_info.length}} 件商品 合计 积分: </text>
-          <text class='text-price'>￥{{data.total_score}}</text>
+          <text>共 {{data.order_goods_info.length}} 件商品 合计 </text>
+          <text class='text-price'>积分</text> {{data.total_score}}
         </view>
         <template is="finsh-actions" data="{{...data}}" />
       </view>
@@ -36,23 +36,23 @@
 <template name="finsh-actions">
   <!-- 待发货 -->
   <view wx:if="{{status === 2}}" class='click-button'>
-    <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
+    <button catchtap="tipOrder" type="info" class='button' size="small">提醒发货</button>
   </view>
   <!-- 待收货  -->
   <view wx:if="{{status === 3}}" class='click-button'>
-    <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
-    <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
+    <button class='button' catchtap='goExpress' size="small">查看物流</button>
+    <button class='button button-red' type="info" catchtap="userSing" size="small">确认收货</button>
   </view>
 </template>
 
 
 <!-- 付款状态 -->
 <template name="pay-actions">
-  <view wx:if="{{status === 1}}" class='right' style="color:#358cff">待付款</view>
-  <view wx:if="{{status === 2}}" class='right' style="color:#358cff">待发货</view>
-  <view wx:if="{{status === 3}}" class='right' style="color:#358cff">待收货</view>
-  <view wx:if="{{status === 4}}" class='right' style="color:#358cff">交易完成</view>
-  <view wx:if="{{status === 9}}" class='right' style="color:#358cff">交易关闭</view>
+  <view wx:if="{{status === 1}}" class='right status'>待付款</view>
+  <view wx:if="{{status === 2}}" class='right status'>等待发货</view>
+  <view wx:if="{{status === 3}}" class='right status'>已发货</view>
+  <view wx:if="{{status === 4}}" class='right status'>交易完成</view>
+  <view wx:if="{{status === 9}}" class='right status'>交易关闭</view>
 </template>
 
 <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">

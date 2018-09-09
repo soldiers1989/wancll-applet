@@ -3,7 +3,8 @@
   <view class="avatar" wx:for="{{team.info}}" wx:key="index">
     <image mode="widthFix" src="{{item.user_info.avatar || avatar}}"></image>
   </view>
-  <view class="info">还差{{team.person_num - team.info.length}}人，剩余 <text class="time">{{timeDown}}</text>结束</view>
+  <view class="info">还差{{team.person_num - team.info.length}}人，剩余
+    <text class="time">{{timeDown}}</text>结束</view>
   <view class="share">点击右上角，邀请好友拼团</view>
 </view>
 <!-- 其它订单状态 -->
@@ -24,7 +25,7 @@
     </view>
   </view>
 </view>
-<order-item data="{{orderData}}" gotype='goodsdetail'></order-item>
+<order-item data="{{orderData}}" gotype='goodsdetail' class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
 <zan-panel>
   <zan-cell-group>
     <!-- <zan-cell title="订单总价">

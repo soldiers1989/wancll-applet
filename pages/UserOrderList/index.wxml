@@ -1,25 +1,15 @@
-
 <view>
   <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
     <block wx:for="{{orderList}}" wx:key="key">
       <!-- 点击待评价按钮 -->
-      <block wx:if="{{tabSelectedId == 4}}"> 
+      <block wx:if="{{tabSelectedId == 4}}">
         <!-- 只显示没有评价以及不是退款成功的订单 -->
-        <order-item
-          data="{{item}}" 
-          gotype='orderdetail' 
-          haveinfo 
-          bind:refreshGet="refreshGet"
-          wx:if="{{item.is_comment == 0 && item.is_all_return_goods != 1}}">
+        <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet" wx:if="{{item.is_comment == 0 && item.is_all_return_goods != 1}}" class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price"
+          class-goods-num="wancll-order-goods-num">
         </order-item>
       </block>
       <block wx:else="{{tabSelectedId != 4}}">
-        <order-item
-          data="{{item}}" 
-          gotype='orderdetail' 
-          haveinfo 
-          bind:refreshGet="refreshGet"
-          ></order-item>
+        <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet" class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
       </block>
     </block>
 

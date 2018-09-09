@@ -21,7 +21,7 @@
             <view class="class-sell-price" wx:if="{{item.real_price * 100 < item.sell_price * 100}}">
               <text class="class-price-icon">￥</text>{{item.sell_price}}</view>
           </view>
-          <view class='class-goods-num'>x{{item.num}}</view>
+          <view class='class-goods-num'>x {{item.num}}</view>
         </view>
       </view>
       <view class='bottom-info'>
@@ -58,7 +58,7 @@
 
 <!-- 付款状态 -->
 <template name="pay-actions">
-  <view wx:if="{{status === 1}}" class='right status'>待付款</view>
+  <view wx:if="{{status === 1}}" class='right status'>等待付款</view>
   <view wx:elif="{{status === 2 && group_buy_status === 1}}" class='right status'>拼团中</view>
   <view wx:elif="{{group_buy_status === 2 || group_buy_status === 4}}" class='right status'>拼团失败（退款中）</view>
   <view wx:elif="{{group_buy_status === 5}}" class='right status'>拼团失败（已退款）</view>

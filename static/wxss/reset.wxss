@@ -521,15 +521,18 @@ page {
   font-size: 0.7rem;
   color: #df0303;
   font-weight: 700;
+  text-align: center;
 }
 
 .wancll-order-sell-price {
   font-size: 0.7rem;
   color: #999;
   text-decoration: line-through;
+  text-align: center;
 }
 
 .wancll-order-goods-num {
   color: #777;
   font-size: 0.7rem;
+  text-align: center;
 }

@@ -1,85 +1,144 @@
 /* components/orderItem/index.wxss */
-.item{
+
+.item {
   margin-bottom: 20rpx;
 }
-.item .item-content{
+
+.item .item-content {
   padding: 10px;
   background: #fff;
 }
-.top-info{
+
+.top-info {
   display: flex;
   height: 50rpx;
   /* line-height: 60rpx; */
 }
-.top-info .left{
-  flex:1;
+
+.top-info .left {
+  flex: 1;
   text-align: left;
 }
-.top-info .right{
+
+.top-info .right {
   flex: 100px 0 0;
   text-align: right;
+  color: #f00;
 }
-.center-info{
+
+.center-info {
   background: #fafafa;
   padding: 10rpx;
   display: flex;
   margin-bottom: 10rpx;
 }
-.center-info .image-warpper{
+
+.center-info .image-warpper {
   width: 25%;
 }
-.center-info .image{
+
+.center-info .image {
   width: 160rpx;
   height: 160rpx;
   background: #ccc;
   display: block;
 }
-.center-info .title-warpper{
+
+.center-info .title-warpper {
   width: 55%;
 }
-.center-info .title-warpper .title{
+
+.center-info .title-warpper .title {
   width: 100%;
   height: 70rpx;
   line-height: 35rpx;
   overflow: hidden;
   margin-bottom: 5rpx;
 }
-.center-info .title-warpper .sku{
+
+.center-info .title-warpper .sku {
   height: 70rpx;
   line-height: 35rpx;
   overflow: hidden;
   color: #999;
 }
-.center-info .price-warpper{
+
+.center-info .price-warpper {
   width: 20%;
   text-align: right;
 }
-.center-info .price-warpper .price{
+
+.center-info .price-warpper .price {
   height: 70rpx;
   margin-bottom: 5rpx;
 }
-.center-info .price-warpper .price .real_price{
+
+.center-info .price-warpper .price .real_price {
   color: #df0303;
 }
-.center-info .price-warpper .price .sell_price{
+
+.center-info .price-warpper .price .sell_price {
   text-decoration: line-through;
   color: #999;
-} 
-.center-info .price-warpper .count{
+}
+
+.center-info .price-warpper .count {
   height: 40rpx;
   line-height: 1;
 }
 
-.bottom-info .all-price{
+.bottom-info .all-price {
   line-height: 70rpx;
   text-align: right;
 }
-.bottom-info .all-price .text-price{
+
+.bottom-info .all-price .text-price {
   color: #df0303;
 }
-.bottom-info .click-button{
-  text-align: right;
+
+.bottom-info .click-button {
+  display: flex;
+  justify-content: flex-end;
 }
-.bottom-info .click-button .zan-button{
+
+.bottom-info .click-button .zan-button {
   margin-left: 20rpx;
+}
+
+.action {
+  text-align: center;
+}
+
+.action .s-button {
+  text-align: center;
+  width: 72%;
+  height: 1rem;
+  line-height: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #a8a8a8;
+  color: #555;
+  margin: 6px 2px 0 6px;
+  font-size: 0.5rem;
+}
+
+.action view {
+  color: #757575;
+}
+
+.button {
+  text-align: center;
+  width: 23%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid #a8a8a8;
+  color: #555;
+  margin: 6px 2px 0 6px;
+  font-size: 12px;
+  background-color: #fff;
+}
+
+.button-red {
+  color: #f00;
+  border: 1px solid #f00;
 }

@@ -11,7 +11,8 @@ Page({
       2: 'icon-daifahuo',
       3: 'icon-yifahuo',
       4: 'icon-iconwxz'
-    }
+    },
+    backgroundColor:'blue',
   },
   onLoad(options) {
     this.setData({

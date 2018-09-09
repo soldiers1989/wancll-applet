@@ -126,6 +126,7 @@
   color: #555;
   margin: 6px 2px 0 6px;
   font-size: 12px;
+  background-color: #fff;
 }
 
 .button-red {

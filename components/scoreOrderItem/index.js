@@ -14,6 +14,7 @@ Component({
       description: '跳转的类型'
     }
   },
+  externalClasses:['class-goods-num'],
   data: {
     bindInput:'',
     hiddenmodalput: true,

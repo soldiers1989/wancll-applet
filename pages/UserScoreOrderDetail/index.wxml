@@ -12,7 +12,7 @@
     </view>
   </view>
 </view>
-<order-item data="{{orderData}}" gotype='goodsdetail' haveinfo="true"></order-item>
+<order-item data="{{orderData}}" gotype='goodsdetail' haveinfo="true" class-goods-num="wancll-order-goods-num"></order-item>
 <view style="margin-bottom:10px"></view>
 <zan-panel>
   <view class="order-bottom">

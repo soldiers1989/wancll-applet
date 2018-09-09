@@ -12,7 +12,7 @@
     </view>
   </view>
 </view>
-<order-item data="{{orderData}}" gotype='goodsdetail'></order-item>
+<order-item data="{{orderData}}" gotype='goodsdetail' class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
 <zan-panel>
   <zan-cell-group>
     <zan-cell title="运费">
@@ -37,4 +37,4 @@
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.finish_time}}">确认收货时间：{{orderData.finish_time}}</view>
     <view class="line wancll-margin-t-5 wancll-text-pray" wx:if="{{orderData.cancel_time}}">订单取消时间：{{orderData.cancel_time}}</view>
   </view>
-</zan-panel> 
+</zan-panel>

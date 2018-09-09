@@ -15,10 +15,12 @@
         </view>
         <view class='price-warpper'>
           <view class='price'>
-            <view class='real_price'>￥{{item.real_price}}</view>
-            <view wx:if="{{data.market_activity_type != 0}}" class='sell_price'>￥{{item.sell_price}}</view>
+            <view class='class-real-price'>
+              <text class="class-price-icon">￥</text>{{item.real_price}}</view>
+            <view wx:if="{{data.market_activity_type != 0}}" class='class-sell-price'>
+              <text class="class-price-icon">￥</text>{{item.sell_price}}</view>
           </view>
-          <view class='count'>x{{item.num}}</view>
+          <view class='class-goods-num'>x {{item.num}}</view>
           <block wx:if="{{data.status == 2 || data.status == 3 }}">
             <template is="refound" data="{{...item}}" />
           </block>
@@ -35,8 +37,8 @@
       <view class='bottom-info'>
         <view class='all-price' wx:if="{{haveinfo}}">
           <text>共 {{data.order_goods_info.length}} 件商品 合计: </text>
-          <text class='text-price'>￥{{data.total_money}}</text>
-          <text> (含运费：￥{{data.freight_money}})</text>
+          <text class='class-real-price'><text class="class-price-icon">￥</text>{{data.total_money}}</text>
+          <text> (含运费：<text class="class-price-icon">￥</text>{{data.freight_money}})</text>
         </view>
         <template is="finsh-actions" data="{{...data}}" />
       </view>
@@ -48,17 +50,17 @@
 <template name="finsh-actions">
   <!-- 待付款 -->
   <view wx:if="{{status === 1}}" class='click-button'>
-    <zan-button catchtap='cancelOrder' class='zan-button' size="small">取消订单</zan-button>
-    <zan-button catchtap='payOrder' type="info" class='zan-button' size="small">确认付款</zan-button>
+    <button catchtap='cancelOrder' class='button' size="small">取消订单</button>
+    <button catchtap='payOrder' type="info" class='button button-red' size="small">立即付款</button>
   </view>
   <!-- 待发货 -->
   <view wx:if="{{status === 2}}" class='click-button'>
-    <zan-button catchtap="tipOrder" type="info" class='zan-button' size="small">提醒发货</zan-button>
+    <button catchtap="tipOrder" type="info" class='button' size="small">提醒发货</button>
   </view>
   <!-- 待收货  -->
   <view wx:if="{{status === 3}}" class='click-button'>
-    <zan-button class='zan-button' catchtap='goExpress' size="small">查看物流</zan-button>
-    <zan-button class='zan-button' type="info" catchtap="userSing" size="small">确认收货</zan-button>
+    <button class='button' catchtap='goExpress' size="small">查看物流</button>
+    <button class='button button-red' type="info" catchtap="userSing" size="small">确认收货</button>
   </view>
   <!-- 待评价 无退款 / 退款成功不显示 -->
   <!-- <block wx:if="{{is_has_return_goods===0}}">
@@ -73,28 +75,29 @@
 <!-- 小退款按钮 -->
 <template name="refound">
   <view class='action'>
-    <zan-button wx:if="{{return_goods_status===0}}" catchtap='refundOrder' data-id="{{goods_id}}" class='zan-button' size="mini"> 退款 </zan-button>
-    <zan-button wx:if="{{return_goods_status===1}}" class='zan-button' size="mini"> 退款中... </zan-button>
-    <zan-button wx:if="{{return_goods_status===2}}" class='zan-button' size="mini"> 退款失败 </zan-button>
-    <zan-button wx:if="{{return_goods_status===3}}" class='zan-button' size="mini"> 退款成功 </zan-button>
+    <button class="s-button" wx:if="{{return_goods_status===0}}" catchtap='refundOrder' data-id="{{goods_id}}"> 退款 </button>
+    <view wx:if="{{return_goods_status===1}}"> 退货申请中 </view>
+    <view wx:if="{{return_goods_status===2}}"> 退货已拒绝 </view>
+    <view wx:if="{{return_goods_status===3 && is_return_money == 0}}">退货成功(未退款) </view>
+    <view wx:if="{{return_goods_status===3 && is_return_money == 1}}"> 退款成功(已退款) </view>
   </view>
 </template>
 <!-- 评价按钮 -->
 <template name="estimate">
   <view class='action'>
-    <zan-button wx:if="{{goods.is_comment===0}}" data-index="{{index}}" type="info" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
-    <zan-button wx:else class='zan-button' size="mini"> 已评论 </zan-button>
+    <button wx:if="{{goods.is_comment===0}}" data-index="{{index}}" type="info" class='s-button' catchtap='estimateGoods'> 评价 </button>
+    <!-- <view wx:else> 已评价 </view> -->
   </view>
 </template>
 
 
 <!-- 付款状态 -->
 <template name="pay-actions">
-  <view wx:if="{{status === 1}}" class='right' style="color:#358cff">待付款</view>
-  <view wx:if="{{status === 2}}" class='right' style="color:#358cff">待发货</view>
-  <view wx:if="{{status === 3}}" class='right' style="color:#358cff">待收货</view>
-  <view wx:if="{{status === 4}}" class='right' style="color:#358cff">交易完成</view>
-  <view wx:if="{{status === 9}}" class='right' style="color:#358cff">交易关闭</view>
+  <view wx:if="{{status === 1}}" class='right'>等待付款</view>
+  <view wx:if="{{status === 2}}" class='right'>等待发货</view>
+  <view wx:if="{{status === 3}}" class='right'>已发货</view>
+  <view wx:if="{{status === 4}}" class='right'>交易完成</view>
+  <view wx:if="{{status === 9}}" class='right'>交易关闭</view>
 </template>
 
 <view wx:if="{{noContent}}" style="text-align: center;margin-top: 20%;">

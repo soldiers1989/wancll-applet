@@ -1,6 +1,6 @@
 .order-top{
-  background: linear-gradient(to bottom, #3de5ff, #39bbff, #358dff);
   align-items: flex-start;
+  background: linear-gradient(to bottom, #3de5ff, #39bbff, #358dff);
 }
 
 .order-bottom{
