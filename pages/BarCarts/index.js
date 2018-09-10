@@ -259,6 +259,12 @@ Page({
     Paging.refresh();
     this.resetCartData();
   },
+  goGoodsDetail(e) {
+    let id = APP.utils.getDataSet(e, 'id');
+    wx.navigateTo({
+      url: `/pages/ComDetail/index?id=${id}`,
+    })
+  },
   // 结算
   goOrderConfirm() {
     let carts = this.data.carts;

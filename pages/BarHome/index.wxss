@@ -139,6 +139,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: #757575;
+  font-size: 0.7rem;
 }
 
 .scroll-items {

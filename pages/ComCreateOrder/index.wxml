@@ -2,7 +2,7 @@
   <zan-panel>
     <block wx:if="{{selectedAddress.id}}">
       <view class="wancll-flex wancll-bg-white wancll-margin-t-10 wancll-margin-b-10 wancll-font-size-14">
-        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-padded-10 ylyy-red" ></i>
+        <i class="iconfont icon-dizhi1 wancll-font-size-20 wancll-padded-10 ylyy-red"></i>
         <view class="wancll-padded-t-10 wancll-padded-r-10 wancll-padded-b-10" style="width:100%">
           <view class="wancll-font-weight address"> {{selectedAddress.province}} {{selectedAddress.city}} {{selectedAddress.area}} {{selectedAddress.address}}</view>
           <view class="clearfix wancll-margin-t-10 user-info">
@@ -150,10 +150,9 @@
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
       <view class="wancll-padded-10 wancll-bg-pray wancll-margin-b-10" wx:for="{{activities.coupon}}" wx:key="key" data-index="{{index}}" bindtap="selectCoupon">
-
         <view wx:if="{{item.coupon_type=='discount'}}">({{item.cate_name}}类) 满{{item.reach_money}}打{{item.change_value}}折</view>
         <view wx:else>({{item.cate_name}}类) 满{{item.reach_money}}减{{item.change_value}}元</view>
-        <view class="wancll-margin-t-5">失效时间{{item.expiry_time}}</view>
+        <view class="wancll-margin-t-5" wx:if="{{item.type != 'new_user'}}">失效时间{{item.expiry_time}}</view>
       </view>
     </scroll-view>
   </view>

@@ -131,7 +131,7 @@
       <image mode="widthFix" src='{{notice.img}}'></image>
     </view>
     <view class='notice-list'>
-      <view bindtap="goArticle" data-id="{{item.id}}" data-type="index" class='list' wx:for="{{notice.data}}" wx:key="index">• {{item.title}}</view>
+      <view bindtap="goArticle" data-id="{{item.id}}" data-type="index" class='list' wx:for="{{notice.data}}" wx:key="index" wx:if="{{index<2}}">• {{item.title}}</view>
     </view>
   </view>
 
