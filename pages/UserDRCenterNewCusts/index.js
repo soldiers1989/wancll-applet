@@ -20,6 +20,7 @@ Page({
     this.setData({
       user: wx.getStorageSync('user')
     })
+    this.getCount();
     Paging.init({
       type: 2,
       that: this,
@@ -28,6 +29,19 @@ Page({
       getFunc: this.getOrderData
     })
     this.getOrderData()
+  },
+  getCount() {
+    APP.ajax({
+      url: APP.api.drpChildUserNew,
+      data: {
+        member_level: params.commonMember
+      },
+      success: res => {
+        wx.setNavigationBarTitle({
+          title: '我的客户(' + res.page.data_count + ')',
+        })
+      }
+    });
   },
   getOrderData() {
     Paging.getPagesData({

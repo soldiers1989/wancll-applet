@@ -2,6 +2,23 @@ page {
   background: #eee;
 }
 
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.top .num {
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.top .money {
+  font-size: 0.7rem;
+  color: rgb(42, 142, 232) !important;
+}
+
 .list {
   background: #fff;
   margin: 10px 0;
@@ -43,9 +60,13 @@ page {
   text-align: right;
 }
 
-.order-goods .flex{
+.order-goods .flex {
   display: flex;
   justify-content: space-between;
+}
+
+.order-goods .flex view:first-child {
+  padding-right: 20rpx;
 }
 
 .other {

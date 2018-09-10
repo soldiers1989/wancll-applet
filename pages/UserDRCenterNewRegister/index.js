@@ -1,6 +1,8 @@
 const APP = getApp();
 import PagingData from '../../utils/PagingData';
-import { params } from '../../api/config.js';
+import {
+  params
+} from '../../api/config.js';
 const Paging = new PagingData();
 Page({
   data: {
@@ -14,7 +16,7 @@ Page({
       noContentImg: APP.imgs.noContentImg
     }
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       user: wx.getStorageSync('user')
     })
@@ -28,7 +30,7 @@ Page({
     this.getOrderData()
   },
   getOrderData() {
-    Paging.getPagesData()
+    Paging.getPagesData();
   },
   onPullDownRefresh() {
     Paging.refresh()

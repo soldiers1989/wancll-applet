@@ -1,27 +1,52 @@
-.title-cont{
+.title-cont {
   padding: 10px;
   font-size: 13px;
 }
-.title-cont .icon{
+
+.title-cont .icon {
   font-size: 20px;
   color: rgb(42, 142, 232);
 }
-.lists .list{
+
+.title-cont .money {
+  color: #777;
+  font-size: 0.7rem;
+  text-align: right;
+}
+
+.lists .list {
   background: #fff;
   padding: 10px;
   margin-bottom: 10px;
 }
-.lists .image image{
+
+.lists .image image {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
 }
+
 .lists .right {
   text-align: right;
 }
-.lists .right .money{
-  color: #358cff;
+
+.lists .right .money {
+  color: #ff0000;
 }
-.lists .text{
+
+.lists .text {
   line-height: 25px;
+}
+
+.list .mobile{
+  color:#212121;
+  font-size: 0.8rem;
+}
+
+.list .time{
+  color:#777;
+  font-size: 0.6rem;
+}
+
+.list .num{
+  color:#777;
 }

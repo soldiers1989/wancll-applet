@@ -1,5 +1,5 @@
 <view>
   <block wx:for="{{orderList}}" wx:key="key">
-    <order-item data="{{item}}" haveinfo gotype='orderdetail' ></order-item>
+    <order-item data="{{item}}" haveinfo gotype='orderdetail' class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
   </block>
 </view>

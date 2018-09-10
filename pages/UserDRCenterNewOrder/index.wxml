@@ -1,5 +1,12 @@
 <view>
   <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
+
+  <view class="top">
+    <view class="num">订单数量<text style="color:#777">({{orderNum}})</text></view>
+    <view class="money">金额:{{orderMoney}}元</view>
+  </view>
+
+
     <view class='list' wx:for="{{orderList}}" wx:key="item">
       <view class='list-info'>
         <zan-row>

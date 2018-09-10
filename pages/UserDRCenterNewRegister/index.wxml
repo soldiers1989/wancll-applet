@@ -5,8 +5,8 @@
         <image src="{{user.avatar}}" mode='widthFix'></image>
       </zan-col>
       <zan-col col="13" col-class="center">
-        <view class='text'>{{item.source_user_info.nick_name || item.source_user_info.mobile}}</view>
-        <view class='text'>注册时间：{{item.create_time}}</view>
+        <view class='text mobile'>{{item.source_user_info.nick_name || item.source_user_info.mobile}}</view>
+        <view class='text time'>注册时间：{{item.create_time}}</view>
       </zan-col>
       <zan-col col="6" col-class="right">
         <view class='text money'>+ {{item.award}}元</view>

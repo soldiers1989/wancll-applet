@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "注册奖励金",
+  "navigationBarTitleText": "奖励金明细",
   "usingComponents": {
     "zan-tab": "../../dist/tab/index",
     "zan-icon": "../../dist/icon/index",

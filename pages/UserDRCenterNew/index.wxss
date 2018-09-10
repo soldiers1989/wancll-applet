@@ -90,3 +90,7 @@ page {
 .selects-subpage .subpage .icon-b {
   color: rgb(37, 127, 214);
 }
+
+.desc{
+  font-size: 0.5rem;
+}

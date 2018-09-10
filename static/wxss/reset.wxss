@@ -18,7 +18,7 @@ page {
 }
 
 .wancll-ellipsis-2 {
-  display: flex;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -491,7 +491,7 @@ page {
 /* no-content */
 
 .no-content-image {
-  margin-top: 20%;
+  margin-top: 30%;
   text-align: center;
 }
 
@@ -535,4 +535,19 @@ page {
   color: #777;
   font-size: 0.7rem;
   text-align: center;
+}
+
+/* 创建订单相关 */
+.wancll-order-goods-name{
+  font-size: 0.7rem;
+
+} 
+.wancll-order-goods-intro {
+  color:#777;
+  font-size: 0.6rem;
+}
+
+.ylyy-red{
+  color:#ff0000;
+  font-weight: 700;
 }

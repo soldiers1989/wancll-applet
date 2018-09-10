@@ -14,7 +14,6 @@
 .lists .image image{
   width: 50px;
   height: 50px;
-  border-radius: 50%;
 }
 .lists .right {
   text-align: right;
@@ -24,4 +23,13 @@
 }
 .lists .text{
   line-height: 25px;
+}
+.list .mobile {
+  color: #212121;
+  font-size: 0.8rem;
+}
+
+.list .time {
+  color: #777;
+  font-size: 0.6rem;
 }

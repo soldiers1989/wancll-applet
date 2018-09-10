@@ -17,39 +17,62 @@ Page({
       title: '已完成'
     }],
     tabSelectedId: 0,
-    orderList:[],
+    orderList: [],
     // 分页功能
     FPage: {
       pageNum: 1,
       hasData: true,
       noContent: false,
       noContentImg: APP.imgs.noContentImg
-    }
+    },
+    orderNum: 0,
+    orderMoney: 0,
   },
-  onLoad (options) {
+  onLoad(options) {
+    this.getCountAndMoney();
     Paging.init({
-      type:1,
-      that:this,
-      url:'drpOrderListNew',
-      pushData:'orderList',
-      getStr:'orders',
+      type: 1,
+      that: this,
+      url: 'drpOrderListNew',
+      pushData: 'orderList',
+      getStr: 'orders',
       getFunc: this.getOrderData
     })
     this.getOrderData(this.data.tabSelectedId)
   },
+  getCountAndMoney() {
+    let data = this.data.tabSelectedId != 0 ? {
+      order_status: this.data.tabSelectedId
+    } : {};
+    APP.ajax({
+      url: APP.api.drpOrderListNew,
+      data: data,
+      success: res => {
+        this.setData({
+          orderNum: res.data.order_count,
+          orderMoney: res.data.total_expect_money
+        });
+      }
+    });
+  },
   getOrderData(status) {
-    let data = status != 0 ? { order_status: status } : {}
-    Paging.getPagesData({postData: data})
+    let data = status != 0 ? {
+      order_status: status
+    } : {}
+    Paging.getPagesData({
+      postData: data
+    })
   },
   // 点击切换顶部的标签
   tabchange(e) {
-    Paging.tabChange()
+    Paging.tabChange();
+    this.getCountAndMoney();
   },
   // 下拉刷新
-  onPullDownRefresh () {
+  onPullDownRefresh() {
     Paging.refresh()
   },
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.getOrderData(this.data.tabSelectedId)
   }
 
