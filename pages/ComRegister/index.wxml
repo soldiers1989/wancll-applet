@@ -12,10 +12,10 @@
     <input bindinput='bindMobile' placeholder='请输入手机号码'></input>
     <view class='right'>
       <block wx:if="{{status}}">
-        <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">发送验证码</button>
+        <button class="wancll-text-white" style="background-color:#ff0000" bindtap="sendCode">发送验证码</button>
       </block>
       <block wx:else="{{status}}">
-        <zan-button>{{countDown}} 再次发送</zan-button>
+        <button style="background-color: rgb(105, 105, 105)">{{countDown}} 再次发送</button>
       </block>
     </view>
   </view>
@@ -29,10 +29,10 @@
     <input bindinput="bindPayPassword" password placeholder="输入支付密码" class="" />
   </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
-    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">注册</button>
+    <button class="wancll-text-white button" bindtap="sendData">注册</button>
   </view>
   <view class="greet">
-    <zan-icon style='{{ischecked?"color:#358cff":""}}' bindtap='ischecked' class="icon" type="checked"></zan-icon>
+    <zan-icon style='{{ischecked?"color:#ff0000":""}}' bindtap='ischecked' class="icon" type="checked"></zan-icon>
     我同意 
     <text bindtap="goArticle" data-id="1" data-type="reg">《服务条款》</text>
     和
