@@ -6,7 +6,8 @@ import {
   getMemberParams
 } from './data.js';
 import {
-  imageHost,params
+  imageHost,
+  params
 } from '../../api/config.js';
 Page({
   data: {
@@ -17,11 +18,10 @@ Page({
     is_open_bonus: '',
     is_open_drp: '',
 
-    distributorInfo:{},  
+    distributorInfo: {},
     isMember: false,
   },
-  onLoad(options) {
-  },
+  onLoad(options) {},
   // 判断是否金卡会员
   checkIsMember() {
     if (this.data.user && this.data.user.member_level == params.bcMember) {

@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class='panel'>
   <zan-panel>
     <view class="user {{isMember ? 'is-member' : 'is-not-member'}}">
@@ -20,11 +22,11 @@
 
       <view class='money'>
         <view class='money-item'>
-          <view>{{distributorInfo.except_money}}</view>
+          <view>{{tools.toTowDecimal(distributorInfo.except_money)}}</view>
           <view catchtap='goSubPages' data-target="UserDRCenterNew">待结算佣金</view>
         </view>
         <view class='money-item'>
-          <view>{{asset.money}}</view>
+          <view>{{tools.toTowDecimal(asset.money)}}</view>
           <view catchtap='goSubPages' data-target="UserWallet">我的钱包</view>
         </view>
       </view>

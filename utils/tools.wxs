@@ -2,6 +2,11 @@
 var beautyPrice = function(price) {
   return Number(price).toPrecision();
 }
+// 保留2位小数
+var toTowDecimal = function(num) {
+  return Number(num).toFixed(2);
+}
 module.exports = {
-  beautyPrice:beautyPrice
+  beautyPrice: beautyPrice,
+  toTowDecimal: toTowDecimal
 };
