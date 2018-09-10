@@ -36,8 +36,13 @@ Page({
   },
   // 获取分页数据
   getGoodsData(id = '') {
-    let data = { goods_cate_id: id , is_member_good:0}
-    Paging.getPagesData({ postData: data })
+    let data = {
+      goods_cate_id: id,
+      is_member_good: 0
+    }
+    Paging.getPagesData({
+      postData: data
+    })
   },
   // 获取树结构
   getGoodsTree() {
@@ -74,7 +79,7 @@ Page({
     // this.setData({
     //   tabSelectedId: id,
     // }, () => {
-      Paging.refresh(id)
+    Paging.refresh(id)
     // })
   },
   // 大分类的点击
@@ -106,6 +111,12 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: `/pages/ComDetail/index?id=${id}`,
+    })
+  },
+  // 去搜索页面
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/ComSearch/index',
     })
   },
 

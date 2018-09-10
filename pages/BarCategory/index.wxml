@@ -1,8 +1,14 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
+<view class='search_box' bindtap='goSearchPage'>
+  <view class='search_input'>
+    <icon class='icon' type='sousuo'></icon>
+    <view class='input'>请输入搜索内容</view>
+  </view>
+</view>
 
 <view>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bindtap='tabChange' fixed/>
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bindtap='tabChange'/>
   <!-- 弹出的 -->
   <view class='popup-nav' wx:if="{{popupNav}}">
     <view class='list' wx:for="{{childNav}}" wx:key="{{index}}" bindtap='changeSubNav' data-id='{{item.id}}'>

@@ -1,29 +1,80 @@
-.popup-nav{
+.search_box {
   display: flex;
-  width: 100%;
-  padding-bottom:20rpx; 
-  padding-top:20rpx; 
+  height: 80rpx;
   background: #fff;
 }
-.popup-nav .list{
-  margin: 0 0 0 10px;
+
+.search_box .category_button {
+  flex: 80rpx 0 0;
   text-align: center;
 }
-.popup-nav .list .image{
+
+.search_box .search_input {
+  flex: 1;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 15rpx;
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0 15rpx;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+.search_box .search_input .icon {
+  flex: 40rpx 0 0;
+  font-size: 30rpx;
+  color: #666;
+}
+
+.search_box .search_input .input {
+  width: auto;
+  color: #666;
+  flex: 1;
+}
+
+.search_box .massage_button {
+  flex: 80rpx 0 0;
+  text-align: center;
+}
+
+.popup-nav {
+  display: flex;
+  width: 100%;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+  background: #fff;
+  flex-wrap: wrap;
+}
+
+.popup-nav .list {
+  text-align: center;
+  width: 20%;
+  padding: 0.5rem 0;
+}
+
+.popup-nav .list .image {
   width: 100%;
   height: 100rpx;
-  text-align: center
+  text-align: center;
 }
-.popup-nav .list .image image{
+
+.popup-nav .list .image image {
   width: 100rpx;
   height: 100rpx;
 }
 
-.zan-tab__item--selected .zan-tab__title{
+.popup-nav .list .text {
+  color: #777;
+  font-size: 0.7rem;
+}
+
+.zan-tab__item--selected .zan-tab__title {
   color: #358cff !important;
 }
 
-.price{
+.price {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
@@ -31,14 +82,14 @@
 
 .market-price {
   text-decoration: line-through;
-  color:#777;
+  color: #777;
   padding: 20rpx;
-  flex:40%;
+  flex: 40%;
   text-align: right;
 }
 
 .wancll-text-price {
   font-weight: 700;
-  flex:1;
+  flex: 1;
   font-size: 17px;
 }

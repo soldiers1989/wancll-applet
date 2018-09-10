@@ -133,6 +133,12 @@ Page({
       url: `/pages/ComDetail/index?id=${id}`,
     })
   },
+  // 去搜索页面
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/ComSearch/index',
+    })
+  },
 
   onPullDownRefresh() {
     Paging.refresh(this.data.id);
