@@ -54,15 +54,15 @@
 
 
   <!--限时折扣 -->
-  <view class='discount' wx:if="{{discount.length}}">
-    <zan-cell is-link bindtap="goDiscountCenter">
+  <view class='discount' wx:if="{{discount.id}}">
+    <zan-cell is-link bindtap="goDiscountCenter" bindtap="goDiscountCenter" data-id="{{discount.id}}">
       <text class="iconfont icon-shizhong_l icon"></text>
       <text class="title"> 限时折扣 </text>
-      <text class=""> {{discount[0].name}} </text>
+      <text class=""> {{discount.name}} </text>
       <text class="time"> {{timeDown}}</text>
     </zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">
-      <view wx:for="{{discount[0].rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
+      <view wx:for="{{discount.rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
         <view class="info">
           <image src="{{item.goods_info.thum}}" mode="widthFix" />
           <view class="discount_price">￥{{tools.beautyPrice(item.discount_price)}}</view>

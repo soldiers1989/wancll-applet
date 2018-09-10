@@ -166,9 +166,10 @@ Page({
     })
   },
   // 去限时折扣广场
-  goDiscountCenter() {
+  goDiscountCenter(e) {
+    let id = APP.utils.getDataSet(e, 'id');
     wx.navigateTo({
-      url: '/pages/ComDiscountCenter/index',
+      url: '/pages/ComDiscountCenter/index?activityId=' + id,
     })
   },
 
