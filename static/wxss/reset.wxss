@@ -562,6 +562,12 @@ page {
   font-weight: 700;
 }
 
+.wancll-goods-list-market-price{
+  text-decoration: line-through;
+  color:#777;
+  font-size: 0.5rem;
+}
+
 /* 商品列表页 超两行文字省略 */
 
 .tit-2 {

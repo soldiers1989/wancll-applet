@@ -22,8 +22,11 @@
         <image wx:if="{{item.stock == 0}}" class="no-stock" src="{{noStockImage}}" mode='widthFix'></image>
         <view class='info wancll-bg-white'>
           <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2'>{{item.name}}</view>
-          <view class='wancll-padded-10 wancll-text-price'>
-            <text class="wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}</view>
+          <view class="price">
+            <view class='wancll-padded-10 wancll-goods-list-price'>
+              <text class="wancll-goods-list-price-icon">￥</text>{{tools.beautyPrice(item.sell_price)}}</view>
+            <view wx:if="{{item.market_price != 0}}" class="wancll-padded-10 wancll-goods-list-market-price">市场价:{{tools.beautyPrice(item.market_price)}}</view>
+          </view>
         </view>
       </view>
     </view>

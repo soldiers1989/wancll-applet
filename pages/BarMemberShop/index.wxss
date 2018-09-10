@@ -152,3 +152,9 @@
   font-size: 24rpx;
   line-height: 60rpx;
 }
+
+.goods-list .info .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

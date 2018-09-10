@@ -42,3 +42,9 @@
 .ad image {
   width: 100%;
 }
+
+.goods-list .info .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
