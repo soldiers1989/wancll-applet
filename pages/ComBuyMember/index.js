@@ -1,7 +1,10 @@
 const APP = getApp();
 import {
   getMemberParams
-} from '../../pages/BarUser/data.js'
+} from '../../pages/BarUser/data.js';
+import {
+  params
+} from '../../api/config.js';
 Page({
   data: {
     memberParams: {},

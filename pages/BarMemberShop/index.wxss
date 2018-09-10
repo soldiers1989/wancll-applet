@@ -76,6 +76,7 @@
 
 .user .info .name {
   font-size: 36rpx;
+  margin-bottom: 0.5rem;
 }
 
 .user .v {
@@ -90,13 +91,15 @@
 }
 
 .user .sign .real-sign {
+  margin-bottom: .5rem;
   text-align: center;
   font-size: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 1rem;
+  background: #fff;
+  border-radius: 0.2rem;
   height: 1rem;
   line-height: 1rem;
   vertical-align: middle;
+  color: #c59343;
 }
 
 .user .detail {

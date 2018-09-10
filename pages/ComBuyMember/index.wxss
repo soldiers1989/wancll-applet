@@ -9,6 +9,10 @@
   line-height: 60rpx;
 }
 
+.article .user view {
+  font-size: 0.8rem;
+}
+
 .article .tags {
   background: #fff;
   margin: 30rpx;
@@ -19,6 +23,7 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 400;
+  margin-bottom: 40rpx;
 }
 
 .article .tags .content {
@@ -30,6 +35,7 @@
   flex: 25%;
   padding-bottom: 30rpx;
   color: rgb(178, 162, 137);
+  text-align: center;
 }
 
 .article .tags .content .tag image {
@@ -43,12 +49,13 @@
   padding: 20rpx;
   display: flex;
   justify-content: space-between;
+  font-weight: 600;
 }
 
 .article .button {
   background: red;
   margin: 30rpx;
-  padding:0.5rem;
+  padding: 0.6rem;
   color: #fff;
   text-align: center;
   font-size: 0.8rem;

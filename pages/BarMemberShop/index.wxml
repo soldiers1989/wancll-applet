@@ -40,7 +40,7 @@
   </view>
 </view>
 
-<!-- 积分商品 -->
+<!-- 会员商品 -->
 <view class='goods-list wancll-padded-3 wancll-bg-pray'>
   <view class='goods wancll-bg-pray' wx:for="{{goodsList}}" wx:key="index">
     <view class='wancll-padded-3 wancll-bg-pray'>
@@ -49,8 +49,8 @@
       </view>
       <view class='info wancll-bg-white'>
         <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2'>{{item.name}}</view>
-        <view class='wancll-padded-10 wancll-text-price'>
-          <text class="wancll-fl wancll-font-size-10">￥</text>{{tools.beautyPrice(item.sell_price)}}
+        <view class='wancll-padded-10 wancll-goods-list-price'>
+          <text class="wancll-fl wancll-goods-list-price-icon">￥</text>{{tools.beautyPrice(item.sell_price)}}
         </view>
       </view>
     </view>
