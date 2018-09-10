@@ -25,3 +25,8 @@
   margin-left: 10px;
   flex: 250rpx 0 0;
 }
+
+.button {
+  background-color:#ff0000;
+  letter-spacing: 0.2rem;
+}

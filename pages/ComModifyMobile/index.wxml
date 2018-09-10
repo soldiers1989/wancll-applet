@@ -7,10 +7,10 @@
     <input bindinput='bindMobile' placeholder='请输入新手机号码'></input>
     <view class='right'>
       <block wx:if="{{status}}">
-        <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">发送验证码</button>
+        <button class="wancll-text-white" style="background-color:#ff0000" bindtap="sendCode">发送验证码</button>
       </block>
       <block wx:else="{{status}}">
-        <zan-button class="">{{countDown}} 再次发送</zan-button>
+        <button style="background-color: rgb(105, 105, 105)">{{countDown}} 再次发送</button>
       </block>
     </view>
   </view>
@@ -18,6 +18,6 @@
     <input bindinput="bindCode" placeholder="输入验证码" class="" />
   </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
-    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">确认修改</button>
+    <button class="wancll-text-white button" bindtap="sendData">修改手机号</button>
   </view>
 </view>

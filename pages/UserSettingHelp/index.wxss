@@ -1,0 +1,9 @@
+.button {
+  background-color: #f00;
+  letter-spacing: 0.2rem;
+}
+
+.box {
+  font-size: 0.8rem;
+  color:#212121;
+}

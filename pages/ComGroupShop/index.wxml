@@ -1,16 +1,16 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 
 
-  <!-- 轮播图 -->
-  <view class='banner'>
-    <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{banner}}" wx:key="key">
-        <swiper-item>
-          <image bindtap='goModel' data-redirect="{{item.redirect_data}}" src="{{item.img}}" class="slide-image" mode="widthFix" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
+<!-- 轮播图 -->
+<view class='banner'>
+  <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{banner}}" wx:key="key">
+      <swiper-item>
+        <image bindtap='goModel' data-redirect="{{item.redirect_data}}" src="{{item.img}}" class="slide-image" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
 
 
 <!-- 订单 -->
@@ -60,26 +60,27 @@
 <!-- 团购商品 -->
 
 <view class="goods-list-new">
- <view class="goods" wx:for="{{goodsList}}" wx:key="index">
-  <view class="left">
-    <image mode="widthFix" src="{{item.goods_info.thum}}"></image>
-  </view>
-  <view class="right">
-    <view class="top">
-      {{item.goods_info.name}}
+  <view class="goods" wx:for="{{goodsList}}" wx:key="index">
+    <view class="left">
+      <image mode="widthFix" src="{{item.goods_info.thum}}"></image>
     </view>
-    <view class="bottom">
-      <view class="price">
-        <view class="sell-price-box">
-        单买价：<text class="sell-price">￥{{tools.beautyPrice(item.goods_info.sell_price)}}</text>
+    <view class="right">
+      <view class="top wancll-ellipsis-2">
+        {{item.goods_info.name}}
+      </view>
+      <view class="bottom">
+        <view class="price">
+          <view class="sell-price-box">
+            单买价：
+            <text class="sell-price">￥{{tools.beautyPrice(item.goods_info.sell_price)}}</text>
+          </view>
+          <view class="group-price">￥{{tools.beautyPrice(item.money)}}</view>
         </view>
-        <view class="group-price">￥{{tools.beautyPrice(item.money)}}</view>
-      </view>
-      <view class="buy" bindtap="goGoodsDetail" data-id="{{item.id}}" data-goods-id="{{item.goods_id}}">
-        去拼团
+        <view class="buy" bindtap="goGoodsDetail" data-id="{{item.id}}" data-goods-id="{{item.goods_id}}">
+          去拼团
+        </view>
       </view>
     </view>
-  </view>
   </view>
 </view>
 
