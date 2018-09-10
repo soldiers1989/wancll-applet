@@ -5,7 +5,7 @@
   <zan-panel>
     <view class='top-close'>
       <text class="left">请选择规格</text>
-      <text class="right icon" data-type="icon" bindtap="close">关闭</text>
+      <text class="right icon" data-type="icon" bindtap="close">×</text>
     </view>
   </zan-panel>
   <view class='image-warpper'>
@@ -22,22 +22,22 @@
     <view class='sku'>
       <view class='title'>{{spec.name}}</view>
       <view class='lists'>
-        <zan-button bindtap="changeSelect" class="sku-list" size="small" wx:for="{{spec.options}}" wx:for-item="option" wx:for-index="optionkey" type="{{option.isSelected ? 'info' : ''}}" wx:key="index" data-spec="{{spec}}" data-option="{{option}}" data-optionkey="{{optionkey}}"
+        <view bindtap="changeSelect" class="sku-list s-button {{option.isSelected ? 's-button-selected' : ''}}" wx:for="{{spec.options}}" wx:for-item="option" wx:for-index="optionkey" wx:key="index" data-spec="{{spec}}" data-option="{{option}}" data-optionkey="{{optionkey}}"
           data-speckey="{{speckey}}">
           {{option.option}}
-        </zan-button>
+        </view>
       </view>
     </view>
   </zan-panel>
   <view class='send'>
-    <zan-button type="info" bindtap='confirm'>确定选择</zan-button>
+    <button class="button" bindtap='confirm'>确定</button>
   </view>
 </view>
 
 <template name="selectedSkuPrice">
   <view class='price-warpper'>
     <view class='price'>
-      <text style="font-size: 30rpx;">￥</text>{{tools.beautyPrice(money)}}</view>
+      <text class="icon">￥</text>{{tools.beautyPrice(money)}}</view>
     <view class='stock'>库存：{{stock}}</view>
   </view>
 </template>
@@ -45,7 +45,7 @@
 <template name="defaultPrice">
   <view class='price-warpper'>
     <view class='price wancll-text-price'>
-      <text style="font-size: 30rpx;">￥</text>{{tools.beautyPrice(money)}}</view>
+      <text class="icon">￥</text>{{tools.beautyPrice(money)}}</view>
     <view class='stock'>库存：{{stock}}</view>
   </view>
 </template>
