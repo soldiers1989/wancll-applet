@@ -1,3 +1,5 @@
+@import "../../static/wxss/iconfont2.wxss";
+
 .detail-swiper {
   height: 750rpx;
 }
@@ -223,6 +225,7 @@
   align-items: center;
   color: #fff;
   background-color: rgb(85, 85, 85);
+  font-size: 0.8rem;
 }
 
 .buy-buttons .buy-now {
@@ -233,6 +236,7 @@
   background-color: #df0303;
   justify-content: center;
   align-items: center;
+  font-size: 0.8rem;
 }
 
 .discountPrice {

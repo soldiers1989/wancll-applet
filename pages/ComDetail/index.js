@@ -12,7 +12,7 @@ import {
 Page({
   data: {
     // 轮播参数
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
     autoplay: false,
     circular: false,
