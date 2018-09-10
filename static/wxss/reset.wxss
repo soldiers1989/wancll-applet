@@ -538,16 +538,38 @@ page {
 }
 
 /* 创建订单相关 */
-.wancll-order-goods-name{
-  font-size: 0.7rem;
 
-} 
+.wancll-order-goods-name {
+  font-size: 0.7rem;
+}
+
 .wancll-order-goods-intro {
-  color:#777;
+  color: #777;
   font-size: 0.6rem;
 }
 
-.ylyy-red{
-  color:#ff0000;
+.ylyy-red {
+  color: #f00;
   font-weight: 700;
+}
+
+.wancll-goods-list-price-icon {
+}
+
+.wancll-goods-list-price {
+  font-size: 0.7rem;
+  color: #df0303;
+  font-weight: 700;
+}
+
+/* 商品列表页 超两行文字省略 */
+
+.tit-2 {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 1.9rem;
 }
