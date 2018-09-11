@@ -117,7 +117,7 @@
     <zan-panel>
       <view class='top-close'>
         <text>请选择收货地址</text>
-        <text class="icon" data-type="icon" bindtap="toggilPopupAddress">关闭</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupAddress">×</text>
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
@@ -131,7 +131,7 @@
     <zan-panel>
       <view class='top-close'>
         <text>请选择减满优惠</text>
-        <text class="icon" data-type="icon" bindtap="toggilPopupFull">关闭</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupFull" style="font-size:14px">×</text>
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
@@ -145,7 +145,7 @@
     <zan-panel>
       <view class='top-close'>
         <text>请选择优惠券</text>
-        <text class="icon" data-type="icon" bindtap="toggilPopupCoupon">关闭</text>
+        <text class="icon" data-type="icon" bindtap="toggilPopupCoupon">×</text>
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;">
