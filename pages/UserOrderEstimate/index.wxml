@@ -29,7 +29,7 @@
         发表评价：
       </view>
       <view class='star-list'>
-        <view wx:for="{{[1,2,3,4,5]}}" class="iconfont icon-shoucang {{score >= item ? 'star' : ''}}" catchtap="star" data-n="{{item}}"></view>
+        <view wx:for="{{[1,2,3,4,5]}}" wx:key="index" class="iconfont icon-shoucang {{score >= item ? 'star' : ''}}" catchtap="star" data-n="{{item}}"></view>
       </view>
     </view>
     <zan-panel>

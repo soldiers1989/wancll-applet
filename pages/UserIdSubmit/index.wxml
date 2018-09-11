@@ -24,7 +24,7 @@
     <image mode='widthFix' bindtap="uploadFile" class="wancll-col-xs-12 wancll-margin-t-10" data-type="idcardFront" src="{{uploadCardFront}}"></image>
     <image mode='widthFix' bindtap="uploadFile" class="wancll-col-xs-12 wancll-margin-t-10" data-type="idcardBack" src="{{uploadCardBack}}"></image>
 
-    <button class="wancll-bg-info  wancll-margin-t-10  wancll-text-white" bindtap='submit' loading="{{loading}}">提交审核</button>
+    <button class="wancll-margin-t-10 ylyy-button-big" bindtap='submit' loading="{{loading}}">提交审核</button>
   </view>
 
 

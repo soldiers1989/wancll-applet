@@ -17,6 +17,6 @@
   </view>
 
   <view class="wancll-padded-10" wx:if="{{status != 3}}">
-    <button class="wancll-bg-info  wancll-margin-t-10  wancll-text-white" bindtap='submit'>重新提交认证信息</button>
+    <button class="ylyy-button-big wancll-margin-t-10" bindtap='submit'>重新提交认证信息</button>
   </view>
 </view>

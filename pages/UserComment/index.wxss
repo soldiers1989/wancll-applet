@@ -1,3 +1,5 @@
+@import "../../static/wxss/iconfont2.wxss";
+
 .item {
   background: #fff;
   margin-bottom: 20rpx;
@@ -34,9 +36,18 @@
   font-size: 28rpx;
 }
 
+.star-cent .star-list {
+  display: flex;
+  width: 300rpx;
+  justify-content: space-between;
+}
+
 .star-cent .star {
-  font-size: 40rpx;
   color: rgb(255, 198, 64);
+}
+
+.star-cent .no-select {
+  color: rgb(204, 204, 204);
 }
 
 .bottom-imgs {

@@ -16,6 +16,6 @@
   </view>
 
   <view class="wancll-padded-15">
-    <button class="wancll-bg-info wancll-text-white" data-id='new' catchtap='editBankCard'>新增银行卡</button>
+    <button class="ylyy-button-big" data-id='new' catchtap='editBankCard'>新增银行卡</button>
   </view>
 </view>
