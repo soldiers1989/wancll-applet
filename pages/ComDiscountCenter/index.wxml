@@ -1,0 +1,59 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+<view class="box">
+  <!-- 轮播图 -->
+  <view class='banner'>
+    <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{banner}}" wx:key="key">
+        <swiper-item>
+          <image bindtap='goModel' data-redirect="{{item.redirect_data}}" src="{{item.img}}" class="slide-image" mode="widthFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <view class="title">
+    <view class="image">
+      <image mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/wancll_rebate.png"></image>
+    </view>
+    <view class="time">还剩{{timeDown}}</view>
+  </view>
+
+
+  <view class="scroll">
+    <scroll-view class='scroll-items' scroll-x="true">
+      <view wx:for="{{discount.rule_info}}" class='item' wx:key="key" bindtap="goDetailDiscount" data-id="{{item.goods_id}}" data-discountid="{{item.market_activity_id}}">
+        <view class="info">
+          <view class="logo">人气榜</view>
+          <image src="{{item.goods_info.thum}}" mode="widthFix" />
+          <view class="name tit-2">{{item.goods_info.name}}</view>
+          <view class="discount_price">
+            <text style="font-size:0.8rem">￥</text>{{tools.beautyPrice(item.discount_price)}}</view>
+          <view class="sell_price">
+            <text style="font-size:0.6rem">￥</text>{{tools.beautyPrice(item.goods_info.sell_price)}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="bottom">
+    <view class="title">抢购中, 好价总在犹豫中错过</view>
+    <view class="list" wx:for="{{list}}" wx:key="index">
+      <view class="item">
+        <view class="left">
+          <image mode="widthFix" src="{{item.goods_info.thum}}"></image>
+        </view>
+        <view class="right">
+          <view class="name tit-2">{{item.goods_info.name}}</view>
+          <view class="discount_price" style="font-size:0.6rem">
+            <text>￥</text>{{tools.beautyPrice(item.discount_price)}}
+          </view>
+          <view class="sell_price" style="font-size:0.8rem">
+            <text>￥</text>{{tools.beautyPrice(item.goods_info.sell_price)}}
+          </view>
+          <view class="button" bindtap="goDetailDiscount" data-id="{{item.goods_id}}">立即抢购</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -81,7 +81,8 @@
     "pages/ComBuyMember/index",
     "pages/ComBuyMemberSelect/index",
     "pages/ComMemberArticle/index",
-    "pages/ComCategory/index"
+    "pages/ComCategory/index",
+    "pages/ComDiscountCenter/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
