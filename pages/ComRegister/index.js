@@ -19,8 +19,6 @@ Page({
     is_open_drp: '',
   },
   onLoad(options) {
-    console.log(APP.globalData);
-
     if(APP.globalData.parent_mobile){
       this.data.pMobile = APP.globalData.parent_mobile;
     }
