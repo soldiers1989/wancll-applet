@@ -88,7 +88,7 @@
           <zan-panel>
             <view class='top-close'>
               <text>产品属性</text>
-              <text class="icon" data-type="icon" bindtap="closeAttrPopup">关闭</text>
+              <text class="icon" data-type="icon" bindtap="closeAttrPopup">×</text>
             </view>
           </zan-panel>
           <zan-cell-group>

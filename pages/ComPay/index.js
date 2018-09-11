@@ -11,7 +11,7 @@ Page({
     orderNo: '',
     orderMoney: '',
     password: "",
-    payType: '1',
+    payType: '2',
     orderId: -1,
   },
   onLoad: function(options) {

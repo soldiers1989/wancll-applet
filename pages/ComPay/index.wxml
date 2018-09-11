@@ -10,22 +10,21 @@
   </zan-panel>
 </view>
 <view class="wancll-bg-white wancll-padded-5 wancll-margin-t-10 wancll-margin-b-10">
-  <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="1">
-    <i class="wancll-padded-10 iconfont icon-yue" style="font-size:50rpx;color: #eb661b;"></i>
-    <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">余额支付</text>
-    <i class="iconfont icon-roundcheckfill wancll-font-size-18 wancll-text-info" wx:if="{{payType == 1}}"></i>
-    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:rgb(204, 204, 204);" wx:else></i>
-  </view>
-
   <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="2">
     <i class="wancll-padded-10 iconfont icon-weixinzhifu" style="font-size:50rpx;color:#09bb07;"></i>
     <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">微信支付</text>
-    <i class="iconfont icon-roundcheckfill wancll-font-size-18 wancll-text-info" wx:if="{{payType == 2}}"></i>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:#ff0000" wx:if="{{payType == 2}}"></i>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:rgb(204, 204, 204);" wx:else></i>
+  </view>
+  <view class="wancll-flex" bindtap='handleSelectChange' data-paytype="1">
+    <i class="wancll-padded-10 iconfont icon-yue" style="font-size:50rpx;color: #eb661b;"></i>
+    <text class="wancll-col-xs-9 wancll-margin-l-10 wancll-font-size-16">余额支付</text>
+    <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:#ff0000" wx:if="{{payType == 1}}"></i>
     <i class="iconfont icon-roundcheckfill wancll-font-size-18" style="color:rgb(204, 204, 204);" wx:else></i>
   </view>
 </view>
 <view class="wancll-margin-10">
-  <button class="wancll-bg-info wancll-text-white" catchtap='payMoney'>确认付款 ￥{{orderMoney}}</button>
+  <button class="ylyy-button-big" catchtap='payMoney'>确认付款 ￥{{orderMoney}}</button>
 </view>
 
 <zan-popup show="{{ showPopup }}" bindclose="togglePopup">

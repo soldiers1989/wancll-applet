@@ -316,6 +316,7 @@ page {
 
 .wancll-text-price {
   color: #df0303 !important;
+  font-weight: 600;
 }
 
 .wancll-text-white {
