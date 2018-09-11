@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "订单评价",
+  "navigationBarTitleText": "发表评价",
   "usingComponents": {
     "zan-tab": "../../dist/tab/index",
     "zan-panel": "../../dist/panel/index",

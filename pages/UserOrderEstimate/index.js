@@ -72,7 +72,6 @@ Page({
   },
   star(e) {
     let n = APP.utils.getDataSet(e, 'n');
-    console.log(n)
     this.setData({
       score: n
     })

@@ -1,46 +1,56 @@
-.view{
-  color:#999999
+@import "../../static/wxss/iconfont2.wxss";
+
+.view {
+  color: #999;
 }
-.item{  
+
+.item {
   padding: 15px;
   display: flex;
 }
-.item .image{
+
+.item .image {
   flex: 180rpx 0 0;
 }
-.item .image image{
+
+.item .image image {
   width: 160rpx;
   height: 160rpx;
 }
-.item .order-info{
-  flex: 1
+
+.item .order-info {
+  flex: 1;
 }
-.item .order-info .text textarea{
+
+.item .order-info .text textarea {
   height: 200rpx;
 }
 
-.padding{
+.padding {
   padding: 15px;
   font-size: 28rpx;
 }
-.padding .title{
+
+.padding .title {
   margin-bottom: 20rpx;
   font-size: 28rpx;
 }
 
-
-.image-input{
+.image-input {
   display: flex;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
-.image-input .image-list{
+
+.image-input .image-list {
   margin-right: 20rpx;
 }
-.image-input .up-img{
+
+.image-input .up-img {
   width: 100rpx;
   height: 100rpx;
 }
-.image-input .add-image{
+
+.image-input .add-image {
   width: 100rpx;
   height: 100rpx;
   padding: 10rpx;
@@ -52,16 +62,23 @@
   font-size: 50rpx;
 }
 
-.star-cent{
+.star-cent {
   padding: 15px;
   display: flex;
   line-height: 60rpx;
 }
-.star-cent .star-title{
+
+.star-cent .star-title {
   font-size: 28rpx;
-  
+  margin-right: 40rpx;
 }
-.star-cent .star{
-  font-size: 40rpx;
-  color:rgb(255, 198, 64)
+
+.star-cent .star-list {
+  display: flex;
+  width: 340rpx;
+  justify-content: space-between;
+}
+
+.star-cent .star {
+  color: rgb(255, 198, 64);
 }

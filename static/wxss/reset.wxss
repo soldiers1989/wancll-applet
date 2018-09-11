@@ -553,6 +553,19 @@ page {
   font-weight: 700;
 }
 
+.ylyy-button-big {
+  height: 2.4rem;
+  background-color: #f00;
+  text-align: center;
+  line-height: 2.4rem;
+  color: #fff;
+  letter-spacing: 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.ylyy-button-small {
+}
+
 .wancll-goods-list-price-icon {
 }
 
@@ -562,9 +575,9 @@ page {
   font-weight: 700;
 }
 
-.wancll-goods-list-market-price{
+.wancll-goods-list-market-price {
   text-decoration: line-through;
-  color:#777;
+  color: #777;
   font-size: 0.5rem;
 }
 

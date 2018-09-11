@@ -157,11 +157,11 @@
 
 <template name="collect">
   <view wx:if="{{isCollect}}" bindtap="changeCollect">
-    <icon class="icon" type="shoucang" style="color: rgb(255, 198, 64);"></icon>
+    <view class="iconfont icon-shoucang" style="color:rgb(255, 198, 64);font-size:0.9rem"></view>
     <view>已收藏</view>
   </view>
   <view wx:else="{{isCollect}}" bindtap="changeCollect">
-    <icon class="icon" type="star"></icon>
+    <view class="iconfont icon-shoucang" style="color:rgb(204, 204, 204);font-size:0.9rem"></view>
     <view>收藏</view>
   </view>
 </template>
