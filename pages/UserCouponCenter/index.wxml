@@ -1,3 +1,5 @@
+<wxs src="../../utils/tools.wxs" module="tools" />
+
 <view class='banner' wx:if="{{imgUrls.length > 0}}">
   <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{imgUrls}}" wx:key="key">
@@ -20,7 +22,7 @@
         <view class='num'>
           {{item.change_value}}{{item.coupon_type=='full'?'元':'折'}}
         </view>
-        <view class='info'>满{{item.reach_money}}元使用 ({{item.cate_name}})</view>
+        <view class='info'>满{{tools.beautyPrice(item.reach_money)}}元使用 ({{item.cate_name}})</view>
         <view class='go' data-id="{{item.id}}" bindtap='draw'>立即领取</view>
       </view>
       <view class="type">

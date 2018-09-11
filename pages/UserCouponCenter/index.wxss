@@ -20,50 +20,62 @@
 .banner-list image {
   width: 88rpx;
 }
-.coupon .title{
-  padding:10px;
-  font-size: 30rpx;
+
+.coupon .title {
+  padding: 0 10px;
+  border-left: 2.5px solid #d50202;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  height: 1rem;
+  margin: 30rpx 0 10rpx 10rpx;
 }
-.lists{
+
+.lists {
   display: flex;
   flex-wrap: wrap;
   padding: 10rpx;
 }
-.lists .list{
+
+.lists .list {
   position: relative;
   flex: 50% 0 0;
   text-align: center;
   background-size: 100% 100%;
 }
-.lists .list .coupon{
+
+.lists .list .coupon {
   margin: 10rpx;
   padding: 10px;
 }
-.lists .list .coupon .num{
-  color:#358cff;
-  font-size: 40rpx;
+
+.lists .list .coupon .num {
+  color: #ff0000;
+  font-size: 1rem;
   line-height: 40rpx;
 }
-.lists .list .coupon .info{
+
+.lists .list .coupon .info {
   font-size: 28rpx;
   line-height: 60rpx;
 }
-.lists .list .coupon .go{
+
+.lists .list .coupon .go {
   width: 70%;
   margin: 0 auto;
-  color:#fff;
+  color: #fff;
   font-size: 30rpx;
   background: #fe4b35;
   border-radius: 40rpx;
 }
-.lists .list .type{
+
+.lists .list .type {
   position: absolute;
   background-color: #e69751;
   top: 10%;
   right: 1%;
   color: #fff;
   font-size: 0.6rem;
-  padding:2rpx 10rpx;
+  padding: 2rpx 10rpx;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
   box-shadow: -1px 2px 5px #eebd95;
