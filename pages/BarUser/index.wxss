@@ -10,7 +10,6 @@
   height: 405rpx;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  display: flex;
   flex-wrap: wrap;
   margin-bottom: 80rpx;
 }
@@ -21,6 +20,11 @@
 
 .is-member {
   background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/member_home.png');
+}
+
+.user .box {
+  display: flex;
+  padding-top: 50rpx;
 }
 
 .user .avatar {
@@ -53,7 +57,7 @@
 
 .user .info .name {
   font-size: 36rpx;
-  /* margin-bottom: 15rpx; */
+  margin-bottom: 20rpx;
 }
 
 .user .info .phone {
@@ -73,6 +77,8 @@
   flex: 10%;
   padding: 80rpx 0;
   line-height: 200rpx;
+  font-size: 0.5rem;
+  margin-right:18rpx;
 }
 
 .user .sign view {
@@ -83,6 +89,10 @@
   height: 1rem;
   line-height: 1rem;
   vertical-align: middle;
+}
+
+.user .sign .real-sign {
+  margin-bottom: 24rpx;
 }
 
 .user .setting {
@@ -101,7 +111,7 @@
   align-items: center;
   background-color: #fff;
   border-radius: 18.75rpx;
-  margin: 85.5rpx 18.75rpx 18.75rpx 18.75rpx;
+  margin: 40rpx 18.75rpx 18.75rpx 18.75rpx;
   flex: 1;
 }
 
@@ -109,6 +119,7 @@
   margin: 18.75rpx 0;
   text-align: center;
   flex: auto;
+  font-weight: 600;
 }
 
 .money .money-item:nth-of-type(1) {
