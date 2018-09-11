@@ -67,8 +67,9 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
-  padding: 3rpx 15px;
+  padding: 20rpx 15px;
   border-top: 1rpx solid rgb(244, 244, 244);
+  font-size: 0.7rem;
 }
 
 .document .tag {
@@ -78,6 +79,7 @@
 
 .document .icon {
   color: rgb(238, 144, 141);
+  margin-right: 14rpx;
 }
 
 .member .is-not-member {

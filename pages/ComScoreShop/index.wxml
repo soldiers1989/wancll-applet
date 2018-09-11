@@ -9,8 +9,8 @@
       <view class='info'>
         <view class="name">{{user.nick_name || '匿名用户'}}</view>
         <view>
-        <view class="iconfont icon-mobile"></view>
-        {{user.mobile}}</view>
+          <view class="iconfont icon-mobile"></view>
+          {{user.mobile}}</view>
         <view>积分：{{asset.score}}</view>
       </view>
       <view class='sign'>
@@ -60,9 +60,9 @@
         <image mode="widthFix" class="wancll-col-xs-12" src='{{item.goods_info.thum}}'></image>
       </view>
       <view class='info wancll-bg-white'>
-        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2'>{{item.goods_info.name}}</view>
-        <view class='wancll-padded-10 wancll-text-price'>
-          <text class="wancll-fl wancll-font-size-10"></text>{{tools.beautyPrice(item.score)}} 积分
+        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2 tit-2' style="color:#333">{{item.goods_info.name}}</view>
+        <view class='wancll-padded-10 wancll-goods-list-price'>
+          {{tools.beautyPrice(item.score)}} 积分
         </view>
       </view>
     </view>

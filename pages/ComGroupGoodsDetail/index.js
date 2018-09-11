@@ -44,7 +44,7 @@ Page({
       title: '详情'
     }],
     tabListSelectedId: 1,
-    tabListScroll: true,
+    tabListScroll: false,
     tabListHeight: 45,
     // 控制
     showTab: 1,
