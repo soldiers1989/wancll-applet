@@ -14,33 +14,37 @@
         <zan-cell>
           <view class='bottom'>
             <view class='default-address' data-id='{{item.id}}' catchtap='setDefaultAddress'>
-              <zan-icon style="color:#358cff" type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
+              <!-- <zan-icon style="color:#358cff" type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon> -->
+              <text class="iconfont icon-roundcheckfill {{item.is_default == 1 ? 'selected' : 'no-select'}}"></text>
               <text> 默认地址</text>
             </view>
             <view class='click-button'>
-              <zan-button type="info" class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
+              <view class='zan-button' bindtap="editAddress" data-id='{{item.id}}' size="small">
                 <zan-icon type="edit"></zan-icon>
                 <text> 编辑</text>
-              </zan-button>
-              <zan-button class='zan-button' bindbtnclick="deleteAddress" data-id='{{item.id}}' size="small" type="danger">
+              </view>
+              <view class='zan-button' bindtap="deleteAddress" data-id='{{item.id}}' size="small" type="danger">
                 <zan-icon type="delete"></zan-icon>
                 <text> 删除</text>
-              </zan-button>
+              </view>
             </view>
           </view>
         </zan-cell>
       </zan-cell-group>
     </zan-panel>
   </view>
+
+  <view style="margin-bottom:100rpx"></view>
+
   <view class='add-address'>
-    <zan-panel>
+    <zan-panel class="fix-bottom">
       <view class="button">
-        <zan-button bindbtnclick="editAddress" type="info" data-id='new'>
-          <zan-icon type="add"></zan-icon> 手动添加
-        </zan-button>
-        <zan-button bindbtnclick="addFromWechat" type="primary" data-id='new'>
-          <zan-icon type="add"></zan-icon> 微信添加
-        </zan-button>
+        <button class="hand" bindtap="editAddress" data-id='new'>
+          手动添加
+        </button>
+        <button class="wechat" bindtap="addFromWechat" data-id='new'>
+          微信添加
+        </button>
       </view>
     </zan-panel>
   </view>

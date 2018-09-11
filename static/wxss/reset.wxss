@@ -564,6 +564,9 @@ page {
 }
 
 .ylyy-button-small {
+  background-color: #f00;
+  text-align: center;
+  color: #fff;
 }
 
 .wancll-goods-list-price-icon {

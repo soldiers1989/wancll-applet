@@ -1,40 +1,88 @@
-.address-list{
+@import "../../static/wxss/iconfont2.wxss";
+
+.address-list {
   padding-bottom: 20rpx;
 }
-.add-address{
-  padding: 20rpx;
+
+.add-address {
+  /* padding: 20rpx; */
 }
-.item{
+
+.item {
   margin-bottom: 20rpx;
 }
-.item .line{
+
+.item .line {
   display: flex;
   line-height: 60rpx;
 }
-.item .line .name{
+
+.item .line .name {
   flex: 100px 0 0;
 }
-.item .line .number{
+
+.item .line .number {
   flex: 1;
   text-align: right;
 }
-.bottom{
+
+.bottom {
   display: flex;
+  font-size: 0.7rem;
+  color: #757575;
 }
-.bottom .default-address{
+
+.bottom .default-address {
   flex: 100px 0 0;
   line-height: 60rpx;
 }
-.bottom .click-button{
+
+.bottom .click-button {
   flex: 1;
-  text-align: right
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-.bottom .click-button .zan-button{
+
+.bottom .click-button .zan-button {
   margin-left: 20rpx;
 }
 
-.button{
+.button {
   display: flex;
   justify-content: space-around;
-  padding:16rpx;
+  padding: 16rpx;
+}
+
+.button button {
+  text-align: center;
+  color: #fff;
+  font-size: 0.7rem;
+  width: 300rpx;
+  height: 1.8rem;
+  line-height: 1.85rem;
+}
+
+.button .hand {
+  background-color: #f00;
+}
+
+.button .wechat {
+  background-color: #009688;
+}
+
+.bottom .default-address .no-select{
+  /* color:rgb(204, 204, 204); */
+  font-size: 0.75rem;
+}
+
+.bottom .default-address .selected{
+  color: #ff0000;
+  font-size: 0.75rem;
+}
+
+.fix-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
