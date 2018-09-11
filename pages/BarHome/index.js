@@ -51,7 +51,14 @@ Page({
     // 售罄
     noStockImage: APP.imgs.noStock,
   },
-  onLoad() {
+  onLoad(options) {
+    this.setData({
+      user: wx.getStorageSync('user'),
+    });
+    if (options.parent_mobile && !this.data.user) {
+      APP.globalData.parent_mobile = options.parent_mobile;
+    }
+
     getBackground(this);
     Paging.init({
       type: 2,
@@ -180,7 +187,7 @@ Page({
     })
   },
   // 跳转处理
-  goModel(e){
+  goModel(e) {
     let redirectData = APP.utils.getDataSet(e, 'redirect');
     APP.utils.goModel(redirectData);
   },

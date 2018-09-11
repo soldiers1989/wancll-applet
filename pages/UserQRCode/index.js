@@ -4,19 +4,22 @@ var QRCode = require("../../static/vender/qrcode.min.js");
 var config = require("../../api/config.js");
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     bgImg: '',
-    shareImg:'',
+    shareImg: '',
+    user: {},
   },
   canvasId: "canvas",
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      user: wx.getStorageSync("user")
+    });
     // 请求背景图片
     APP.ajax({
       url: APP.api.indexBackground,
@@ -46,7 +49,8 @@ Page({
     // 组装url
     let host = config.defaultHost;
     let str = '/wap/index/handle_qrcode.html?parent_mobile=';
-    let userMobile = wx.getStorageSync("user").mobile;
+
+    let userMobile = this.data.user.mobile;
     let url = host + str + userMobile
     new QRCode('canvas', {
       text: url,

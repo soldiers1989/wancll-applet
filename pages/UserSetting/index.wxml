@@ -15,8 +15,9 @@
       <zan-cell title="性别">
         <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>
       </zan-cell>
-      <zan-cell title="我的手机号码" bindtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
-      <zan-cell title="密码设置" catchtap='changePassword'></zan-cell>
+      <zan-cell title="我的手机号码" catchtap='changeMobile' value="{{user.mobile}}" is-link></zan-cell>
+      <!-- <zan-cell title="密码设置" catchtap='changePassword'></zan-cell> -->
+      <zan-cell title="密码设置" bindtap='changePassword'></zan-cell>
     </zan-cell-group>
   </zan-panel>
 </view>
@@ -31,7 +32,7 @@
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
-      <zan-cell title="帮助与反馈" is-link bindtap="goHelpAndOption"></zan-cell>
+      <zan-cell title="帮助与反馈" is-link catchtap="goHelpAndOption"></zan-cell>
       <zan-cell title="爱买优品" value=""></zan-cell>
     </zan-cell-group>
   </zan-panel>
