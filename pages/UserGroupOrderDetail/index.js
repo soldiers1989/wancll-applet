@@ -12,11 +12,13 @@ Page({
       fontClass: '',
     },
     avatar: APP.imgs.avatar,
-    timeDown:'',
+    timeDown: '',
+    user: {},
   },
   onLoad(options) {
     this.setData({
-      id: options.id
+      id: options.id,
+      user: wx.getStorageSync('user'),
     });
     this.getData();
   },
@@ -105,7 +107,7 @@ Page({
     this.getData();
   },
   onShareAppMessage: function() {
-    let path = `/pages/ComGroupGoodsDetail/?id=${this.data.group_goods_id}&goodsId=${this.data.orderGoods[0].goods_id}`;
+    let path = `/pages/ComGroupGoodsDetail/index?id=${this.data.group_goods_id}&goodsId=${this.data.orderGoods[0].goods_id}`;
     if (this.data.user) {
       path += '&parent_mobile=' + this.data.user.mobile;
     }
