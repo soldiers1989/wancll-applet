@@ -1,6 +1,6 @@
 <view class="edit" hidden="{{!isShowDeleteAndCollection}}">
-  <view class="btn" bindbtnclick="batchDelete">删除</view>
-  <view class="btn" bindbtnclick="batchAddCollection">加入收藏夹</view>
+  <view class="btn" bindtap="batchDelete">删除</view>
+  <view class="btn" bindtap="batchAddCollection">加入收藏夹</view>
 </view>
 
 <view class="item-list" wx:for="{{carts}}" wx:key="key">

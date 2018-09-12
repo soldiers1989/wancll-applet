@@ -139,6 +139,9 @@ Page({
     })
     this.getComments();
     // 处理金卡会员
+    this.checkIsMember();
+  },
+  checkIsMember() {
     if (this.data.user && this.data.user.member_level == params.bcMember) {
       this.setData({
         isMember: true
@@ -344,6 +347,22 @@ Page({
           url: '/pages/ComLogin/index'
         })
       }, 1000);
+      return false;
+    }
+    //  非金卡会员操作限制
+    if (this.data.goodsInfo.is_member_good && !this.data.isMember) {
+      wx.showToast({
+        title: "你还不是金卡会员",
+        icon: 'none',
+      });
+      return false;
+    }
+
+    if (this.data.goodsInfo.is_member_good && !this.data.memberParams.shop.is_open) {
+      wx.showToast({
+        title: "金卡专区未开放",
+        icon: 'none',
+      });
       return false;
     }
 

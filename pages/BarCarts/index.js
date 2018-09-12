@@ -1,6 +1,12 @@
 const APP = getApp();
 import PagingData from '../../utils/PagingData';
 const Paging = new PagingData();
+import {
+  getMemberParams
+} from '../BarUser/data.js';
+import {
+  params
+} from '../../api/config.js';
 Page({
   data: {
     // 分页功能
@@ -20,6 +26,13 @@ Page({
     selectedCart: {}, // 正在编辑规格的商品
     selectedCartIndex: -1, // 正在编辑规格的商品在购物车数组中的索引
     isShowSkuPopup: false, // 是否显示规格面板
+
+    user: {},
+    isMember: false,
+    memberParams: {},
+  },
+  onLoad() {
+    getMemberParams(this);
   },
   // 页面新显示的时候
   onShow: function() {
@@ -45,10 +58,22 @@ Page({
           url: '/pages/ComLogin/index',
         })
       } else {
+        this.setData({
+          user: wx.getStorageSync('user'),
+        });
+        this.checkIsMember();
         this.resetCartData();
         this.getOrderData();
       }
     })
+  },
+  // 判断是否金卡会员
+  checkIsMember() {
+    if (this.data.user && this.data.user.member_level == params.bcMember) {
+      this.setData({
+        isMember: true
+      });
+    }
   },
   // 获取分页数据
   getOrderData() {
@@ -276,6 +301,25 @@ Page({
         title: '没选中任何商品',
         icon: 'none'
       })
+      return;
+    }
+    //  非金卡会员操作限制
+    let hasMemberGoods = selectedCarts.some(cart => {
+      return cart.goods_info.is_member_good;
+    });
+    if (hasMemberGoods && !this.data.isMember) {
+      wx.showToast({
+        title: "选中商品包含金卡专区商品",
+        icon: 'none',
+      });
+      return;
+    }
+    // 金卡专区未开放
+    if (hasMemberGoods && !this.data.memberParams.shop.is_open) {
+      wx.showToast({
+        title: "金卡专区未开放",
+        icon: 'none',
+      });
       return;
     }
     let orderConfirmGoodsList = selectedCarts.map(cart => {
