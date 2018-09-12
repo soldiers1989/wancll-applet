@@ -187,6 +187,7 @@ export const api = {
   drpOrderListNew: `${defaultHost}/api_drp_new/drp_orders/lists`,
   drpChildUserNew: `${defaultHost}/api_drp_new/drp_users/child_users`,
   drpRegister: `${defaultHost}/api_drp_new/register_award_logs/logs`,
+  drpMoneyRecord: `${defaultHost}/api_users/users/save_view_drp_money`,
 
 
   // 分红中心

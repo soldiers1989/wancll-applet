@@ -43,8 +43,16 @@ export function getUserData(that) {
     url: APP.api.drpCenterNew,
     success(res) {
       that.setData({
-        distributorInfo:res.data,
+        distributorInfo: res.data,
       });
+      if (res.data.is_money_add) {
+        that.doGold();
+        that.setData({
+          isShowGold: true
+        });
+      }
+      // 记录佣金值
+      recordDrpMoneyt();
     }
   })
 }
@@ -94,6 +102,13 @@ export function signIn(that) {
       });
     }
   })
+}
+
+// 记录查看佣金
+export function recordDrpMoneyt() {
+  APP.ajax({
+    url: APP.api.drpMoneyRecord,
+  });
 }
 
 // 获取会员相关参数

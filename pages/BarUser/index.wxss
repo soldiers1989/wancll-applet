@@ -1,6 +1,13 @@
 /* pages/User/index.wxss */
 @import "../../static/wxss/iconfont2.wxss";
 
+.gold {
+  position: fixed;
+  top: -1200rpx;
+  z-index: 999;
+  width: 100%;
+}
+
 .panel {
   margin-bottom: 20rpx;
 }
@@ -78,7 +85,7 @@
   padding: 80rpx 0;
   line-height: 200rpx;
   font-size: 0.5rem;
-  margin-right:18rpx;
+  margin-right: 18rpx;
 }
 
 .user .sign view {

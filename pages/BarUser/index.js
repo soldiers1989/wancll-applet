@@ -20,8 +20,45 @@ Page({
 
     distributorInfo: {},
     isMember: false,
+
+    animation: {},
+    isShowGold: false, // 金币掉落
   },
-  onLoad(options) {},
+  onLoad() {
+    // this.doGoldMusic();
+  },
+  doGoldMusic() {
+    wx.playVoice({
+      filePath: '../../static/music/gold.mp3',
+      duration: 3000,
+      success: res => {
+        console.log(111);
+      },
+      fail: res => {
+        console.log(res);
+      }
+    })
+  },
+  // 金币掉落动画
+  doGold() {
+    var animation = wx.createAnimation({
+      transformOrigin: "100% 100%",
+      duration: 5000,
+      timingFunction: "ease",
+      delay: 0
+    });
+    this.animation = animation;
+    animation.translateY(1600);
+    this.setData({
+      animationData: animation.export()
+    });
+    setTimeout(function() {
+      animation.translate(30).step()
+      this.setData({
+        animationData: animation.export()
+      })
+    }.bind(this), 1000)
+  },
   // 判断是否金卡会员
   checkIsMember() {
     if (this.data.user && this.data.user.member_level == params.bcMember) {
