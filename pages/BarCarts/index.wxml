@@ -19,7 +19,7 @@
             <view class="left">
               <view class='title'>{{item.goods_info.name}}</view>
               <view class='intro'>{{item.goods_info.intro}}</view>
-              <view class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}" bindbtnclick='openBottomPopup'>
+              <view class='sku' data-index="{{index}}" data-id="{{item.id}}" data-goodsinfo="{{item.goods_info}}" data-sendfindsku="{{item.spec_group_info}}">
                 规格: {{item.spec_group_info.spec_option_group?item.spec_group_info.spec_option_group:'无'}}
               </view>
               <view class='price-warpper'>
