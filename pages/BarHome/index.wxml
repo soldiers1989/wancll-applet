@@ -80,7 +80,7 @@
         <view wx:for="{{foreignGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">
           <view class="info">
             <image src="{{goods.thum}}" mode="widthFix" />
-            <view class="name">{{goods.name}}</view>
+            <view class="tit-2 pre-wrap">{{goods.name}}</view>
             <view class="price">￥{{tools.beautyPrice(goods.sell_price)}}</view>
           </view>
         </view>
@@ -96,7 +96,7 @@
         <view wx:for="{{groupGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goGroupGoodsDetail">
           <view class="info">
             <image src="{{goods.goods_info.thum}}" mode="widthFix" />
-            <view class="name">{{goods.goods_info.name}}</view>
+            <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
             <view>
               拼团价
               <text class="price">￥{{tools.beautyPrice(goods.money)}}</text>
@@ -115,7 +115,7 @@
         <view wx:for="{{scoreGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goScoreGoodsDetail">
           <view class="info">
             <image src="{{goods.goods_info.thum}}" mode="widthFix" />
-            <view class="name">{{goods.goods_info.name}}</view>
+            <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
             <view class="price">{{tools.beautyPrice(goods.score)}}积分</view>
           </view>
         </view>

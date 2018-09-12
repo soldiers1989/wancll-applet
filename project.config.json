@@ -32,13 +32,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 47,
 			"list": [
 				{
 					"id": 0,
 					"name": "普通商品详情页",
 					"pathName": "pages/ComDetail/index",
-					"query": "id=1862"
+					"query": "id=408"
 				},
 				{
 					"id": 1,
@@ -134,7 +134,7 @@
 					"id": 16,
 					"name": "团购商品详情",
 					"pathName": "pages/ComGroupGoodsDetail/index",
-					"query": "id=44&goodsId=1865"
+					"query": "id=43&goodsId=430"
 				},
 				{
 					"id": -1,
@@ -279,6 +279,48 @@
 					"name": "测试",
 					"pathName": "pages/Test/index",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "普通订单确认",
+					"pathName": "pages/ComCreateOrder/index",
+					"query": "target=1"
+				},
+				{
+					"id": -1,
+					"name": "分销订单",
+					"pathName": "pages/UserDRCenterNewOrder/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的客户",
+					"pathName": "pages/UserDRCenterNewCusts/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的团队",
+					"pathName": "pages/UserDRCenterNewTeam/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "限时折扣中心",
+					"pathName": "pages/ComDiscountCenter/index",
+					"query": "activityId=9"
+				},
+				{
+					"id": -1,
+					"name": "我的优惠卷",
+					"pathName": "pages/UserCoupon/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/BarHome/index",
+					"query": "parent_mobile=15581646116"
 				}
 			]
 		}

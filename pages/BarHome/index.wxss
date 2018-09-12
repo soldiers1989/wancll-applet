@@ -233,7 +233,7 @@
 
 .activity .box {
   display: flex;
-  margin-top: 96rpx;
+  margin-top: 50rpx;
 }
 
 .activity .left {
@@ -257,13 +257,8 @@
   width: 100%;
 }
 
-.area .name {
-  text-overflow: -o-ellipsis-lastline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+.area .pre-wrap {
+  white-space: pre-wrap;
 }
 
 .goods-list .info .price {

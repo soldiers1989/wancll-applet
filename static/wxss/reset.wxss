@@ -588,11 +588,13 @@ page {
 /* 商品列表页 超两行文字省略 */
 
 .tit-2 {
-  text-overflow: -o-ellipsis-lastline;
+  /* text-overflow: -o-ellipsis-lastline; */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  height: 1.9rem;
+  /* height: 30rpx; *//* padding-bottom: 35rpx; */
+  height: 64rpx;
+  line-height: 32rpx;
 }
