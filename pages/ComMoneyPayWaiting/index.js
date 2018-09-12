@@ -8,11 +8,13 @@ Page({
     id: -1,
     isShowShare: true,
     shareImg: '',
+    user: {},
   },
   onLoad(options) {
     this.setData({
       type: options.type,
-      id: options.id
+      id: options.id,
+      user: wx.getStorageSync('user')
     });
     // 请求分享封面图
     APP.ajax({
@@ -53,6 +55,9 @@ Page({
   onShareAppMessage() {
     // 分享首页
     let path = `/pages/Home/index`;
+    if (this.data.user) {
+      path += '?parent_mobile=' + this.data.user.mobile;
+    }
     return {
       title: '爱买优品：坚持经营高性价比产品，爱买优选任你挑～',
       path: path,

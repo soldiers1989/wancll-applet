@@ -3,7 +3,7 @@
   <view class="bg" wx:if="{{isShowShare}}"></view>
   <view class="share" wx:if="{{isShowShare}}">
     <image mode="widthFix" class="img1" src="http://www.aimaiyoupin.com/public/static/wap/images/pay_jiantou.png"></image>
-    <image mode="widthFix" class="img2"  src="http://www.aimaiyoupin.com/public/static/wap/images/pay-text-1.png"></image>
+    <image mode="widthFix" class="img2" src="http://www.aimaiyoupin.com/public/static/wap/images/pay-text-1.png"></image>
     <image mode="widthFix" class="img3" src="http://www.aimaiyoupin.com/public/static/wap/images/pay-text-2.png"></image>
 
     <image mode="widthFix" class="img4" src="http://www.aimaiyoupin.com/public/static/wap/images/pay-text-btn.png" bindtap="closePacket"></image>

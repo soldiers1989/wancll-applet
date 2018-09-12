@@ -13,6 +13,7 @@ Page({
     password: "",
     payType: '2',
     orderId: -1,
+    type:0,
   },
   onLoad: function(options) {
     this.setData({
@@ -32,7 +33,7 @@ Page({
   togglePopup() {
     this.setData({
       showPopup: !this.data.showPopup,
-      password:'',
+      password: '',
     });
   },
   // 选择
@@ -64,6 +65,10 @@ Page({
         }
       })
     } else if (this.data.payType == 2) {
+      wx.setStorageSync('payOrderInfo', {
+        id: that.data.orderId,
+        type: that.data.type
+      });
       handleWechatPay(that.data.orderNo, payType.goodsOrderPay, that.data.orderId, that.data.type);
     }
   },

@@ -143,7 +143,7 @@ function queryUserInfoByUnionId(resData, that) {
 }
 
 // 代理微信支付
-export function handleWechatPay(orderNo, payType, orderId = 0, type = 0) {
+export function handleWechatPay(orderNo, payType) {
   wx.showLoading()
   wx.login({
     success(res) {
