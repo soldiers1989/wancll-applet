@@ -1,7 +1,13 @@
-.article{
+.article {
   padding: 15px;
   color: #777;
 }
-.article .content{
+
+.article .content {
   font-size: 28rpx;
+}
+
+img {
+  width: 100rpx;
+  height: auto;
 }
