@@ -3,7 +3,7 @@
 <view class="packet-bg" wx:if="{{isShowPacket}}"></view>
 <view class="packet" wx:if="{{isShowPacket}}">
   <view class="close" bindtap="closePacket"></view>
-  <image mode="widthFix" bindtap="goModel" src="{{backgroundImgs.register.url}}" data-redirect="{{backgroundImgindicator-dotss.register.redirect_data}}"></image>
+  <image mode="widthFix" bindtap="goModel" src="{{backgroundImgs.register.url}}" data-redirect="{{backgroundImgs.register.redirect_data}}"></image>
 </view>
 
 <!--search-->
