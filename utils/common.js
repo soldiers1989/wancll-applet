@@ -113,10 +113,6 @@ function queryUserInfoByUnionId(resData, that) {
           // 登录之后先全部存入本地
           wx.setStorageSync("token", res.data.token)
           wx.setStorageSync("user", res.data.user)
-          // 然后再存入全局变量中
-          APP.globalData.hasLogin = true
-          APP.globalData.token = res.data.token.token
-          APP.globalData.user = res.data.user
           // 再跳转
           wx.switchTab({
             url: '/pages/BarUser/index',

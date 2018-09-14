@@ -1,22 +1,27 @@
 // 公共配置文件
-
+const host = 'https://wancllshop.wx.wygoo.com'
 // 必须请求头信息
-export const headers = {
+const headers = {
   'auth': 'Basic_Ivj6eZRxMTx2yiyunZvnG8R69',
   'clientType': 'applet'
 }
 // 主机名称
-export const defaultHost = 'https://wancllshop.wx.wygoo.com/index.php'
-
+const defaultHost = host + '/index.php'
 // 图片地址
-export const imageHost = {
-  wapImages: 'https://wancllshop.wx.wygoo.com/public/static/wap/images',
-  images: 'https://wancllshop.wx.wygoo.com/public/static/images',
-  appletUploadImages: 'https://wancllshop.wx.wygoo.com/public/upload/applet/'
+const imageHost = {
+  wapImages: host + '/public/static/wap/images',
+  images: host + '/public/static/images',
+  appletUploadImages: host + '/public/upload/applet/'
 }
-
 // 支付类型 
-export const payType = {
+const payType = {
   goodsOrderPay: 'goodsOrderPay',
   rechargeOrderPay: 'rechargeOrderPay'
+}
+
+export {
+  headers,
+  defaultHost,
+  imageHost,
+  payType
 }
