@@ -4,7 +4,7 @@
 
 .not-member {
   position: relative;
-  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding: 2rem 0.5rem 2rem 1.3rem;
@@ -36,7 +36,7 @@
 
 .user {
   position: relative;
-  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding: 2rem 0.5rem 2rem 1.3rem;

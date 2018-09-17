@@ -10,7 +10,7 @@
 <view wx:if="{{ready}}">
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
-      <image mode="widthFix" src="http://aimaiyoupin.com/public/static/wap/images/index_logo.png"></image>
+      <image mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/index_logo.png"></image>
       <icon class='icon' type='sousuo'></icon>
       <view class='input'>大家正在搜：水果</view>
     </view>

@@ -5,7 +5,7 @@
   <zan-panel>
     <view class="not-member">
       <view class="title2">
-        <image class="v" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
+        <image class="v" mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
         开通金卡，享受会员优惠
       </view>
       <view class="open-now" bindtap="goBuyMember">现在开通</view>
@@ -16,13 +16,13 @@
 <view class='panel' wx:else>
   <zan-panel>
     <view class='user'>
-      <image class="logo" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/member_logo.png"></image>
+      <image class="logo" mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/member_logo.png"></image>
       <view class='avatar'>
         <image mode="widthFix" src="{{user.avatar}}"></image>
       </view>
       <view class='info'>
         <view class="name">
-          <image class="v" mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
+          <image class="v" mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/v.png"></image>
           {{user.nick_name || '匿名用户'}}
         </view>
         <view>会员到期日：{{user.end_time}}</view>

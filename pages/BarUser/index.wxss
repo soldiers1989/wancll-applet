@@ -22,11 +22,11 @@
 }
 
 .is-not-member {
-  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/home_bg.png');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/home_bg.png');
 }
 
 .is-member {
-  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/member_home.png');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/member_home.png');
 }
 
 .user .box {

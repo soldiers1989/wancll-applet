@@ -14,7 +14,7 @@
 
   <view class="title">
     <view class="image">
-      <image mode="widthFix" src="http://www.aimaiyoupin.com/public/static/wap/images/wancll_rebate.png"></image>
+      <image mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/wancll_rebate.png"></image>
     </view>
     <view class="time">还剩{{timeDown}}</view>
   </view>

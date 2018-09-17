@@ -7,8 +7,8 @@ export const headers = {
 }
 // 主机名称
 // export const defaultHost = 'http://192.168.31.140'
-// export const defaultHost = 'http://aimaiyoupin.com'
-export const defaultHost = 'http://test_yilei.wx.wygoo.com'
+export const defaultHost = 'https://www.aimaiyoupin.com'
+// export const defaultHost = 'http://test_yilei.wx.wygoo.com'
 
 // 图片地址
 export const imageHost = {

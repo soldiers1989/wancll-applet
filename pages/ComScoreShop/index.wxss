@@ -6,7 +6,7 @@
 
 .user {
   position: relative;
-  background-image: url('http://www.aimaiyoupin.com/public/static/wap/images/home_bg.png');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/home_bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;
