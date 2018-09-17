@@ -100,21 +100,21 @@
       <zan-cell title="我的服务"></zan-cell>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="UserCollect">
-            <view class="iconfont icon-star"></view>
-            <view class='text'>我的收藏</view>
+          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
+            <view class="iconfont icon-qr-code"></view>
+            <view class='text'>我的二维码</view>
           </view>
           <view class='pending' catchtap='goCarts' data-target="BarCarts">
             <view class="iconfont icon-gouwuche2"></view>
             <view class='text'>购物车</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserAddress">
-            <view class="iconfont icon-dizhi-01"></view>
-            <view class='text'>我的地址</view>
+          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
+            <view class="iconfont icon-youhuiquan"></view>
+            <view class='text'>我的优惠券</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserComment">
-            <view class="iconfont icon-dingdan1"></view>
-            <view class='text'>我的评价</view>
+          <view class='pending' catchtap='goSubPages' data-target="UserCollect">
+            <view class="iconfont icon-star"></view>
+            <view class='text'>我的收藏</view>
           </view>
         </view>
       </zan-panel>
@@ -124,13 +124,13 @@
             <view class="iconfont icon-yinhangqia"></view>
             <view class='text'>我的银行卡</view>
           </view>
-          <view class='pending' catchtap='auth'>
-            <view class="iconfont icon-shimingrenzheng1"></view>
-            <view class='text'>实名认证</view>
+          <view class='pending' catchtap='goSubPages' data-target="UserComment">
+            <view class="iconfont icon-dingdan1"></view>
+            <view class='text'>我的评价</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
-            <view class="iconfont icon-youhuiquan"></view>
-            <view class='text'>我的优惠券</view>
+          <view class='pending' catchtap='goSubPages' data-target="UserAddress">
+            <view class="iconfont icon-dizhi-01"></view>
+            <view class='text'>我的地址</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="UserDRCenterNew">
             <view class="iconfont icon-daifahuo"></view>
@@ -140,9 +140,9 @@
       </zan-panel>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
-            <view class="iconfont icon-qr-code"></view>
-            <view class='text'>我的二维码</view>
+          <view class='pending' catchtap='auth'>
+            <view class="iconfont icon-shimingrenzheng1"></view>
+            <view class='text'>实名认证</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="ComScoreShop">
             <view class="iconfont icon-jifenshangcheng"></view>
