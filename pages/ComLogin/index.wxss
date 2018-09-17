@@ -13,3 +13,9 @@
   font-size: 65rpx;
   color: #09bb07;
 }
+
+input {
+  color: #424242;
+  font-size: 32rpx;
+  border-radius: 4rpx;
+}

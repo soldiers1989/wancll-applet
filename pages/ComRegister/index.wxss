@@ -1,35 +1,48 @@
-.log-box{
+.log-box {
   text-align: center;
 }
-.logo{
+
+.logo {
   margin-top: 100rpx;
   margin-bottom: 50rpx;
   margin-left: 150rpx;
 }
-.iconfont{
+
+.iconfont {
   font-size: 65rpx;
   color: #09bb07;
 }
-.panle{
+
+.panle {
   display: flex;
   padding: 10px;
 }
-.panle input{
+
+.panle input {
   flex: 1;
   padding-left: 15px;
   background: #fff;
   height: 90rpx;
 }
-.panle .right{
+
+.panle .right {
   margin-left: 10px;
   flex: 250rpx 0 0;
 }
-.greet{
-  color:#999;
+
+.greet {
+  color: #999;
   text-align: center;
   line-height: 50px;
   font-size: 28rpx;
 }
-.greet text{
+
+.greet text {
   color: #000;
+}
+
+input {
+  color: #424242;
+  font-size: 32rpx;
+  border-radius: 4rpx;
 }

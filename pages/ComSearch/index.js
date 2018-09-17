@@ -1,5 +1,8 @@
 const APP = getApp();
-import { getKeywords, deleteKeywords } from './data.js';
+import {
+  getKeywords,
+  deleteKeywords
+} from './data.js';
 Page({
   data: {
     keywords: '',
@@ -17,9 +20,13 @@ Page({
   },
   // 搜索商品
   search(e) {
-    if (e.currentTarget.dataset.keywords) {
+    let keywords = APP.util.getDataSet(e, 'keywords').trim()
+    if (keywords) {
+      let paramStr = APP.util.paramStringify({
+        keywords: keywords
+      })
       wx.navigateTo({
-        url: `/pages/ComGoodsList/index?value=${e.currentTarget.dataset.keywords}&type=keyword`,
+        url: `/pages/ComGoodsList/index?${paramStr}`,
       })
     }
   },

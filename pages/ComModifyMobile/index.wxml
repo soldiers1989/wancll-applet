@@ -4,20 +4,20 @@
   </view>
 
   <view class='panle'>
-    <input bindinput='bindMobile' placeholder='请输入新手机号码'></input>
+    <input bindinput='mobileInput' placeholder='请输入新手机号码'></input>
     <view class='right'>
-      <block wx:if="{{status}}">
-        <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">发送验证码</button>
+      <block wx:if="{{time == 90}}">
+        <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">{{timeMsg}}</button>
       </block>
-      <block wx:else="{{status}}">
-        <zan-button class="">{{countDown}} 再次发送</zan-button>
+      <block wx:else>
+        <button class="wancll-bg-white">{{timeMsg}}</button>
       </block>
     </view>
   </view>
   <view class='panle'>
-    <input bindinput="bindCode" placeholder="输入验证码" class="" />
+    <input bindinput="codeInput" placeholder="输入验证码" class="" />
   </view>
   <view class="form wancll-margin-l-10 wancll-margin-r-10">
-    <button class="wancll-bg-info wancll-text-white" bindtap="sendData">确认修改</button>
+    <button class="wancll-bg-info wancll-text-white" bindtap="submit">确认修改</button>
   </view>
 </view>

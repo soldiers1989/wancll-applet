@@ -1,9 +1,9 @@
 // 公共配置文件
-const host = 'https://wancllshop.wx.wygoo.com'
+const host = 'http://wancllshop.lugu110.wancll.vip'
 // 必须请求头信息
 const headers = {
   'auth': 'Basic_Ivj6eZRxMTx2yiyunZvnG8R69',
-  'clientType': 'applet'
+  'client-type': 'applet'
 }
 // 主机名称
 const defaultHost = host + '/index.php'

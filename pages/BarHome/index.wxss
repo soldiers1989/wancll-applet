@@ -1,5 +1,4 @@
 /**index.wxss**/
-
 .search_box {
   display: flex;
   height: 80rpx;

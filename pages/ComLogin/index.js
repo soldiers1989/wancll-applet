@@ -1,41 +1,35 @@
-const APP = getApp();
-import { handleWechatLogin } from '../../utils/common.js';
+const APP = getApp()
+import {
+  handleWechatLogin,
+} from '../../utils/common.js'
 Page({
   data: {
     logo: APP.imgs.logo,
     mobile: '',
     password: ''
   },
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
   // 手机号码监听
-  bindMobileInput(e) {
+  mobileInput(e) {
     this.setData({
       mobile: e.detail.value
     })
   },
   // 密码监听
-  bindPasswordInput(e) {
+  passwordInput(e) {
     this.setData({
       password: e.detail.value
     })
   },
   // 登陆监听
   login() {
-    if (!this.data.mobile) {
-      wx.showToast({
-        title: '请填写手机号码',
-        icon: 'none',
-      })
-      return;
+    if (!APP.validator.mobile(this.data.mobile)) {
+      APP.util.toast('请填写正确的手机号码')
+      return
     }
-    if (!this.data.password) {
-      wx.showToast({
-        title: '请填写密码',
-        icon: 'none',
-      })
-      return;
+    if (!APP.validator.password(this.data.password)) {
+      APP.util.toast('请填写6位不包含特殊字符的密码')
+      return
     }
     // 登录逻辑
     APP.ajax({
@@ -44,21 +38,17 @@ Page({
         mobile: this.data.mobile,
         password: this.data.password,
       },
-      success(res) {
-        wx.showToast({
-          title: '登录成功',
-          icon: 'none',
-        })
-        res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar;
-        // 登录之后先全部存入本地
-        wx.setStorageSync("token", res.data.token)
-        wx.setStorageSync("user", res.data.user)
-        // 再跳转
-        wx.switchTab({
-          url: '/pages/BarUser/index',
-        })
-      }
-    });
+    }).then(resp => {
+      APP.util.toast(resp.msg)
+      res.data.user.avatar = resp.data.user.avatar ? resp.data.user.avatar : APP.imgs.avatar
+      // 登录之后先全部存入本地
+      wx.setStorageSync("token", resp.data.token)
+      wx.setStorageSync("user", resp.data.user)
+      // 再跳转
+      wx.switchTab({
+        url: '/pages/BarUser/index',
+      })
+    }).catch(err => {})
   },
   register() {
     wx.navigateTo({
@@ -67,12 +57,11 @@ Page({
   },
   forgetPassword() {
     wx.navigateTo({
-      url: `/pages/UserSettingPass/index?id=0`,
+      url: `/pages/UserSettingPass/index?type=1`,
     })
   },
   // 微信登陆监听
   onGotUserInfo(res) {
     handleWechatLogin(this, res.detail)
   },
-
 })

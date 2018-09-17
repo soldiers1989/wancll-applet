@@ -1,39 +1,25 @@
-const APP = getApp();
-import PagingData from '../../utils/PagingData';
-const Paging = new PagingData();
+const APP = getApp()
+import {
+  getGoodsList,
+} from './data.js'
 Page({
   data: {
+    page: 1,
     // 渲染数据列表
     goodsList: [],
-    // 发送请求需要的数据
-    data: {},
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    },
+    hasNoData: false,
+    noContentImg: APP.imgs.noContentImg,
     // 售罄
-    noStockImage: APP.imgs.noStock,
-
+    noStockImg: APP.imgs.noStockImg,
   },
-  onLoad: function (options) {
-    Paging.init({
-      type: 2,
-      that: this,
-      url: 'goods',
-      pushData: 'goodsList',
-      getFunc: this.getGoodsList
-    })
-    // 加载页面的判断
-    let data = {};
+  onLoad: function(options) {
+    let data = {}
     if (options.cateId) {
       data.goods_cate_id = options.cateId
-    } else if (options.keyword) {
-      data.keyword = options.keyword;
+    } else if (options.keywords) {
+      data.keyword = options.keywords
     } else if (options.tag) {
-      data.tag = options.tag;
+      data.tag = options.tag
     } else if (options.distribution) {
       data.system_type = 'drp'
     } else if (options.bonus) {
@@ -41,9 +27,8 @@ Page({
     }
     this.setData({
       data: data
-    }, () => {
-      this.getGoodsList();
     })
+    getGoodsList(this)
   },
 
   // 获取商品数据
@@ -53,16 +38,21 @@ Page({
       url: `/pages/ComDetail/index?id=${id}`,
     })
   },
-  // 分页数据请求
-  getGoodsList() {
-    Paging.getPagesData({ postData: this.data.data })
-  },
   // 下拉刷新
   onPullDownRefresh() {
-    Paging.refresh()
+    this.setData({
+      page: 1
+    })
+    getGoodsList(this)
   },
   // 上拉加载
   onReachBottom() {
-    this.getGoodsList();
+    getGoodsList(this)
+  },
+  // 分享
+  onShareAppMessage() {
+    return {
+      path: '/pages/BarHome/index'
+    }
   }
 })

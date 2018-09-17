@@ -1,45 +1,48 @@
-const APP = getApp();
-export function getKeywords(that) {
+const APP = getApp()
+
+function getKeywords(that) {
   // 热搜
   APP.ajax({
     url: APP.api.goodsKeywordsList,
-    success(res) {
-      that.setData({
-        hotKeywordsList: res.data || []
-      })
-    }
-  });
+  }).then(resp => {
+    that.setData({
+      hotKeywordsList: resp.data || []
+    })
+  }).catch(e => {})
   // 用户搜索
   if (wx.getStorageSync('token')) {
     APP.ajax({
       url: APP.api.userGoodsKeywordsRead,
-      success(res) {
-        that.setData({
-          userKeywordsList: res.data ? res.data.keywords : []
-        })
-      }
-    });
+    }).then(resp => {
+      that.setData({
+        userKeywordsList: resp.data ? resp.data.keywords : []
+      })
+    }).catch(e => {})
   }
 }
 // 删除关键词
-export function deleteKeywords(that) {
+function deleteKeywords(that) {
   wx.showModal({
     title: '确认删除历史搜索?',
     success(res) {
       if (res.confirm) {
         APP.ajax({
           url: APP.api.deleteKeywords,
-          success(res) {
-            wx.showToast({
-              title: res.msg,
-              icon: 'none',
-            })
-            that.setData({
-              userKeywordsList: []
-            })
-          }
-        })
+        }).then(resp => {
+          wx.showToast({
+            title: resp.msg,
+            icon: 'none',
+          })
+          that.setData({
+            userKeywordsList: []
+          })
+        }).catch(e => {})
       }
     }
   })
+}
+
+export {
+  getKeywords,
+  deleteKeywords,
 }

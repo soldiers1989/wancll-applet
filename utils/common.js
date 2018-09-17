@@ -1,10 +1,11 @@
-const APP = getApp();
+const APP = getApp()
 import {
   headers,
-  imageHost
-} from '../api/config.js';
-// 获取base64格式的图片
-export function uploadFile(callback) {
+  imageHost,
+  defaultHost,
+} from '../api/config.js'
+// 上传图片文件
+function uploadFile(callback) {
   wx.chooseImage({
     count: 1, // 默认9
     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -14,7 +15,7 @@ export function uploadFile(callback) {
         title: '上传中',
       })
       wx.uploadFile({
-        url: APP.api.uploadFile,
+        url: defaultHost + APP.api.uploadFile,
         filePath: res.tempFilePaths[0],
         header: {
           'auth': headers.auth,
@@ -26,13 +27,13 @@ export function uploadFile(callback) {
         },
         name: 'file',
         success(res) {
-          callback(imageHost.appletUploadImages + JSON.parse(res.data).data.file_name);
+          callback(imageHost.appletUploadImages + JSON.parse(res.data).data.file_name)
         },
         fail(e) {
           console.log(e)
         },
         complete() {
-          wx.hideLoading();
+          wx.hideLoading()
         }
       })
     }
@@ -40,9 +41,9 @@ export function uploadFile(callback) {
 }
 
 // 代理微信登陆
-export function handleWechatLogin(that, userinfo) {
+function handleWechatLogin(that, userinfo) {
   if (!userinfo.encryptedData) {
-    return;
+    return
   }
   wx.showLoading()
   // 微信登录获取临时code
@@ -55,7 +56,7 @@ export function handleWechatLogin(that, userinfo) {
           code: res.code
         },
         success(res) {
-          wx.hideLoading();
+          wx.hideLoading()
           // 通过服务端的接口解密数据
           APP.ajax({
             url: APP.api.getWechatUserInfo,
@@ -65,7 +66,7 @@ export function handleWechatLogin(that, userinfo) {
               iv: userinfo.iv
             },
             success(res) {
-              queryUserInfoByUnionId(JSON.parse(res.data), that);
+              queryUserInfoByUnionId(JSON.parse(res.data), that)
             },
           })
         }
@@ -75,11 +76,11 @@ export function handleWechatLogin(that, userinfo) {
 }
 // 根据 unionId 查询用户信息
 function queryUserInfoByUnionId(resData, that) {
-  let unionId = resData.unionId;
-  let avatar = resData.avatarUrl;
-  let nick_name = resData.nickName;
+  let unionId = resData.unionId
+  let avatar = resData.avatarUrl
+  let nick_name = resData.nickName
   let real_openid = resData.openId
-  let user = wx.getStorageSync('user');
+  let user = wx.getStorageSync('user')
   // 登录状态直接绑定uniondId
   if (user) {
     APP.ajax({
@@ -92,7 +93,7 @@ function queryUserInfoByUnionId(resData, that) {
         wx.showToast({
           title: res.msg,
           icon: 'none',
-        });
+        })
         that.setData({
           hasBindWechat: true
         })
@@ -109,7 +110,7 @@ function queryUserInfoByUnionId(resData, that) {
       success(res) {
         // 如果 union_id 已经绑定服务端账户
         if (res.data.user) {
-          res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar;
+          res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar
           // 登录之后先全部存入本地
           wx.setStorageSync("token", res.data.token)
           wx.setStorageSync("user", res.data.user)
@@ -139,7 +140,7 @@ function queryUserInfoByUnionId(resData, that) {
 }
 
 // 代理微信支付
-export function handleWechatPay(orderNo, payType) {
+function handleWechatPay(orderNo, payType) {
   wx.showLoading()
   wx.login({
     success(res) {
@@ -151,7 +152,7 @@ export function handleWechatPay(orderNo, payType) {
             order_no: orderNo
           },
           success(res) {
-            wx.hideLoading();
+            wx.hideLoading()
             res.data.success = function(res) {
               wx.redirectTo({
                 url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
@@ -163,4 +164,10 @@ export function handleWechatPay(orderNo, payType) {
       }
     }
   })
+}
+
+export {
+  uploadFile,
+  handleWechatLogin,
+  handleWechatPay,
 }

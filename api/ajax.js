@@ -2,84 +2,63 @@
 import {
   headers,
   defaultHost,
-} from './config.js';
-
+} from './config.js'
 // 封装原来的请求 添加公共请求头的配置
-export function ajax(option) {
-  // 添加默认的配置 header
-  let headerMust = {
-    'auth': headers.auth,
-    'client-type': headers.clientType,
-  }
-  // 合并 header 参数
-  let header = {};
-  if (option.header) {
-    header = Object.assign(option.header, headerMust);
-  } else {
-    header = headerMust;
-  }
+function ajax(option) {
+  let header = Object.assign(headers, option.header)
   //判断本地是否有token
-  let token = wx.getStorageSync('token');
+  let token = wx.getStorageSync('token')
   if (token) {
-    let tokenHeader = Object.assign({
+    Object.assign(header, {
       'token': token.token
-    }, header)
-    request(option, tokenHeader)
-  } else {
-    request(option, header)
+    })
   }
+  return request(option, header)
 }
 // 微信请求的封装
 function request(option, header) {
   // 其他参数
-  let options = option || {};
-  let url = options.url || '';
-  let data = options.data || {};
-  let method = options.method || 'POST';
-  let success = options.success;
-  let fail = options.fail;
-  // 0.8秒后显示加载的动态
-  // 暂时取消请求的loding
-  // setTimeout(()=>{
-  //   wx.showLoading({
-  //     title: '数据加载中...',
-  //   })
-  // })
-  // 请求的封装
-  wx.request({
-    url: `${defaultHost}${url}`,
-    data: data,
-    header: header,
-    method: method,
-    dataType: 'json',
-    responseType: 'text',
-    success: res => {
-      // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
-      // wx.hideLoading();
-      if (res.data.code == 1) {
-        success(res.data);
-      } else if (res.data.code == 0) {
-        if (res.data.msg != -41003) {
+  let options = option || {}
+  let url = options.url || ''
+  let data = options.data || {}
+  let method = options.method || 'POST'
+
+  return new Promise((resolve, reject) => {
+    // 请求的封装
+    wx.request({
+      url: `${defaultHost}${url}`,
+      data: data,
+      header: header,
+      method: method,
+      dataType: 'json',
+      responseType: 'text',
+      success: res => {
+        // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
+        if (res.data.code == 1) {
+          resolve(res.data)
+        } else if (res.data.code == 0) {
           wx.showToast({
             title: res.data.msg.toString(),
-            icon: 'none',
+            icon: 'none'
+          })
+          reject(res)
+        } else {
+          // 异常操作 清除本地存储 跳转到首页
+          wx.clearStorageSync()
+          wx.reLaunch({
+            url: '/pages/BarHome/index'
           })
         }
-      } else {
-        // 异常操作 清除本地存储 跳转到首页
-        wx.clearStorageSync();
-        wx.reLaunch({
-          url: '/pages/BarHome/index'
-        })
+      },
+      fail(err) {
+        // 错误内容
+        console.log(err)
+        reject(err)
       }
-    },
-    fail(err) {
-      // 清除加载状态
-      wx.hideLoading()
-      // clearTimeout(timer)
-      // 错误内容
-      console.log(err);
-      fail && fail(err);
-    }
+    })
   })
+}
+
+export {
+  ajax,
 }

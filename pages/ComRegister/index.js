@@ -1,22 +1,23 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     type: 1,
     logo: APP.imgs.logo,
+    parentMobile: '',
     mobile: '',
-    pMobile: '',
     code: '',
     password: '',
-    rpassword: '',
-    status: true, // 发送成功？
-    countDown: 91,
+    rePassword: '',
+    time: 90,
+    timeMsg: '发送验证码',
+    // 微信登录相关
     unionId: '',
     avatar: '',
     nick_name: '',
     real_openid: '',
-    ischecked: false,
-    is_open_bonus: '',
-    is_open_drp: '',
+    ischecked: false, // 是否勾选
+    is_open_bonus: '', // 是否开启分红
+    is_open_drp: '', // 是否开启分销
   },
   onLoad(options) {
     options.unionId && this.setData({
@@ -26,201 +27,165 @@ Page({
       real_openid: options.real_openid,
     })
     APP.ajax({
-      url: APP.api.userInfo,
-      success: (res) => {
-        this.setData({
-          is_open_bonus: res.data.is_open_bonus,
-          is_open_drp: res.data.is_open_drp,
-        });
-      }
-    })
+      url: APP.api.systemInfo,
+    }).then(resp => {
+      this.setData({
+        is_open_bonus: resp.data.is_open_bonus,
+        is_open_drp: resp.data.is_open_drp,
+      })
+    }).catch(err => {})
   },
-  bindtjMobile(e) {
+  parentMobileInput(e) {
     this.setData({
-      pMobile: e.detail.value
+      parentMobile: e.detail.value
     })
   },
   // 手机号码输入
-  bindMobile(e) {
+  mobileInput(e) {
     this.setData({
       mobile: e.detail.value
     })
   },
   // 验证码输入
-  bindCode(e) {
+  codeInput(e) {
     this.setData({
       code: e.detail.value
     })
   },
   // 密码输入
-  bindPassword(e) {
+  passwordInput(e) {
     this.setData({
       password: e.detail.value
     })
   },
   // 重复密码输入
-  bindRPassword(e) {
+  rePasswordInput(e) {
     this.setData({
-      rpassword: e.detail.value
+      rePassword: e.detail.value
     })
   },
   // 跳转到文章详情页面
   goArticle(e) {
-    let id = APP.utils.getDataSet(e, 'id');
-    let type = APP.utils.getDataSet(e, 'type');
-    let param = APP.utils.paramsJoin({
-      id: id,
-      type: type
+    let id = APP.util.getDataSet(e, 'id')
+    let paramStr = APP.util.paramStringify({
+      'id': id,
+      'type': 'rule'
     })
     wx.navigateTo({
-      url: `/pages/ComArticle/index?${param}`,
+      url: `/pages/ComArticle/index?${paramStr}`,
     })
   },
   // 发送验证码请求
   sendCode() {
-    if (!this.data.mobile) {
-      wx.showToast({
-        title: '手机号不能为空',
-        icon: 'none'
-      })
-      return;
+    if (!APP.validator.mobile(this.data.mobile)) {
+      APP.util.toast('请输入正确的手机号')
+      return
     }
-    APP.ajax({
-      url: APP.api.userSettingCode,
-      data: {
-        mobile: this.data.mobile,
-        type: 1,
-      },
-      success: res => {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
+    if (this.data.time == 90) {
+      this.setData({
+        time: 89
+      })
+      wx.showLoading({
+        title: '请稍后',
+      })
+      APP.ajax({
+        url: APP.api.getCode,
+        data: {
+          'mobile': this.data.mobile,
+          'type': 1,
+        },
+      }).then(resp => {
+        wx.hideLoading()
+        APP.util.toast(resp.msg)
+        this.countDown()
+      }).catch(err => {
+        wx.hideLoading()
         this.setData({
-          status: false
-        }, () => {
-          this.countDown()
+          time: 90
         })
-      }
-    })
+      })
+    }
   },
   // 同意条款
-  ischecked() {
+  checkedInput() {
     this.setData({
       ischecked: !this.data.ischecked
     })
   },
   // 确认
-  sendData() {
-    if (this.data.pMobile && APP.validator.mobile(this.data.pMobile)) {
-      wx.showToast({
-        title: '填写正确的手机号',
-        icon: 'none'
-      })
-      return;
+  register() {
+    if (this.data.parentMobile && !APP.validator.mobile(this.data.parentMobile)) {
+      APP.util.toast('请填写正确的推荐人手机号码')
+      return
     }
-    if (!this.data.mobile) {
-      wx.showToast({
-        title: '手机号码不能为空',
-        icon: 'none'
-      })
-      return;
+    if (!APP.validator.mobile(this.data.mobile)) {
+      APP.util.toast('请填写正确的手机号码')
+      return
     }
     if (!this.data.code) {
-      wx.showToast({
-        title: '验证码不能为空',
-        icon: 'none'
-      })
-      return;
-    }
-    if (!this.data.password) {
-      wx.showToast({
-        title: '密码不能为空',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请填写验证码')
+      return
     }
     if (!APP.validator.password(this.data.password)) {
-      wx.showToast({
-        title: '密码限制6-20位大小写字母数字组合',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请填写6位不包含特殊字符的密码')
+      return
     }
-    if (this.data.rpassword != this.data.password) {
-      wx.showToast({
-        title: '两次密码不一样',
-        icon: 'none'
-      })
+    if (this.data.rePassword != this.data.password) {
+      APP.util.toast('两次填写密码不一致')
       this.setData({
-        rpassword: '',
+        rePassword: '',
         password: ''
       })
-      return;
+      return
     }
     if (!this.data.ischecked) {
-      wx.showToast({
-        title: '请同意条款',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请同意条款')
+      return
     }
     let data = {
-      parent_mobile: this.data.pMobile,
+      parent_mobile: this.data.parentMobile,
       mobile: this.data.mobile,
       password: this.data.password,
       code: this.data.code,
-    };
+    }
     if (this.data.unionId) {
-      data.wechat_openid = this.data.unionId,
-      data.nick_name = decodeURIComponent(this.data.nick_name);
-      data.avatar = this.data.avatar;
-      data.real_openid = this.data.real_openid;
+      data.wechat_openid = this.data.unionId
+      data.nick_name = decodeURIComponent(this.data.nick_name)
+      data.avatar = this.data.avatar
+      data.real_openid = this.data.real_openid
     }
     APP.ajax({
       url: APP.api.userRegister,
       data: data,
-      success: res => {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        })
-        res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar;
-        // 登录之后先全部存入本地
-        wx.setStorageSync("token", res.data.token)
-        wx.setStorageSync("user", res.data.user)
-        // 然后再存入全局变量中
-        APP.globalData.hasLogin = true
-        APP.globalData.token = res.data.token.token
-        APP.globalData.user = res.data.user
-
+    }).then(resp => {
+      APP.util.toast(resp.msg)
+      resp.data.user.avatar = resp.data.user.avatar ? resp.data.user.avatar : APP.imgs.avatar
+      // 登录之后先全部存入本地
+      wx.setStorageSync("token", resp.data.token)
+      wx.setStorageSync("user", resp.data.user)
+      setTimeout(() => {
         wx.switchTab({
           url: '/pages/BarUser/index',
         })
-      }
-    })
+      }, 500)
+    }).catch(err => {})
   },
   // 倒计时
   countDown() {
-    let that = this;
-
-    function settime() {
-      let countdown = that.data.countDown;
-      if (countdown == 0) {
-        that.setData({
-          countDown: 91,
-          status: true
-        })
-        return;
-      } else {
-        that.setData({
-          countDown: --countdown
-        })
-      }
+    let time = this.data.time;
+    if (time > 0) {
+      this.setData({
+        time: time - 1,
+        timeMsg: `已发送${time}`
+      })
       setTimeout(() => {
-        settime()
+        this.countDown()
       }, 1000)
+    } else {
+      this.setData({
+        time: 90,
+        timeMsg: '发送验证码'
+      })
     }
-    settime();
   }
 })

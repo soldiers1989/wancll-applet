@@ -1,9 +1,8 @@
-
 // 活动倒计时 格式 00天 00：00：00
 function timeDown(that, endTime) {
-  let date1 = new Date(); //开始时间  
-  let date2 = endTime; //结束时间 
-  let date3 = new Date(date2).getTime() - date1.getTime(); //时间差的毫秒数   
+  let date1 = new Date() //开始时间  
+  let date2 = endTime //结束时间 
+  let date3 = new Date(date2).getTime() - date1.getTime() //时间差的毫秒数   
   //计算出相差天数  
   let days = Math.floor(date3 / (24 * 3600 * 1000))
   //计算出小时数  
@@ -19,8 +18,9 @@ function timeDown(that, endTime) {
   that.setData({
     timeDown: time
   })
+
   function ad0(n) {
-    return n = n < 10 ? `0${n}` : n;
+    return n = n < 10 ? `0${n}` : n
   }
 }
 // 获取点击参数
@@ -32,20 +32,20 @@ function getDataSet(e, field) {
   }
 }
 // 组装传递的参数
-function paramsJoin(paramsObj) {
-  let arr = [];
-  for (let name in paramsObj) {
-    arr.push(`${name}=${paramsObj[name]}`);
+function paramStringify(obj) {
+  let arr = []
+  for (let name in obj) {
+    arr.push(`${name}=${obj[name]}`)
   }
-  return arr.join('&');
+  return arr.join('&')
 }
 // 获取本地存储订单Id
-function getOrderById(id,fn) {
+function getOrderById(id, fn) {
   wx.getStorage({
     key: 'orderList',
     success(res) {
       let obj = res.data.filter((item) => {
-        return item.id == id;
+        return item.id == id
       })
       fn(obj[0])
     },
@@ -54,15 +54,38 @@ function getOrderById(id,fn) {
 // 获取本地存储订单Id下的某个商品
 function getGoodsById(goodsArr, goodsId) {
   let obj = goodsArr.filter((item) => {
-    return item.goods_id == goodsId;
+    return item.goods_id == goodsId
   })
   return obj[0]
 }
+// 数组去重
+function arrayToUnique(arr) {
+  let ids = []
+  let newArr = []
+  arr.forEach(item => {
+    if (ids.indexOf(item.id) == -1) {
+      newArr.push(item)
+      ids.push(item.id)
+    }
+  })
+  return newArr
+}
 
-module.exports = {
+function toast(msg) {
+  if (msg) {
+    wx.showToast({
+      title: msg,
+      icon: 'none'
+    })
+  }
+}
+
+export {
   getDataSet,
-  paramsJoin,
+  paramStringify,
   getOrderById,
   getGoodsById,
-  timeDown,  
+  timeDown,
+  arrayToUnique,
+  toast,
 }

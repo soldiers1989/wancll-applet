@@ -13,5 +13,9 @@
   margin-bottom: 10px;
 }
 .article .content{
-  font-size: 28rpx;
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
 }

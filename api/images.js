@@ -1,19 +1,19 @@
 // 引入配置文件
 import {
   imageHost
-} from './config.js';
-// 网络静态图片
+} from './config.js'
+// 网络静态图片Ï
 const imgs = {
   // 首页五张小图
-  smallImg: [
+  tagImgs: [
     `${imageHost.wapImages}/tag1.png`,
     `${imageHost.wapImages}/tag2.png`,
     `${imageHost.wapImages}/tag3.png`,
     `${imageHost.wapImages}/tag4.png`,
-    `${imageHost.wapImages}/tag5.png`
+    `${imageHost.wapImages}/tag5.png`,
   ],
   avatar: `${imageHost.images}/avatar.png`,
-  notice: `${imageHost.wapImages}/wangkaikuaibao.png`,
+  announcementImg: `${imageHost.wapImages}/wangkaikuaibao.png`,
   logo: `${imageHost.wapImages}/wap_logo.png`,
   noContentImg: `${imageHost.wapImages}/no_content.png`,
   // 实名认证
@@ -25,8 +25,11 @@ const imgs = {
   coupon: `${imageHost.wapImages}/coupon.png`,
   couponPass: `${imageHost.wapImages}/coupon_guoqi.png`,
   couponGet: `${imageHost.wapImages}/coupon_get.png`,
+  indexCoupon: `${imageHost.wapImages}/index_coupon.png`,
+  // 满减优惠
+  indexFull: `${imageHost.wapImages}/index_full.png`,
   // 售罄
-  noStock: `${imageHost.images}/shouxin.png`,
+  noStockImg: `${imageHost.images}/shouxin.png`,
   // 我的二维码背景
   myEwmCode: `${imageHost.wapImages}/yaoqing.png`,
   // 分红中心背景
