@@ -34,7 +34,7 @@ Page({
 
     if (options.id) {
       this.setData({
-        id: options.id
+        id: options.id,
       });
     }
 
@@ -84,8 +84,35 @@ Page({
         this.setData({
           tabList: list,
         })
+        if (this.data.id) {
+          this.setTabSelectedIdFromOuter();
+        }
       }
     })
+  },
+  // 外页面跳转指定分类
+  setTabSelectedIdFromOuter() {
+    let ids = APP.utils.packageCascaderSelecteData(this.data.tabList, this.data.id);
+    let pid = ids[0];
+    this.data.tabList.forEach((i) => {
+      if (i.id == pid) {
+        if (i._child) {
+          this.setData({
+            childNav: i._child,
+            popupNav: true,
+          })
+        } else {
+          this.setData({
+            childNav: [],
+            popupNav: false,
+          })
+        }
+      }
+    })
+
+    this.setData({
+      tabSelectedId: pid,
+    });
   },
   // 小分类的点击
   changeSubNav(e) {

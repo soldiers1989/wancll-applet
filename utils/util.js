@@ -148,6 +148,30 @@ function goModel(model) {
   }
 }
 
+/**
+ * 组装选中级联数据
+ * @param {级联数据} types
+ * @param {选中级联id} typeId
+ */
+function packageCascaderSelecteData(types, typeId, resultData) {
+  resultData = resultData || '';
+  for (var i = 0; i < types.length; i++) {
+    if (types[i].id == typeId) {
+      resultData += typeId
+      return resultData.split(',').map(function(item) {
+        return Number(item);
+      });
+    } else if (types[i]._child) {
+      var result = packageCascaderSelecteData(types[i]._child, typeId, resultData + types[i].id + ',');
+      if (result) {
+        return result;
+      }
+    } else {
+      continue;
+    }
+  }
+}
+
 module.exports = {
   getDataSet,
   paramsJoin,
@@ -155,5 +179,6 @@ module.exports = {
   getGoodsById,
   timeDown,
   timeDowns,
-  goModel
+  goModel,
+  packageCascaderSelecteData
 }
