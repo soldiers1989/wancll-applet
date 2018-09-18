@@ -102,7 +102,7 @@
         <view class='pending-list'>
           <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
             <view class="iconfont icon-qr-code"></view>
-            <view class='text'>我的二维码</view>
+            <view class='text'>推广二维码</view>
           </view>
           <view class='pending' catchtap='goCarts' data-target="BarCarts">
             <view class="iconfont icon-gouwuche2"></view>

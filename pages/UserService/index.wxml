@@ -2,4 +2,9 @@
   <block wx:for="{{orderList}}" wx:key="key">
     <order-item data="{{item}}" haveinfo gotype='orderdetail' class-price-icon="wancll-order-price-icon" class-real-price="wancll-order-real-price" class-sell-price="wancll-order-sell-price" class-goods-num="wancll-order-goods-num"></order-item>
   </block>
+
+  <view wx:if="{{FPage.noContent}}" class="no-content-image">
+    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+    <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+  </view>
 </view>
