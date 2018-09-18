@@ -7,6 +7,7 @@
 
 <view class="wancll-padded-20 wancll-bg-white">
   <text>提现金额(元)</text>
+  <view>￥</view>
   <input type="digit" class="input wancll-margin-b-20" bindinput='bindMoney'></input>
   <button class="ylyy-button-big" catchtap='submit'>提交</button>
 </view>

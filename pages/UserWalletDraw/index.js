@@ -1,4 +1,7 @@
-import { getData, submit } from './data.js';
+import {
+  getData,
+  submit
+} from './data.js';
 const APP = getApp();
 Page({
   data: {
@@ -13,7 +16,10 @@ Page({
     passPopup: false,
     pass: ''
   },
-  onLoad(options) {
+  onShow() {
+    this.setData({
+      pageNum: 1
+    });
     getData(this);
   },
   // 选择银行卡
@@ -35,7 +41,7 @@ Page({
       popupShow: !this.data.popupShow,
     })
   },
-  addBank(){
+  addBank() {
     wx.navigateTo({
       url: `/pages/UserCardEidt/index?id=new`,
     })
