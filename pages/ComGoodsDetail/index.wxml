@@ -1,4 +1,4 @@
-<!--pages/ComDetail/index.wxml-->
+<!--pages/ComGoodsDetail/index.wxml-->
 <view class='content'>
   <swiper class='detail-swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{goodsInfo.imgs}}" wx:key="key">

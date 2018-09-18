@@ -1,31 +1,44 @@
 const APP = getApp()
-import { getUserData, queryAuthStatus } from './data.js';
+import {
+  getData,
+  queryAuthStatus,
+} from './data.js'
 Page({
   data: {
     user: {},
-    count: {},
-    asset: {},
-    is_open_bonus: '',
-    is_open_drp: '',
+    orderCount: {},
+    userAsset: {},
+    systemInfo: {
+      is_open_bonus: false,
+      is_open_drp: false,
+    },
   },
-  onLoad(options) {
-
+  onLoad(options) {},
+  onShow() {
+    // 判断登录状态
+    if (!wx.getStorageSync('token')) {
+      wx.redirectTo({
+        url: '/pages/ComLogin/index',
+      })
+    } else {
+      getData(this)
+    }
   },
   // 跳转到订单状态页面
   goOrderList(e) {
-    let target = APP.utils.getDataSet(e, 'target')
+    let target = APP.util.getDataSet(e, 'target')
     wx.navigateTo({
       url: `/pages/UserOrderList/index?target=${target}`,
     })
   },
   // 跳转到子页面
   goSubPages(e) {
-    let target = APP.utils.getDataSet(e, 'target')
+    let target = APP.util.getDataSet(e, 'target')
     if (target == 'UserDBCenter') {
       this.checkDBPage(target)
-    }else if (target == 'UserDRCenter') {
+    } else if (target == 'UserDRCenter') {
       this.checkDRPage(target)
-    }else{
+    } else {
       wx.navigateTo({
         url: `/pages/${target}/index`,
       })
@@ -34,18 +47,18 @@ Page({
   checkDRPage(target) {
     APP.ajax({
       url: APP.api.drpCenter,
-      success: infoResp=>{
+      success: infoResp => {
         APP.ajax({
           url: APP.api.userDrp,
           success: becomeInfoResp => {
             // 如果不是分销商
             if (!infoResp.data.is_distributor) {
-              var value = becomeInfoResp.data.become_distributor_condition;
+              var value = becomeInfoResp.data.become_distributor_condition
               if (value == 'apply') {
                 // 跳转到申请页面
                 APP.ajax({
                   url: APP.api.userDrpRead,
-                  success: applyResp=>{
+                  success: applyResp => {
                     if (!applyResp.data.status) {
                       wx.navigateTo({
                         url: `/pages/UserDBAndDRApply/index?type=distribution`,
@@ -64,7 +77,7 @@ Page({
                         wx.navigateTo({
                           url: `/pages/UserDBAndDRApply/index?type=distribution`,
                         })
-                      }, 800);
+                      }, 800)
                     }
                   }
                 })
@@ -83,11 +96,11 @@ Page({
                   title: '成为分销商需购买商品',
                   icon: 'none'
                 })
-                setTimeout(()=> {
+                setTimeout(() => {
                   wx.navigateTo({
                     url: `/pages/ComGoodsList/index?distribution=1`,
                   })
-                }, 800);
+                }, 800)
               }
             } else {
               if (becomeInfoResp.data.is_need_complete_user_info) {
@@ -125,7 +138,7 @@ Page({
           url: APP.api.userBonus,
           success: becomeInfoResp => {
             if (!infoResp.data.is_bonus) {
-              var value = becomeInfoResp.data.become_bonus_condition;
+              var value = becomeInfoResp.data.become_bonus_condition
               if (value == 'apply') {
                 // 跳转到申请页面
                 APP.ajax({
@@ -149,7 +162,7 @@ Page({
                         wx.navigateTo({
                           url: `/pages/UserDBAndDRApply/index?type=bonus`,
                         })
-                      }, 800);
+                      }, 800)
                     }
                   }
                 })
@@ -168,19 +181,19 @@ Page({
                   title: '成为分红商需购买商品',
                   icon: 'none'
                 })
-                setTimeout( ()=> {
+                setTimeout(() => {
                   wx.navigateTo({
                     url: `/pages/ComGoodsList/index?bonus=1`,
                   })
                   // goto('goods_list_model', { bonus: 1 })
-                }, 800);
+                }, 800)
               }
             } else {
               if (becomeInfoResp.data.is_need_complete_user_info) {
                 // 查询用户是否完善个人信息
                 APP.ajax({
                   url: APP.api.userCompleteInfo,
-                  success: completeResp=>{
+                  success: completeResp => {
                     if (completeResp.data.is_complete) {
                       wx.navigateTo({
                         url: `/pages/UserDBCenter/index`,
@@ -205,40 +218,29 @@ Page({
   },
   // 跳转到购物车页面
   goCarts(e) {
-    let target = APP.utils.getDataSet(e, 'target')
+    let target = APP.util.getDataSet(e, 'target')
     wx.switchTab({
       url: `/pages/${target}/index`,
     })
   },
   // 跳转成长值记录
-  showGrow() {
+  goLevel() {
     wx.navigateTo({
-      url: `/pages/UserGrow/index`,
+      url: `/pages/UserLevel/index`,
     })
   },
   // 跳转到设置页面
-  settingInfo() {
+  goSetting() {
     wx.navigateTo({
       url: `/pages/UserSetting/index`,
     })
   },
-  onShow: function () {
-    // 判断登录状态
-    if (!wx.getStorageSync('token')) {
-      wx.redirectTo({
-        url: '/pages/ComLogin/index',
-      })
-    } else {
-      // 发起请求
-      getUserData(this);
-    }
-  },
   auth() {
-    queryAuthStatus();
+    queryAuthStatus()
   },
   onPullDownRefresh() {
-    getUserData(this);
-    wx.stopPullDownRefresh();
+    getData(this)
+    wx.stopPullDownRefresh()
   },
   onShareAppMessage() {
 

@@ -4,9 +4,7 @@ Page({
     content: '',
     title: '功能异常'
   },
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
   inputChange(e) {
     this.setData({
       content: e.detail.value
@@ -14,10 +12,7 @@ Page({
   },
   submit() {
     if (!this.data.content) {
-      wx.showToast({
-        title: '请填写反馈意见',
-        icon: 'none'
-      })
+      APP.util.toast('请填写反馈意见')
       return;
     }
     let userId = wx.getStorageSync('user').id;
@@ -28,15 +23,11 @@ Page({
         title: this.data.title,
         content: this.data.content
       },
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'non'
-        })
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 800)
-      }
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 800)
     })
   },
   radioChange(e) {

@@ -1,42 +1,56 @@
-const APP = getApp()
 import {
   headers,
   imageHost,
   defaultHost,
 } from '../api/config.js'
-// 上传图片文件
-function uploadFile(callback) {
-  wx.chooseImage({
-    count: 1, // 默认9
-    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-    success(res) {
-      wx.showLoading({
-        title: '上传中',
-      })
-      wx.uploadFile({
-        url: defaultHost + APP.api.uploadFile,
-        filePath: res.tempFilePaths[0],
-        header: {
-          'auth': headers.auth,
-          'client-type': headers.clientType,
-          'token': wx.getStorageSync('token').token,
-        },
-        formData: {
-          save_path: 'public/upload/applet/'
-        },
-        name: 'file',
-        success(res) {
-          callback(imageHost.appletUploadImages + JSON.parse(res.data).data.file_name)
-        },
-        fail(e) {
-          console.log(e)
-        },
-        complete() {
+const APP = getApp()
+
+// 选择图片
+function chooseImage(option) {
+  let count = option.count || 1
+  return new Promise((resolve, reject) => {
+    wx.chooseImage({
+      count: count,
+      success(res) {
+        let promises = res.tempFilePaths.map(item => {
+          return uploadFile(item)
+        })
+        wx.showLoading({
+          title: '上传中',
+        })
+        Promise.all(promises).then(values => {
+          resolve(values)
           wx.hideLoading()
-        }
-      })
-    }
+        }).catch(err => {
+          reject(err)
+          wx.hideLoading()
+        })
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  })
+}
+
+// 上传文件
+function uploadFile(filePath) {
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: defaultHost + APP.api.uploadFile,
+      filePath: filePath,
+      header: headers,
+      formData: {
+        save_path: '/public/upload/applet/'
+      },
+      name: 'file',
+      success(res) {
+        resolve(JSON.parse(res.data).data.host_file_path)
+      },
+      fail(err) {
+        reject(err)
+      },
+    })
   })
 }
 
@@ -55,22 +69,20 @@ function handleWechatLogin(that, userinfo) {
         data: {
           code: res.code
         },
-        success(res) {
-          wx.hideLoading()
-          // 通过服务端的接口解密数据
-          APP.ajax({
-            url: APP.api.getWechatUserInfo,
-            data: {
-              session_key: res.data.session_key,
-              encrypted_data: userinfo.encryptedData,
-              iv: userinfo.iv
-            },
-            success(res) {
-              queryUserInfoByUnionId(JSON.parse(res.data), that)
-            },
-          })
-        }
-      })
+      }).then(res => {
+        wx.hideLoading()
+        // 通过服务端的接口解密数据
+        APP.ajax({
+          url: APP.api.getWechatUserInfo,
+          data: {
+            session_key: res.data.session_key,
+            encrypted_data: userinfo.encryptedData,
+            iv: userinfo.iv
+          },
+        }).then(res => {
+          queryUserInfoByUnionId(JSON.parse(res.data), that)
+        }).catch(err => {})
+      }).catch(err => {})
     }
   })
 }
@@ -89,16 +101,12 @@ function queryUserInfoByUnionId(resData, that) {
         openid_type: 'wechat',
         openid: unionId
       },
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
-        that.setData({
-          hasBindWechat: true
-        })
-      }
-    })
+    }).then(res => {
+      APP.util.toast(res.msg)
+      that.setData({
+        hasBindWechat: true
+      })
+    }).catch(err => {})
   } else {
     // 非登陆状态从服务端查询
     APP.ajax({
@@ -107,35 +115,34 @@ function queryUserInfoByUnionId(resData, that) {
         type: 'wechat',
         openid: unionId
       },
-      success(res) {
-        // 如果 union_id 已经绑定服务端账户
-        if (res.data.user) {
-          res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar
-          // 登录之后先全部存入本地
-          wx.setStorageSync("token", res.data.token)
-          wx.setStorageSync("user", res.data.user)
-          // 再跳转
-          wx.switchTab({
-            url: '/pages/BarUser/index',
-          })
-        } else {
-          wx.showActionSheet({
-            itemList: ['绑定已有账号', '注册新账号'],
-            success(res) {
-              if (res.tapIndex == 0) {
-                wx.navigateTo({
-                  url: `/pages/ComBindMobile/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
-                })
-              } else if (res.tapIndex == 1) {
-                wx.navigateTo({
-                  url: `/pages/ComRegister/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
-                })
-              }
+    }).then(res => {
+      // 如果 union_id 已经绑定服务端账户
+      if (res.data.user) {
+        res.data.user.avatar = res.data.user.avatar ? res.data.user.avatar : APP.imgs.avatar
+        // 登录之后先全部存入本地
+        wx.setStorageSync("token", res.data.token)
+        wx.setStorageSync("user", res.data.user)
+        // 再跳转
+        wx.switchTab({
+          url: '/pages/BarUser/index',
+        })
+      } else {
+        wx.showActionSheet({
+          itemList: ['绑定已有账号', '注册新账号'],
+          success(res) {
+            if (res.tapIndex == 0) {
+              wx.navigateTo({
+                url: `/pages/ComBindMobile/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
+              })
+            } else if (res.tapIndex == 1) {
+              wx.navigateTo({
+                url: `/pages/ComRegister/index?unionId=${unionId}&nick_name=${nick_name}&avatar=${avatar}&real_openid=${real_openid}`,
+              })
             }
-          })
-        }
+          }
+        })
       }
-    })
+    }).then(err => {})
   }
 }
 
@@ -151,23 +158,22 @@ function handleWechatPay(orderNo, payType) {
             code: res.code,
             order_no: orderNo
           },
-          success(res) {
-            wx.hideLoading()
-            res.data.success = function(res) {
-              wx.redirectTo({
-                url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
-              })
-            }
-            wx.requestPayment(res.data)
+        }).then(res => {
+          wx.hideLoading()
+          res.data.success = function(res) {
+            wx.redirectTo({
+              url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
+            })
           }
-        })
+          wx.requestPayment(res.data)
+        }).then(err => {})
       }
     }
   })
 }
 
 export {
-  uploadFile,
+  chooseImage,
   handleWechatLogin,
   handleWechatPay,
 }

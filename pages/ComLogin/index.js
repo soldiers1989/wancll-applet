@@ -40,7 +40,7 @@ Page({
       },
     }).then(resp => {
       APP.util.toast(resp.msg)
-      res.data.user.avatar = resp.data.user.avatar ? resp.data.user.avatar : APP.imgs.avatar
+      resp.data.user.avatar = resp.data.user.avatar ? resp.data.user.avatar : APP.imgs.avatar
       // 登录之后先全部存入本地
       wx.setStorageSync("token", resp.data.token)
       wx.setStorageSync("user", resp.data.user)

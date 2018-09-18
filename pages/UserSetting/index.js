@@ -1,7 +1,16 @@
-const APP = getApp();
-const passwordSelectList = ['登录密码修改', '支付密码修改'];
-import { updateUserInfo, queryWechatBindStatus, unbind, bindWechatInLogin, getUserData } from './data.js';
-import { uploadFile, handleWechatLogin } from '../../utils/common.js';
+import {
+  updateUserInfo,
+  queryWechatBindStatus,
+  unbind,
+  bindWechatInLogin,
+  getUserData,
+} from './data.js'
+import {
+  chooseImage,
+  handleWechatLogin,
+} from '../../utils/common.js'
+const APP = getApp()
+const passwordSelectList = ['登录密码修改', '支付密码修改']
 Page({
   data: {
     user: {},
@@ -11,8 +20,8 @@ Page({
   onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user')
-    });
-    queryWechatBindStatus(this);
+    })
+    queryWechatBindStatus(this)
   },
   goHelpAndOption() {
     wx.navigateTo({
@@ -21,10 +30,13 @@ Page({
   },
   // 改变头像
   changeAvatar() {
-    let that = this;
-    uploadFile((imgPath) => {
-      updateUserInfo(that, { avatar: imgPath });
-    })
+    chooseImage({
+      count: 1
+    }).then(values => {
+      updateUserInfo(this, {
+        avatar: values[0]
+      })
+    }).catch(err => {})
   },
   //密码修改
   changePassword() {
@@ -32,24 +44,28 @@ Page({
       itemList: passwordSelectList,
       success: res => {
         wx.navigateTo({
-          url: `/pages/UserSettingPass/index?id=${res.tapIndex}`,
+          url: `/pages/UserSettingPass/index?type=${res.tapIndex + 1}`,
         })
       }
     })
   },
   // 性别选择
   selectGender() {
-    let that = this;
+    let that = this
     wx.showActionSheet({
       itemList: this.data.genderList,
       success(res) {
-        updateUserInfo(that, { gender: res.tapIndex });
+        updateUserInfo(that, {
+          gender: res.tapIndex
+        })
       }
     })
   },
   // 修改昵称
   changeName(e) {
-    updateUserInfo(this, { nick_name: e.detail.value });
+    updateUserInfo(this, {
+      nick_name: e.detail.value
+    })
   },
   // 修改手机号码
   changeMobile(e) {
@@ -59,21 +75,21 @@ Page({
   },
   // 解绑
   unbind() {
-    let that = this;
+    let that = this
     wx.showModal({
       title: '确定解除微信账号绑定?',
       success(res) {
         if (res.confirm) {
-          unbind(that);
+          unbind(that)
         }
       }
     })
   },
-  // 绑定
+  // 绑定微信
   bind(res) {
-    handleWechatLogin(this, res.detail);
+    handleWechatLogin(this, res.detail)
   },
-
+  // 退出登录
   logout() {
     wx.showModal({
       title: '提示',
@@ -89,9 +105,9 @@ Page({
     })
   },
   onPullDownRefresh() {
-    getUserData(this);
-    queryWechatBindStatus(this);
-    wx.stopPullDownRefresh();
+    getUserData(this)
+    queryWechatBindStatus(this)
+    wx.stopPullDownRefresh()
   },
   onShareAppMessage() {
 

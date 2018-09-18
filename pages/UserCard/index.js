@@ -16,9 +16,6 @@ const cardNameMapping = {
   '民生银行': { color: '#28a1a3', fontClass: 'icon-minshengyinxing' },
 };
 const APP = getApp();
-import PagingData from '../../utils/PagingData';
-const Paging = new PagingData();
-
 
 Page({
   data: {

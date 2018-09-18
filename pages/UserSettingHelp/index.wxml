@@ -21,5 +21,4 @@
 
   <button bindtap='submit' class="wancll-bg-info wancll-text-white wancll-margin-10">提交</button>
 
-
 </view>

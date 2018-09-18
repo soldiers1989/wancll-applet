@@ -16,7 +16,7 @@
       </block>
     </swiper>
   </view>
-  <!-- 促销活动 -->
+  <!-- 标签 -->
   <view class='banner-list'>
     <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
       <view class='img'>

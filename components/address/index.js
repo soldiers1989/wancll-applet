@@ -1,6 +1,4 @@
 const APP = getApp();
-import PagingData from '../../utils/PagingData';
-const Paging = new PagingData();
 Component({
   // 传递过来的参数
   properties: {},

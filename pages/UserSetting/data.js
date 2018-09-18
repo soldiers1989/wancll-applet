@@ -1,79 +1,77 @@
-const APP = getApp();
-export function updateUserInfo(that, data) {
+const APP = getApp()
+// 更新用户
+function updateUserInfo(that, data) {
   APP.ajax({
-    url: APP.api.userSettingUpdate,
+    url: APP.api.userUpdate,
     data: data,
-    success(res) {
-      that.setData({
-        user: res.data
-      })
-      wx.setStorage({
-        key: 'user',
-        data: res.data,
-      })
-    }
+  }).then(resp => {
+    that.setData({
+      user: resp.data,
+    })
+    wx.setStorage({
+      key: 'user',
+      data: resp.data,
+    })
   })
 }
-
-export function getUserData(that){
+// 获得用户信息
+function getUserData(that) {
   APP.ajax({
-    url: APP.api.user,
-    success(res) {
-      res.data.avatar = res.data.avatar ? res.data.avatar : APP.imgs.avatar
-      that.setData({
-        user: res.data
-      });
-      wx.setStorage({
-        key: 'user',
-        data: res.data,
-      })
-    }
+    url: APP.api.userRead,
+  }).then(resp => {
+    resp.data.avatar = resp.data.avatar ? resp.data.avatar : APP.imgs.avatar
+    that.setData({
+      user: resp.data,
+    })
+    wx.setStorage({
+      key: 'user',
+      data: resp.data,
+    })
   })
 }
-
-export function queryWechatBindStatus(that) {
+// 查询微信绑定状态
+function queryWechatBindStatus(that) {
   APP.ajax({
     url: APP.api.queryWechatBindStatus,
-    success(res) {
-      if (res.data.wechat_openid) {
-        that.setData({
-          hasBindWechat: true,
-        })
-      }
+  }).then(resp => {
+    if (resp.data.wechat_openid) {
+      that.setData({
+        hasBindWechat: true,
+      })
     }
   })
 }
-
-export function unbind(that) {
+// 解绑微信
+function unbind(that) {
   APP.ajax({
     url: APP.api.unbind,
     data: {
-      openid_type: 'wechat'
+      openid_type: 'wechat',
     },
-    success(res) {
-      wx.showToast({
-        title: res.msg,
-        icon: 'none'
-      })
-      that.setData({
-        hasBindWechat: false,
-      })
-    }
+  }).then(resp => {
+    APP.util.toast(resp.msg)
+    that.setData({
+      hasBindWechat: false,
+    })
   })
 }
-
-export function bindWechatInLogin(that, openid) {
+// 登录状态下绑定微信
+function bindWechatInLogin(that, openid) {
   APP.ajax({
     url: APP.api.bindWechatInLogin,
     data: {
       openid_type: 'wechat',
-      openid: openid
+      openid: openid,
     },
-    success(res) {
-      wx.showToast({
-        title: res.msg,
-        icon: 'none'
-      })
-    }
+  }).then(resp => {
+    APP.util.toast(resp.msg)
   })
+}
+
+export {
+  updateUserInfo,
+  getUserData,
+  queryWechatBindStatus,
+  unbind,
+  bindWechatInLogin,
 }

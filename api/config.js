@@ -1,5 +1,5 @@
 // 公共配置文件
-const host = 'http://wancllshop.lugu110.wancll.vip'
+const host = 'https://wancllshop.lugu110.wancll.vip'
 // 必须请求头信息
 const headers = {
   'auth': 'Basic_Ivj6eZRxMTx2yiyunZvnG8R69',

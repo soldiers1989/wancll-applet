@@ -1,17 +1,17 @@
 <view>
-  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bindtap='tabChange' fixed/>
+  <zan-tab id="tab" list="{{ cates }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bind:tabChange="tabChange" />
   <!-- 弹出的 -->
-  <view class='popup-nav' wx:if="{{popupNav}}">
-    <view class='list' wx:for="{{childNav}}" wx:key="{{index}}" bindtap='changeSubNav' data-id='{{item.id}}'>
+  <view class='popup-nav'>
+    <view class='list' wx:for="{{childCates}}" wx:key="{{index}}" bindtap='childCateClick' data-id='{{item.id}}'>
       <view class='image'>
-        <image src="{{item.thum}}"></image>
+        <image mode='widthFix' src="{{item.thum}}"></image>
       </view>
       <view class='text'>{{item.name}}</view>
     </view>
   </view>
 
   <view class='goods-list wancll-padded-3 wancll-bg-pray'>
-    <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goods}}" wx:key="index">
+    <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goodsList}}" wx:key="index">
       <view class='wancll-padded-3 wancll-bg-pray'>
         <view class='image'>
           <image mode="widthFix" class="wancll-col-xs-12" src='{{item.thum}}'></image>
@@ -26,8 +26,8 @@
     </view>
   </view>
 
-  <view wx:if="{{FPage.noContent}}" class="no-content-image">
-    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view wx:if="{{haveNoData}}" class="no-content-image">
+    <image mode="widthFix" src="{{noContentImg}}"></image>
     <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </view>

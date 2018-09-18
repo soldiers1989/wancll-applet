@@ -11,12 +11,9 @@ export const api = {
   // 通用文章页面
   ruleRead: `/api_articles/rules/read`,
   announcementRead: `/api_articles/annoncements/read`,
-  // 商品页面 
-  goodsCatesTree: `/api_goods/goods_cates/lists_tree`,
-  // 多页面公用
+  // 商品
   goodsList: `/api_goods/goods/lists`,
-  setPayPass: `/api_query/users/is_set_pay_password`,
-  // 商品的详情页 
+  goodsCatesListTree: '/api_goods/goods_cates/lists_tree',
   goodsRead: `/api_goods/goods/read`,
   goodsIsCollected: `/api_query/goods/is_collect`,
   goodsCollectCancel: `/api_goods/goods_collections/cancel`,
@@ -50,20 +47,18 @@ export const api = {
   systemInfo: `/api_query/systems/info`,
   getCode: '/api_systems/helper/send_code',
   // 个人中心
-  user: `/api_users/users/read`,
-  userCount: `/api_query/orders/count`,
-  userAsset: `/api_query/users/asset`,
-  userGrowLogs: `/api_users/score_logs/lists`,
+  userRead: `/api_users/users/read`,
+  userUpdate: `/api_users/users/update`,
   userBonus: `/api_bonus/rules/become_bonus_info`,
   userBonusRead: `/api_bonus/user_apply_bonus/read`,
   userCompleteInfo: `/api_users/users/complete_user_info`,
   userDrp: `/api_drp/rules/become_distributor_info`,
   userDrpRead: `/api_drp/user_apply_distributor/read`,
-  // 个人中心设置
+  // 用户设置
   userSettingPass: `/api_users/user_accounts/reset_password`,
   userSettingPayPass: `/api_users/user_accounts/reset_pay_password`,
-  userSettingUpdate: `/api_users/users/update`,
   userMobileModify: `/api_users/user_accounts/change_mobile`,
+  setPayPass: `/api_query/users/is_set_pay_password`,
   // 反馈
   submitHelpAndOption: `/api_articles/feedbacks/save`,
   // 订单相关
@@ -72,6 +67,7 @@ export const api = {
   orderTip: `/api_orders/tip_deliver/tip`,
   orderPrePay: `/api_orders/pay/pre_pay`,
   orderMoney: `/api_orders/pay/money`,
+  orderCount: `/api_query/orders/count`,
   // orderAliPayApp: `/api_orders/pay/ali_pay_app`,
   // orderWechatPayApp: `/api_orders/pay/wechat_pay_app`,
   orderRefound: `/api_orders/return_goods/save`,
@@ -83,8 +79,8 @@ export const api = {
   // 订单是否支付
   orderIsPay: `/api_query/pay/is_pay`,
   // 收藏夹
-  collections: `/api_goods/goods_collections/lists`,
-  collectionsDelete: `/api_goods/goods_collections/delete`,
+  collectionList: `/api_goods/goods_collections/lists`,
+  collectionDelete: `/api_goods/goods_collections/delete`,
   // 地址 
   addressList: `/api_users/addresses/lists`,
   addressSetDefault: `/api_users/addresses/set_default`,
@@ -146,4 +142,7 @@ export const api = {
   // 收款账户
   userRhirdAcc: `/api_users/user_third_accounts/lists`,
   userRhirdUpdate: `/api_users/user_third_accounts/update`,
+  // 资产
+  userAssetRead: `/api_query/users/asset`,
+  scoreLogList: `/api_users/score_logs/lists`,
 }

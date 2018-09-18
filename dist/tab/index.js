@@ -27,14 +27,10 @@ Component({
   methods: {
     _handleZanTabChange(e) {
       const selectedId = e.currentTarget.dataset.itemId;
-
       this.setData({
         selectedId
       });
-
-      // console.info('[zan:tab:change] selectedId:', selectedId);
-      this.triggerEvent('tabchange', selectedId);
-      
+      this.triggerEvent('tabChange', selectedId);
     }
   }
 });

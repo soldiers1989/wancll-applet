@@ -41,7 +41,7 @@
       class="zan-tab__title"
       style="{{ height ? 'height:' + height + 'px;line-height:' + height + 'px' : '' }}"
     >
-      {{ item.title }}
+      {{ item.name }}
     </view>
   </view>
 </template>

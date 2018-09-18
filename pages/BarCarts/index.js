@@ -1,6 +1,4 @@
 const APP = getApp();
-import PagingData from '../../utils/PagingData';
-const Paging = new PagingData();
 Page({
   data: {
     cartsList: [], // 购物车商品信息列表包含了sku信息组合
