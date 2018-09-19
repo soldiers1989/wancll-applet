@@ -15,7 +15,7 @@
       <view class="wancll-margin-20">支付处理中</view>
     </view>
     <view wx:if="{{isPay}}">
-      <i class="iconfont icon-roundcheckfill pay-success"></i>
+      <i style="font-size:1.5rem" class="iconfont icon-roundcheckfill pay-success"></i>
       <view class="wancll-margin-20">支付成功</view>
     </view>
   </view>
