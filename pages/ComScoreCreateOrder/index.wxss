@@ -163,7 +163,7 @@
 }
 
 .bottom {
-  height: 2.5rem;
+  height: 2.9rem;
   border-top: 1px solid #f4f4f4;
   overflow: hidden;
   position: fixed;
@@ -181,10 +181,10 @@
   width: 75%;
   text-align: right;
   display: inline-block;
-  line-height: 2.5rem;
+  line-height: 2.9rem;
   padding-right: 0.5rem;
   font-size: 0.9rem;
-  height: 2.5rem;
+  height: 2.9rem;
   color: #fff;
   background-color: rgb(160, 160, 160);
 }
@@ -192,7 +192,7 @@
 .bottom .submit {
   flex: 1;
   text-align: center;
-  line-height: 2.5rem;
+  line-height: 2.9rem;
   color: #fff;
   font-size: 0.9rem;
   background: linear-gradient(to bottom, #fc5458, #f4334b, #ee5176);
