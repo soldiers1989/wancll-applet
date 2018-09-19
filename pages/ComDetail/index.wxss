@@ -45,13 +45,14 @@
 }
 
 .detail-info .name {
-  font-size: 30rpx;
+  font-size: 0.8rem;
   line-height: 50rpx;
 }
 
 .detail-info .intro {
   line-height: 50rpx;
   color: #757575;
+  font-size: 0.6rem;
 }
 
 .detail-info .sales-info .sales-stock {
