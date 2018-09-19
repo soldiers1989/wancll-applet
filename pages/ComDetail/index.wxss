@@ -260,6 +260,7 @@
 
 .particulars {
   min-height: 200rpx;
+  padding-bottom: 100px;
 }
 
 .commonts {

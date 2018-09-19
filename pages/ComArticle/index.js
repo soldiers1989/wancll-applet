@@ -55,6 +55,7 @@ Page({
         wx.setNavigationBarTitle({
           title: res.data.title,
         });
+        res.data.content = APP.utils.richPicReplace(res.data.content);
         this.setData({
           article: res.data
         })

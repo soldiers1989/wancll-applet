@@ -172,6 +172,13 @@ function packageCascaderSelecteData(types, typeId, resultData) {
   }
 }
 
+// 富文本图片替换，以显示完全
+function richPicReplace(str) {
+  let result;
+  result = str.replace(new RegExp("<img", "gm"), '<img style="max-width:100%;height:auto" ');
+  return result;
+}
+
 module.exports = {
   getDataSet,
   paramsJoin,
@@ -180,5 +187,6 @@ module.exports = {
   timeDown,
   timeDowns,
   goModel,
-  packageCascaderSelecteData
+  packageCascaderSelecteData,
+  richPicReplace
 }
