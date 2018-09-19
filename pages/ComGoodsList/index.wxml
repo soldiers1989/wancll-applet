@@ -3,7 +3,7 @@
 <!-- 搜索 -->
 <view class='search_box' bindtap='goSearchPage'>
   <view class='search_input'>
-    <icon class='icon' type='sousuo'></icon>
+    <icon class='iconfont3 icon-sousuo1'></icon>
     <view class='input'>请输入搜索内容</view>
   </view>
 </view>

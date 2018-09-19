@@ -1,3 +1,5 @@
+@import "../../static/wxss/iconfont3.wxss";
+
 .search_box {
   display: flex;
   height: 80rpx;

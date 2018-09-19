@@ -1,5 +1,6 @@
 /**index.wxss**/
 @import "../../static/wxss/iconfont2.wxss";
+@import "../../static/wxss/iconfont3.wxss";
 
 .packet-bg {
   background: #333;
@@ -55,11 +56,11 @@
   margin: auto;
 }
 
-.search_box .search_input .icon {
+.search_box .search_input icon {
   flex: 40rpx 0 0;
-  font-size: 30rpx;
+  font-size: 1rem;
   border-left: 1px solid rgb(171, 171, 171);
-  line-height: 1.4rem;
+  line-height: 1.3rem;
   margin-left: 0.5rem;
   margin-right: 0.25rem;
   padding-left: 0.25rem;
