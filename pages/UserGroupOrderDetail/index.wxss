@@ -14,7 +14,7 @@
   background-size: 100%;
   height: 360rpx;
   line-height: 70rpx;
-  background-image: url('https://aimaiyoupin.com/public/static/wap/images/group_team.jpg');
+  background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/group_team.jpg');
   text-align: center;
 }
 
