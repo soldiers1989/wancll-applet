@@ -97,7 +97,7 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.goods,
       header: {
-        'page-limit': 10,
+        'page-limit': 20,
         'page-num': 1
       },
       data: {
@@ -115,7 +115,7 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.groupGoods,
       header: {
-        'page-limit': 10,
+        'page-limit': 20,
         'page-num': 1
       },
       success: (res) => {
@@ -129,7 +129,7 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.scoreGoods,
       header: {
-        'page-limit': 10,
+        'page-limit': 20,
         'page-num': 1
       },
       success: (res) => {
