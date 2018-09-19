@@ -92,6 +92,7 @@
   flex-wrap: wrap;
   padding: 0.75rem 0;
   text-align: center;
+  background-color:#fff;
 }
 
 .banner-list .list {

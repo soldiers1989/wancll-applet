@@ -24,5 +24,5 @@
   <zan-button size="small" type="danger">删除</zan-button>
 </view>
 <view class='addCard' data-id='new' catchtap='send'>
-  <button class="ylyy-button-big" disabled="{{loading}}" loading="{{loading}}">提交</button>
+  <button class="ylyy-button-big" disabled="{{loading}}" loading="{{loading}}">确定</button>
 </view>

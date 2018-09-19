@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "爱买优品",
-  "navigationBarBackgroundColor": "#3c9aeb",
-  "navigationBarTextStyle": "white",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "zan-icon": "../../dist/icon/index",
     "zan-panel": "../../dist/panel/index",

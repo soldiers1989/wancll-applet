@@ -159,9 +159,12 @@
 
 .open-member view:last-of-type {
   background: linear-gradient(to right, #dec04c, #e0a837, #e59523);
-  border-radius: 45rpx;
+  border-radius: 1.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  padding: 0 0.5rem;
+  font-size: 0.6rem;
   color: #fff;
-  padding: 18.75rpx;
 }
 
 .pending-list {
