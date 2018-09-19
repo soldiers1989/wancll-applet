@@ -34,6 +34,7 @@
   display: flex;
   height: 80rpx;
   background-color: rgb(255, 255, 255);
+  align-items: center;
 }
 
 .search_box .search_input {
@@ -54,16 +55,19 @@
 .search_box .search_input image {
   width: 2rem;
   margin: auto;
+  position: relative;
 }
 
-.search_box .search_input icon {
+.search_box .search_input i {
   flex: 40rpx 0 0;
   font-size: 1rem;
   border-left: 1px solid rgb(171, 171, 171);
-  line-height: 1.3rem;
   margin-left: 0.5rem;
   margin-right: 0.25rem;
   padding-left: 0.25rem;
+  height: 15px;
+  line-height: 0.9rem;
+  margin-top: 10rpx;
 }
 
 .search_box .search_input .input {
@@ -93,7 +97,7 @@
   flex-wrap: wrap;
   padding: 0.75rem 0;
   text-align: center;
-  background-color:#fff;
+  background-color: #fff;
 }
 
 .banner-list .list {
