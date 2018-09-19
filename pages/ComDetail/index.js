@@ -251,7 +251,7 @@ Page({
   // 点击立即开通
   goMember() {
     wx.navigateTo({
-      // url: '/pages/',
+      url: '/pages/ComBuyMember/index',
     })
   },
   // 切换详情和评价
