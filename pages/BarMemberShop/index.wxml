@@ -18,7 +18,8 @@
     <view class='user'>
       <image class="logo" mode="widthFix" src="https://www.aimaiyoupin.com/public/static/wap/images/member_logo.png"></image>
       <view class='avatar'>
-        <image mode="widthFix" src="{{user.avatar}}"></image>
+        <!-- <image mode="widthFix" src="{{user.avatar}}"></image> -->
+        <image src="{{user.avatar}}"></image>
       </view>
       <view class='info'>
         <view class="name">

@@ -53,7 +53,8 @@
         <block wx:for="{{teams}}" wx:key="index" wx:for-item="team">
         <view class="item" wx:for="{{team.info}}" wx:key="index" wx:for-item="user">
           <view class="avatar">
-            <image mode="widthFix" src="{{user.user_info.avatar || userAvatar}}"></image>
+            <!-- <image mode="widthFix" src="{{user.user_info.avatar || userAvatar}}"></image> -->
+            <image src="{{user.user_info.avatar || userAvatar}}"></image>
           </view>
           <view class="name">{{user.user_info.nick_name || '匿名用户'}}</view>
           <view class="info">

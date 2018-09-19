@@ -11,7 +11,7 @@
 
   <view class="status  wancll-text-center">
     <view>
-      <i class="iconfont icon-roundcheckfill pay-success"></i>
+      <i style="font-size:1.5rem" class="iconfont icon-roundcheckfill pay-success"></i>
       <view class="wancll-margin-20">支付成功</view>
     </view>
   </view>

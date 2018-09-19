@@ -7,7 +7,7 @@
   background-image: url('https://www.aimaiyoupin.com/public/static/wap/images/v-bg.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  height:8rem;
+  height: 10rem;
   color: #fff;
   text-align: center;
   font-size: 18px;
@@ -43,7 +43,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  height:180rpx;
+  height: 180rpx;
 }
 
 .user .logo {
@@ -59,7 +59,9 @@
 }
 
 .user .avatar image {
-  width: 100%;
+  /* width: 100%; */
+  width: 120rpx;
+  height: 120rpx;
   background: #eee;
   border-radius: 50%;
 }
@@ -92,7 +94,7 @@
 }
 
 .user .sign .real-sign {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   text-align: center;
   font-size: 0.5rem;
   background: #fff;
