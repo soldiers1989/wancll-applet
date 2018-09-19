@@ -1,0 +1,12 @@
+.bankicon{
+  font-size: 70rpx;
+}
+.card-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+.card-container{
+  margin-bottom: 120rpx;
+}

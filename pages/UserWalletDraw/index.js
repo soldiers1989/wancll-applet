@@ -1,5 +1,11 @@
-import { getData, submit } from './data.js';
-const APP = getApp();
+import {
+  getBankCardList,
+  submit
+} from './data.js'
+import {
+  queryIsSetPayPassword,
+} from '../../utils/common.js'
+const APP = getApp()
 Page({
   data: {
     money: '',
@@ -7,24 +13,27 @@ Page({
       bank_name: '',
       card_number: ''
     },
-    cards: [],
-    pageNum: 1,
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
     popupShow: false,
-    passPopup: false,
-    pass: ''
+    passwordPopup: false,
+    password: ''
   },
   onLoad(options) {
-    getData(this);
+    getBankCardList(this)
   },
   // 选择银行卡
   selectCard(e) {
+    let card = APP.util.getDataSet(e, 'card')
     this.setData({
-      card: e.currentTarget.dataset.card,
+      card: card,
     })
-    this.togglePopupShow();
+    this.togglePopupShow()
   },
   // 金额输入
-  bindMoney(e) {
+  moneyInput(e) {
     this.setData({
       money: e.detail.value,
     })
@@ -35,34 +44,25 @@ Page({
       popupShow: !this.data.popupShow,
     })
   },
-  addBank(){
+  addBank() {
     wx.navigateTo({
       url: `/pages/UserCardEidt/index?id=new`,
     })
   },
   // 提交
   submit() {
-    let that = this;
-    if (!this.data.money || !this.data.card.id) {
-      return;
+    if(!this.data.money){
+      APP.util.toast('请输入提现金额')
+      return
     }
-    APP.ajax({
-      url: APP.api.setPayPass,
-      success(res) {
-        if (res.data.is_set_pay_password == 1) {
-          that.togglePassPopup()
-        } else {
-          wx.showToast({
-            title: '请设置支付密码',
-            icon: 'none',
-          })
-          setTimeout(() => {
-            wx.navigateTo({
-              url: `/pages/UserSettingPass/index?id=1`,
-            })
-          }, 500)
-        }
-      }
+    if(!this.data.card.id){
+      APP.util.toast('请选择收款银行卡')
+      return
+    }
+    queryIsSetPayPassword().then(() => {
+      this.togglePasswordPopup()
+    }).catch(err => {
+      console.warn(err)
     })
   },
   sendMoney() {
@@ -70,20 +70,14 @@ Page({
   },
   passwordInput(e) {
     this.setData({
-      pass: e.detail.value
+      password: e.detail.value
     })
   },
   // 切换弹出层隐显
-  togglePassPopup() {
+  togglePasswordPopup() {
     this.setData({
-      passPopup: !this.data.passPopup
-    });
-  },
-  onPullDownRefresh() {
-
-  },
-  onReachBottom() {
-
+      passwordPopup: !this.data.passwordPopup
+    })
   },
   onShareAppMessage() {
 

@@ -105,7 +105,7 @@
             <icon class='icon color-y' type="qianbao"></icon>
             <view class='text'>我的钱包</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserCard">
+          <view class='pending' catchtap='goSubPages' data-target="UserBankCard">
             <icon class='icon color-r' type="yinhangqia"></icon>
             <view class='text'>我的银行卡</view>
           </view>

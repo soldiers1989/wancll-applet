@@ -147,28 +147,75 @@ function queryUserInfoByUnionId(resData, that) {
 }
 
 // 代理微信支付
-function handleWechatPay(orderNo, payType) {
-  wx.showLoading()
-  wx.login({
-    success(res) {
-      if (res.code) {
+function handleWechatPay(orderNo) {
+  return new Promise((resolve, reject) => {
+    wx.login({
+      success(res) {
         APP.ajax({
           url: APP.api.wechatPay,
           data: {
             code: res.code,
-            order_no: orderNo
+            order_no: orderNo,
           },
         }).then(res => {
-          wx.hideLoading()
-          res.data.success = function(res) {
-            wx.redirectTo({
-              url: `/pages/ComPayWaiting/index?orderNo=${orderNo}&payType=${payType}`,
-            })
-          }
+          // 支付成功 resolve
+          res.data.success = resolve
           wx.requestPayment(res.data)
-        }).then(err => {})
+        }).catch(err => {
+          reject(err)
+        })
+      },
+      fail(err) {
+        reject(err)
       }
-    }
+    })
+  })
+}
+// 查询订单是否支付
+function queryOrderIsPay(orderNo) {
+  wx.showLoading({
+    title: '支付处理中',
+  })
+  return new Promise((resolve, reject) => {
+    let intervalInt = setInterval(() => {
+      APP.ajax({
+        url: APP.api.orderIsPay,
+        data: {
+          order_no: orderNo
+        },
+      }).then(res => {
+        if (res.data.is_pay == 1) {
+          wx.hideLoading()
+          APP.util.toast('支付成功')
+          clearInterval(intervalInt)
+          resolve()
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }, 3000)
+  })
+}
+// 查询是否设置支付密码
+function queryIsSetPayPassword() {
+  return new Promise((resolve, reject) => {
+    APP.ajax({
+      url: APP.api.userIsSetPayPassword,
+    }).then(res => {
+      if (res.data.is_set_pay_password == 1) {
+        resolve()
+      } else {
+        APP.util.toast('请设置支付密码')
+        setTimeout(() => {
+          wx.navigateTo({
+            url: `/pages/UserSettingPass/index?type=2`,
+          })
+        }, 500)
+        reject()
+      }
+    }).catch(err => {
+      reject(err)
+    })
   })
 }
 
@@ -176,4 +223,6 @@ export {
   chooseImage,
   handleWechatLogin,
   handleWechatPay,
+  queryOrderIsPay,
+  queryIsSetPayPassword,
 }

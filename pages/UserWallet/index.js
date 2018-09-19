@@ -1,31 +1,26 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     walletInfo: {}
   },
-  onLoad(options) {
-    this.getAssetData();
+  onLoad(options) {},
+  onShow(){
+    this.getAssetData()
   },
-  getAssetData(){
-    let that = this;
+  getAssetData() {
     APP.ajax({
       url: APP.api.myWallet,
-      success(res) {
-        wx.stopPullDownRefresh();
-        that.setData({
-          walletInfo: res.data
-        })
-      },
-      fail(err) {
-        wx.stopPullDownRefresh();
-      }
+    }).then(res => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        walletInfo: res.data,
+      })
+    }).catch(err => {
+      wx.stopPullDownRefresh()
     })
   },
   onPullDownRefresh() {
-    this.getAssetData();
-  },
-  onReachBottom() {
-
+    this.getAssetData()
   },
   onShareAppMessage() {
 

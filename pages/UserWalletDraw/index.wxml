@@ -7,8 +7,8 @@
 
 <view class="wancll-padded-20 wancll-bg-white">
   <text>提现金额(元)</text>
-  <input type="digit" class="input wancll-margin-b-20" bindinput='bindMoney'></input>
-  <button class="wancll-margin-b-10 wancll-bg-info wancll-text-white" catchtap='submit'>提交</button>
+  <input type="digit" class="input wancll-margin-b-20" bindinput='moneyInput'></input>
+  <button class="wancll-margin-b-10 wancll-bg-info wancll-text-white" catchtap='submit' loading='{{loading}}' disabled='{{loading}}'>提交</button>
 </view>
 
 <zan-popup show="{{ popupShow }}" type="bottom" bindclose="togglePopupShow">
@@ -20,7 +20,7 @@
       </view>
     </zan-panel>
     <scroll-view scroll-y style="height: 450px;" class="wancll-bg-white">
-      <view class="wancll-bg-white wancll-padded-15 wancll-margin-b-10 clearfix" wx:for="{{cards}}" wx:key="key" data-card="{{item}}" bindtap="selectCard">
+      <view class="wancll-bg-white wancll-padded-15 wancll-margin-b-10 clearfix" wx:for="{{list}}" wx:key="key" data-card="{{item}}" bindtap="selectCard">
         <view class="wancll-col-xs-2 wancll-fl">
           <i class="{{'bankicon iconfont ' + item.fontClass}}" style="{{'color: ' + item.color}}"></i>
         </view>
@@ -36,7 +36,7 @@
 </zan-popup>
 
 <!-- 密码选择 -->
-<zan-popup show="{{ passPopup }}" bindclose="togglePassPopup">
+<zan-popup show="{{ passwordPopup }}" bindclose="togglePasswordPopup">
   <view class="zan-btns">
     <view class='popup-warpper'>
       <zan-panel>
@@ -45,7 +45,7 @@
       <input bindinput='passwordInput' type='password'></input>
       <view class='select'>
         <zan-button class='yes' catchtap='sendMoney'> 确定 </zan-button>
-        <zan-button class='no' catchtap="togglePassPopup"> 取消 </zan-button>
+        <zan-button class='no' catchtap="togglePasswordPopup"> 取消 </zan-button>
       </view>
     </view>
   </view>

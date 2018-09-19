@@ -1,4 +1,4 @@
-<view class='item' wx:for="{{goodsComments}}" wx:key="key">
+<view class='item' wx:for="{{list}}" wx:key="key">
   <view class='center-info'>
     <view class='image-warpper'>
       <image class='image' src='{{item.order_goods_info.thum}}' mode="widthFix"></image>
@@ -34,7 +34,7 @@
   </view>
 </view>
 
-<view wx:if="{{FPage.noContent}}" class="no-content-image">
-  <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+<view wx:if="{{haveNoData}}" class="no-content-image">
+  <image mode="widthFix" src="{{noContentImg}}"></image>
   <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>

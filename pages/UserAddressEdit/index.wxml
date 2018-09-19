@@ -11,7 +11,7 @@
   </zan-panel>
   <view class="plant">
     <view class='title'>当前选择：</view>
-    <view class='context' bindtap="showPicker" >{{showAddress}}</view>
+    <view class='context' bindtap="showPicker">{{showAddress}}</view>
   </view>
   <zan-panel>
     <view class='plant'>
@@ -34,7 +34,7 @@
   </view>
   <zan-panel>
     <view class='padding'>
-      <button class="wancll-bg-info wancll-text-white" catchtap='send' disabled="{{loading}}" loading='{{loading}}'>提交</button>
+      <button class="wancll-bg-info wancll-text-white" catchtap='submit' disabled="{{loading}}" loading='{{loading}}'>提交</button>
     </view>
   </zan-panel>
 </zan-panel>

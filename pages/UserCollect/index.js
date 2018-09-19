@@ -23,7 +23,8 @@ Page({
   },
   onPullDownRefresh() {
     this.setData({
-      page: 1
+      page: 1,
+      list: [],
     })
     this.getList()
     wx.stopPullDownRefresh()

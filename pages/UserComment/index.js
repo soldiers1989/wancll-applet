@@ -1,37 +1,44 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
-    goodsComments: [],
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    haveNoData: false,
+    page: 1,
+    noContentImg: APP.imgs.noContentImg,
   },
   onLoad(options) {
-    Paging.init({
-      type: 2,
-      that: this,
-      url: 'itemComments',
-      pushData: 'goodsComments',
-      getFunc: this.getData
+    this.getList()
+  },
+  getList() {
+    APP.ajax({
+      url: APP.api.userComments,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1
+      })
+    }).catch(err => {})
+  },
+  onPullDownRefresh() {
+    this.setData({
+      page: 1,
+      list: [],
     })
-    this.getData();
+    this.getList()
+    wx.stopPullDownRefresh()
   },
-  getData() {
-    Paging.getPagesData()
-  },
-  onPullDownRefresh: function () {
-    Paging.refresh()
-  },
-  onReachBottom: function () {
-    this.getData();
+  onReachBottom() {
+    this.getList()
   },
   previewImg(e) {
-    let imgs = e.currentTarget.dataset.imgs;
-    let currentImg = e.currentTarget.dataset.currentimg;
+    let imgs = APP.util.getDataSet(e, 'imgs')
+    let currentImg = APP.util.getDataSet(e, 'currentimg')
     wx.previewImage({
       urls: imgs,
       current: currentImg,

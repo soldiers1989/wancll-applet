@@ -1,25 +1,26 @@
-const APP = getApp();
-import { handleWechatPay } from '../../utils/common.js';
-import { payType } from '../../api/config.js';
+const APP = getApp()
+import {
+  handleWechatPay,
+  queryOrderIsPay,
+} from '../../utils/common.js'
 Page({
   data: {
-    money: ''
+    money: '',
+    loading: false,
   },
-  onLoad(options) {
-
-  },
-  bindMoney(e) {
+  onLoad(options) {},
+  moneyInput(e) {
     this.setData({
       money: e.detail.value
     })
   },
   payMoney() {
     if (!this.data.money) {
-      wx.showToast({
-        title: '请填写正确的金额',
-        icon: 'none',
-      })
+      APP.util.toast('请填写正确的金额')
     } else {
+      this.setData({
+        loading: true,
+      })
       APP.ajax({
         url: APP.api.recharge,
         data: {
@@ -27,14 +28,33 @@ Page({
           asset_type: 'money',
           type: 1
         },
-        success(res) {
-          // 微信支付
-          handleWechatPay(res.data.order_no, payType.rechargeOrderPay);
-        }
+      }).then(res => {
+        handleWechatPay(res.data.order_no).then(() => {
+          queryOrderIsPay(res.data.order_no).then(() => {
+            setTimeout(()=>{
+              wx.navigateBack({
+                delta: 1,
+              })
+            }, 500)
+          }).catch(err=>{
+            this.setData({
+              loading: false,
+            })
+            console.log(err)
+          })
+        }).catch(err => {
+          this.setData({
+            loading: false,
+          })
+          console.log(err)
+        })
+      }).catch(err => {
+        this.setData({
+          loading: false,
+        })
+        console.log(err)
       })
     }
   },
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })

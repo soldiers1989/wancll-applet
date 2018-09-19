@@ -1,8 +1,12 @@
 .address-list{
-  padding-bottom: 20rpx;
+  padding-bottom: 90rpx;
 }
 .add-address{
   padding: 20rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .item{
   margin-bottom: 20rpx;

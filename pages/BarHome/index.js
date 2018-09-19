@@ -42,7 +42,8 @@ Page({
   onPullDownRefresh() {
     getData()
     this.setData({
-      page: 1
+      page: 1,
+      goodsList:[],
     })
     getGoodsList(this)
   },

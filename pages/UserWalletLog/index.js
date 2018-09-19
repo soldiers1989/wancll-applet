@@ -1,53 +1,45 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
-    logs: [],
-    pageNum: 1,
-    pageLimit: 10,
-    loading: true,
+    list: [],
+    page: 1,
+    haveNoContent: false,
+    noContentImg: APP.imgs.noContentImg,
   },
   onLoad(options) {
-    this.getData()
+    this.getList()
   },
-  getData() {
-    let that = this
-    let pageNum = this.data.pageNum;
-    let logs = this.data.logs
+  getList() {
     APP.ajax({
       url: APP.api.myWalletLog,
       header: {
-        'page-limit': that.data.pageLimit,
-        'page-num': pageNum,
+        'page-limit': 10,
+        'page-num': this.data.page,
       },
-      success(res) {
-        wx.stopPullDownRefresh();
-        that.setData({
-          loading: false
-        })
-        if (res.data.length) {
-          that.setData({
-            logs: logs.concat(res.data),
-            pageNum: ++pageNum
-          })
-        }
+      data: {
+        asset_type: 'money',
       },
-      fail(err){
-        wx.stopPullDownRefresh();
-      }
-    })
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1
+      })
+    }).catch(err => [
+      console.log(err)
+    ])
   },
   onPullDownRefresh() {
     this.setData({
-      logs: [],
-      pageNum: 1
-    });
-    this.getData();
+      list: [],
+      page: 1,
+    })
+    this.getList()
+    wx.stopPullDownRefresh()
   },
-
   onReachBottom() {
-    this.getData()
+    this.getList()
   },
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })

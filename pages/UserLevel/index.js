@@ -11,25 +11,26 @@ Page({
     haveNoData: false,
     noContentImg: APP.imgs.noContentImg,
   },
-  onLoad: function(options) {
+  onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user'),
     })
     userAssetRead(this)
     getList(this)
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh() {
     wx.stopPullDownRefresh()
     this.setData({
       page: 1,
+      list: [],
     })
     getList(this)
     userAssetRead(this)
   },
-  onReachBottom: function() {
+  onReachBottom() {
     getList(this)
   },
-  onShareAppMessage: function() {
+  onShareAppMessage() {
 
   }
 })

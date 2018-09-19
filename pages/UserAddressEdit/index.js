@@ -1,4 +1,4 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     condition: false,
@@ -15,55 +15,55 @@ Page({
     showAddress: '请选择地址',
     loading: false,
   },
-
   onLoad(options) {
-
     // 编辑模式 先获取地址
     if (options.id) {
       wx.setNavigationBarTitle({
         title: '编辑地址',
       })
-      APP.ajax({
-        url: APP.api.addressRead,
-        data: {
-          id: options.id
-        },
-        success: res => {
-          let data = res.data;
-          this.setData({
-            isEdit: true,
-            id: data.id,
-            enterName: data.consignee_name,
-            enterMobile: data.mobile,
-            enterTextarea: data.address,
-            enterDefault: data.is_default,
-            province: {
-              name: data.province,
-              code: data.province_code
-            },
-            city: {
-              name: data.city,
-              code: data.city_code
-            },
-            county: {
-              name: data.area,
-              code: data.area_code
-            }
-          }, () => {
-            this.pinAddress()
-          })
-        }
-      })
+      this.getAddress(options.id)
     } else {
       wx.setNavigationBarTitle({
         title: '新增地址',
       })
     }
   },
+  getAddress(id) {
+    APP.ajax({
+      url: APP.api.addressRead,
+      data: {
+        id: id
+      },
+    }).then(res => {
+      let data = res.data
+      this.setData({
+        isEdit: true,
+        id: data.id,
+        enterName: data.consignee_name,
+        enterMobile: data.mobile,
+        enterTextarea: data.address,
+        enterDefault: data.is_default,
+        province: {
+          name: data.province,
+          code: data.province_code
+        },
+        city: {
+          name: data.city,
+          code: data.city_code
+        },
+        county: {
+          name: data.area,
+          code: data.area_code
+        }
+      }, () => {
+        this.pinAddress()
+      })
+    })
+  },
   pinAddress() {
-    let showAddress;
+    let showAddress
     if (this.data.province.name == this.data.city.name) {
-      showAddress = this.data.province.name;
+      showAddress = this.data.province.name
     } else {
       showAddress = `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
     }
@@ -74,9 +74,9 @@ Page({
   showPicker() {
     this.setData({
       condition: true
-    },()=>{
+    }, () => {
       this.pinAddress()
-    });
+    })
   },
   // 默认地址选择
   getCitys(e) {
@@ -111,47 +111,35 @@ Page({
       enterTextarea: e.detail.value
     })
   },
-  // 新增
-  send() {
+  // 提交
+  submit() {
     if (!this.data.enterName) {
-      wx.showToast({
-        title: '请输入收货人名字',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请输入收货人名字')
+      return
     }
     if (!this.data.enterMobile) {
-      wx.showToast({
-        title: '请输入收货人联系电话',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请输入收货人联系电话')
+      return
     }
     if (!APP.validator.mobile(this.data.enterMobile)) {
-      wx.showToast({
-        title: '手机格式不正确',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('手机格式不正确')
+      return
     }
     if (!this.data.enterTextarea) {
-      wx.showToast({
-        title: '请输入详细地址',
-        icon: 'none'
-      })
-      return;
+      APP.util.toast('请输入详细地址')
+      return
     }
-    let api = '';
+    let url = ''
     if (!this.data.isEdit) {
-      api = APP.api.addressSave
+      url = APP.api.addressSave
     } else {
-      api = APP.api.addressUpdate
+      url = APP.api.addressUpdate
     }
     this.setData({
       loading: true
     })
     APP.ajax({
-      url: api,
+      url: url,
       data: {
         id: this.data.id,
         address: this.data.enterTextarea,
@@ -162,17 +150,17 @@ Page({
         mobile: this.data.enterMobile,
         province_code: this.data.province.code,
       },
-      success: res => {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
         })
-        setTimeout(() => {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 1000)
-      }
+      }, 1000)
+    }).catch(err => {
+      this.setData({
+        loading: false
+      })
     })
   }
 })

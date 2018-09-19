@@ -16,10 +16,9 @@ App({
     if (!wx.getStorageSync('citys')) {
       ajax({
         url: api.addressRegions,
-        success(res) {
-          wx.setStorageSync('citys', res.data)
-        }
-      })
+      }).then(res => {
+        wx.setStorageSync('citys', res.data)
+      }).catch(err => {})
     }
   },
   ajax,

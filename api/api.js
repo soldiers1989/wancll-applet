@@ -58,7 +58,7 @@ export const api = {
   userSettingPass: `/api_users/user_accounts/reset_password`,
   userSettingPayPass: `/api_users/user_accounts/reset_pay_password`,
   userMobileModify: `/api_users/user_accounts/change_mobile`,
-  setPayPass: `/api_query/users/is_set_pay_password`,
+  userIsSetPayPassword: `/api_query/users/is_set_pay_password`,
   // 反馈
   submitHelpAndOption: `/api_articles/feedbacks/save`,
   // 订单相关
@@ -76,7 +76,6 @@ export const api = {
   orderComments: `/api_goods/goods_comments/save`,
   orderDelete: `/api_orders/orders/delete`,
   orderDetail: `/api_orders/orders/read`,
-  // 订单是否支付
   orderIsPay: `/api_query/pay/is_pay`,
   // 收藏夹
   collectionList: `/api_goods/goods_collections/lists`,
@@ -90,18 +89,18 @@ export const api = {
   addressSave: `/api_users/addresses/save`,
   addressUpdate: `/api_users/addresses/update`,
   // 我的评论
-  itemComments: `/api_goods/goods_comments/lists`,
+  userComments: `/api_goods/goods_comments/lists`,
   // 我的钱包
   myWallet: `/api_query/users/asset`,
   myWalletLog: `/api_users/user_asset_logs/lists`,
   recharge: `/api_users/user_recharges/save`,
   withdraw: `/api_users/user_drawcashs/save`,
   // 我的银行卡
-  myBankCard: `/api_users/bank_cards/lists`,
-  myBankCardRead: `/api_users/bank_cards/read`,
-  myBankCardUpdate: `/api_users/bank_cards/update`,
-  myBankCardSave: `/api_users/bank_cards/save`,
-  myBankCardDelete: `/api_users/bank_cards/delete`,
+  bankCardList: `/api_users/bank_cards/lists`,
+  bankCardRead: `/api_users/bank_cards/read`,
+  bankCardUpdate: `/api_users/bank_cards/update`,
+  bankCardSave: `/api_users/bank_cards/save`,
+  bankCardDelete: `/api_users/bank_cards/delete`,
   // 优惠券
   myDiscount: `/api_users/user_coupons/lists`,
   myDiscountReceive: `/api_users/user_coupons/receive`,

@@ -1,5 +1,7 @@
-const APP = getApp();
-import { uploadFile } from '../../utils/common.js';
+const APP = getApp()
+import {
+  chooseImage,
+} from '../../utils/common.js'
 Page({
   data: {
     name: '',
@@ -8,13 +10,11 @@ Page({
     idcardBack: APP.imgs.idcardBackExample,
     uploadCardFront: APP.imgs.uploadCardFront,
     uploadCardBack: APP.imgs.uploadCardBack,
-
     status: '',
     id: '',
-
     loading: false,
   },
-  onLoad: function (options) {
+  onLoad(options) {
     if (options.id) {
       this.setData({
         id: options.id,
@@ -22,70 +22,59 @@ Page({
       })
     }
   },
-  onReady: function () {
-
-  },
-  nameChange(e) {
+  nameInput(e) {
     this.setData({
       name: e.detail.value
     })
   },
-  idcardChange(e) {
+  idcardInput(e) {
     this.setData({
       idcard: e.detail.value
     })
   },
+  // 上传文件
   uploadFile(e) {
-    let that = this;
-    uploadFile((imgPath) => {
-      that.setData({
-        [e.currentTarget.dataset.type]: imgPath,
+    let type = APP.util.getDataSet(e, 'type')
+    chooseImage({
+      count: 1,
+    }).then(values => {
+      this.setData({
+        [type]: values[0],
       })
-    })
+    }).catch(err => {})
   },
+  // 提交
   submit() {
     if (!this.data.name) {
-      wx.showToast({
-        title: '请填写真实姓名',
-        icon: 'none'
-      });
-      return;
+      APP.util.toast('请填写真实姓名')
+      return
     }
     if (!this.data.idcard) {
-      wx.showToast({
-        title: '请填写身份证号码',
-        icon: 'none'
-      });
-      return;
+      APP.util.toast('请填写身份证号码')
+      return
     }
     if (this.data.idcardFront == APP.imgs.idcardFrontExample) {
-      wx.showToast({
-        title: '情上传身份证正面照',
-        icon: 'none'
-      });
-      return;
+      APP.util.toast('请上传身份证正面照')
+      return
     }
     if (this.data.idcardBack == APP.imgs.idcardBackExample) {
-      wx.showToast({
-        title: '情上传身份证反面照',
-        icon: 'none'
-      });
-      return;
+      APP.util.toast('请上传身份证反面照')
+      return
     }
-
     let data = {
       id_card_front_img: this.data.idcardFront,
       id_card_back_img: this.data.idcardBack,
       status: 1,
       name: this.data.name,
-      id_card: this.data.idcard
-    };
-    let url = '';
+      id_card: this.data.idcard,
+      imgs: [],
+    }
+    let url = ''
     if (this.data.id) {
-      url = APP.api.updateAuthInfo;
+      url = APP.api.updateAuthInfo
       data.id = this.data.id
     } else {
-      url = APP.api.submitAuthInfo;
+      url = APP.api.submitAuthInfo
     }
     this.setData({
       loading: true
@@ -93,18 +82,18 @@ Page({
     APP.ajax({
       url: url,
       data: data,
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        })
-        setTimeout(() => {
-          wx.navigateBack();
-        }, 500)
-      }
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 500)
+    }).catch(err => {
+      this.setData({
+        loading: false,
+      })
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
 
   }
 })

@@ -4,19 +4,19 @@ const APP = getApp();
 function getData(that) {
   // 订单统计
   let orderCountPromise = APP.ajax({
-    url: APP.api.orderCount
+    url: APP.api.orderCount,
   })
   // 用户资产
   let userAssetPromise = APP.ajax({
-    url: APP.api.userAssetRead
+    url: APP.api.userAssetRead,
   })
   // 用户信息
   let userReadPromise = APP.ajax({
-    url: APP.api.userRead
+    url: APP.api.userRead,
   })
   // 系统信息
   let systemInfoPromise = APP.ajax({
-    url: APP.api.systemInfo
+    url: APP.api.systemInfo,
   })
   Promise.all([orderCountPromise, userAssetPromise, userReadPromise, systemInfoPromise]).then(resps => {
     let orderCount = resps[0].data
@@ -47,7 +47,7 @@ function queryAuthStatus(that) {
     let status = resp.data.status;
     if (status == 0) {
       wx.navigateTo({
-        url: `/pages/UserIdSubmit/index?status=${status}`,
+        url: `/pages/UserIdcardSubmit/index?status=${status}`,
       })
     } else if (status == 2) {
       wx.showToast({
@@ -56,15 +56,15 @@ function queryAuthStatus(that) {
       });
       setTimeout(() => {
         wx.navigateTo({
-          url: `/pages/UserIdSubmit/index?status=${status}&id=${resp.data.id}`,
+          url: `/pages/UserIdcardSubmit/index?status=${status}&id=${resp.data.id}`,
         })
       }, 1000)
     } else if (status == 1 || status == 3) {
       wx.navigateTo({
-        url: '/pages/UserIdInfo/index',
+        url: '/pages/UserIdcardInfo/index',
       })
     }
-  })
+  }).catch(err => {})
 }
 
 export {
