@@ -21,7 +21,7 @@
     <view class='selects-subpage'>
       <view class='subpage' bindtap="goSubPage" data-target="Order">
         <icon class='icon icon-r' type='chengjiaodingdan'></icon>
-        <view class='text'>分红订单</view>
+        <view class='text'>分销订单</view>
         <view class='other desc'>{{drpData.order_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Custs">
