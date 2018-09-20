@@ -24,6 +24,11 @@ function request(option, header) {
   let method = options.method || 'POST'
 
   return new Promise((resolve, reject) => {
+    if (!url) {
+      console.warn('api 设置错误')
+      reject(option)
+      return
+    }
     // 请求的封装
     wx.request({
       url: `${defaultHost}${url}`,

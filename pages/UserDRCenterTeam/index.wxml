@@ -1,4 +1,4 @@
-<zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
+<zan-tab id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
   <view class='title-cont'>
     <zan-row>
       <zan-col col="15" col-class="left">
@@ -11,7 +11,7 @@
     </zan-row>
   </view>
   <view class='lists'>
-    <view class='list' wx:for="{{teamUsers}}" wx:key="item">
+    <view class='list' wx:for="{{list}}" wx:key="item">
       <zan-row>
         <zan-col col="5" col-class="image">
           <image src="{{user.avatar}}" mode='widthFix'></image>
@@ -27,8 +27,8 @@
       </zan-row>
     </view>
   </view>
-  <view wx:if="{{FPage.noContent}}" class="no-content-image">
-    <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view wx:if="{{haveNoData}}" class="no-content-image">
+    <image mode="widthFix" src="{{noContentImg}}"></image>
     <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
   </view>
 </zan-tab>

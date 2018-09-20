@@ -1,37 +1,46 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
-    teamUsers:[],
-    user:{},
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
+    user: {},
+    team_info: {},
   },
   onLoad(options) {
     this.setData({
-      user:wx.getStorageSync('user')
+      user: wx.getStorageSync('user')
     })
-    Paging.init({
-      type: 1,
-      that: this,
-      url: 'bonusTeamUser',
-      pushData: 'teamUsers',
-      getStr: 'team_users',
-      getFunc: this.getOrderData
+    this.getList()
+  },
+  getList() {
+    APP.ajax({
+      url: APP.api.bonusTeamUser,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data.team_users))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1,
+        team_info: res.data.team_info,
+      })
     })
-    this.getOrderData()
   },
-  getOrderData() {
-    Paging.getPagesData()
-  },
+  // 下拉刷新
   onPullDownRefresh() {
-    Paging.refresh()
+    this.setData({
+      page: 1,
+      list: [],
+    })
+    this.getList()
   },
+  // 上拉加载
   onReachBottom() {
-    this.getOrderData()
+    this.getList()
   }
 })

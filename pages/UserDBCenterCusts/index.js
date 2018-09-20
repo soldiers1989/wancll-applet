@@ -3,39 +3,44 @@ Page({
   data: {
     user: {},
     // 分页数据
-    custsUser: [],
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
   },
   // 初始化
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user')
     })
-    Paging.init({
-      type:2,
-      that:this,
-      url:'bonusChildUser',
-      pushData:'custsUser',
-      getFunc: this.getOrderData
-    })
-    this.getOrderData()
+    this.getList()
   },
-  // 获取分页数据
-  getOrderData() {
-    Paging.getPagesData()
+  getList() {
+    APP.ajax({
+      url: APP.api.bonusChildUser,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1,
+      })
+    })
   },
   // 下拉刷新
   onPullDownRefresh() {
-    Paging.refresh()
+    this.setData({
+      page: 1,
+      list:[],
+    })
+    this.getList()
   },
   // 上拉加载
   onReachBottom() {
-    this.getOrderData()
+    this.getList()
   }
 })

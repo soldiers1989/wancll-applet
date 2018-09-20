@@ -1,54 +1,77 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     tabList: [{
       id: 0,
-      title: '所有订单'
+      name: '所有订单'
     }, {
       id: 1,
-      title: '待付款'
+      name: '待付款'
     }, {
       id: 2,
-      title: '已付款'
+      name: '已付款'
     }, {
       id: 3,
-      title: '已完成'
+      name: '已完成'
     }],
     tabSelectedId: 0,
-    orderList:[],
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
+    total_order_num: '',
+    total_except_money: '',
+    // 分页数据
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
+
+  },
+  onLoad(options) {
+    this.getList()
+  },
+  getList() {
+    let data = {}
+    if (this.data.tabSelectedId != 0) {
+      data.order_status = this.data.tabSelectedId
     }
-  },
-  onLoad (options) {
-    Paging.init({
-      type:1,
-      that:this,
-      url:'drpOrderList',
-      pushData:'orderList',
-      getStr:'orders',
-      getFunc: this.getOrderData
+    APP.ajax({
+      url: APP.api.drpOrderList,
+      data: data,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
+    }).then(res => {
+      let list = this.data.list.concat(res.data.orders)
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1,
+        total_except_money: res.data.total_except_money,
+        total_order_num: res.data.total_order_num,
+      })
+    }).catch(err => {
+      console.warn(err)
     })
-    this.getOrderData(this.data.tabSelectedId)
   },
-  getOrderData(status) {
-    let data = status != 0 ? { order_status: status } : {}
-    Paging.getPagesData({postData: data})
-  },
-  // 点击切换顶部的标签
-  tabchange(e) {
-    Paging.tabChange()
+  // 上拉加载
+  onReachBottom() {
+    this.getList()
   },
   // 下拉刷新
-  onPullDownRefresh () {
-    Paging.refresh()
+  onPullDownRefresh() {
+    this.setData({
+      page: 1,
+      list: [],
+    })
+    this.getList()
+    wx.stopPullDownRefresh()
   },
-  onReachBottom: function () {
-    this.getOrderData(this.data.tabSelectedId)
+  // 点击切换顶部的标签
+  tabChange(event) {
+    this.setData({
+      page: 1,
+      list: [],
+      tabSelectedId: event.detail
+    })
+    this.getList()
   }
-
 })

@@ -42,7 +42,7 @@
     <zan-panel hide-border="{{ true }}">
       <view class='bind' bindtap='bindWeiChartAccunt'>
         <icon class='icon' type="icon-"></icon>
-        <text wx:if="{{wx.id}}"> 更新</text> 
+        <text wx:if="{{wx.id}}"> 更新</text>
         <text wx:else> 未绑定</text>
       </view>
     </zan-panel>
@@ -50,6 +50,6 @@
 </view>
 
 <modal hidden="{{hidden}}" title="输入支付宝账号" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}">
-  <input value='{{account}}' class='m-input' bindinput='bindAccunt' placeholder="账户/手机/邮箱"></input>
-  <input value='{{name}}' class='m-input' bindinput='bindName' placeholder="真实姓名"></input>
+  <input value='{{account}}' class='m-input' bindinput='accountInput' placeholder="账户/手机/邮箱"></input>
+  <input value='{{name}}' class='m-input' bindinput='nameInput' placeholder="真实姓名"></input>
 </modal>

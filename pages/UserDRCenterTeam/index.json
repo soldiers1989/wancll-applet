@@ -6,5 +6,6 @@
     "zan-row": "../../dist/row/index",
     "zan-col": "../../dist/col/index",
     "icon": "../../components/icon/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

@@ -5,7 +5,6 @@
 .items .item{
   background: #fff;
   padding: 10px;
-  height: 120rpx;
   border-radius: 10px;
   margin-bottom: 15px;
   line-height: 60rpx;

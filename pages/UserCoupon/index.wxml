@@ -1,14 +1,14 @@
 <view class='conten'>
-  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
+  <zan-tab id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
   </zan-tab>
   <view class='convert'>
-    <input class='convert-input wancll-padded-l-10' bindinput='enterConvert' placeholder='请输入兑换码'></input>
+    <input class='convert-input wancll-padded-l-10' bindinput='codeInput' placeholder='请输入兑换码'></input>
     <view class='convert-btn'>
       <zan-button size='small' type="info" catchtap='convert'>兑换</zan-button>
     </view>
   </view>
   <view class='discount-list'>
-    <view class='discount' wx:for="{{discountList}}" wx:key="{{key}}" style="background-image:url({{item.bg_img}})">
+    <view class='discount' wx:for="{{list}}" wx:key="{{key}}" style="background-image:url({{item.bg_img}})">
       <view class='left' style="color:{{!item.is_expiry && item.status!=2 ? '#d50202':'#b8b8b8'}}">
         <view class="num">{{item.change_value}}
           <text>{{item.coupon_type =='full'?'元':'折'}}</text>
@@ -23,8 +23,8 @@
         <template is="see" data="{{...item}}" />
       </view>
     </view>
-    <view wx:if="{{FPage.noContent}}" class="no-content-image">
-      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+    <view wx:if="{{haveNoData}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
       <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
     </view>
   </view>

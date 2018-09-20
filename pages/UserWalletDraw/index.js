@@ -51,11 +51,11 @@ Page({
   },
   // 提交
   submit() {
-    if(!this.data.money){
+    if (!this.data.money) {
       APP.util.toast('请输入提现金额')
       return
     }
-    if(!this.data.card.id){
+    if (!this.data.card.id) {
       APP.util.toast('请选择收款银行卡')
       return
     }
@@ -66,6 +66,9 @@ Page({
     })
   },
   sendMoney() {
+    this.setData({
+      passwordPopup: false,
+    })
     submit(this)
   },
   passwordInput(e) {

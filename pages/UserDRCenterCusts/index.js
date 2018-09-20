@@ -1,36 +1,46 @@
 const APP = getApp();
 Page({
   data: {
-    custsUser: [],
     user: {},
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    // 分页数据
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
   },
-  onLoad: function (options) {
+  // 初始化
+  onLoad(options) {
     this.setData({
       user: wx.getStorageSync('user')
     })
-    Paging.init({
-      type:2,
-      that:this,
-      url:'drpChildUser',
-      pushData:'custsUser',
-      getFunc: this.getOrderData
+    this.getList()
+  },
+  getList() {
+    APP.ajax({
+      url: APP.api.drpChildUser,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1,
+      })
     })
-    this.getOrderData()
   },
-  getOrderData() {
-    Paging.getPagesData()
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.setData({
+      page: 1,
+      list: [],
+    })
+    this.getList()
   },
-  onPullDownRefresh () {
-    Paging.refresh()
-  },
-  onReachBottom () {
-    this.getOrderData()
+  // 上拉加载
+  onReachBottom() {
+    this.getList()
   }
 })

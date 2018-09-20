@@ -11,7 +11,7 @@
 </view>
 
 <view class='lists'>
-  <view class='list' wx:for="{{custsUser}}" wx:key="item">
+  <view class='list' wx:for="{{list}}" wx:key="item">
     <zan-row>
       <zan-col col="5" col-class="image">
         <image src="{{user.avatar}}" mode='widthFix'></image>
@@ -26,8 +26,8 @@
       </zan-col>
     </zan-row>
   </view>
-  <view wx:if="{{FPage.noContent}}" class="no-content-image">
-      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+  <view wx:if="{{haveNoData}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
       <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
     </view>
 </view>

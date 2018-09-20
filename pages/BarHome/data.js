@@ -1,9 +1,9 @@
 const APP = getApp()
-
+// 首页数据
 function getData(that) {
   // 获取首页轮播图  
   let bannersPromise = APP.ajax({
-    url: APP.api.indexBanners,
+    url: APP.api.bannerList,
     data: {
       type_id: 11
     }
@@ -61,7 +61,7 @@ function getData(that) {
     wx.stopPullDownRefresh()
   })
 }
-
+// 查询商品列表
 function getGoodsList(that) {
   APP.ajax({
     url: APP.api.goodsList,

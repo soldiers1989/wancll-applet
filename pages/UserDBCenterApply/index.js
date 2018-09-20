@@ -1,112 +1,101 @@
 const APP = getApp();
+import {
+  queryIsSetPayPassword,
+}
+from '../../utils/common.js'
 Page({
   data: {
     bonusData: {},
     bonusInfo: {},
-    payType:'',
-    inputData: '',
+    payType: '',
+    password: '',
     hidden: true,
     nocancel: false,
   },
-
-  onLoad: function (options) {
+  onLoad(options) {
     this.getData()
   },
-  getData(){
+  // 获取提现规则和提现金额
+  getData() {
     APP.ajax({
       url: APP.api.bonusRules,
-      success: res => {
-        this.setData({
-          bonusData: res.data,
-        })
-      }
+    }).then(res => {
+      this.setData({
+        bonusData: res.data,
+      })
+    }).catch(err => {
+      console.warn(err)
     })
     APP.ajax({
       url: APP.api.bonusCenter,
-      success: res => {
-        res.data.can_drawcash_money = Number(res.data.can_drawcash_money).toFixed(2)
-        this.setData({
-          bonusInfo: res.data,
-        })
-      }
+    }).then(res => {
+      res.data.can_drawcash_money = Number(res.data.can_drawcash_money).toFixed(2)
+      this.setData({
+        bonusInfo: res.data,
+      })
+    }).catch(err => {
+      console.warn(err)
     })
   },
-  inputData(e) {
+  // 密码输入
+  passwordInput(e) {
     this.setData({
       inputData: e.detail.value
     });
   },
-  cancel: function () {
+  // 取消
+  cancel() {
     this.setData({
-      hidden: true
+      hidden: true,
+      password: '',
     });
   },
-  confirm: function () {
+  // 确认
+  confirm() {
     this.setData({
       hidden: true
     });
     APP.ajax({
       url: APP.api.bonusPaySave,
       data: {
-        pay_password: this.data.inputData,
+        pay_password: this.data.password,
         receipt_type: this.data.payType
       },
-      success:res=>{
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1,
         })
-        this.getData()
-        this.setData({
-          inputData: '',
-        });
-        setTimeout(()=>{
-          wx.redirectTo({
-            url: `/pages/UserDBCenter/index`,
-          })
-        },500)
-      }
+      }, 500)
+    }).catch(err => {
+      this.setData({
+        password: '',
+      });
     })
   },
   payWallet() {
-    this.pay()
-    this.setData({
-      payType:'money'
-    })
+    queryIsSetPayPassword().then(() => {
+      this.setData({
+        payType: 'money',
+        hidden: false,
+      })
+    }).catch((err => {}))
   },
   payWx() {
-    this.pay()
-    this.setData({
-      payType: 'wechat'
-    })
+    queryIsSetPayPassword().then(() => {
+      this.setData({
+        payType: 'wechat',
+        hidden: true,
+      })
+    }).catch((err => {}))
   },
   payAli() {
-    this.pay()
-    this.setData({
-      payType: 'ali'
-    })
+    queryIsSetPayPassword().then(() => {
+      this.setData({
+        payType: 'ali',
+        hidden: true,
+      })
+    }).catch((err => {}))
   },
-
-  pay() {
-    APP.ajax({
-      url: APP.api.setPayPass,
-      success: (res) => {
-        if (res.data.is_set_pay_password == 1) {
-          this.setData({
-            hidden: !this.data.hidden
-          });
-        } else {
-          wx.showToast({
-            title: '请设置支付密码',
-            icon: 'none',
-          })
-          setTimeout(() => {
-            wx.navigateTo({
-              url: `/pages/UserSettingPass/index?id=1`,
-            })
-          }, 500)
-        }
-      }
-    })
-  }
 })

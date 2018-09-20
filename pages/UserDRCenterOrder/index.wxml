@@ -1,8 +1,8 @@
 <view>
-  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
-    <view class='list' wx:for="{{orderList}}" wx:key="item">
+  <zan-tab id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
+    <view class='list' wx:for="{{list}}" wx:key="item">
       <view class='list-info'>
-        <zan-row >
+        <zan-row>
           <zan-col col="18" col-class="left">
             <view style='margin-bottom:5px;'>{{item.source_user_info.nick_name}}（{{item.level}}级）</view>
             <view>{{item.order_info.order_no}}</view>
@@ -30,8 +30,8 @@
         </zan-row>
       </view>
     </view>
-    <view wx:if="{{FPage.noContent}}" class="no-content-image">
-      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+    <view wx:if="{{haveNoData}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
       <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
     </view>
   </zan-tab>

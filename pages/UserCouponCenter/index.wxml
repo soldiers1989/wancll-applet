@@ -1,11 +1,6 @@
 <view class='banner'>
-  <swiper 
-    class='banner_swiper' 
-    indicator-dots="{{indicatorDots}}" 
-    autoplay="{{autoplay}}" 
-    interval="{{interval}}" 
-    duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="key">
+  <swiper class='banner_swiper' indicator-dots="{{bannerConfig.indicatorDots}}" autoplay="{{bannerConfig.autoplay}}" interval="{{bannerConfig.interval}}" duration="{{bannerConfig.duration}}">
+    <block wx:for="{{bannerList}}" wx:key="key">
       <swiper-item>
         <image src="{{item.img}}" class="slide-image" mode="widthFix" />
       </swiper-item>
@@ -15,10 +10,7 @@
 <view class='coupon'>
   <view class='title'>领券优惠券</view>
   <view class='lists'>
-    <view class='list' 
-      wx:for="{{coupon}}" 
-      wx:key="index"
-      style="background-image:url({{item.bg_img}})">
+    <view class='list' wx:for="{{list}}" wx:key="index" style="background-image:url({{item.bg_img}})">
       <view class='coupon'>
         <view class='num'>
           {{item.change_value}}{{item.coupon_type=='full'?'元':'折'}}
@@ -31,4 +23,9 @@
       </view>
     </view>
   </view>
+</view>
+
+<view wx:if="{{haveNoData}}" class="no-content-image">
+  <image mode="widthFix" src="{{noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>

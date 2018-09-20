@@ -1,3 +1,4 @@
+<!-- 个人信息 -->
 <view class='panel'>
   <zan-panel>
     <view class='user'>
@@ -12,12 +13,13 @@
         </view>
         <view class="other">
           <view class='vip'>
-            <icon class='icon' type='huiyuan'></icon><text> {{user.user_level}}</text>
+            <icon class='icon' type='huiyuan'></icon>
+            <text> {{user.user_level}}</text>
           </view>
           <view class='grow' bindtap='goLevel'>
-            <icon class='icon' type='tubiao312'></icon> 
+            <icon class='icon' type='tubiao312'></icon>
             <text> 成长值: {{userAsset.score}} </text>
-            <icon class='icon' type='xiangyou1'></icon> 
+            <icon class='icon' type='xiangyou1'></icon>
           </view>
         </view>
       </view>
@@ -27,6 +29,7 @@
     </view>
   </zan-panel>
 </view>
+<!-- 订单 -->
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
@@ -74,7 +77,7 @@
     </zan-cell-group>
   </zan-panel>
 </view>
-
+<!-- 服务 -->
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
@@ -111,6 +114,22 @@
           </view>
         </view>
       </zan-panel>
+      <zan-panel hide-border="{{true}}" wx:if="{{systemInfo.is_open_bonus||systemInfo.is_open_drp}}">
+        <view class='pending-list'>
+          <view class='pending' catchtap='checkDRPage' wx:if="{{systemInfo.is_open_drp}}">
+            <icon class='icon color-r' type="daifahuo"></icon>
+            <view class='text'>分销中心</view>
+          </view>
+          <view class='pending' catchtap='checkDBPage' wx:if="{{systemInfo.is_open_bonus}}">
+            <icon class='icon color-y' type="shouhou"></icon>
+            <view class='text'>分红中心</view>
+          </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{systemInfo.is_open_bonus || systemInfo.is_open_drp}}">
+            <icon class='icon color-r' type="qianbao1"></icon>
+            <view class='text'>收款账户</view>
+          </view>
+        </view>
+      </zan-panel>
       <zan-panel>
         <view class='pending-list'>
           <view class='pending' catchtap='goCarts' data-target="BarCarts">
@@ -127,22 +146,7 @@
           </view>
         </view>
       </zan-panel>
-      <zan-panel hide-border="{{true}}" wx:if="{{is_open_bonus||is_open_drp}}">
-        <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="UserDRCenter" wx:if="{{systemInfo.is_open_drp}}">
-            <icon class='icon color-r' type="daifahuo"></icon>
-            <view class='text'>分销中心</view>
-          </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserDBCenter" wx:if="{{systemInfo.is_open_bonus}}">
-            <icon class='icon color-y' type="shouhou"></icon>
-            <view class='text'>分红中心</view>
-          </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{systemInfo.is_open_bonus || systemInfo.is_open_drp}}">
-            <icon class='icon color-r' type="qianbao1"></icon>
-            <view class='text'>收款账户</view>
-          </view>
-        </view>
-      </zan-panel>
+
     </zan-cell-group>
   </zan-panel>
 </view>

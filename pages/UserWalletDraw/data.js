@@ -110,7 +110,6 @@ function submit(that) {
     },
   }).then(res => {
     APP.util.toast(res.msg)
-    that.togglePasswordPopup()
     setTimeout(() => {
       wx.navigateBack({
         delta: 1
@@ -119,6 +118,7 @@ function submit(that) {
   }).catch(err => {
     that.setData({
       loading: false,
+      password: '',
     })
     console.warn(err)
   })

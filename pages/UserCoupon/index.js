@@ -1,109 +1,117 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     tabList: [{
       id: 1,
-      title: '未使用'
+      name: '未使用'
     }, {
       id: 2,
-      title: '已使用'
+      name: '已使用'
     }, {
       id: 3,
-      title: '已过期'
+      name: '已过期'
     }],
     tabSelectedId: 1,
-    discountList: [],
-    enterConvert: '',
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
+    convertCode: '',
   },
-  onLoad(options) {
-    Paging.init({
-      type: 2,
-      that: this,
-      url: 'myDiscount',
-      pushData: 'discountList',
-      getFunc: this.getList
+  onLoad(options) {},
+  onShow() {
+    this.setData({
+      page: 1,
+      list: []
     })
-    this.getList(this.data.tabSelectedId);
+    this.getList()
   },
   getList(status) {
     let data = {}
-    if (status == 3) {
-      data = { expiry_time: "" }
-    } else {
-      data = { status: status }
-    }
-    Paging.getPagesData({
-      postData: data,
-      handler: (data) => {
-        data.forEach(item => {
-          if (!item.is_expiry && item.status != 2) {
-            item.bg_img = APP.imgs.coupon
-          } else {
-            item.bg_img = APP.imgs.couponPass
-          }
-          item.change_value = parseFloat(item.change_value)
-        });
-        return data;
+    if (this.data.tabSelectedId == 3) {
+      data = {
+        expiry_time: ""
       }
+    } else {
+      data = {
+        status: this.data.tabSelectedId
+      }
+    }
+    APP.ajax({
+      url: APP.api.couponList,
+      data: data
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      list = list.map(item => {
+        if (!item.is_expiry && item.status != 2) {
+          item.bg_img = APP.imgs.coupon
+        } else {
+          item.bg_img = APP.imgs.couponPass
+        }
+        return item
+      })
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1
+      })
     })
   },
-  tabchange() {
-    Paging.tabChange()
-  },
-  // 显示刷新
-  onShow() {
-    Paging.refresh()
+  tabChange(event) {
+    this.setData({
+      tabSelectedId: event.detail,
+      page: 1,
+      list:[],
+    })
+    this.getList()
   },
   // 下拉刷新
   onPullDownRefresh() {
-    Paging.refresh()
+    this.setData({
+      page: 1,
+      list: [],
+    })
+    this.getList()
+    wx.stopPullDownRefresh()
   },
   // 上拉加载
   onReachBottom() {
-    this.getList(this.data.tabSelectedId);
+    this.getList()
   },
-  enterConvert(e) {
+  // 兑换码输入
+  codeInput(e) {
     this.setData({
-      enterConvert: e.detail.value
+      convertCode: e.detail.value
     })
   },
+  // 去领券中心
   goCenter() {
-    wx.navigateTo({ url: `/pages/UserCouponCenter/index` })
+    wx.navigateTo({
+      url: `/pages/UserCouponCenter/index`
+    })
   },
+  // 兑换
   convert() {
-    if (!this.data.enterConvert) {
-      wx.showToast({
-        title: '输入兑换码',
-        icon: 'none',
-      })
+    if (!this.data.convertCode) {
+      APP.util.toast('请输入兑换码')
       return
     }
     APP.ajax({
-      url: APP.api.myDiscountReceive,
+      url: APP.api.couponConvert,
       data: {
-        coupon_no: this.data.enterConvert
-      },
-      success:(res)=> {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
-        setTimeout(() => {
-          this.getList(this.data.tabSelectedId)
-        }, 1000)
+        coupon_no: this.data.convertCode
       }
-    })
+    }).then(res => {
+      APP.util.toast(res.msg)
+      this.setData({
+        page: 1,
+        list: [],
+      })
+      this.getList()
+    }).catch(err => {})
   },
   goBuy() {
-    wx.switchTab({ url: `/pages/BarCategory/index` })
+    wx.switchTab({
+      url: `/pages/BarCategory/index`
+    })
   },
-
-  
 })

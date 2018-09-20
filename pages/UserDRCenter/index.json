@@ -7,5 +7,6 @@
     "zan-button": "../../dist/btn/index",
     "zan-popup": "../../dist/popup/index",
     "icon": "../../components/icon/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }

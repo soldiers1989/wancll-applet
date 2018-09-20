@@ -1,6 +1,6 @@
 <view>
-  <zan-tab id="tab" class="tab" bindtap="tabchange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}" fixed>
-    <view class='list' wx:for="{{dbList}}" wx:key="item" data-id="{{item.id}}" bindtap='goDetailInfo'>
+  <zan-tab id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
+    <view class='list' wx:for="{{list}}" wx:key="item" data-id="{{item.id}}" bindtap='goDetailInfo'>
       <view class='title'>
         <view class='left'>{{item.intro}} </view>
         <view class='right'>+{{item.money}}</view>
@@ -15,8 +15,8 @@
         </view>
       </view>
     </view>
-    <view wx:if="{{FPage.noContent}}" class="no-content-image">
-      <image mode="widthFix" src="{{FPage.noContentImg}}"></image>
+    <view wx:if="{{haveNoData}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
       <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
     </view>
   </zan-tab>

@@ -1,9 +1,5 @@
 const APP = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     type: '',
     condition: false,
@@ -18,70 +14,67 @@ Page({
     showAddress: '请选择地址',
     isNeedCompleteUserInfo: true,
   },
-
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       type: options.type
-    },()=>{
+    }, () => {
       this.init()
     })
   },
   init() {
     // 查询是否需要完善个人信息
-    let url;
+    let url
     if (this.data.type == 'distribution') {
-      url = APP.api.userDrp;
+      url = APP.api.drpCondition
       wx.setNavigationBarTitle({
         title: '成为分销商申请',
       })
     } else if (this.data.type == 'bonus') {
-      url = APP.api.userBonus;
+      url = APP.api.bonusCondition
       wx.setNavigationBarTitle({
         title: '成为分红商申请',
       })
     }
     APP.ajax({
       url: url,
-      success: res => {
-        this.setData({
-          isNeedCompleteUserInfo: res.data.is_need_complete_user_info
-        }, () => {
-          if (this.data.isNeedCompleteUserInfo) {
-            APP.ajax({
-              url: APP.api.user,
-              success: res => {
-                let showAddress;
-                if (res.data.province && res.data.city && res.data.area) {
-                  showAddress = `${res.data.province} ${res.data.city} ${res.data.area}`
-                } else {
-                  showAddress = '请选择地址'
-                }
-                this.setData({
-                  name: res.data.nick_name,
-                  email: res.data.email,
-                  qq: res.data.qq,
-                  wechat: res.data.wechat,
-                  showAddress: showAddress,
-                })
-              }
+    }).then(res => {
+      this.setData({
+        isNeedCompleteUserInfo: res.data.is_need_complete_user_info
+      }, () => {
+        if (this.data.isNeedCompleteUserInfo) {
+          APP.ajax({
+            url: APP.api.userRead,
+          }).then(res => {
+            let showAddress
+            if (res.data.province && res.data.city && res.data.area) {
+              showAddress = `${res.data.province} ${res.data.city} ${res.data.area}`
+            } else {
+              showAddress = '请选择地址'
+            }
+            this.setData({
+              name: res.data.nick_name,
+              email: res.data.email,
+              qq: res.data.qq,
+              wechat: res.data.wechat,
+              showAddress: showAddress,
             })
-          }
-        })
-      }
-    })
+          }).catch(err => {})
+        }
+      })
+    }).catch(err => {})
   },
   showPicker() {
     this.setData({
       condition: true
-    },()=>{
+    }, () => {
       this.pinAddress()
-    });
+    })
   },
   pinAddress() {
-    let showAddress;
-    if (this.data.province.name == this.data.city.name){
-      showAddress = this.data.province.name;
-    }else{
+    let showAddress
+    if (this.data.province.name == this.data.city.name) {
+      showAddress = this.data.province.name
+    } else {
       showAddress = `${this.data.province.name} ${this.data.city.name} ${this.data.county.name}`
     }
     this.setData({
@@ -94,64 +87,52 @@ Page({
       province: e.detail.province,
       city: e.detail.city,
       county: e.detail.county
-    },()=>{
-      if (this.data.condition){
+    }, () => {
+      if (this.data.condition) {
         this.pinAddress()
       }
     })
   },
-  enterName(e) {
+  nameInput(e) {
     this.setData({
       name: e.detail.value
     })
   },
-  enterQQ(e) {
+  qqInput(e) {
     this.setData({
       qq: e.detail.value
     })
   },
-  enterWechat(e) {
+  wechatInput(e) {
     this.setData({
       wechat: e.detail.value
     })
   },
-  enterEmail(e) {
+  emailInput(e) {
     this.setData({
       email: e.detail.value
     })
   },
-  send() {
+  submit() {
     if (this.data.isNeedCompleteUserInfo) {
       if (!this.data.name) {
-        wx.showToast({
-          title: '请输入昵称',
-          icon: 'none'
-        })
-        return;
+        APP.util.toast('请输入昵称')
+        return
       }
       if (!this.data.qq) {
-        wx.showToast({
-          title: '请输入qq号',
-          icon: 'none'
-        })
-        return;
+        APP.util.toast('请输入qq号')
+        return
       }
       if (!this.data.wechat) {
-        wx.showToast({
-          title: '请输入微信号',
-          icon: 'none'
-        })
-        return;
+        APP.util.toast('请输入微信号')
+        return
       }
       if (!this.data.email) {
-        wx.showToast({
-          title: '请输入邮箱',
-          icon: 'none'
-        })
-        return;
+        APP.util.toast('请输入邮箱')
+        return
       }
       APP.ajax({
-        url: APP.api.userSettingUpdate,
+        url: APP.api.userUpdate,
         data: {
           qq: this.data.qq,
           wechat: this.data.wechat,
@@ -161,10 +142,9 @@ Page({
           area_code: this.data.county.code,
           nick_name: this.data.name,
         },
-        success: res => {
-          this.applyFor()
-        }
-      })
+      }).then(res => {
+        this.applyFor()
+      }).catch(err => {})
     } else {
       this.applyFor()
     }
@@ -172,24 +152,20 @@ Page({
   applyFor() {
     let url
     if (this.data.type == 'distribution') {
-      url = APP.api.getDrpApply;
+      url = APP.api.drpApply
     } else if (this.data.type == 'bonus') {
-      url = APP.api.getBonusApply;
+      url = APP.api.bonusApply
     }
     APP.ajax({
       url: url,
-      success: res => {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 1
         })
-        setTimeout(() => {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 800);
-      }
-    })
+      }, 800)
+    }).catch(err => {})
   }
 
 })

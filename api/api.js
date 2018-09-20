@@ -1,16 +1,16 @@
 // 请求的api
 export const api = {
   // 主页
-  indexBanners: `/api_articles/banners/lists`,
   indexConfigs: `/api_query/configs/wap_index`,
   indexAnnouncement: `/api_articles/annoncements/lists`,
   indexAdvertisements: `/api_articles/advertisements/lists`,
   indexWapIndex: `/api_query/configs/wap_index`,
   // 营销活动
   activities: `/api_query/market/activity`,
-  // 通用文章页面
+  // 内容相关
   ruleRead: `/api_articles/rules/read`,
   announcementRead: `/api_articles/annoncements/read`,
+  bannerList: `/api_articles/banners/lists`,
   // 商品
   goodsList: `/api_goods/goods/lists`,
   goodsCatesListTree: '/api_goods/goods_cates/lists_tree',
@@ -49,11 +49,7 @@ export const api = {
   // 个人中心
   userRead: `/api_users/users/read`,
   userUpdate: `/api_users/users/update`,
-  userBonus: `/api_bonus/rules/become_bonus_info`,
-  userBonusRead: `/api_bonus/user_apply_bonus/read`,
   userCompleteInfo: `/api_users/users/complete_user_info`,
-  userDrp: `/api_drp/rules/become_distributor_info`,
-  userDrpRead: `/api_drp/user_apply_distributor/read`,
   // 用户设置
   userSettingPass: `/api_users/user_accounts/reset_password`,
   userSettingPayPass: `/api_users/user_accounts/reset_pay_password`,
@@ -102,10 +98,10 @@ export const api = {
   bankCardSave: `/api_users/bank_cards/save`,
   bankCardDelete: `/api_users/bank_cards/delete`,
   // 优惠券
-  myDiscount: `/api_users/user_coupons/lists`,
-  myDiscountReceive: `/api_users/user_coupons/receive`,
-  myDiscountCoupon: `/api_query/market/coupon`,
-  myDiscountCouponSave: `/api_users/user_coupons/save`,
+  couponList: `/api_users/user_coupons/lists`,
+  couponConvert: `/api_users/user_coupons/receive`,
+  coupons: `/api_query/market/coupon`,
+  couponSave: `/api_users/user_coupons/save`,
   // 商品搜索
   goodsKeywordsList: `/api_goods/goods_keywords/lists`,
   userGoodsKeywordsRead: `/api_users/user_goods_keywords/read`,
@@ -116,10 +112,10 @@ export const api = {
   queryAuthStatus: `/api_query/users/auth`,
   submitAuthInfo: `/api_users/user_auths/save`,
   updateAuthInfo: `/api_users/user_auths/update`,
-  // 分销分红申请
-  getDrpApply: `/api_drp/user_apply_distributor/apply`,
-  getBonusApply: `/api_bonus/user_apply_bonus/apply`,
   // 分销中心
+  drpApply: `/api_drp/user_apply_distributor/apply`,
+  drpCondition: `/api_drp/rules/become_distributor_info`,
+  drpApplyRead: `/api_drp/user_apply_distributor/read`,
   drpCenter: `/api_query/drp/distributor_info`,
   drpCenterInfo: `/api_query/drp/commission_info`,
   drpRules: `/api_drp/rules/index`,
@@ -130,6 +126,9 @@ export const api = {
   drpChildUser: `/api_drp/team/child_users`,
   drpTeamUser: `/api_drp/team/team_users`,
   // 分红中心
+  bonusApply: `/api_bonus/user_apply_bonus/apply`,
+  bonusCondition: `/api_bonus/rules/become_bonus_info`,
+  bonusApplyRead: `/api_bonus/user_apply_bonus/read`,
   bonusCenter: `/api_query/bonus/bonus_info`,
   bonusApplysList: `/api_bonus/bonus_applys/lists`,
   bonusApplysRead: `/api_bonus/bonus_applys/read`,
@@ -139,8 +138,8 @@ export const api = {
   bonusChildUser: `/api_bonus/team/child_users`,
   bonusRules: `/api_bonus/rules/index`,
   // 收款账户
-  userRhirdAcc: `/api_users/user_third_accounts/lists`,
-  userRhirdUpdate: `/api_users/user_third_accounts/update`,
+  userThirdAcc: `/api_users/user_third_accounts/lists`,
+  userThirdUpdate: `/api_users/user_third_accounts/update`,
   // 资产
   userAssetRead: `/api_query/users/asset`,
   scoreLogList: `/api_users/score_logs/lists`,

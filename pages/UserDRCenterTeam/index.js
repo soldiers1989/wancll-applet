@@ -1,52 +1,45 @@
-const APP = getApp();
+const APP = getApp()
+import {
+  getLevel,
+  getList,
+} from './data.js'
 Page({
   data: {
-    tabList: [{
-      id: 1,
-      title: '一级'
-    }, {
-      id: 2,
-      title: '二级'
-    }, {
-      id: 3,
-      title: '三级'
-    }],
+    tabList: [],
     tabSelectedId: 1,
-    teamUsers:[],
-    user:{},
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
+    user: {},
+    team_info: {},
   },
-  onLoad (options) {
+  onLoad(options) {
     this.setData({
-      user:wx.getStorageSync('user')
+      user: wx.getStorageSync('user')
     })
-    Paging.init({
-      type:1,
-      that:this,
-      url:'drpTeamUser',
-      pushData:'teamUsers',
-      getStr:'team_users',
-      getFunc: this.getOrderData
-    })
-    this.getOrderData(this.data.tabSelectedId)
-  },
-  getOrderData(id) {
-    Paging.getPagesData({postData: {team_type:id}})
+    getList(this)
+    getLevel(this)
   },
   // 点击切换顶部的标签
-  tabchange() {
-    Paging.tabChange()
+  tabChange(event) {
+    this.setData({
+      page: 1,
+      list: [],
+      tabSelectedId: event.detail
+    })
+    getList(this)
   },
-  onPullDownRefresh () {
-    Paging.refresh()
+  onPullDownRefresh() {
+    this.setData({
+      page: 1,
+      list: [],
+    })
+    getList(this)
+    getLevel(this)
+    wx.stopPullDownRefresh()
   },
-  onReachBottom () {
-    this.getOrderData(this.data.tabSelectedId)
+  onReachBottom() {
+    getList(this)
   }
 })
