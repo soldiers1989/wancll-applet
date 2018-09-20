@@ -574,9 +574,9 @@ page {
 }
 
 .wancll-goods-list-price {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: #df0303;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .wancll-goods-list-market-price {
