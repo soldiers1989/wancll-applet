@@ -100,7 +100,7 @@
       <zan-cell title="我的服务"></zan-cell>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
+          <view class='pending' catchtap='goSubPages' data-target="UserQRCode">
             <view class="iconfont icon-qr-code"></view>
             <view class='text'>推广二维码</view>
           </view>

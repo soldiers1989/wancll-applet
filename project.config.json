@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 48,
+			"current": 50,
 			"list": [
 				{
 					"id": 0,
@@ -134,7 +134,7 @@
 					"id": 16,
 					"name": "团购商品详情",
 					"pathName": "pages/ComGroupGoodsDetail/index",
-					"query": "id=43&goodsId=430"
+					"query": "id=41&goodsId=1433"
 				},
 				{
 					"id": -1,
@@ -327,6 +327,18 @@
 					"name": "微信支付等待",
 					"pathName": "pages/ComPayWaiting/index",
 					"query": "payType=buyMember&orderNo=N2018091213474076603"
+				},
+				{
+					"id": -1,
+					"name": "普通文章详情",
+					"pathName": "pages/ComArticle/index",
+					"query": "id=2&type=index"
+				},
+				{
+					"id": -1,
+					"name": "搜索页",
+					"pathName": "pages/ComSearch/index",
+					"query": ""
 				}
 			]
 		}
