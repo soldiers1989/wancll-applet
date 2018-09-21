@@ -26,7 +26,8 @@
 }
 
 .detail-info .price .market-price {
-  font-size: 0.5rem;
+  margin-left: 40rpx;
+  font-size: 0.6rem;
   text-decoration: line-through;
   color: #777 !important;
 }
@@ -45,14 +46,14 @@
 }
 
 .detail-info .name {
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   line-height: 50rpx;
 }
 
 .detail-info .intro {
   line-height: 50rpx;
   color: #757575;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 
 .detail-info .sales-info .sales-stock {
@@ -70,7 +71,7 @@
   background-color: #fff;
   padding: 20rpx 15px;
   border-top: 1rpx solid rgb(244, 244, 244);
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 
 .document .tag {
