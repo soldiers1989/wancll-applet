@@ -13,7 +13,8 @@ Page({
     password: "",
     payType: '2',
     orderId: -1,
-    type:0,
+    type: 0,
+    iscClickPayButton: false, // 是否点击了确认按钮
   },
   onLoad: function(options) {
     this.setData({
@@ -73,6 +74,9 @@ Page({
     }
   },
   sendMoney() {
+    if (this.data.iscClickPayButton) {
+      return;
+    }
     if (!this.data.password) {
       wx.showToast({
         title: '请填写密码',
@@ -80,6 +84,9 @@ Page({
       })
       return;
     }
+    this.setData({
+      iscClickPayButton: true,
+    });
     let that = this
     APP.ajax({
       url: APP.api.orderMoney,
@@ -108,6 +115,13 @@ Page({
 
           }
         })
+      },
+      complete(res) {
+        if (res.data.code == 0) {
+          that.setData({
+            iscClickPayButton: false,
+          });
+        }
       }
     })
   },

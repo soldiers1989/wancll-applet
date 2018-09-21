@@ -28,7 +28,7 @@
 </view>
 
 <zan-popup show="{{ showPopup }}" bindclose="togglePopup">
-  <view class="zan-btns">
+  <view class="zan-btns" style="margin-bottom:60%">
     <view class='popup-warpper'>
       <zan-panel>
         <view class='title'>请输入支付密码</view>
