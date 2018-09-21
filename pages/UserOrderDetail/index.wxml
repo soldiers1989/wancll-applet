@@ -19,11 +19,12 @@
       <view slot="footer">￥{{orderData.freight_money}}</view>
     </zan-cell>
     <block wx:if="{{orderData.market_reduce_money > 0}}">
-      <zan-cell title="有优惠活动">
-        <view slot="footer">￥{{orderData.market_reduce_money}}</view>
+      <zan-cell title="优惠金额">
+        <view slot="footer">- ￥{{orderData.market_reduce_money}}</view>
       </zan-cell>
     </block>   
-    <zan-cell title="订单总价（含运费）" >
+    <!-- <zan-cell title="{{'订单总价' + orderData.freight_money ? '（含运费）' : ''}}" > -->
+    <zan-cell title="订单总价{{orderData.freight_money > 0 ? '（含运费）' : ''}}" >
       <view slot="footer">￥{{orderData.total_money}}</view>
     </zan-cell>
   </zan-cell-group>
