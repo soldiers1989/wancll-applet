@@ -2,45 +2,43 @@ const APP = getApp()
 Page({
   data: {
     // 轮播参数
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    circular: false,
-    interval: 2000,
-    duration: 500,
-    previousMargin: 0,
-    nextMargin: 0,
-
+    bannerConfig: {
+      indicatorDots: true,
+      vertical: false,
+      autoplay: false,
+      circular: false,
+      interval: 2000,
+      duration: 500,
+      previousMargin: 0,
+      nextMargin: 0,
+    },
     // tab组件参数
     tabList: [{
       id: 1,
-      title: '详情'
+      name: '详情'
     }, {
       id: 2,
-      title: '评价'
+      name: '评价'
     }],
     tabListSelectedId: 1,
     tabListScroll: true,
     tabListHeight: 45,
-
     // 类型 是否有活动参与
     activityId: 0,
     discount: [], // 所有的活动数据
     discountItem: {}, // 当前显示宝贝的活动数据
     full: [],
     timeDown: '0天 00 : 00 : 00', // 倒计时
-
     // 数据
     goodsId: -1, //   商品的id
     goodsInfo: '', //  商品信息 read:res.data
     isCollect: 0, //  默认是否收藏
-
+    // 其他
     comments: [], // comments:res.data
     lineValue: {}, // 当前点击的sku数据
     findSku: '', // 点击后筛选出的sku
     cartsDetail: [], // 加入购物车后返回的
     attrs: [], // 产品的属性列表
-
     // 控制
     showTab: 1,
     hasSku: false, // 是否含有sku内容
@@ -60,10 +58,10 @@ Page({
             discount: res.data.discount ? res.data.discount : [],
             full: res.data.full ? res.data.full : [],
           }, () => {
-            let rulesInfo = this.data.discount[0].rule_info;
+            let rulesInfo = this.data.discount[0].rule_info
             let ruleInfo = rulesInfo.find(item => {
               return item.goods_id == options.id
-            });
+            })
             this.setData({
               discountItem: ruleInfo
             })
@@ -116,7 +114,7 @@ Page({
           }
         })
         // 图片富文本替换为宽度100%
-        res.data.desc = res.data.desc.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block"')
+        res.data.desc = res.data.desc.replace(/\<img/gi, '<img style="max-width:100%height:autodisplay:block"')
         // 保存商品数据
         // console.log(res.data.desc)
         this.setData({
@@ -139,9 +137,9 @@ Page({
       success: res => {
         this.setData({
           comments: res.data.map(comment => {
-            comment.user_info.nick_name = comment.user_info.nick_name ? comment.user_info.nick_name : '匿名用户';
-            comment.user_info.avatar = comment.user_info.avatar ? comment.user_info.avatar : APP.imgs.avatar;;
-            return comment;
+            comment.user_info.nick_name = comment.user_info.nick_name ? comment.user_info.nick_name : '匿名用户'
+            comment.user_info.avatar = comment.user_info.avatar ? comment.user_info.avatar : APP.imgs.avatar
+            return comment
           })
         })
       }
@@ -177,7 +175,7 @@ Page({
         })
       }, 1000)
     } else {
-      let url = '';
+      let url = ''
       if (this.data.isCollect) {
         url = APP.api.detailCollectCancel
       } else {
@@ -221,7 +219,7 @@ Page({
       findSku: e.detail.findSku,
       showSkuPopup: false
     }, () => {
-      let type = APP.utils.getDataSet(e, 'type');
+      let type = APP.utils.getDataSet(e, 'type')
       if (this.data.openType == "buy") {
         setTimeout(() => {
           this.sendBuyNow('buy')
@@ -235,7 +233,7 @@ Page({
   },
   // 点击加入购物车
   addCarts(e) {
-    let type = e == 'carts' ? 'carts' : APP.utils.getDataSet(e, 'type');
+    let type = e == 'carts' ? 'carts' : APP.utils.getDataSet(e, 'type')
     this.setData({
       openType: type
     }, () => {
@@ -272,7 +270,7 @@ Page({
               }
             })
           } else {
-            this.openSkuPopup();
+            this.openSkuPopup()
           }
         } else {
           APP.ajax({
@@ -299,7 +297,7 @@ Page({
   },
   // 点击立即购买
   buyNow(e) {
-    let type = e == 'buy' ? 'buy' : APP.utils.getDataSet(e, 'type');
+    let type = e == 'buy' ? 'buy' : APP.utils.getDataSet(e, 'type')
     this.setData({
       openType: type
     }, () => {
@@ -317,12 +315,12 @@ Page({
       } else {
         if (this.data.hasSku) {
           if (this.data.findSku) {
-            this.sendBuyNow();
+            this.sendBuyNow()
           } else {
-            this.openSkuPopup();
+            this.openSkuPopup()
           }
         } else {
-          this.sendBuyNow();
+          this.sendBuyNow()
         }
       }
     })
@@ -330,9 +328,17 @@ Page({
   // 跳转到订单详情页
   sendBuyNow() {
     if (this.data.hasSku) {
-      wx.setStorageSync('orderConfirmGoodsList', [{ goodsInfo: this.data.goodsInfo, specGroupInfo: this.data.findSku, num: 1 }])
+      wx.setStorageSync('orderConfirmGoodsList', [{
+        goodsInfo: this.data.goodsInfo,
+        specGroupInfo: this.data.findSku,
+        num: 1
+      }])
     } else {
-      wx.setStorageSync('orderConfirmGoodsList', [{ goodsInfo: this.data.goodsInfo, specGroupInfo: 0, num: 1 }])
+      wx.setStorageSync('orderConfirmGoodsList', [{
+        goodsInfo: this.data.goodsInfo,
+        specGroupInfo: 0,
+        num: 1
+      }])
     }
     wx.navigateTo({
       url: `/pages/ComCreateOrder/index?isDiscountGoods=${this.data.activityId}`
@@ -362,9 +368,9 @@ Page({
       showAttrPopup: false
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     return {
-      title:this.data.goodsInfo.name,
+      title: this.data.goodsInfo.name,
       path: `${this.route}?id=${this.data.goodsId}`
     }
   }

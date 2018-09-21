@@ -42,10 +42,14 @@ function request(option, header) {
         if (res.data.code == 1) {
           resolve(res.data)
         } else if (res.data.code == 0) {
-          wx.showToast({
-            title: res.data.msg.toString(),
-            icon: 'none'
-          })
+          if(res.data.msg= -41003){
+            // 微信登录特殊处理
+          }else {
+            wx.showToast({
+              title: res.data.msg.toString(),
+              icon: 'none'
+            })
+          }
           reject(res)
         } else {
           // 异常操作 清除本地存储 跳转到首页

@@ -81,7 +81,10 @@ function handleWechatLogin(that, userinfo) {
           },
         }).then(res => {
           queryUserInfoByUnionId(JSON.parse(res.data), that)
-        }).catch(err => {})
+        }).catch(err => {
+          // 失败重新获取
+          // handleWechatLogin(that, userinfo)
+        })
       }).catch(err => {})
     }
   })

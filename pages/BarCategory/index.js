@@ -51,7 +51,7 @@ Page({
   goDetail(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `/pages/ComDetail/index?id=${id}`,
+      url: `/pages/ComGoodsDetail/index?id=${id}`,
     })
   },
   onPullDownRefresh() {

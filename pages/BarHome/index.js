@@ -58,7 +58,7 @@ Page({
       id: id
     })
     wx.navigateTo({
-      url: `/pages/ComDetail/index?${param}`,
+      url: `/pages/ComGoodsDetail/index?${param}`,
     })
   },
   // 跳转到商品的详情页面 仅存在于线上折扣
@@ -70,7 +70,7 @@ Page({
       discountid: discountid
     })
     wx.navigateTo({
-      url: `/pages/ComDetail/index?${param}`,
+      url: `/pages/ComGoodsDetail/index?${param}`,
     })
   },
   // 跳转到文章详情页面
