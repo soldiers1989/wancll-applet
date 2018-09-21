@@ -55,7 +55,7 @@ export function handleWechatLogin(that, userinfo) {
           code: res.code
         },
         success(res) {
-          wx.hideLoading();
+          // wx.hideLoading();
           // 通过服务端的接口解密数据
           APP.ajax({
             url: APP.api.getWechatUserInfo,
@@ -65,6 +65,7 @@ export function handleWechatLogin(that, userinfo) {
               iv: userinfo.iv
             },
             success(res) {
+              wx.hideLoading();
               queryUserInfoByUnionId(JSON.parse(res.data), that);
             },
           })
