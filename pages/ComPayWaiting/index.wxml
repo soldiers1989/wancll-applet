@@ -12,11 +12,11 @@
   <view class="status  wancll-text-center">
     <view class='loading' wx:if="{{!isPay}}">
       <zan-loading class="loading-icon" type="spinner" color="black"></zan-loading>
-      <view class="wancll-margin-20">支付处理中</view>
+      <view style="font-size:0.9rem" class="wancll-margin-20">支付处理中</view>
     </view>
     <view wx:if="{{isPay}}">
-      <i style="font-size:1.5rem" class="iconfont icon-roundcheckfill pay-success"></i>
-      <view class="wancll-margin-20">支付成功</view>
+      <i style="font-size:2.5rem" class="iconfont icon-roundcheckfill pay-success"></i>
+      <view style="font-size:0.9rem" class="wancll-margin-20">支付成功</view>
     </view>
   </view>
 
