@@ -1,7 +1,7 @@
 <view>
   <view class='search_box'>
     <view class='search_input'>
-      <icon class='icon' type='sousuo' data-keywords="{{keywords}}" bindtap='search'></icon>
+      <icon class='iconfont3 icon-sousuo1' data-keywords="{{keywords}}" bindtap='search'></icon>
       <input class='input' data-keywords="{{keywords}}" placeholder='搜索商品' bindinput='keywordsInput' bindconfirm="search" value="{{keywords}}"></input>
     </view>
   </view>
