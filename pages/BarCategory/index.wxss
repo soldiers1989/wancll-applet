@@ -13,8 +13,8 @@
 
 .search_box .search_input {
   flex: 1;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 70rpx;
+  line-height: 70rpx;
   margin: 15rpx;
   background: #fafafa;
   border-radius: 5px;
@@ -22,12 +22,14 @@
   overflow: hidden;
   display: flex;
   position: relative;
+  font-size: 26rpx;
 }
 
 .search_box .search_input .icon {
   flex: 40rpx 0 0;
   font-size: 30rpx;
   color: #666;
+  line-height: 70rpx;
 }
 
 .search_box .search_input .input {
