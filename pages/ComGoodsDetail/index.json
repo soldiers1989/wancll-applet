@@ -9,6 +9,7 @@
     "zan-popup": "../../dist/popup/index",
     "zan-button": "../../dist/btn/index",
     "wancll-selectsku": "../../components/selectSku/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }
 

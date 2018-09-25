@@ -8,7 +8,14 @@ function getGoods(that, id) {
       id: id
     }
   }).then(res => {
-    that.goods = res
+    res.data.desc = res.data.desc.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block;')
+    res.data.spec_group_info = res.data.spec_group_info.map(function(item) {
+      item.spec_option_group = item.spec_option_group.split('_').sort().toString()
+      return item
+    })
+    that.setData({
+      goods: res.data
+    })
   }).catch(err => {
     console.warn(err)
   })
@@ -25,7 +32,12 @@ function getGoodsCommetList(that, id) {
       'page-limit': 10,
     }
   }).then(res => {
-    let list = APP.util.arrayToUnique(that.data.list.concat(resp.data))
+    let list = APP.util.arrayToUnique(that.data.list.concat(res.data))
+    list = list.map(item => {
+      item.user_info.nick_name = item.user_info.nick_name ? item.user_info.nick_name : '匿名用户'
+      comment.user_info.avatar = item.user_info.avatar ? item.user_info.avatar : APP.imgs.avatar
+      return item
+    })
     that.setData({
       list: list,
       page: that.data.page + 1,
@@ -43,7 +55,9 @@ function queryGoodsIsCollected(that, id) {
       goods_id: id
     }
   }).then(res => {
-
+    that.setData({
+      isCollected: res.data.is_collect
+    })
   }).catch(err => {
     console.warn(err)
   })
@@ -51,7 +65,7 @@ function queryGoodsIsCollected(that, id) {
 // 收藏 or 取消收藏
 function toggleCollect(that, id) {
   let url = ''
-  if (that.isCollected) {
+  if (that.data.isCollected) {
     url = APP.api.goodsCollectCancel
   } else {
     url = APP.api.goodsCollectSave
@@ -70,8 +84,45 @@ function toggleCollect(that, id) {
 }
 
 // 查询营销活动
-function getActivities(){
-  
+function getActivities(that, id) {
+  APP.ajax({
+    url: APP.api.activities,
+  }).then(res => {
+    if (res.data.discount) {
+      // 计算截至时间
+      res.data.discount[0].deadline = res.data.discount[0].end_timestamp * 1000 - Date.now()
+      that.setData({
+        discountActivity: res.data.discount[0],
+        discountGoods: (res.data.discount[0].rule_info || []).find(item => {
+          return item.goods_id == id
+        })
+      })
+      // 倒计时
+      setInterval(() => {
+        let endtime = res.data.discount[0].end_timestamp * 1000
+        APP.util.timeDown(that, endtime)
+        endtime -= 1000
+      }, 1000)
+    }
+  }).catch(err => {
+    console.warn(err)
+  })
+}
+// 加入购物车
+function cartSave(that) {
+  let data = {
+    goods_id: that.data.id,
+    spec_group_id_str: that.data.selectSku.id_str || 0,
+    num: 1,
+  }
+  APP.ajax({
+    url: APP.api.cartSave,
+    data: data,
+  }).then(res => {
+    APP.util.toast(res.msg)
+  }).catch(err => {
+    console.warn(err)
+  })
 }
 
 export {
@@ -79,4 +130,6 @@ export {
   getGoodsCommetList,
   queryGoodsIsCollected,
   toggleCollect,
+  getActivities,
+  cartSave,
 }

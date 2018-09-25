@@ -19,17 +19,17 @@ export const api = {
   goodsCollectCancel: `/api_goods/goods_collections/cancel`,
   goodsCollectSave: `/api_goods/goods_collections/save`,
   goodsComments: `/api_query/goods/comments`,
-  goodsCartSave: `/api_goods/carts/save`,
   // 确认订单
   orderAffimAddress: `/api_query/users/default_address`,
   orderAffimView: `/api_orders/orders/view`,
   orderAffimUser: `/api_query/market/user`,
   orderSaveAll: `/api_orders/orders/save`,
   // 购物车
-  getCartsAll: `/api_goods/carts/lists`,
-  getCartsUpdate: `/api_goods/carts/update`,
-  getCartsDelete: `/api_goods/carts/batch_delete`,
-  getCartsColleSave: `/api_goods/goods_collections/batch_save`,
+  cartSave: `/api_goods/carts/save`,
+  cartList: `/api_goods/carts/lists`,
+  cartsUpdate: `/api_goods/carts/update`,
+  cartsDelete: `/api_goods/carts/batch_delete`,
+  cartsColleSave: `/api_goods/goods_collections/batch_save`,
   // 登录注册相关
   userLogin: `/api_users/user_accounts/login`,
   userRegister: `/api_users/user_accounts/register`,

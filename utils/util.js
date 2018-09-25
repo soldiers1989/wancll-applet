@@ -70,7 +70,7 @@ function arrayToUnique(arr) {
   })
   return newArr
 }
-
+// 弹出提示信息
 function toast(msg) {
   if (msg) {
     wx.showToast({
@@ -79,6 +79,23 @@ function toast(msg) {
     })
   }
 }
+// 判断是否登录
+function isLogin() {
+  return new Promise((resolve, reject) => {
+    if (wx.getStorageSync('token')) {
+      resolve()
+    } else {
+      toast('请先登录')
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/ComLogin/index',
+        })
+      }, 800)
+      reject()
+    }
+  })
+}
+
 
 export {
   getDataSet,
@@ -88,4 +105,5 @@ export {
   timeDown,
   arrayToUnique,
   toast,
+  isLogin,
 }

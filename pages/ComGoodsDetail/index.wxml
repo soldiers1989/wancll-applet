@@ -1,62 +1,63 @@
 <view class='content'>
+  <!-- 轮播图 -->
   <swiper class='detail-swiper' indicator-dots="{{bannerConfig.indicatorDots}}" autoplay="{{bannerConfig.autoplay}}" interval="{{bannerConfig.interval}}" duration="{{bannerConfig.duration}}">
-    <block wx:for="{{goodsInfo.imgs}}" wx:key="key">
+    <block wx:for="{{goods.imgs}}" wx:key="key">
       <swiper-item>
         <image src="{{item}}" class="slide-image" mode="widthFix" />
       </swiper-item>
     </block>
   </swiper>
-  <view class="discountPrice" wx:if="{{activityId}}">
+  <!-- 折扣商品信息 -->
+  <view class="discountPrice" wx:if="{{isDiscountGoods}}">
     <view class='price'>
       <text style='font-size: 20rpx;'>￥</text>
-      <text style='margin-right:10px;'>{{discountItem.discount_price}}</text>
-      <text style='font-size: 20rpx;text-decoration: line-through'>￥{{goodsInfo.sell_price}}</text>
+      <text style='margin-right:10px;'>{{discountGoods.discount_price}}</text>
+      <text style='font-size: 20rpx;text-decoration: line-through'>￥{{goods.sell_price}}</text>
     </view>
     <view class='discount'>距离结束：{{timeDown}}</view>
   </view>
+  <!-- 商品基本信息 -->
   <view class='detail-info'>
-    <view class='price' wx:if="{{!activityId}}">
-      <text style='font-size: 20rpx;'>￥</text> {{goodsInfo.sell_price}}
+    <view class='price' wx:if="{{!isDiscountGoods}}">
+      <text style='font-size: 20rpx;'>￥</text> {{goods.sell_price}}
     </view>
-    <view class='name'>{{goodsInfo.name}}</view>
-    <view class='intro'>{{goodsInfo.intro}}</view>
+    <view class='name'>{{goods.name}}</view>
+    <view class='intro'>{{goods.intro}}</view>
     <view class='sales-info'>
-      <view class='sales-stock'>库存: {{goodsInfo.stock}}</view>
-      <view class='sales-number'>销量: {{goodsInfo.sell_num}}</view>
+      <view class='sales-stock'>库存: {{goods.stock}}</view>
+      <view class='sales-number'>销量: {{goods.sell_num}}</view>
     </view>
   </view>
   <view class='select-sku'>
+    <!-- 查看商品规格 -->
     <zan-panel>
-      <block wx:if="{{hasSku}}">
+      <block wx:if="{{goods.spec_info.length}}">
         <zan-panel>
           <view class='go-select' bindtap='openSkuPopup'>
             <view class="left">选择商品规格</view>
-            <view class="right" wx:if="{{findSku}}">{{findSku.spec_option_group}}</view>
+            <view class="right" wx:if="{{selectSku.id}}">{{selectSku.spec_option_group}}</view>
           </view>
         </zan-panel>
       </block>
-      <block wx:else="{{hasSku}}">
-        <view class='go-select'>
-          <view class="left">无商品规格</view>
-          <view class="right"></view>
-        </view>
-      </block>
-      <block wx:if="{{hasAttr}}">
+      <!-- 查看商品属性 -->
+      <block wx:if="{{goods.attr_info.length}}">
         <view class='go-select' bindtap='openAttrPopup'>
           <view class="left">产品属性参数</view>
           <view class="right"></view>
         </view>
       </block>
     </zan-panel>
-    <block wx:if="{{hasSku}}">
+    <!-- 选择商品规格 -->
+    <block wx:if="{{goods.spec_info.length}}">
       <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
         <view class="pop-example__container pop-example__container--bottom">
-          <wancll-selectsku id="selectsku" wx:if="{{goodsInfo}}" hassku="{{hasSku}}" goodsinfo="{{goodsInfo}}" bind:confirm="confirm" bind:close="closeSkuPopup">
+          <wancll-selectsku id="selectsku" goods="{{goods}}" select-sku="{{selectSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
           </wancll-selectsku>
         </view>
       </zan-popup>
     </block>
-    <block wx:if="{{hasAttr}}">
+    <!-- 查看商品属性 -->
+    <block wx:if="{{goods.attr_info.length}}">
       <zan-popup show="{{ showAttrPopup }}" type="bottom" bindclose="closeAttrPopup">
         <view class="pop-example__container pop-example__container--bottom">
           <zan-panel>
@@ -66,34 +67,36 @@
             </view>
           </zan-panel>
           <zan-cell-group>
-            <zan-cell wx:for="{{attrs}}" title="{{item.name}}" wx:key="key"></zan-cell>
+            <zan-cell wx:for="{{goods.attr_info}}" value="{{item.value}}" title="{{item.name}}" wx:key="{{item.name}}"></zan-cell>
           </zan-cell-group>
         </view>
       </zan-popup>
     </block>
   </view>
   <view style="height: 20rpx;"></view>
+  <!-- 底部操作按钮 -->
   <zan-panel>
     <view class="buy-buttons">
       <view class="collect">
-        <template is="collect" data="{{isCollect}}" />
+        <template is="collect" data="{{isCollected}}" />
       </view>
-      <view class="cart" wx:if="{{!activityId}}">
+      <view class="cart" wx:if="{{!isDiscountGoods}}">
         <view bindtap="goCarts">
           <icon class="icon" type="gouwuche2"></icon>
           <view>购物车</view>
         </view>
       </view>
-      <view wx:if="{{!activityId}}" class="add-cart" data-type="carts" bindtap="addCarts">加入购物车</view>
+      <view wx:if="{{!isDiscountGoods}}" class="add-cart" bindtap="addCarts">加入购物车</view>
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即购买</view>
     </view>
   </zan-panel>
+  <!-- 详情/评价 -->
   <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
   <view wx:if="{{showTab === 1}}" class='particulars'>
-    <rich-text nodes="{{goodsInfo.desc}}"></rich-text>
+    <rich-text nodes="{{goods.desc}}"></rich-text>
   </view>
   <view wx:if="{{showTab === 2}}" class='commonts'>
-    <view class="comment" wx:for="{{comments}}" wx:key="key">
+    <view class="comment" wx:for="{{list}}" wx:key="key">
       <zan-panel>
         <view class='user'>
           <view class='avatar'>
@@ -122,11 +125,11 @@
 </view>
 
 <template name="collect">
-  <view wx:if="{{isCollect}}" bindtap="changeCollect">
+  <view wx:if="{{isCollected}}" bindtap="changeCollect">
     <icon class="icon" type="shoucang" style="color: rgb(255, 198, 64);"></icon>
     <view>已收藏</view>
   </view>
-  <view wx:else="{{isCollect}}" bindtap="changeCollect">
+  <view wx:else="{{isCollected}}" bindtap="changeCollect">
     <icon class="icon" type="star"></icon>
     <view>收藏</view>
   </view>
