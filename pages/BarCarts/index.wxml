@@ -64,7 +64,7 @@
   </view>
 </zan-popup>
 <!-- 购物车没有内容 -->
-<view wx:if="{{haveNoContent}}" class="no-content-image">
+<view wx:if="{{haveNoData}}" class="no-content-image">
   <image mode="widthFix" src="{{noContentImg}}"></image>
   <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
 </view>

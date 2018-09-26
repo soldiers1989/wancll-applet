@@ -37,14 +37,14 @@ function request(option, header) {
       method: method,
       dataType: 'json',
       responseType: 'text',
-      success: res => {
+      success(res) {
         // 根据code判断操作 1为返回成功 0为获取失败 其他为异常操作
         if (res.data.code == 1) {
           resolve(res.data)
         } else if (res.data.code == 0) {
-          if(res.data.msg= -41003){
+          if (res.data.msg == -41003) {
             // 微信登录特殊处理
-          }else {
+          } else {
             wx.showToast({
               title: res.data.msg.toString(),
               icon: 'none'

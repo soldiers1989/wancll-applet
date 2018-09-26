@@ -1,62 +1,91 @@
-const APP = getApp();
+const APP = getApp()
 Page({
   data: {
     tabList: [{
       id: 0,
-      title: '全部'
+      name: '全部'
     }, {
       id: 1,
-      title: '待付款'
+      name: '待付款'
     }, {
       id: 2,
-      title: '待发货'
+      name: '待发货'
     }, {
       id: 3,
-      title: '待收货'
+      name: '待收货'
     }, {
       id: 4,
-      title: '待评价'
+      name: '待评价'
     }],
+    status: 0,
     tabSelectedId: 0,
-    orderList: [],
-    // 分页功能
-    FPage: {
-      pageNum: 1,
-      hasData: true,
-      noContent: false,
-      noContentImg: APP.imgs.noContentImg
-    }
+    list: [],
+    page: 1,
+    haveNoData: false,
+    noContentImg: APP.imgs.noContentImg,
   },
   onLoad(options) {
-    Paging.init({
-      type:2,
-      that:this,
-      url:'orderAll',
-      pushData:'orderList',
-      getFunc: this.getOrderData
-    })
     this.setData({
-      tabSelectedId: options.target
-    }, () => {
-      this.getOrderData(options.target)
+      page: 1,
+      list: [],
+      status: options.status || 1,
+      tabSelectedId: (options.status == -1 ? 0 : options.status) || 0,
     })
+    this.getList()
   },
-  getOrderData(status) {
-    let data = status != 0 ? { status: status } : {}
-    Paging.getPagesData({postData: data})
+  getList() {
+    let status = this.data.status
+    let data = {}
+    if (status == -1) {
+      data.is_has_return_goods = 1;
+    } else if (status == 1 || status == 2 || status == 3) {
+      data.status = status
+    } else if (status == 4) {
+      data.status = status
+      data.is_comment = 0
+    }
+    APP.ajax({
+      url: APP.api.orderList,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      },
+      data: data,
+    }).then(res => {
+      let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
+      this.setData({
+        list: list,
+        haveNoData: !Boolean(list.length),
+        page: this.data.page + 1
+      })
+    }).catch(err => {})
   },
-  // 重新加载数据
   refreshGet() {
-    Paging.refresh()
+    this.setData({
+      page: 1,
+      list: []
+    })
+    this.getList()
   },
   // 点击切换顶部的标签
-  tabchange() {
-    Paging.tabChange()
+  tabChange(event) {
+    this.setData({
+      tabSelectedId: event.detail,
+      status: event.detail,
+      page: 1,
+      list: [],
+    })
+    this.getList()
   },
   onPullDownRefresh() {
-    Paging.refresh()
+    this.setData({
+      page: 1,
+      list: []
+    })
+    this.getList()
+    wx.stopPullDownRefresh()
   },
-  onReachBottom: function () {
-    this.getOrderData(this.data.tabSelectedId)
+  onReachBottom: function() {
+    this.getList()
   }
 })

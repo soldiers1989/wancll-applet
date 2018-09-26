@@ -35,10 +35,7 @@ Page({
   // 发送验证码请求
   sendCode() {
     if (!this.data.mobile) {
-      wx.showToast({
-        title: '手机号不能为空',
-        icon: 'none'
-      })
+      APP.util.toast('手机号不能为空')
       return;
     }
     APP.ajax({
@@ -47,33 +44,23 @@ Page({
         mobile: this.data.mobile,
         type: 2
       },
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-        })
-        this.setData({
-          status: false
-        }, () => {
-          this.countDown()
-        })
-      }
-    })
+    }).then(res => {
+      APP.util.toast(res.msg)
+      this.setData({
+        status: false
+      }, () => {
+        this.countDown()
+      })
+    }).catch(err => {})
   },
   // 确认
   sendData() {
     if (!this.data.mobile) {
-      wx.showToast({
-        title: '手机号码不能为空',
-        icon: 'none'
-      })
+      APP.util.toast('手机号不能为空')
       return;
     }
     if (!this.data.code) {
-      wx.showToast({
-        title: '验证码不能为空',
-        icon: 'none'
-      })
+      APP.util.toast('验证码不能为空')
       return;
     }
     let data = {
@@ -88,18 +75,14 @@ Page({
     APP.ajax({
       url: APP.api.bindMobileInNoLogin,
       data: data,
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none'
-        });
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '/pages/ComLogin/index',
-          })
-        }, 500)
-      }
-    })
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/ComLogin/index',
+        })
+      }, 500)
+    }).catch(err => {})
   },
   // 倒计时
   countDown() {

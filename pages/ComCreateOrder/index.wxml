@@ -1,3 +1,4 @@
+<!-- 地址 -->
 <view class="order-address" bindtap="toggilPopupAddress">
   <zan-panel>
     <block wx:if="{{selectedAddress.id}}">
@@ -17,21 +18,22 @@
     </block>
   </zan-panel>
 </view>
+<!-- 商品列表 -->
 <view class="item-list">
   <zan-panel>
     <view class='item-content' wx:for="{{goodsList}}" wx:key="key">
       <view class='center-info'>
         <view class='image-warpper'>
-          <image class='image' src='{{item.goodsInfo.thum}}' mode="widthFix"></image>
+          <image class='image' src='{{item.goods_info.thum}}' mode="widthFix"></image>
         </view>
         <view class='title-warpper'>
-          <view class='title wancll-margin-b-5'>{{item.goodsInfo.name}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goodsInfo.intro}}</view>
-          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.specGroupInfo.id}}">规格: {{item.specGroupInfo.spec_option_group}}
+          <view class='title wancll-margin-b-5'>{{item.goods_info.name}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5'>{{item.goods_info.intro}}</view>
+          <view class='wancll-text-pray wancll-font-size-10 wancll-margin-b-5' wx:if="{{item.select_spec_group_info.id}}">规格: {{item.select_spec_group_info.spec_option_group}}
           </view>
           <view class='price-warpper'>
             <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
-              <text class="wancll-font-size-10">￥</text>{{item.specGroupInfo.sell_price?item.specGroupInfo.sell_price:item.goodsInfo.sell_price*item.num}}
+              <text class="wancll-font-size-10">￥</text>{{item.select_spec_group_info.sell_price?item.select_spec_group_info.sell_price:item.goods_info.sell_price}}
             </view>
             <view class='count wancll-flex'>
               <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num - 1}}"></i>
@@ -44,6 +46,7 @@
     </view>
   </zan-panel>
 </view>
+<!-- 价格 -->
 <view class='other-price'>
   <zan-panel wx:if="{{isDiscountGoods}}">
     <view class='panel'>
@@ -76,7 +79,7 @@
     </view>
   </zan-panel>
 </view>
-
+<!-- 总价 -->
 <view class="total-box">
   <view class="total">
     <text class="wancll-font-size-14">合计：</text>
@@ -84,11 +87,10 @@
     <text class="wancll-text-price">{{totalPrice}}</text>
   </view>
 </view>
-
+<!-- 提交 -->
 <view class="wancll-padded-5">
-  <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
+  <button loading='{{loading}}' disabled='{{loading}}' class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
 </view>
-
 <!-- 地址选择 -->
 <zan-popup show="{{ showPopupAddress }}" type="bottom" bindclose="toggilPopupAddress">
   <view class="pop-example__container pop-example__container--bottom">

@@ -35,7 +35,7 @@
     "pages/UserOrderList/index",
     "pages/UserOrderRefound/index",
     "pages/UserOrderExpress/index",
-    "pages/UserOrderEstimate/index",
+    "pages/UserOrderComment/index",
     "pages/UserOrderDetail/index",
     "pages/UserIdcardInfo/index",
     "pages/UserIdcardSubmit/index",

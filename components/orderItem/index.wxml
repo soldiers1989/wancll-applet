@@ -82,7 +82,7 @@
 <!-- 评价按钮 -->
 <template name="estimate">
   <view class='action'>
-    <zan-button wx:if="{{is_comment===0}}" data-id="{{goods_id}}" type="info" class='zan-button' size="mini" catchtap='estimateGoods'> 评价 </zan-button>
+    <zan-button wx:if="{{is_comment===0}}" data-goodsid="{{goods_id}}" data-orderid="{{order_id}}" data-thum="{{thum}}" type="info" class='zan-button' size="mini" catchtap='commentGoods'> 评价 </zan-button>
     <zan-button wx:if="{{is_comment===1}}" data-id="{{goods_id}}" class='zan-button' size="mini"> 已评论 </zan-button>
   </view>
 </template>

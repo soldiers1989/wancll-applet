@@ -3,6 +3,7 @@
   "usingComponents": {
     "zan-tab": "../../dist/tab/index",
     "zan-panel": "../../dist/panel/index",
-    "zan-icon":"../../dist/icon/index"
-  }
+    "zan-icon": "../../dist/icon/index"
+  },
+  "enablePullDownRefresh": true
 }

@@ -2,7 +2,7 @@ const APP = getApp()
 import {
   cartUpdate,
   cartDelete,
-  cartsColleSave,
+  cartColleSave,
   getList,
 } from './data.js'
 Page({
@@ -18,7 +18,7 @@ Page({
     isSelectAll: false,
     // 底部弹窗
     showBottomPopup: false,
-    // 当前选中商品的规格
+    // 当前选中商品的规格   ffdafafffda
     selectSku: {},
     selectCart: {}
   },
@@ -51,13 +51,21 @@ Page({
     let goods = event.detail.goods
     let selectSku = event.detail.selectSku
     this.data.list.forEach(item => {
-      if (item.id == this.data.selectItem.id) {
-        item.goods_info = goods
-        item.spec_group_id_str = selectSku.id_str
-        item.spec_group_info = selectSku
+      if (item.id == this.data.selectCart.id) {
+        cartUpdate(this, {
+          id: item.id,
+          goods_id: item.goods_id,
+          num: item.num,
+          spec_group_id_str: selectSku.id_str,
+        }).then(res => {
+          APP.util.toast(res.msg)
+          item.goods_info = goods
+          item.spec_group_id_str = selectSku.id_str
+          item.spec_group_info = selectSku
+          this.updateData()
+        }).catch(err => {})
       }
     })
-    this.updateData()
   },
   // 全选按钮
   selectAll() {
@@ -97,6 +105,7 @@ Page({
   },
   // 更新数据
   updateData() {
+    // 获取总价
     let totalPrice = Number(this.data.list.reduce((a, b) => {
       if (b.isSelected) {
         if (b.spec_group_info.id) {
@@ -108,15 +117,19 @@ Page({
         return a + 0
       }
     }, 0)).toFixed(2)
+    // 是否全选
+    let isSelectAll = this.data.haveNoData ? false : this.data.list.every(item => {
+      return item.isSelected
+    })
+    // 渲染视图
     this.setData({
       list: this.data.list,
       totalPrice: totalPrice,
-      isSelectAll: this.data.list.every(item => {
-        return item.isSelected
-      }),
+      isSelectAll: isSelectAll,
       canBatchEdit: this.data.list.some(item => {
         return item.isSelected
-      })
+      }),
+      showBottomPopup: false,
     })
   },
   // 打开弹出层
@@ -144,14 +157,14 @@ Page({
       content: '确认从购物车移除选中商品?',
       success: res => {
         if (res.confirm) {
-          cartDelete()
+          cartDelete(this)
         }
       }
     })
   },
   // 批量加入收藏夹
   collectCarts() {
-    cartsColleSave()
+    cartColleSave(this)
   },
   // 跳转到订单确认页面
   submit() {

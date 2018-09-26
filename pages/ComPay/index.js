@@ -1,15 +1,21 @@
 const APP = getApp();
-import { handleWechatPay } from '../../utils/common.js';
-import { payType } from '../../api/config.js';
+import {
+  handleWechatPay,
+  queryOrderIsPay,
+} from '../../utils/common.js'
+import {
+  queryIsSetPayPassword,
+} from '../../utils/common.js'
 Page({
   data: {
     showPopup: false,
     orderNo: '',
     orderMoney: '',
     password: "",
-    payType: '1'
+    payType: '1',
+    loading: false,
   },
-  onLoad: function (options) {
+  onLoad(options) {
     this.setData({
       orderNo: options.orderNo,
       orderMoney: options.orderMoney
@@ -30,76 +36,73 @@ Page({
   // 选择
   handleSelectChange(e) {
     this.setData({
-      payType: e.currentTarget.dataset.paytype
+      payType: APP.util.getDataSet(e, 'paytype'),
     })
   },
   // 支付
   payMoney() {
     let that = this;
     if (this.data.payType == 1) {
-      APP.ajax({
-        url: APP.api.setPayPass,
-        success(res) {
-          if (res.data.is_set_pay_password == 1) {
-            that.togglePopup()
-          } else {
-            wx.showToast({
-              title: '请设置支付密码',
-              icon: 'none',
-            })
-            setTimeout(() => {
-              wx.navigateTo({
-                url: `/pages/UserSettingPass/index?id=1`,
-              })
-            }, 500)
-          }
-        }
+      // 余额支付
+      queryIsSetPayPassword().then(() => {
+        this.togglePopup()
+      }).catch(err => {
+        console.warn(err)
       })
     } else if (this.data.payType == 2) {
-      handleWechatPay(that.data.orderNo, payType.goodsOrderPay);
+      this.setData({
+        loading: true,
+      })
+      // 微信支付
+      handleWechatPay(this.data.orderNo).then(() => {
+        queryOrderIsPay(this.data.orderNo).then(() => {
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '/pages/UserOrderList/index',
+            })
+          }, 800)
+        }).catch(err => {
+          this.setData({
+            loading: false,
+          })
+          console.log(err)
+        })
+      }).catch(err => {
+        this.setData({
+          loading: false,
+        })
+        console.log(err)
+      })
     }
   },
   sendMoney() {
     if (!this.data.password) {
-      wx.showToast({
-        title: '请填写密码',
-        icon: 'none',
-      })
+      APP.util.toast('请填写支付密码')
       return;
     }
-    let that = this
+    this.setData({
+      loading: true,
+      showPopup: false,
+    })
     APP.ajax({
       url: APP.api.orderMoney,
       data: {
-        order_no: that.data.orderNo,
-        pay_password: that.data.password
+        order_no: this.data.orderNo,
+        pay_password: this.data.password
       },
-      success(res) {
-        wx.showToast({
-          title: res.msg,
-          icon: 'none',
-          success() {
-            let params = APP.utils.paramsJoin({
-              // target: wx.getStorageSync('thisOrderList')
-              target: 2
-            })
-            setTimeout(() => {
-              wx.redirectTo({
-                url: `/pages/UserOrderList/index?${params}`,
-              })
-            }, 1000)
-          }
+    }).then(res => {
+      APP.util.toast(res.msg)
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '/pages/UserOrderList/index',
         })
-      }
+      }, 800)
+    }).catch(err => {
+      this.setData({
+        loading: false,
+        password: '',
+      })
     })
   },
-  onPullDownRefresh: function () {
-
-  },
-  onReachBottom: function () {
-
-  },
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage() {}
 })

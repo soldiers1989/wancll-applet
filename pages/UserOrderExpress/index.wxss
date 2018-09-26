@@ -24,7 +24,7 @@
   display: flex;
 }
 .express-lists .list .left{
-  flex: 100px 0 0;
+  flex: 60px 0 0;
   text-align: center;
   position: relative;
 }

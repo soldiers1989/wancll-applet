@@ -33,39 +33,39 @@
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
-      <zan-cell title="我的订单" value="查看全部订单" is-link catchtap='goOrderList' data-target="0">
+      <zan-cell title="我的订单" value="查看全部订单" is-link catchtap='goOrderList' data-status="0">
       </zan-cell>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending pending-order' catchtap='goOrderList' data-target="1">
+          <view class='pending pending-order' catchtap='goOrderList' data-status="1">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_pay_num}}">{{orderCount.wait_pay_num}}</zan-badge>
               <icon class='icon' type="daifukuan"></icon>
             </view>
             <view class='text'>待付款</view>
           </view>
-          <view class='pending pending-order' catchtap='goOrderList' data-target="2">
+          <view class='pending pending-order' catchtap='goOrderList' data-status="2">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_ship_num}}">{{orderCount.wait_ship_num}}</zan-badge>
               <icon class='icon' type="daifahuo"></icon>
             </view>
             <view class='text'>待发货</view>
           </view>
-          <view class='pending pending-order' catchtap='goOrderList' data-target="3">
+          <view class='pending pending-order' catchtap='goOrderList' data-status="3">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_finish_num}}">{{orderCount.wait_finish_num}}</zan-badge>
               <icon class='icon' type="yifahuo"></icon>
             </view>
             <view class='text'>待收货</view>
           </view>
-          <view class='pending pending-order' catchtap='goOrderList' data-target="4">
+          <view class='pending pending-order' catchtap='goOrderList' data-status="4">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_comment_num}}">{{orderCount.wait_comment_num}}</zan-badge>
               <icon class='icon' type="daipingjia"></icon>
             </view>
             <view class='text'>待评价</view>
           </view>
-          <view class='pending pending-order' catchtap='goSubPages' data-target="UserService">
+          <view class='pending pending-order' catchtap='goOrderList' ddata-status="-1">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.return_goods_num}}">{{orderCount.return_goods_num}}</zan-badge>
               <icon class='icon' type="shouhou"></icon>

@@ -1,5 +1,11 @@
-const APP = getApp();
-const STAUTS = ['', '等待付款', '等待发货', '已发货', '交易完成']
+const APP = getApp()
+const STAUTS = {
+  1: '等待付款',
+  2: '等待发货',
+  3: '已发货',
+  4: '交易完成',
+  9: '已取消'
+}
 Page({
   data: {
     statusName: '',
@@ -16,25 +22,25 @@ Page({
   onLoad(options) {
     this.setData({
       id: options.id
-    });
-    this.getData();
+    })
+    this.getData()
   },
   getData() {
-    let that = this;
     APP.ajax({
       url: APP.api.orderDetail,
-      data: { id: this.data.id },
-      success: res => {
-        that.setData({
-          statusName: STAUTS[res.data.status],
-          orderData: res.data,
-          orderGoods: res.data.order_goods_info,
-        })
-      }
-    })
+      data: {
+        id: this.data.id
+      },
+    }).then(res => {
+      this.setData({
+        statusName: STAUTS[res.data.status],
+        orderData: res.data,
+        orderGoods: res.data.order_goods_info,
+      })
+    }).catch(err => {})
   },
   onPullDownRefresh() {
-    wx.stopPullDownRefresh();
-    this.getData();
+    wx.stopPullDownRefresh()
+    this.getData()
   }
 })

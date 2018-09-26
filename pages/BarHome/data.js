@@ -51,10 +51,12 @@ function getData(that) {
         wx.stopPullDownRefresh()
         clearTimeout(timer)
       }, 500)
-      // 设置倒计时
-      setInterval(() => {
-        APP.util.timeDown(that, that.data.discountActivities[0].end_timestamp * 1000)
-      }, 1000)
+      if (that.data.discountActivities.length > 0) {
+        // 设置倒计时
+        setInterval(() => {
+          APP.util.timeDown(that, that.data.discountActivities[0].end_timestamp * 1000)
+        }, 1000)
+      }
     })
   }).catch(e => {
     wx.hideLoading()

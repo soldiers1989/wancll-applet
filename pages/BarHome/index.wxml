@@ -35,7 +35,7 @@
     </view>
   </view>
   <!--限时折扣 -->
-  <view class='discount'>
+  <view class='discount' wx:if="{{discountActivities.length>0}}">
     <zan-cell is-link>
       <text style="color: #df0303;">限时折扣</text> {{discountActivities[0].name}} {{timeDown}}
     </zan-cell>

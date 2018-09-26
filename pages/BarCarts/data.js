@@ -13,13 +13,13 @@ function getList(that) {
     })))
     list.forEach(item => {
       item.isSelected = false
-      item.isEdit = false
     })
     that.setData({
       list: list,
       haveNoData: !Boolean(list.length),
       page: that.data.page + 1
     })
+    that.updateData()
   }).catch(err => {})
 }
 // 删除购物车
@@ -30,7 +30,7 @@ function cartDelete(that) {
     return item.id
   })
   APP.ajax({
-    url: APP.api.cartsDelete,
+    url: APP.api.cartDelete,
     data: {
       id: ids
     }
@@ -40,18 +40,18 @@ function cartDelete(that) {
       list: [],
       page: 1,
     })
-    getList()
+    getList(that)
   })
 }
 // 购物车商品移至收藏夹
-function cartsColleSave(that) {
+function cartColleSave(that) {
   let ids = that.data.list.filter(item => {
     return item.isSelected
   }).map(item => {
     return item.id
   })
   APP.ajax({
-    url: APP.api.cartsColleSave,
+    url: APP.api.cartColleSave,
     data: {
       goods_ids: ids
     }
@@ -70,6 +70,6 @@ function cartUpdate(that, data) {
 export {
   cartUpdate,
   cartDelete,
-  cartsColleSave,
+  cartColleSave,
   getList,
 }

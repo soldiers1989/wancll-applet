@@ -1,23 +1,22 @@
-const APP = getApp();
+const APP = getApp()
 import {
   chooseImage,
 } from '../../utils/common.js'
 Page({
   data: {
-    goods: {},
+    thum: '',
+    orderId: '',
+    goodsId: '',
     imgs: [],
-    desc: '',
+    score: 0,
+    message: '',
     loading: false,
   },
-  onLoad(options) {
+  onLoad: function(options) {
     this.setData({
-      goods: wx.getStorageSync('refundGoods')
-    })
-  },
-  // 输入绑定
-  textareaInput(e) {
-    this.setData({
-      desc: e.detail.value
+      thum: options.thum,
+      orderId: options.orderId,
+      goodsId: options.goodsId,
     })
   },
   // 添加图片
@@ -47,27 +46,50 @@ Page({
       imgs: arr
     })
   },
-  // 退款 
+  // 输入绑定
+  textareaInput(e) {
+    this.setData({
+      message: e.detail.value
+    })
+  },
+  // 点星星
+  canesll() {
+    this.setData({
+      score: 0
+    })
+  },
+  star(e) {
+    let n = APP.util.getDataSet(e, 'n')
+    this.setData({
+      score: n
+    })
+  },
+  // 发送评价
   submit() {
-    if (!this.data.desc) {
-      APP.util.toast('输入退款原因')
+    if (!this.data.message) {
+      APP.util.toast('输入评价内容')
+      return
+    }
+    if (!this.data.score) {
+      APP.util.toast('评个分吧！')
       return
     }
     this.setData({
       loading: true,
     })
     APP.ajax({
-      url: APP.api.orderRefound,
+      url: APP.api.orderComments,
       data: {
-        order_id: this.data.goods.order_id,
-        order_goods_id: this.data.goods.id,
+        content: this.data.message,
+        goods_id: this.data.goodsId,
         imgs: this.data.imgs,
-        return_reason: this.data.desc,
-        return_type: 1
+        order_id: this.data.orderId,
+        score: this.data.score,
+        status: 1
       },
     }).then(res => {
       APP.util.toast(res.msg)
-      setTimeout(()=>{
+      setTimeout(() => {
         wx.navigateBack({
           delta: 1,
         })
@@ -78,7 +100,7 @@ Page({
       })
     })
   },
-  onShareAppMessage() {
+  onShareAppMessage: function() {
 
   }
 })

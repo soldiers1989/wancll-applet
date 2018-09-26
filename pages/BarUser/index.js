@@ -28,9 +28,9 @@ Page({
   },
   // 跳转到订单状态页面
   goOrderList(e) {
-    let target = APP.util.getDataSet(e, 'target')
+    let status = APP.util.getDataSet(e, 'status')
     wx.navigateTo({
-      url: `/pages/UserOrderList/index?target=${target}`,
+      url: `/pages/UserOrderList/index?status=${status}`,
     })
   },
   // 跳转到子页面

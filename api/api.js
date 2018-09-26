@@ -27,9 +27,9 @@ export const api = {
   // 购物车
   cartSave: `/api_goods/carts/save`,
   cartList: `/api_goods/carts/lists`,
-  cartsUpdate: `/api_goods/carts/update`,
-  cartsDelete: `/api_goods/carts/batch_delete`,
-  cartsColleSave: `/api_goods/goods_collections/batch_save`,
+  cartUpdate: `/api_goods/carts/update`,
+  cartDelete: `/api_goods/carts/batch_delete`,
+  cartColleSave: `/api_goods/goods_collections/batch_save`,
   // 登录注册相关
   userLogin: `/api_users/user_accounts/login`,
   userRegister: `/api_users/user_accounts/register`,
@@ -58,7 +58,7 @@ export const api = {
   // 反馈
   submitHelpAndOption: `/api_articles/feedbacks/save`,
   // 订单相关
-  orderAll: `/api_orders/orders/lists`,
+  orderList: `/api_orders/orders/lists`,
   orderCancel: `/api_orders/cancel_orders/user_cancel`,
   orderTip: `/api_orders/tip_deliver/tip`,
   orderPrePay: `/api_orders/pay/pre_pay`,

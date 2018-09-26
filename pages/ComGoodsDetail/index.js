@@ -106,7 +106,7 @@ Page({
     if (this.data.openType == 'cart') {
       this.addCarts()
     } else if (this.data.openType == 'buy') {
-      this.buy()
+      this.buyNow()
     }
   },
   // 点击加入购物车
@@ -133,38 +133,24 @@ Page({
         this.openSkuPopup()
         return
       }
-      wx.setStorageSync('goodsList', [{
-        goods: this.data.goods,
-        select_spec_group_info: this.data.selectSku,
-        num: 1
-      }])
-      let params = ''
-      if (this.data.isDiscountGoods) {
-        params += `?isDiscountGoods=${this.data.isDiscountGoods}`
+
+      if (this.data.selectSku.id) {
+        wx.setStorageSync('orderConfirmGoodsList', [{
+          goods_info: this.data.goods,
+          select_spec_group_info: this.data.selectSku,
+          num: 1,
+        }])
+      } else {
+        wx.setStorageSync('orderConfirmGoodsList', [{
+          goods_info: this.data.goods,
+          select_spec_group_info: 0,
+          num: 1,
+        }])
       }
       wx.navigateTo({
-        url: `/pages/ComCreateOrder/index${params}`
+        url: `/pages/ComCreateOrder/index?isDiscountGoods=${this.data.isDiscountGoods}`
       })
     }).catch(err => {})
-  },
-  // 跳转到订单详情页
-  sendBuyNow() {
-    if (this.data.hasSku) {
-      wx.setStorageSync('orderConfirmGoodsList', [{
-        goodsInfo: this.data.goodsInfo,
-        specGroupInfo: this.data.findSku,
-        num: 1
-      }])
-    } else {
-      wx.setStorageSync('orderConfirmGoodsList', [{
-        goodsInfo: this.data.goodsInfo,
-        specGroupInfo: 0,
-        num: 1
-      }])
-    }
-    wx.navigateTo({
-      url: `/pages/ComCreateOrder/index?isDiscountGoods=${this.data.activityId}`
-    })
   },
   // 打开弹出层sku选择器
   openSkuPopup() {

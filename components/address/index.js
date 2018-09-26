@@ -37,9 +37,9 @@ Component({
     },
     // 将点击每个地址列表得到的值传递出去 用 getclickid 接收
     selectAddress(e) {
-      let id = APP.util.getDataSet(e, 'id')
+      let address = APP.util.getDataSet(e, 'address')
       this.triggerEvent('getclickid', {
-        id: id
+        address: address
       })
     },
     // 点击设置默认地址
