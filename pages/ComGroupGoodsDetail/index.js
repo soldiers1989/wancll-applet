@@ -22,7 +22,7 @@ Page({
 
     userAvatar: APP.imgs.avatar, // 默认头像
 
-    user: wx.getStorageSync('user'),
+    user: {},
     groupParams: {}, // 积分相关参数
 
     // 数据
@@ -56,6 +56,20 @@ Page({
   onLoad(options) {
     if (options.parent_mobile && !this.data.user) {
       APP.globalData.parent_mobile = options.parent_mobile;
+    }
+
+    this.setData({
+      user: wx.getStorageSync('user')
+    });
+
+    // 为登陆注册后跳转准备
+    if (!this.data.user) {
+      let afterRegister = {
+        type: 'group_goods',
+        id: options.id,
+        goodsId: options.goodsId,
+      };
+      wx.setStorageSync('afterRegister', afterRegister);
     }
 
     getGroupParams(this);

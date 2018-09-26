@@ -20,7 +20,7 @@ Page({
     previousMargin: 0,
     nextMargin: 0,
 
-    user: wx.getStorageSync('user'),
+    user: {},
     scoreParams: {}, // 积分相关参数
 
     // 数据
@@ -50,6 +50,20 @@ Page({
   onLoad(options) {
     if (options.parent_mobile && !this.data.user) {
       APP.globalData.parent_mobile = options.parent_mobile;
+    }
+
+    this.setData({
+      user: wx.getStorageSync('user')
+    });
+
+    // 为登陆注册后跳转准备
+    if (!this.data.user) {
+      let afterRegister = {
+        type: 'score_goods',
+        id: options.id,
+        goodsId: options.goodsId,
+      };
+      wx.setStorageSync('afterRegister', afterRegister);
     }
 
     getScoreParams(this);

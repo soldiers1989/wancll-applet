@@ -72,11 +72,22 @@ Page({
     if (options.parent_mobile && !this.data.user) {
       APP.globalData.parent_mobile = options.parent_mobile;
     }
-
     this.setData({
       goodsId: options.id,
       user: wx.getStorageSync('user'),
     });
+
+    // 为登陆注册后跳转准备
+    if(!this.data.user){
+      let afterRegister = {
+        type:'common_goods',
+        id:options.id,
+      };
+      if(options.isDiscountGoods){
+        afterRegister.isDiscountGoods = 1;
+      }
+      wx.setStorageSync('afterRegister',afterRegister);
+    }
 
     getMemberParams(this);
 

@@ -1,5 +1,5 @@
 const APP = getApp();
-import { handleWechatLogin } from '../../utils/common.js';
+import { handleWechatLogin, afterRegisterJump } from '../../utils/common.js';
 Page({
   data: {
     logo: APP.imgs.logo,
@@ -58,9 +58,7 @@ Page({
         APP.globalData.token = res.data.token.token
         APP.globalData.user = res.data.user
         // 再跳转
-        wx.switchTab({
-          url: '/pages/BarUser/index',
-        })
+        afterRegisterJump();
       }
     });
   },

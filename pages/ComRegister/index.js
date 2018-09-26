@@ -1,4 +1,7 @@
 const APP = getApp();
+import {
+  afterRegisterJump
+} from '../../utils/common.js';
 Page({
   data: {
     type: 1,
@@ -19,7 +22,7 @@ Page({
     is_open_drp: '',
   },
   onLoad(options) {
-    if(APP.globalData.parent_mobile){
+    if (APP.globalData.parent_mobile) {
       this.data.pMobile = APP.globalData.parent_mobile;
     }
 
@@ -150,7 +153,7 @@ Page({
         icon: 'none'
       })
       return;
-    }    
+    }
     if (!APP.validator.password(this.data.password)) {
       wx.showToast({
         title: '密码限制6-20位大小写字母数字组合',
@@ -169,12 +172,12 @@ Page({
       parent_mobile: this.data.pMobile,
       mobile: this.data.mobile,
       password: this.data.password,
-      paypassword:this.data.payPassword,
+      paypassword: this.data.payPassword,
       code: this.data.code,
     };
     if (this.data.unionId) {
       data.wechat_openid = this.data.unionId,
-      data.nick_name = decodeURIComponent(this.data.nick_name);
+        data.nick_name = decodeURIComponent(this.data.nick_name);
       data.avatar = this.data.avatar;
       data.real_openid = this.data.real_openid;
     }
@@ -195,10 +198,8 @@ Page({
         APP.globalData.hasLogin = true
         APP.globalData.token = res.data.token.token
         APP.globalData.user = res.data.user
-
-        wx.switchTab({
-          url: '/pages/BarUser/index',
-        })
+        // 再跳转
+        afterRegisterJump();
       }
     })
   },

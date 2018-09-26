@@ -119,9 +119,7 @@ function queryUserInfoByUnionId(resData, that) {
           APP.globalData.token = res.data.token.token
           APP.globalData.user = res.data.user
           // 再跳转
-          wx.switchTab({
-            url: '/pages/BarUser/index',
-          })
+          afterRegisterJump();
         } else {
           wx.showActionSheet({
             itemList: ['绑定已有账号', '注册新账号'],
@@ -168,4 +166,68 @@ export function handleWechatPay(orderNo, payType) {
       }
     }
   })
+}
+
+// 登陆注册后跳转
+export function afterRegisterJump() {
+  console.log(111);
+  let afterRegister = wx.getStorageSync('afterRegister');
+  if (afterRegister) {
+    switch (afterRegister.type) {
+      case 'common_goods':
+        if (afterRegister.isDiscountGoods) {
+          wx.navigateTo({
+            url: '/pages/ComDetail/index?id=' + afterRegister.id + '&isDiscountGoods=1',
+            success: res => {
+              wx.removeStorage({
+                key: 'afterRegister',
+              })
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/ComDetail/index?id=' + afterRegister.id,
+            success: res => {
+              wx.removeStorage({
+                key: 'afterRegister',
+              })
+            }
+          })
+        }
+        break;
+      case 'score_goods':
+        wx.navigateTo({
+          url: '/pages/ComScoreGoodsDetail/index?id=' + afterRegister.id + '&goodsId=' + afterRegister.goodsId,
+          success: res => {
+            wx.removeStorage({
+              key: 'afterRegister',
+            })
+          }
+        })
+        break;
+      case 'group_goods':
+        wx.navigateTo({
+          url: '/pages/ComGroupGoodsDetail/index?id=' + afterRegister.id + '&goodsId=' + afterRegister.goodsId,
+          success: res => {
+            wx.removeStorage({
+              key: 'afterRegister',
+            })
+          }
+        })
+        break;
+      default:
+        wx.switchTab({
+          url: '/pages/BarHome/index',
+          success: res => {
+            wx.removeStorage({
+              key: 'afterRegister',
+            })
+          }
+        })
+    }
+  } else {
+    wx.switchTab({
+      url: '/pages/BarHome/index',
+    })
+  }
 }
