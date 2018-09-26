@@ -44,7 +44,7 @@
     <block wx:if="{{goods.spec_group_info.length}}">
       <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
         <view class="pop-example__container pop-example__container--bottom">
-          <wancll-selectsku id="selectsku" wx:if="{{goods}}" goods="{{goods}}"  sendSelectedSku="{{selectedSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
+          <wancll-selectsku id="selectsku" wx:if="{{goods}}" goods="{{goods}}" sendSelectedSku="{{selectedSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
           </wancll-selectsku>
         </view>
       </zan-popup>
@@ -69,6 +69,12 @@
   <view style="height: 20rpx;"></view>
   <zan-panel>
     <view class="buy-buttons">
+      <view class="cart">
+        <view bindtap="goIndex">
+          <view style="font-size:0.9rem" class="iconfont icon-shouye"></view>
+          <view>首页</view>
+        </view>
+      </view>
       <view class="buy-now" data-type="buy" bindtap="buyNow">立即兑换</view>
     </view>
   </zan-panel>

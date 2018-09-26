@@ -259,6 +259,11 @@ Page({
       url: '/pages/BarCarts/index'
     })
   },
+  goIndex() {
+    wx.switchTab({
+      url: '/pages/BarHome/index'
+    })
+  },  
   // 点击立即开通
   goMember() {
     wx.navigateTo({

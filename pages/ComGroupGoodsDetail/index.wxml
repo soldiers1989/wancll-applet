@@ -99,6 +99,12 @@
   <view style="height: 20rpx;"></view>
   <zan-panel>
     <view class="buy-buttons">
+      <view class="cart">
+        <view bindtap="goIndex">
+          <view style="font-size:0.9rem" class="iconfont icon-shouye"></view>
+          <view>首页</view>
+        </view>
+      </view>
       <view class="add-cart" data-id="{{goods.goods_id}}" bindtap="goBuyOnly">
         <view>￥{{tools.beautyPrice(goods.goods_info.sell_price)}}</view>
         <view>单独购买</view>

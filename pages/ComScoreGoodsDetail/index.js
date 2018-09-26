@@ -162,6 +162,11 @@ Page({
       url: `/pages/ComScoreCreateOrder/index`,
     })
   },
+  goIndex() {
+    wx.switchTab({
+      url: '/pages/BarHome/index'
+    })
+  },
   // 打开弹出层sku选择器
   openSkuPopup() {
     // 触发子组件方法

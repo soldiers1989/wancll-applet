@@ -44,7 +44,7 @@
 
   <view class="member">
     <view class="is-not-member" wx:if="{{!isMember}}">
-      <view style="font-size:0.9rem" >金卡会员下单立享
+      <view style="font-size:0.9rem">金卡会员下单立享
         <!-- <span class="discount">{{memberParams.user.discount}}折</span> -->
         <span>{{memberParams.user.discount}}折</span>
       </view>
@@ -103,6 +103,12 @@
   <view style="height: 20rpx;"></view>
   <zan-panel>
     <view class="buy-buttons">
+      <view class="cart">
+        <view bindtap="goIndex">
+          <view style="font-size:0.9rem" class="iconfont icon-shouye"></view>
+          <view>首页</view>
+        </view>
+      </view>
       <view class="collect">
         <template is="collect" data="{{isCollect}}" />
       </view>
