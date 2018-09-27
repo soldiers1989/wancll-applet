@@ -23,7 +23,7 @@
   <view class='detail-info'>
     <view class='price' wx:if="{{!discountActivity.id}}">
       <!-- <text class="sell-price">￥</text> {{tools.beautyPrice(goodsInfo.sell_price)}} -->
-      <text class="wancll-goods-list-price">￥ {{tools.beautyPrice(goodsInfo.sell_price)}}</text>
+      <text class="wancll-goods-list-price"><text class="wancll-goods-list-price-icon">￥</text> {{tools.beautyPrice(goodsInfo.sell_price)}}</text>
       <text class="market-price" wx:if="{{goodsInfo.market_price != 0}}">市场价：{{tools.beautyPrice(goodsInfo.market_price)}}</text>
       <text style="margin-left:30rpx" wx:if="{{isMember}}" class="discount">{{memberParams.user.discount}}折</text>
     </view>

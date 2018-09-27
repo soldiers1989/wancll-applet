@@ -25,7 +25,7 @@
 }
 
 .detail-info .price .market-price {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   text-decoration: line-through;
   color: #777 !important;
 }
@@ -44,14 +44,16 @@
 }
 
 .detail-info .name {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 50rpx;
+  margin: 15rpx 0;
 }
 
 .detail-info .intro {
   line-height: 40rpx;
   color: #757575;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  margin-bottom: 20rpx;
 }
 
 .detail-info .sales-info .sales-stock {
@@ -72,7 +74,6 @@
   padding: 20rpx 15px;
   border-top: 1rpx solid rgb(244, 244, 244);
   font-size: 0.9rem;
-  
 }
 
 .document .tag {
@@ -82,7 +83,7 @@
 
 .document .icon {
   color: rgb(238, 144, 141);
-  margin-right:14rpx;
+  margin-right: 14rpx;
 }
 
 .member .is-not-member {
@@ -354,10 +355,9 @@
   height: 160rpx;
 }
 
-
 .team .list .item .avatar image {
   width: 65px;
-  height:65px;
+  height: 65px;
   border-radius: 50%;
 }
 
@@ -373,7 +373,7 @@
 
 .team .list .item .join {
   flex: 1;
-  text-align:center;
+  text-align: center;
   background: red;
   color: #fff;
   padding: 0.2rem 0.3rem;

@@ -11,7 +11,7 @@
   </swiper>
   <view class='detail-info'>
     <view class='price'>
-      <text style="font-size:0.7rem">积分</text> {{tools.beautyPrice(goods.score)}}
+      <text style="font-size:0.8rem">积分</text> {{tools.beautyPrice(goods.score)}}
     </view>
     <view class='name'>{{goods.goods_info.name}}</view>
     <view class='intro'>{{goods.goods_info.intro}}</view>
