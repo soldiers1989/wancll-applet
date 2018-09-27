@@ -229,7 +229,7 @@ Page({
       path += '&parent_mobile=' + this.data.user.mobile;
     }
     return {
-      title: this.data.goods.goods_info.name + '（我正在拼这件好货，人多力量大。是朋友就来帮我一起砍价！）',
+      title: '（我正在拼这件好货，人多力量大。是朋友就来帮我一起砍价！）' + this.data.goods.goods_info.name,
       path: path
     }
   }
