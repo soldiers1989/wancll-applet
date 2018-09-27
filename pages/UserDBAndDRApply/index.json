@@ -5,7 +5,6 @@
     "zan-cell-group": "../../dist/cell-group/index",
     "zan-button-group": "../../dist/btn-group/index",
     "zan-button": "../../dist/btn/index",
-    "icon": "../../components/icon/index",
     "citys": "../../components/citys/index"
   }
 }

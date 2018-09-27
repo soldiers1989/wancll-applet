@@ -23,27 +23,27 @@
     </view>
     <view class='selects-subpage'>
       <view class='subpage' bindtap="goSubPage" data-target="Wallet">
-        <icon class='icon icon-r' type='qianbao1'></icon>
+        <i class="icon iconfont icon-r icon-qianbao1"></i>
         <view class='text'>分红佣金</view>
         <view class='other'>{{bonusData.total_money}}</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Order">
-        <icon class='icon icon-r' type='chengjiaodingdan'></icon>
+        <i class="icon iconfont icon-r icon-chengjiaodingdan"></i>
         <view class='text'>分红订单</view>
         <view class='other'>{{bonusData.order_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Detail">
-        <icon class='icon icon-r' type='icon_gongzimingxi'></icon>
+        <i class="icon iconfont icon-r icon-icon_gongzimingxi"></i>
         <view class='text'>佣金明细</view>
         <view class='other'>佣金明细</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Custs">
-        <icon class='icon icon-b' type='huiyuan1'></icon>
+        <i class="icon iconfont icon-b icon-huiyuan1"></i>
         <view class='text'>我的客户</view>
         <view class='other'>{{bonusData.child_user_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Team">
-        <icon class='icon icon-b' type='tubiao-'></icon>
+        <i class="icon iconfont icon-b icon-tubiao-"></i>
         <view class='text'>我的团队</view>
         <view class='other'>{{bonusData.team_user_num}}个</view>
       </view>

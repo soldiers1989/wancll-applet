@@ -21,7 +21,7 @@
     </view>
     <zan-panel class="cell-panel-demo">
       <zan-cell title="提现" is-link url="/pages/UserDRCenterApply/index">
-        <icon slot="icon" class='icon icon-b' type='tixian'></icon>
+        <i class="icon iconfont icon-b icon-tianxin"></i>
       </zan-cell>
     </zan-panel>
   </view>

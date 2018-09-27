@@ -11,6 +11,7 @@ Page({
     childCates: [],
     tabScroll: true,
     tabHeight: 45,
+    tabSelectedId: '',
     // 数据参数
     goodsCateId: '',
     goodsList: [],

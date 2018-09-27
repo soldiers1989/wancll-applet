@@ -13,7 +13,7 @@
       <view class='money bonus-money'>
         <view class='number'>{{drpData.total_money}}</view>
         <view class='text'>累计佣金</view>
-        <zan-button size='small' type='info' bindbtnclick="goSubPage"  data-target="Wallet">进入</zan-button>
+        <zan-button size='small' type='info' bindbtnclick="goSubPage" data-target="Wallet">进入</zan-button>
       </view>
       <view class='money pay-money'>
         <view class='number'>{{drpData.can_drawcash_money}}</view>
@@ -23,27 +23,27 @@
     </view>
     <view class='selects-subpage'>
       <view class='subpage' bindtap="goSubPage" data-target="Wallet">
-        <icon class='icon icon-r' type='qianbao1'></icon>
+        <i class="icon icon-r  iconfont icon-qianbao1"></i>
         <view class='text'>分红佣金</view>
         <view class='other'>{{drpData.total_money}}</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Order">
-        <icon class='icon icon-r' type='chengjiaodingdan'></icon>
+        <i class="icon icon-r  iconfont icon-chengjiaodingdan"></i>
         <view class='text'>分红订单</view>
         <view class='other'>{{drpData.order_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Detail">
-        <icon class='icon icon-r' type='icon_gongzimingxi'></icon>
+        <i class="icon icon-r  iconfont icon-icon_gongzimingxin"></i>
         <view class='text'>佣金明细</view>
         <view class='other'>佣金明细</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Custs">
-        <icon class='icon icon-b' type='huiyuan1'></icon>
+        <i class="icon icon-r  iconfont icon-huiyuan1"></i>
         <view class='text'>我的客户</view>
         <view class='other'>{{drpData.child_user_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Team">
-        <icon class='icon icon-b' type='tubiao-'></icon>
+        <i class="icon icon-r  iconfont icon-tubiao-"></i>
         <view class='text'>我的团队</view>
         <view class='other'>{{drpData.team_user_num}}个</view>
       </view>

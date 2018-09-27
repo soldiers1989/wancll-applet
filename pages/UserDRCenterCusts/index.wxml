@@ -2,7 +2,8 @@
   <zan-row>
     <zan-col col="15" col-class="left">
       <view>
-        <icon class='icon' type="huiyuan1"></icon> 成员信息</view>
+        <i class="icon iconfont icon-huiyuan1"></i>
+        成员信息</view>
     </zan-col>
     <zan-col col="9" col-class="right">
       <view>金额/消费订单</view>
@@ -27,7 +28,7 @@
     </zan-row>
   </view>
   <view wx:if="{{haveNoData}}" class="no-content-image">
-      <image mode="widthFix" src="{{noContentImg}}"></image>
-      <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
-    </view>
+    <image mode="widthFix" src="{{noContentImg}}"></image>
+    <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+  </view>
 </view>

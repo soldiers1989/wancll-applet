@@ -11,10 +11,9 @@
 |-- components                    // 自定义组件
   |-- address                       // 地址列表项组件
   |-- citys                         // 省市县三级联动组件
-  |-- icon                          // 图标组件
   |-- orderItem                     // 订单列表项组件
   |-- selectSku                     // 规格选择组件
-|-- dist                          // zanui 组建
+|-- dist                          // zanui 组件
 |-- pages                         // 页面
 |-- static                        // 静态资源
   |-- images                        // 图片资源

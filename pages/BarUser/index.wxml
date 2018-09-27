@@ -8,23 +8,23 @@
       <view class='info'>
         <view class="name">{{user.nick_name || '匿名用户'}}</view>
         <view class="phone">
-          <icon class='icon' type='shouji'></icon>
+          <i class="icon iconfont icon-shouji"></i>
           <text> {{user.mobile}}</text>
         </view>
         <view class="other">
           <view class='vip'>
-            <icon class='icon' type='huiyuan'></icon>
+            <i class="icon iconfont icon-huiyuan"></i>
             <text> {{user.user_level}}</text>
           </view>
           <view class='grow' bindtap='goLevel'>
-            <icon class='icon' type='tubiao312'></icon>
+            <i class="icon iconfont icon-tubiao312"></i>
             <text> 成长值: {{userAsset.score}} </text>
-            <icon class='icon' type='xiangyou1'></icon>
+            <i class="icon iconfont icon-xiangyou12"></i>
           </view>
         </view>
       </view>
       <view class='setting' bindtap='goSetting'>
-        <icon class='icon' type='shezhi-xue'></icon>
+        <i class="icon iconfont icon-shezhi-xue"></i>
       </view>
     </view>
   </zan-panel>
@@ -40,35 +40,35 @@
           <view class='pending pending-order' catchtap='goOrderList' data-status="1">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_pay_num}}">{{orderCount.wait_pay_num}}</zan-badge>
-              <icon class='icon' type="daifukuan"></icon>
+              <i class="icon iconfont icon-daifukuan"></i>
             </view>
             <view class='text'>待付款</view>
           </view>
           <view class='pending pending-order' catchtap='goOrderList' data-status="2">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_ship_num}}">{{orderCount.wait_ship_num}}</zan-badge>
-              <icon class='icon' type="daifahuo"></icon>
+              <i class="icon iconfont icon-daifahuo"></i>
             </view>
             <view class='text'>待发货</view>
           </view>
           <view class='pending pending-order' catchtap='goOrderList' data-status="3">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_finish_num}}">{{orderCount.wait_finish_num}}</zan-badge>
-              <icon class='icon' type="yifahuo"></icon>
+              <i class="icon iconfont icon-yifahuo"></i>
             </view>
             <view class='text'>待收货</view>
           </view>
           <view class='pending pending-order' catchtap='goOrderList' data-status="4">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.wait_comment_num}}">{{orderCount.wait_comment_num}}</zan-badge>
-              <icon class='icon' type="daipingjia"></icon>
+              <i class="icon iconfont icon-daipingjia"></i>
             </view>
             <view class='text'>待评价</view>
           </view>
           <view class='pending pending-order' catchtap='goOrderList' data-status="-1">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.return_goods_num}}">{{orderCount.return_goods_num}}</zan-badge>
-              <icon class='icon' type="shouhou"></icon>
+              <i class="icon iconfont icon-shouhou"></i>
             </view>
             <view class='text'>售后服务</view>
           </view>
@@ -85,15 +85,15 @@
       <zan-panel>
         <view class='pending-list'>
           <view class='pending' bindtap='goSubPages' data-target="UserCollect">
-            <icon class='icon color-y' type="star"></icon>
+            <i class="iconfont icon color-r icon-star"></i>
             <view class='text'>我的收藏</view>
           </view>
           <view class='pending' bindtap='goSubPages' data-target="UserAddress">
-            <icon class='icon color-y' type="dizhi-01"></icon>
+            <i class="iconfont icon color-y icon-dizhi-01"></i>
             <view class='text'>我的地址</view>
           </view>
           <view class='pending' bindtap='goSubPages' data-target="UserComment">
-            <icon class='icon color-r' type="dingdan1"></icon>
+            <i class="iconfont icon color-r icon-dingdan1"></i>
             <view class='text'>我的评价</view>
           </view>
         </view>
@@ -101,52 +101,60 @@
       <zan-panel hide-border="{{true}}">
         <view class='pending-list'>
           <view class='pending' catchtap='auth'>
-            <icon class='icon color-r' type="shimingrenzheng1"></icon>
+            <i class="iconfont icon color-r icon-shimingrenzheng1"></i>
             <view class='text'>实名认证</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="UserWallet">
-            <icon class='icon color-y' type="qianbao"></icon>
+            <i class="iconfont icon color-y icon-qianbao"></i>
             <view class='text'>我的钱包</view>
           </view>
           <view class='pending' catchtap='goSubPages' data-target="UserBankCard">
-            <icon class='icon color-r' type="yinhangqia"></icon>
+            <i class="iconfont icon color-r icon-yinhangqia"></i>
             <view class='text'>我的银行卡</view>
-          </view>
-        </view>
-      </zan-panel>
-      <zan-panel hide-border="{{true}}" wx:if="{{systemInfo.is_open_bonus||systemInfo.is_open_drp}}">
-        <view class='pending-list'>
-          <view class='pending' catchtap='checkDRPage' wx:if="{{systemInfo.is_open_drp}}">
-            <icon class='icon color-r' type="daifahuo"></icon>
-            <view class='text'>分销中心</view>
-          </view>
-          <view class='pending' catchtap='checkDBPage' wx:if="{{systemInfo.is_open_bonus}}">
-            <icon class='icon color-y' type="shouhou"></icon>
-            <view class='text'>分红中心</view>
-          </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{systemInfo.is_open_bonus || systemInfo.is_open_drp}}">
-            <icon class='icon color-r' type="qianbao1"></icon>
-            <view class='text'>收款账户</view>
           </view>
         </view>
       </zan-panel>
       <zan-panel>
         <view class='pending-list'>
-          <view class='pending' catchtap='goCarts' data-target="BarCarts">
-            <icon class='icon color-r' type="gouwuche2"></icon>
-            <view class='text'>购物车</view>
-          </view>
           <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
-            <icon class='icon color-y' type="youhuiquan"></icon>
+            <i class="iconfont icon color-r icon-youhuiquan"></i>
             <view class='text'>优惠券</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{is_open_bonus||is_open_drp}}">
-            <icon class='icon color-y' type="qr-code"></icon>
+          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
+            <i class="iconfont icon color-y icon-jifenshangcheng"></i>
+            <view class='text'>积分商城</view>
+          </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
+            <i class="iconfont icon color-r icon-daohangtuangou"></i>
+            <view class='text'>团购商城</view>
+          </view>
+
+        </view>
+      </zan-panel>
+      <zan-panel wx:if="{{systemInfo.is_open_bonus||systemInfo.is_open_drp}}">
+        <view class='pending-list'>
+          <view class='pending' catchtap='checkDRPage' wx:if="{{systemInfo.is_open_drp}}">
+            <i class="iconfont icon color-r icon-daifahuo"></i>
+            <view class='text'>分销中心</view>
+          </view>
+          <view class='pending' catchtap='checkDBPage' wx:if="{{systemInfo.is_open_bonus}}">
+            <i class="iconfont icon color-y icon-shouhou"></i>
+            <view class='text'>分红中心</view>
+          </view>
+          <view class='pending' catchtap='goSubPages' data-target="UserRecAccunt" wx:if="{{systemInfo.is_open_bonus || systemInfo.is_open_drp}}">
+            <i class="iconfont icon color-r icon-qianbao1"></i>
+            <view class='text'>收款账户</view>
+          </view>
+        </view>
+      </zan-panel>
+      <zan-panel hide-border="{{true}}">
+        <view class='pending-list'>
+          <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{user.is_bonus||user.is_distributor}}">
+            <i class="iconfont icon color-r icon-qr-code"></i>
             <view class='text'>我的二维码</view>
           </view>
         </view>
       </zan-panel>
-
     </zan-cell-group>
   </zan-panel>
 </view>

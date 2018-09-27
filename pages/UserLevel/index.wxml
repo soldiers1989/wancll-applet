@@ -7,11 +7,11 @@
       <view class="name">{{user.nick_name || '匿名用户'}}</view>
       <view class="other">
         <view class='vip'>
-          <icon class='icon' type='huiyuan'></icon>
+          <i class="icon iconfont icon-huiyuan"></i>
           <text> {{user.user_level}}</text>
         </view>
         <view class='grow'>
-          <icon class='icon' type='tubiao312'></icon>
+          <i class="icon iconfont icon-tubiao312"></i>
           <text> 成长值: {{userAsset.score}} </text>
         </view>
       </view>

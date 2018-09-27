@@ -1,6 +1,6 @@
 const APP = getApp()
-var QRCode = require("../../static/vender/qrcode.min.js");
-var config = require("../../api/config.js");
+var QRCode = require("../../static/vender/qrcode.min.js")
+var config = require("../../api/config.js")
 
 Page({
   data: {
@@ -9,9 +9,9 @@ Page({
   canvasId: "canvas",
   onLoad(options) {
     // 组装url
-    let host = config.defaultHost;
-    let str = '/wap/index/handle_qrcode.html?parent_mobile=';
-    let userMobile = wx.getStorageSync("user").mobile;
+    let host = config.defaultHost
+    let str = '/wap/index/handle_qrcode.html?parent_mobile='
+    let userMobile = wx.getStorageSync("user").mobile
     let url = host + str + userMobile
     new QRCode('canvas', {
       text: url,
@@ -19,7 +19,7 @@ Page({
       height: 150,
       colorDark: "#000000",
       colorLight: "#ffffff",
-    });
+    })
   },
   onShareAppMessage() {
     return {

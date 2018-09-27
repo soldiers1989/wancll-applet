@@ -66,7 +66,7 @@ Page({
       },
     }).then(res => {
       APP.util.toast(res.msg)
-    })
+    }).catch(err => {})
   },
   // 下拉刷新
   onPullDownRefresh() {

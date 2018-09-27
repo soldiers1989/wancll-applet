@@ -1,5 +1,5 @@
 <view>
-  <zan-tab wx:if="{{status != -1}}" id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">Ï</zan-tab>
+  <zan-tab wx:if="{{status != -1}}" id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}"></zan-tab>
   <block wx:for="{{list}}" wx:key="key">
     <!-- 点击待评价按钮 -->
     <block wx:if="{{tabSelectedId == 4}}">Ï

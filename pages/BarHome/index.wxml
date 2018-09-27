@@ -2,7 +2,7 @@
   <!-- 搜索 -->
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
-      <icon class='icon' type='sousuo'></icon>
+      <i class="iconfont icon-sousou"></i>
       <view class='input'>搜索商品</view>
     </view>
   </view>

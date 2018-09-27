@@ -1,2 +1,0 @@
-<!--components/icon/index.wxml-->
-<view class="iconfont icon-{{ type }}"></view>

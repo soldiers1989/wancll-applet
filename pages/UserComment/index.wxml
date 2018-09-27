@@ -14,11 +14,11 @@
     <zan-panel>
       <view class='star-cent'>
         <view class='star-list'>
-          <icon class='star' type="{{item.score>=1?'shoucang':'star'}}"></icon>
-          <icon class='star' type="{{item.score>=2?'shoucang':'star'}}"></icon>
-          <icon class='star' type="{{item.score>=3?'shoucang':'star'}}"></icon>
-          <icon class='star' type="{{item.score>=4?'shoucang':'star'}}"></icon>
-          <icon class='star' type="{{item.score>=5?'shoucang':'star'}}"></icon>
+          <i class="{{'star iconfont '+(item.score>=1?'icon-shoucang':'icon-start')}}"></i>
+          <i class="{{'star iconfont '+(item.score>=2?'icon-shoucang':'icon-start')}}"></i>
+          <i class="{{'star iconfont '+(item.score>=3?'icon-shoucang':'icon-start')}}"></i>
+          <i class="{{'star iconfont '+(item.score>=4?'icon-shoucang':'icon-start')}}"></i>
+          <i class="{{'star iconfont '+(item.score>=5?'icon-shoucang':'icon-start')}}"></i>
         </view>
       </view>
       <view class='star-cent'>

@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
-    "icon": "../../components/icon/index",
     "zan-panel": "../../dist/panel/index",
     "zan-cell": "../../dist/cell/index",
     "zan-badge": "../../dist/badge/index",

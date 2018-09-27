@@ -14,7 +14,6 @@
     "pages/ComRegister/index",
     "pages/ComBindMobile/index",
     "pages/ComModifyMobile/index",
-    "pages/ComPayWaiting/index",
     "pages/UserSetting/index",
     "pages/UserBankCard/index",
     "pages/UserBankCardEdit/index",

@@ -3,7 +3,8 @@
     <zan-row>
       <zan-col col="15" col-class="left">
         <view>
-          <icon class='icon' type="tubiao-"></icon> 成员信息</view>
+          <i class="icon iconfont icon-tubiao-"></i>
+          成员信息</view>
       </zan-col>
       <zan-col col="9" col-class="right">
         <view>提现佣金/下级分销商</view>
