@@ -65,7 +65,7 @@
             </view>
             <view class='text'>待评价</view>
           </view>
-          <view class='pending pending-order' catchtap='goOrderList' ddata-status="-1">
+          <view class='pending pending-order' catchtap='goOrderList' data-status="-1">
             <view class='icon-badge'>
               <zan-badge wx:if="{{orderCount.return_goods_num}}">{{orderCount.return_goods_num}}</zan-badge>
               <icon class='icon' type="shouhou"></icon>

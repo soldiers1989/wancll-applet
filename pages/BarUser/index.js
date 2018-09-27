@@ -29,6 +29,7 @@ Page({
   // 跳转到订单状态页面
   goOrderList(e) {
     let status = APP.util.getDataSet(e, 'status')
+    console.log(status)
     wx.navigateTo({
       url: `/pages/UserOrderList/index?status=${status}`,
     })

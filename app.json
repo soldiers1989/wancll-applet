@@ -31,7 +31,6 @@
     "pages/UserAddressEdit/index",
     "pages/UserCoupon/index",
     "pages/UserCouponCenter/index",
-    "pages/UserService/index",
     "pages/UserOrderList/index",
     "pages/UserOrderRefound/index",
     "pages/UserOrderExpress/index",

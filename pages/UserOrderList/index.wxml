@@ -1,17 +1,16 @@
 <view>
-  <zan-tab wx:if="{{status != -1}}" id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
-    <block wx:for="{{list}}" wx:key="key">
-      <!-- 点击待评价按钮 -->
-      <block wx:if="{{tabSelectedId == 4}}">Ï
-        <!-- 只显示没有评价以及不是退款成功的订单 -->
-        <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet" wx:if="{{item.is_comment == 0 && item.is_all_return_goods != 1}}">
-        </order-item>
-      </block>
-      <block wx:else="{{tabSelectedId != 4}}">
-        <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet"></order-item>
-      </block>
+  <zan-tab wx:if="{{status != -1}}" id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">Ï</zan-tab>
+  <block wx:for="{{list}}" wx:key="key">
+    <!-- 点击待评价按钮 -->
+    <block wx:if="{{tabSelectedId == 4}}">Ï
+      <!-- 只显示没有评价以及不是退款成功的订单 -->
+      <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet" wx:if="{{item.is_comment == 0 && item.is_all_return_goods != 1}}">
+      </order-item>
     </block>
-  </zan-tab>
+    <block wx:else="{{tabSelectedId != 4}}">
+      <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet"></order-item>
+    </block>
+  </block>
 </view>
 
 <view wx:if="{{haveNoData}}" class="no-content-image">

@@ -1,5 +1,0 @@
-<view>
-  <block wx:for="{{orderList}}" wx:key="key">
-    <order-item data="{{item}}" haveinfo gotype='orderdetail' ></order-item>
-  </block>
-</view>

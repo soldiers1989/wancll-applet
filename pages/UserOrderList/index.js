@@ -31,6 +31,11 @@ Page({
       status: options.status || 1,
       tabSelectedId: (options.status == -1 ? 0 : options.status) || 0,
     })
+    if (options.status == -1) {
+      wx.setNavigationBarTitle({
+        title: '售后服务',
+      })
+    }
     this.getList()
   },
   getList() {
