@@ -12,6 +12,10 @@ Page({
   getList() {
     APP.ajax({
       url: APP.api.collectionList,
+      header: {
+        'page-num': this.data.page,
+        'page-limit': 10,
+      }
     }).then(res => {
       let list = APP.util.arrayToUnique(this.data.list.concat(res.data))
       this.setData({
@@ -19,7 +23,7 @@ Page({
         haveNoData: !Boolean(list.length),
         page: this.data.page + 1
       })
-    })
+    }).catch(err => {})
   },
   onPullDownRefresh() {
     this.setData({

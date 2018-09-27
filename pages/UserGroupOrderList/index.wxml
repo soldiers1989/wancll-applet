@@ -1,0 +1,12 @@
+<view>
+  <zan-tab id="tab" class="tab" bind:tabChange="tabChange" list="{{ tabList }}" selected-id="{{ tabSelectedId }}" data-target="{{ tabSelectedId }}">
+    <block wx:for="{{list}}" wx:key="key">
+      <order-item data="{{item}}" gotype='orderdetail' haveinfo bind:refreshGet="refreshGet"></order-item>
+    </block>
+
+    <view wx:if="{{haveNoData}}" class="no-content-image">
+      <image mode="widthFix" src="{{noContentImg}}"></image>
+      <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+    </view>
+  </zan-tab>
+</view>

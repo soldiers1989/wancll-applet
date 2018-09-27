@@ -4,7 +4,6 @@
 .user{
   position: relative;
   height: 300rpx;
-  background-image: url('http://wancllshop.wx.wygoo.com/public/static/wap/images/growth.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   display: flex;

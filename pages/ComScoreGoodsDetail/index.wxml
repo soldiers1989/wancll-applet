@@ -1,0 +1,70 @@
+<!--pages/ComDetail/index.wxml-->
+<view class='content'>
+  <swiper class='detail-swiper' indicator-dots="{{bannerConfig.indicatorDots}}" autoplay="{{bannerConfig.autoplay}}" interval="{{bannerConfig.interval}}" duration="{{bannerConfig.duration}}">
+    <block wx:for="{{goods.goods_info.imgs}}" wx:key="key">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="widthFix" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='detail-info'>
+    <view class='price'>
+      <text class="sell-price"></text>积分 {{tools.beautyPrice(goods.score)}}
+    </view>
+    <view class='name'>{{goods.goods_info.name}}</view>
+    <view class='intro'>{{goods.goods_info.intro}}</view>
+  </view>
+  <view class='select-sku'>
+    <zan-panel>
+      <block wx:if="{{goods.spec_group_info.length}}">
+        <zan-panel>
+          <view class='go-select' bindtap='openSkuPopup'>
+            <view class="left">选择商品规格</view>
+            <view class="right">{{selectedSku.spec_option_group || ''}}</view>
+          </view>
+        </zan-panel>
+      </block>
+      <block wx:if="{{goods.goods_info.attr_info.length}}">
+        <view class='go-select' bindtap='openAttrPopup'>
+          <view class="left">产品属性参数</view>
+          <view class="right"></view>
+        </view>
+      </block>
+    </zan-panel>
+    <block wx:if="{{goods.spec_group_info.length}}">
+      <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
+        <view class="pop-example__container pop-example__container--bottom">
+          <wancll-selectsku id="selectsku" wx:if="{{goods}}" goods="{{goods}}" sendSelectedSku="{{selectedSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
+          </wancll-selectsku>
+        </view>
+      </zan-popup>
+    </block>
+    <block wx:if="{{goods.goods_info.attr_info.length}}">
+      <zan-popup show="{{ showAttrPopup }}" type="bottom" bindclose="closeAttrPopup">
+        <view class="pop-example__container pop-example__container--bottom">
+          <zan-panel>
+            <view class='top-close'>
+              <text>产品属性</text>
+              <text class="icon" data-type="icon" bindtap="closeAttrPopup">关闭</text>
+            </view>
+          </zan-panel>
+          <zan-cell-group>
+            <zan-cell wx:for="{{goods.goods_info.attr_info}}" title="{{item.name}}" value="{{item.value}}" wx:key="key">
+            </zan-cell>
+          </zan-cell-group>
+        </view>
+      </zan-popup>
+    </block>
+  </view>
+  <view style="height: 20rpx;"></view>
+  <zan-panel>
+    <view class="buy-buttons">
+      <view class="buy-now wancll-bg-info" data-type="buy" bindtap="buyNow">立即兑换</view>
+    </view>
+  </zan-panel>
+  <zan-tab id="tab" list="{{ tabList }}" selected-id="{{ tabListSelectedId }}" scroll="{{ tabListScroll }}" height="{{ tabListHeight }}" bindtap="changeTab" />
+  <!-- 详情 -->
+  <view class='particulars'>
+    <rich-text nodes="{{goods.goods_info.desc}}"></rich-text>
+  </view>
+</view>

@@ -1,0 +1,91 @@
+<!-- 个人信息 -->
+<view class='panel'>
+  <zan-panel>
+    <view class='user' style="{{'background-image: url('+ homeBgImg +');'}}">
+      <view class='avatar'>
+        <image src="{{user.avatar}}"></image>
+      </view>
+      <view class='info'>
+        <view class="name">{{user.nick_name || '匿名用户'}}</view>
+        <view class="phone">
+          <i class="icon iconfont icon-shouji"></i>
+          <text> {{user.mobile}}</text>
+        </view>
+      </view>
+    </view>
+  </zan-panel>
+</view>
+<!-- 订单 -->
+<view class='panel'>
+  <zan-panel>
+    <zan-cell-group>
+      <zan-cell title="团购订单" value="全部订单" is-link catchtap='goOrderList' data-target="0">
+      </zan-cell>
+      <zan-panel>
+        <view class='pending-list'>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="1">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_pay_num}}">{{orderCount.wait_pay_num}}</zan-badge>
+              <i class="icon iconfont icon-daifukuan"></i>
+            </view>
+            <view class='text'>待付款</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="2">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_team_num}}">{{orderCount.wait_team_num}}</zan-badge>
+            </view>
+            <view class="icon iconfont icon-daohangtuangou"></view>
+            <view class='text'>拼团中</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="3">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_ship_num}}">{{orderCount.wait_ship_num}}</zan-badge>
+              <i class="icon iconfont icon-daifahuo"></i>
+            </view>
+            <view class='text'>待发货</view>
+          </view>
+          <view class='pending pending-order' catchtap='goOrderList' data-target="4">
+            <view class='icon-badge'>
+              <zan-badge wx:if="{{orderCount.wait_finish_num}}">{{orderCount.wait_finish_num}}</zan-badge>
+              <i class="icon iconfont icon-yifahuo"></i>
+            </view>
+            <view class='text'>待收货</view>
+          </view>
+        </view>
+      </zan-panel>
+    </zan-cell-group>
+  </zan-panel>
+</view>
+
+
+
+<!-- 团购商品 -->
+
+<view class="goods-list-new">
+  <view class="goods" wx:for="{{goodsList}}" wx:key="index">
+    <view class="left">
+      <image mode="widthFix" src="{{item.goods_info.thum}}"></image>
+    </view>
+    <view class="right">
+      <view class="top">
+        {{item.goods_info.name}}
+      </view>
+      <view class="bottom">
+        <view class="price">
+          <view class="sell-price-box">
+            单买价：
+            <text class="sell-price">￥{{tools.beautyPrice(item.goods_info.sell_price)}}</text>
+          </view>
+          <view class="group-price">￥{{tools.beautyPrice(item.money)}}</view>
+        </view>
+        <view class="buy" bindtap="goGoodsDetail" data-id="{{item.id}}" data-goods-id="{{item.goods_id}}">
+          去拼团
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{haveNoData}}" class="no-content-image">
+  <image mode="widthFix" src="{{noContentImg}}"></image>
+  <view class="wancll-text-pray wancll-margin-t-10">啊哦,这里什么都没有~</view>
+</view>

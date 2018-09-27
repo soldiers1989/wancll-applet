@@ -7,6 +7,7 @@ import {
 } from './data.js'
 Page({
   data: {
+    homeBgImg: APP.imgs.homeBgImg,
     user: {},
     orderCount: {},
     userAsset: {},

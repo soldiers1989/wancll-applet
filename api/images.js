@@ -16,6 +16,7 @@ const imgs = {
   announcementImg: `${imageHost.wapImages}/wangkaikuaibao.png`,
   logo: `${imageHost.wapImages}/wap_logo.png`,
   noContentImg: `${imageHost.wapImages}/no_content.png`,
+  homeBgImg: `${imageHost.wapImages}/home.png`,
   // 实名认证
   idcardFrontExample: `${imageHost.wapImages}/idcard_front_example.png`,
   idcardBackExample: `${imageHost.wapImages}/idcard_back_example.png`,

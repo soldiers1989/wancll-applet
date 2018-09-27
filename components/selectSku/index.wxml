@@ -10,16 +10,24 @@
     <block wx:if="{{selectSku.id}}">
       <image src='{{selectSku.thum || goods.thum}}' widthFix></image>
       <view class='price-warpper'>
-        <view class='price wancll-text-price'>
-          <text style="font-size: 30rpx;">￥</text>{{selectSku.sell_price}}</view>
+        <view wx:if="{{!isDiscountGoods}}" class='price wancll-text-price'>
+          <text style="font-size: 30rpx;">￥</text>{{selectSku.sell_price}}
+        </view>
+        <view wx:else="{{!isDiscountGoods}}" class='price wancll-text-price'>
+          <text style="font-size: 30rpx;">￥</text>{{discountPrice}}
+        </view>
         <view class='stock'>库存：{{selectSku.stock}}</view>
       </view>
     </block>
     <block wx:else="{{selectSku.id}}">
       <image src='{{goods.thum}}' widthFix></image>
       <view class='price-warpper'>
-        <view class='price wancll-text-price'>
-          <text style="font-size: 30rpx;">￥</text>{{goods.sell_price}}</view>
+        <view wx:if="{{!isDiscountGoods}}" class='price wancll-text-price'>
+          <text style="font-size: 30rpx;">￥</text>{{goods.sell_price}}
+        </view>
+        <view wx:else="{{!isDiscountGoods}}" class='price wancll-text-price'>
+          <text style="font-size: 30rpx;">￥</text>{{discountPrice}}
+        </view>
         <view class='stock'>库存：{{goods.stock}}</view>
       </view>
     </block>

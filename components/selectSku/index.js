@@ -3,15 +3,23 @@ Component({
   properties: {
     goods: {
       type: Object,
-      description: '传递过来的商品详情数据'
+      description: '传递过来的商品详情数据',
     },
     selectSku: {
       type: Object,
-      description: '传递过来的sku'
+      description: '传递过来的sku',
     },
     isCart: {
       type: Boolean,
-      description: '是否是购物车'
+      description: '是否是购物车',
+    },
+    isDiscountGoods: {
+      type: Boolean,
+      description: '是否是限时折扣商品',
+    },
+    discountPrice: {
+      type: Number,
+      description: '限时折扣的价格',
     }
   },
   data: {},

@@ -1,0 +1,173 @@
+.panel {
+  margin-bottom: 20rpx;
+}
+
+.user {
+  position: relative;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+  height: 7rem;
+  border-radius: 0.3rem;
+}
+
+.user .setting{
+  position: absolute;
+  right: 30rpx;
+  top:30rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.user .avatar {
+  flex: 33% 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150rpx;
+  border-radius: 50%;
+}
+
+.user .avatar image {
+  width: 150rpx;
+  height: 150rpx;
+  background: #eee;
+  border-radius: 50%;
+}
+
+.user .info {
+  flex: 56%;
+  color: #fff;
+  padding: 80rpx 0;
+}
+
+.user .info .icon {
+  font-size: 30rpx;
+}
+
+.user .info .name {
+  font-size: 36rpx;
+  /* margin-bottom: 15rpx; */
+}
+
+.user .info .phone {
+  line-height: 50rpx;
+}
+
+.banner_swiper {
+  width: 100%;
+  height: 432rpx;
+}
+
+.banner_swiper image {
+  width: 100%;
+}
+
+.banner-list {
+  display: flex;
+  padding: 30rpx 0;
+  text-align: center;
+}
+
+.banner-list .list {
+  flex: 1;
+}
+
+.banner-list image {
+  width: 88rpx;
+}
+
+.pending-list {
+  padding: 20px 0 15px 0;
+  display: flex;
+}
+
+.pending-list .pending {
+  flex: 25% 0 0;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.pending-list .pending-order {
+  flex: 1;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.pending-list .pending .icon-badge {
+  margin: 0rpx 40rpx;
+}
+
+.pending-list .pending .icon {
+  font-size: 50rpx;
+}
+
+.pending-list .pending .color-y {
+  color: rgb(235, 197, 46);
+}
+
+.pending-list .pending .color-r {
+  color: rgb(236, 128, 62);
+}
+
+.pending-list .pending .text {
+  font-size: 24rpx;
+  line-height: 60rpx;
+}
+
+.goods-list-new .goods {
+  display: flex;
+  margin: 0 10rpx 0 10 rpx;
+  padding: 20rpx 20rpx;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.goods-list-new .goods .left image {
+  width: 4.5rem;
+  margin-right: 30rpx;
+}
+
+.goods-list-new .goods .right .top {
+  font-size: 0.7rem;
+  color: #212121;
+  height: 76rpx;
+  
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.goods-list-new .goods .right .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.goods-list-new .goods .right .bottom .price {
+  width: 410rpx;
+}
+
+.goods-list-new .goods .right .bottom .sell-price-box {
+  color: #777;
+}
+
+.goods-list-new .goods .right .bottom .sell-price {
+  text-decoration: line-through;
+}
+
+.goods-list-new .goods .right .bottom .group-price {
+  color: #df0303;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.goods-list-new .goods .right .bottom .buy {
+  background: red;
+  color: #fff;
+  padding: 0.2rem 0.3rem;
+  border-radius: 10%;
+  font-size: 0.7rem;
+}

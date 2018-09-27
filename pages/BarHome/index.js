@@ -67,7 +67,7 @@ Page({
     let discountid = APP.util.getDataSet(e, 'discountid');
     let param = APP.util.paramStringify({
       id: id,
-      isDisocountGoods: 1
+      isDiscountGoods: 1
     })
     wx.navigateTo({
       url: `/pages/ComGoodsDetail/index?${param}`,

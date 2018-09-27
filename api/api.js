@@ -143,4 +143,28 @@ export const api = {
   // 资产
   userAssetRead: `/api_query/users/asset`,
   scoreLogList: `/api_users/score_logs/lists`,
+  // 积分商城
+  scoreOrderCount: `/api_query/orders/score_shop_count`,
+  scoreGoodsList: `/api_score_shop/score_goods/lists`,
+  scoreGoodsDetail: `/api_score_shop/score_goods/read`,
+  scoreParams: `/api_score_shop/rules/index`,
+  scoreOrderView: `/api_score_shop/orders/view`,
+  scoreOrderSave: `/api_score_shop/orders/save`,
+  checkPayPassword: `/api_query/users/check_pay_password`,
+  scoreOrderList: `/api_score_shop/orders/lists`,
+  scoreIsSign: '/api_query/users/is_sign_in',
+  singIn: `/api_users/users/sign_in`,
+
+  // 团购商城
+  groupOrderCount: `/api_query/orders/group_shop_count`,
+  groupGoodsList: `/api_group_buy/group_buy_user_goods/lists`,
+  groupParams: `/api_group_buy/rules/index`,
+  groupGoodsDetail: `/api_group_buy/group_buy_user_goods/read`,
+  groupTeams: `/api_group_buy/group_buy_user_teams/lists`,
+  groupOrderView: `/api_group_buy/orders/view`,
+  groupOrderSave: `/api_group_buy/orders/save`,
+  groupOrderJoin: `/api_group_buy/orders/join`,
+  groupOrderList: `/api_group_buy/orders/lists`,
+  groupGoodsInfo: `/api_query/group_buy_goods/goods_info`,
+  groupTeamDetail: `/api_group_buy/group_buy_user_teams/read`,
 }

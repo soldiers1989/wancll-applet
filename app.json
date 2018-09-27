@@ -56,7 +56,18 @@
     "pages/UserDRCenterCusts/index",
     "pages/UserDRCenterDetailInfo/index",
     "pages/UserDBAndDRApply/index",
-    "pages/UserInfoComplete/index"
+    "pages/UserInfoComplete/index",
+    "pages/ComScoreShop/index",
+    "pages/ComScoreGoodsDetail/index",
+    "pages/ComScoreCreateOrder/index",
+    "pages/UserScoreLog/index",
+    "pages/UserScoreOrderList/index",
+    "pages/UserScoreOrderDetail/index",
+    "pages/ComGroupShop/index",
+    "pages/ComGroupGoodsDetail/index",
+    "pages/ComGroupCreateOrder/index",
+    "pages/UserGroupOrderList/index",
+    "pages/UserGroupOrderDetail/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

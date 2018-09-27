@@ -1,5 +1,5 @@
 <view class='panel'>
-  <view class='user'>
+  <view class='user' style="{{'background-image: url('+ homeBgImg +');'}}">
     <view class='avatar'>
       <image src='{{user.avatar}}'></image>
     </view>
@@ -12,14 +12,14 @@
         </view>
         <view class='grow'>
           <i class="icon iconfont icon-tubiao312"></i>
-          <text> 成长值: {{userAsset.score}} </text>
+          <text> 积分: {{userAsset.score}} </text>
         </view>
       </view>
     </view>
   </view>
 </view>
 <view class='grow-warpper'>
-  <view class='title'>成长记录</view>
+  <view class='title'>积分记录</view>
   <view class='lists'>
     <view class='list' wx:for="{{list}}" wx:key="key">
       <view class='left'>

@@ -10,6 +10,7 @@ Page({
     page: 1,
     haveNoData: false,
     noContentImg: APP.imgs.noContentImg,
+    homeBgImg: APP.imgs.homeBgImg,
   },
   onLoad(options) {
     this.setData({

@@ -51,7 +51,7 @@
     <block wx:if="{{goods.spec_info.length}}">
       <zan-popup show="{{ showSkuPopup }}" type="bottom" bindclose="closeSkuPopup">
         <view class="pop-example__container pop-example__container--bottom">
-          <wancll-selectsku id="selectsku" goods="{{goods}}" select-sku="{{selectSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
+          <wancll-selectsku id="selectsku" is-discount-goods="{{isDiscountGoods}}" discount-price="{{discountGoods.discount_price}}" goods="{{goods}}" select-sku="{{selectSku}}" bind:confirm="confirm" bind:close="closeSkuPopup">
           </wancll-selectsku>
         </view>
       </zan-popup>

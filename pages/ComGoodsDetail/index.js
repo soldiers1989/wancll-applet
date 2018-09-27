@@ -32,7 +32,7 @@ Page({
     tabListScroll: true,
     tabListHeight: 45,
     // 类型 是否有活动参与
-    isDiscountGoods: 0,
+    isDiscountGoods: false,
     discountActivity: [], // 所有的活动数据
     discountGoods: {}, // 当前显示宝贝的活动数据
     timeDown: '0天 00 : 00 : 00', // 倒计时
@@ -56,7 +56,7 @@ Page({
   onLoad(options) {
     this.setData({
       id: options.id,
-      isDiscountGoods: options.isDiscountGoods || 0,
+      isDiscountGoods: Boolean(options.isDiscountGoods || 0),
     })
     this.getData()
   },
@@ -148,7 +148,7 @@ Page({
         }])
       }
       wx.navigateTo({
-        url: `/pages/ComCreateOrder/index?isDiscountGoods=${this.data.isDiscountGoods}`
+        url: `/pages/ComCreateOrder/index?isDiscountGoods=${this.data.isDiscountGoods?1:0}`
       })
     }).catch(err => {})
   },

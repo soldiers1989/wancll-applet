@@ -1,7 +1,7 @@
 <!-- 个人信息 -->
 <view class='panel'>
   <zan-panel>
-    <view class='user'>
+    <view class='user' style="{{'background-image: url('+ homeBgImg +');'}}">
       <view class='avatar'>
         <image src="{{user.avatar}}"></image>
       </view>
@@ -18,7 +18,7 @@
           </view>
           <view class='grow' bindtap='goLevel'>
             <i class="icon iconfont icon-tubiao312"></i>
-            <text> 成长值: {{userAsset.score}} </text>
+            <text> 积分: {{userAsset.score}} </text>
             <i class="icon iconfont icon-xiangyou12"></i>
           </view>
         </view>
@@ -120,11 +120,11 @@
             <i class="iconfont icon color-r icon-youhuiquan"></i>
             <view class='text'>优惠券</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
+          <view class='pending' catchtap='goSubPages' data-target="ComScoreShop">
             <i class="iconfont icon color-y icon-jifenshangcheng"></i>
             <view class='text'>积分商城</view>
           </view>
-          <view class='pending' catchtap='goSubPages' data-target="UserCoupon">
+          <view class='pending' catchtap='goSubPages' data-target="ComGroupShop">
             <i class="iconfont icon color-r icon-daohangtuangou"></i>
             <view class='text'>团购商城</view>
           </view>

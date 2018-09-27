@@ -2,8 +2,6 @@ const APP = getApp();
 import {
   handleWechatPay,
   queryOrderIsPay,
-} from '../../utils/common.js'
-import {
   queryIsSetPayPassword,
 } from '../../utils/common.js'
 Page({
