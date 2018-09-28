@@ -87,10 +87,8 @@
           </view>
           <view wx:else class='item more' bindtap="goForeign" style='width:100rpx;'>
             <view class='info'>
-              <view>查</view>
-              <view>看</view>
-              <view>更</view>
-              <view>多</view>
+              <view style="margin-bottom:20rpx">查看</view>
+              <view>更多</view>
             </view>
           </view>
         </block>
@@ -116,10 +114,8 @@
           </view>
           <view wx:else class='item more' bindtap="goGroup" style='width:100rpx;'>
             <view class='info'>
-              <view>查</view>
-              <view>看</view>
-              <view>更</view>
-              <view>多</view>
+              <view style="margin-bottom:20rpx">查看</view>
+              <view>更多</view>
             </view>
           </view>
         </block>
@@ -143,10 +139,8 @@
           </view>
           <view wx:else class='item more' bindtap="goScore" style='width:100rpx;'>
             <view class='info'>
-              <view>查</view>
-              <view>看</view>
-              <view>更</view>
-              <view>多</view>
+              <view style="margin-bottom:20rpx">查看</view>
+              <view>更多</view>
             </view>
           </view>
         </block>
