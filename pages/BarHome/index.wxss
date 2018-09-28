@@ -291,3 +291,19 @@
   color: rgb(163, 163, 163);
   font-size: 0.5rem;
 }
+
+.more {
+  width: 30rpx;
+  padding: 0 15rpx;
+  height: 175px;
+  vertical-align: top;
+  font-size:.75rem;
+  text-align: center;
+}
+.more .info{
+  padding-top:80rpx;
+  display: inline-block;
+  vertical-align: middle;
+  word-wrap:break-word;
+  width:50rpx;
+}

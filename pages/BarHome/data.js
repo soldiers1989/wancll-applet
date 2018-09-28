@@ -78,6 +78,7 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.indexActivity,
       success: (res) => {
+        res.data.push({});
         resolve(res.data);
       }
     })
@@ -97,7 +98,7 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.goods,
       header: {
-        'page-limit': 20,
+        'page-limit': 8,
         'page-num': 1
       },
       data: {
@@ -105,6 +106,7 @@ export function getOtherData(that) {
         is_member_goods: 0,
       },
       success: (res) => {
+        res.data.push({});
         resolve(res.data);
       }
     })
@@ -115,10 +117,11 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.groupGoods,
       header: {
-        'page-limit': 20,
+        'page-limit': 8,
         'page-num': 1
       },
       success: (res) => {
+        res.data.push({});
         resolve(res.data);
       }
     })
@@ -129,10 +132,11 @@ export function getOtherData(that) {
     APP.ajax({
       url: APP.api.scoreGoods,
       header: {
-        'page-limit': 20,
+        'page-limit': 8,
         'page-num': 1
       },
       success: (res) => {
+        res.data.push({});
         resolve(res.data);
       }
     })

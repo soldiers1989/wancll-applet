@@ -77,13 +77,23 @@
     <image bindtap="goModel" mode="widthFix" src="{{backgroundImgs.foreign.img}}" data-redirect="{{backgroundImgs.foreign.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
-        <view wx:for="{{foreignGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}">
-          <view class="info">
-            <image src="{{goods.thum}}" mode="widthFix" />
-            <view class="tit-2 pre-wrap">{{goods.name}}</view>
-            <view class="price">￥{{tools.beautyPrice(goods.sell_price)}}</view>
+        <block wx:for="{{foreignGoods}}" wx:for-item="goods" wx:key="key">
+          <view wx:if="{{goods.id}}" class='item' bindtap="goDetail" data-id="{{goods.id}}">
+            <view class="info">
+              <image src="{{goods.thum}}" mode="widthFix" />
+              <view class="tit-2 pre-wrap">{{goods.name}}</view>
+              <view class="price">￥{{tools.beautyPrice(goods.sell_price)}}</view>
+            </view>
           </view>
-        </view>
+          <view wx:else class='item more' bindtap="goForeign" style='width:100rpx;'>
+            <view class='info'>
+              <view>查</view>
+              <view>看</view>
+              <view>更</view>
+              <view>多</view>
+            </view>
+          </view>
+        </block>
       </scroll-view>
     </view>
   </view>
@@ -93,16 +103,27 @@
     <image mode="widthFix" src="{{backgroundImgs.group.img}}" bindtap="goModel" data-redirect="{{backgroundImgs.group.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
-        <view wx:for="{{groupGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goGroupGoodsDetail">
-          <view class="info">
-            <image src="{{goods.goods_info.thum}}" mode="widthFix" />
-            <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
-            <view>
-              拼团价
-              <text class="price">￥{{tools.beautyPrice(goods.money)}}</text>
+        <block wx:for="{{groupGoods}}" wx:for-item="goods" wx:key="key">
+          <view wx:if="{{goods.id}}" class='item' bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goGroupGoodsDetail">
+            <view class="info">
+              <image src="{{goods.goods_info.thum}}" mode="widthFix" />
+              <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
+              <view>
+                拼团价
+                <text class="price">￥{{tools.beautyPrice(goods.money)}}</text>
+              </view>
             </view>
           </view>
-        </view>
+          <view wx:else class='item more' bindtap="goGroup" style='width:100rpx;'>
+            <view class='info'>
+              <view>查</view>
+              <view>看</view>
+              <view>更</view>
+              <view>多</view>
+            </view>
+          </view>
+        </block>
+
       </scroll-view>
     </view>
   </view>
@@ -112,13 +133,23 @@
     <image mode="widthFix" src="{{backgroundImgs.score.img}}" bindtap="goModel" data-redirect="{{backgroundImgs.score.redirect_data}}"></image>
     <view class="wap-index">
       <scroll-view class='scroll-items' scroll-x="true">
-        <view wx:for="{{scoreGoods}}" wx:for-item="goods" class='item' wx:key="key" bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goScoreGoodsDetail">
-          <view class="info">
-            <image src="{{goods.goods_info.thum}}" mode="widthFix" />
-            <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
-            <view class="price">{{tools.beautyPrice(goods.score)}}积分</view>
+        <block wx:for="{{scoreGoods}}" wx:for-item="goods" wx:key="key">
+          <view wx:if="{{goods.id}}" class='item' bindtap="goDetail" data-id="{{goods.id}}" data-goods-id="{{goods.goods_id}}" bindtap="goScoreGoodsDetail">
+            <view class="info">
+              <image src="{{goods.goods_info.thum}}" mode="widthFix" />
+              <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
+              <view class="price">{{tools.beautyPrice(goods.score)}}积分</view>
+            </view>
           </view>
-        </view>
+          <view wx:else class='item more' bindtap="goScore" style='width:100rpx;'>
+            <view class='info'>
+              <view>查</view>
+              <view>看</view>
+              <view>更</view>
+              <view>多</view>
+            </view>
+          </view>
+        </block>
       </scroll-view>
     </view>
   </view>

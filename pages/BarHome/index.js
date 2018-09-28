@@ -179,7 +179,21 @@ Page({
       url: '/pages/ComDiscountCenter/index?activityId=' + id,
     })
   },
-
+  goScore() {
+    wx.navigateTo({
+      url: '/pages/ComScoreShop/index',
+    })
+  },
+  goGroup() {
+    wx.navigateTo({
+      url: '/pages/ComGroupShop/index',
+    })
+  },
+  goForeign() {
+    wx.navigateTo({
+      url: '/pages/ComCategory/index?to_foreign_list=1',
+    })
+  },
   // 去搜索页面
   goSearchPage() {
     wx.navigateTo({
