@@ -228,7 +228,7 @@
 .scroll-items .item .info .price {
   font-size: 14px;
   color: #df0303;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .activity {

@@ -13,7 +13,7 @@
     <view class='name'>{{goods.goods_info.name}}</view>
     <view class='intro'>{{goods.goods_info.intro}}</view>
     <view class='price'>
-      <text style="margin-right:30rpx;font-weight:600" class="wancll-goods-list-price"><text class="wancll-goods-list-price-icon">￥</text> {{tools.beautyPrice(goods.money)}}</text>
+      <text style="margin-right:30rpx;font-weight:600" class="wancll-goods-detail-price"><text class="wancll-goods-detail-price-icon">￥</text> {{tools.beautyPrice(goods.money)}}</text>
       <text class="market-price">￥{{tools.beautyPrice(goods.goods_info.sell_price)}}</text>
       <text class="sales-number">销量：{{goods.goods_info.sell_num}}</text>
     </view>

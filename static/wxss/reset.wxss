@@ -571,12 +571,12 @@ page {
 }
 
 .wancll-goods-list-price-icon {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 800;
 }
 
 .wancll-goods-list-price {
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #df0303;
   font-weight: 800;
 }
@@ -585,6 +585,17 @@ page {
   text-decoration: line-through;
   color: #777;
   font-size: 0.5rem;
+}
+
+.wancll-goods-detail-price {
+  font-size: 1.3rem;
+  color: #df0303;
+  font-weight: 800;
+}
+
+.wancll-goods-detail-price-icon {
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 /* 商品列表页 超两行文字省略 */

@@ -82,7 +82,7 @@
             <view class="info">
               <image src="{{goods.thum}}" mode="widthFix" />
               <view class="tit-2 pre-wrap">{{goods.name}}</view>
-              <view class="price">￥{{tools.beautyPrice(goods.sell_price)}}</view>
+              <view class="price"><text style="font-weight:400;font-size:16px">￥</text>{{tools.beautyPrice(goods.sell_price)}}</view>
             </view>
           </view>
           <view wx:else class='item more' bindtap="goForeign" style='width:100rpx;'>
@@ -108,7 +108,7 @@
               <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
               <view>
                 拼团价
-                <text class="price">￥{{tools.beautyPrice(goods.money)}}</text>
+                <text class="price"><text style="font-weight:400;font-size:16px">￥</text>{{tools.beautyPrice(goods.money)}}</text>
               </view>
             </view>
           </view>
@@ -134,7 +134,8 @@
             <view class="info">
               <image src="{{goods.goods_info.thum}}" mode="widthFix" />
               <view class="tit-2 pre-wrap">{{goods.goods_info.name}}</view>
-              <view class="price">{{tools.beautyPrice(goods.score)}}积分</view>
+              <view class="price">{{tools.beautyPrice(goods.score)}}
+              <text style="font-weight:300">积分</text></view>
             </view>
           </view>
           <view wx:else class='item more' bindtap="goScore" style='width:100rpx;'>
