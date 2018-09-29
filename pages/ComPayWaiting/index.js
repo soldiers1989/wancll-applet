@@ -90,7 +90,7 @@ Page({
   },
   onShareAppMessage() {
     // 分享首页
-    let path = `/pages/Home/index`;
+    let path = `/pages/BarHome/index`;
     if (this.data.user) {
       path += '?parent_mobile=' + this.data.user.mobile;
     }

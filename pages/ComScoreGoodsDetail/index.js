@@ -25,6 +25,7 @@ Page({
 
     // 数据
     goods: {
+      score:0,
       goods_info: {
         attr_info: [],
         spec_info: [],

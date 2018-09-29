@@ -27,9 +27,11 @@ Page({
 
     // 数据
     goods: {
+      money: 0,
       goods_info: {
         attr_info: [],
         spec_info: [],
+        sell_price:0
       },
       spec_group_info: {}
     },

@@ -47,7 +47,9 @@ Page({
     goodsInfo: {
       attr_info: [],
       spec_info: [],
-      spec_group_info: {}
+      spec_group_info: {},
+      sell_price:0,
+      market_price:0,
     }, //  商品信息 read:res.data
     selectedSku: {}, // 点击后筛选出的sku
     isCollect: 0, //  默认是否收藏
