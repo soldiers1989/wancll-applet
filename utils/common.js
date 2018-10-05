@@ -87,7 +87,8 @@ function queryUserInfoByUnionId(resData, that) {
       url: APP.api.bindWechatInLogin,
       data: {
         openid_type: 'wechat',
-        openid: unionId
+        openid: unionId,
+        real_openid: real_openid,
       },
       success(res) {
         wx.showToast({
