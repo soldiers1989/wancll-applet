@@ -1,9 +1,12 @@
 <view wx:if="{{ready}}">
   <!-- 搜索 -->
-  <view class='search_box' bindtap='goSearchPage'>
-    <view class='search_input'>
+  <view class='search_box'>
+    <view class='search_input' bindtap='goSearchPage'>
       <i class="icon iconfont icon-sousuo"></i>
       <view class='input'>搜索商品</view>
+    </view>
+    <view class="liuyan-icon" bindtap='goAnnounce'>
+      <i class="icon iconfont icon-liuyan "></i>
     </view>
   </view>
   <!-- 轮播图 -->

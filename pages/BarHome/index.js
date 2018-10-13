@@ -61,6 +61,12 @@ Page({
       url: `/pages/ComGoodsDetail/index?${param}`,
     })
   },
+  // 去公告页面
+  goAnnounce(){
+    wx.navigateTo({
+      url: `/pages/ComAnnouncements/index`,
+    })
+  },
   // 跳转到商品的详情页面 仅存在于线上折扣
   goDetailDiscount(e) {
     let id = APP.util.getDataSet(e, 'id');

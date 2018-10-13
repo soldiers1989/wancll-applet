@@ -10,6 +10,19 @@
   text-align: center;
 }
 
+.liuyan-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70rpx;
+}
+
+.liuyan-icon .iconfont {
+  font-size: 45rpx;
+
+}
+
 .search_box .search_input {
   flex: 1;
   height: 50rpx;

@@ -1,0 +1,15 @@
+.list {
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 10rpx;
+  padding: 20rpx;
+}
+.title {
+  font-size: 32rpx;
+  overflow-wrap: break-word;
+}
+.desc {
+  font-size: 25rpx;
+  color: #777;
+  overflow-wrap: break-word;
+  margin-top: 10rpx;
+}

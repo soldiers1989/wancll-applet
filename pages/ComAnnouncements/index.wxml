@@ -1,0 +1,4 @@
+<view class="list" wx:for="{{list}}" wx:key="{{index}}" bindtap='goDetail' data-id="{{item.id}}">
+  <view class="title">{{item.title}}</view>
+  <view class="desc">{{item.intro}}</view>
+</view>

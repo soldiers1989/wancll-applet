@@ -67,7 +67,8 @@
     "pages/ComGroupGoodsDetail/index",
     "pages/ComGroupCreateOrder/index",
     "pages/UserGroupOrderList/index",
-    "pages/UserGroupOrderDetail/index"
+    "pages/UserGroupOrderDetail/index",
+    "pages/ComAnnouncements/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
