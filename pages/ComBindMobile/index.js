@@ -39,7 +39,7 @@ Page({
       return;
     }
     APP.ajax({
-      url: APP.api.userSettingCode,
+      url: APP.api.getCode,
       data: {
         mobile: this.data.mobile,
         type: 2
