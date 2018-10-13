@@ -30,7 +30,9 @@ function getList(that) {
       'page-limit': 10,
     }
   }).then(res => {
-    let list = APP.util.arrayToUnique(that.data.list.concat(res.data))
+    let list = APP.util.arrayToUnique(that.data.list.concat(res.data.filter(item => {
+      return Boolean(item.goods_info)
+    })))
     that.setData({
       list: list,
       haveNoData: !Boolean(list.length),

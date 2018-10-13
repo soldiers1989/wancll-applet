@@ -170,4 +170,5 @@
   padding: 0.2rem 0.3rem;
   border-radius: 10%;
   font-size: 0.7rem;
+  height: 1rem;
 }

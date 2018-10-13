@@ -37,6 +37,9 @@ export function orderView(that) {
 }
 // 提交订单
 export function submit(that) {
+  that.setData({
+    isLoading: true,
+  })
   if (that.data.goodsList[0].order_pid != 0) {
     APP.ajax({
       url: APP.api.groupOrderJoin,
@@ -63,13 +66,10 @@ export function submit(that) {
           url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&orderId=${res.data.id}&type=3`
         })
       }, 1000)
-      that.setData({
-        submitButtonStatus: true,
-      });
     }).catch(err => {
       that.setData({
-        submitButtonStatus: true,
-      });
+        isLoading: false,
+      })
     })
   } else {
     // 组装数据
@@ -97,13 +97,10 @@ export function submit(that) {
           url: `/pages/ComPay/index?orderNo=${res.data.order_no}&orderMoney=${res.data.total_money}&orderId=${res.data.id}&type=3`
         })
       }, 1000)
-      that.setData({
-        submitButtonStatus: true,
-      });
     }).catch(err => {
       that.setData({
-        submitButtonStatus: true,
-      });
+        isLoading: false,
+      })
     })
   }
 }

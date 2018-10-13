@@ -33,7 +33,7 @@ Component({
     refresh() {
       let specOptionGroupArr = ''
       if (this.data.selectSku.id) {
-        specOptionGroupArr = this.data.selectSku.spec_option_group.split(',')
+        specOptionGroupArr = this.data.selectSku.spec_option_group.split('_')
       }
       this.data.goods.spec_info = this.data.goods.spec_info.map(spec => {
         spec.options = spec.options.map(option => {
@@ -71,10 +71,13 @@ Component({
     // 选择规格
     selectOption(e) {
       let sOption = APP.util.getDataSet(e, 'option')
-      this.data.goods.spec_info.forEach(item => {
-        item.options.forEach(option => {
-          option.isSelected = option.option == sOption
-        })
+      let specIndex = APP.util.getDataSet(e, 'specindex')
+      this.data.goods.spec_info.forEach((item, index) => {
+        if(specIndex == index){
+          item.options.forEach(option => {
+            option.isSelected = option.option == sOption
+          })
+        }
       })
       this.setData({
         goods: this.data.goods

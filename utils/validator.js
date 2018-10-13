@@ -23,11 +23,16 @@ function password(value) {
   let reg = /^[A-Za-z0-9]{6,20}$/
   return reg.test(value)
 }
-
+// 纯数字验证
+function integer(value){
+  let reg = /^\d+$/
+  return reg.test(value)
+}
 export {
   mobile,
   email,
   qq,
   nickName,
   password,
+  integer,
 }

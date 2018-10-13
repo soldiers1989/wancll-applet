@@ -63,7 +63,7 @@ Page({
   // 切换弹出层隐显
   togglePopupPay() {
     this.setData({
-      showPopPay: !this.data.showPopPay
+      showPopPay: !this.data.showPopPay,
     })
   },
   // 点击地址刷新数据 然后关闭弹窗
@@ -100,6 +100,12 @@ Page({
   // 输入密码确认
   confirmPassword() {
     checkPassword(this)
+  },
+  cancelPay(){
+    this.setData({
+      showPopPay: !this.data.showPopPay,
+      password: '',
+    })
   },
   // 提交订单
   submit() {

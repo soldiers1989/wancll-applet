@@ -33,11 +33,11 @@
     </block>
   </view>
   <!-- 选择规格 -->
-  <zan-panel wx:for="{{goods.spec_info}}" wx:key="{{index}}">
+  <zan-panel wx:for="{{goods.spec_info}}" wx:for-index="specindex" wx:key="{{specindex}}">
     <view class='sku'>
       <view class='title'>{{item.name}}</view>
       <view class='lists'>
-        <zan-button bindtap="selectOption" class="sku-list" size="small" wx:for="{{item.options}}" wx:for-item="option" data-option="{{option.option}}" type="{{option.isSelected ? 'info' : ''}}" wx:key="{{option.option}}">
+        <zan-button bindtap="selectOption" class="sku-list" size="small" wx:for="{{item.options}}" wx:for-item="option" data-specindex="{{specindex}}" data-option="{{option.option}}" type="{{option.isSelected ? 'info' : ''}}" wx:key="{{option.option}}">
           {{option.option}}
         </zan-button>
       </view>

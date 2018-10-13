@@ -76,8 +76,8 @@ Page({
       APP.util.toast('输入持卡人姓名')
       return
     }
-    if (!this.data.card.card_number) {
-      APP.util.toast('输入卡号')
+    if (!APP.validator.integer(this.data.card.card_number)) {
+      APP.util.toast('请输入正确的卡号')
       return
     }
     let url = ''

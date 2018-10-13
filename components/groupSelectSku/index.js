@@ -76,10 +76,10 @@ Component({
     },
     // 改变选择
     changeSelect(e) {
-      let spec = APP.utils.getDataSet(e, 'spec');
-      let option = APP.utils.getDataSet(e, 'option');
-      let speckey = APP.utils.getDataSet(e, 'speckey');
-      let optionkey = APP.utils.getDataSet(e, 'optionkey');
+      let spec = APP.util.getDataSet(e, 'spec');
+      let option = APP.util.getDataSet(e, 'option');
+      let speckey = APP.util.getDataSet(e, 'speckey');
+      let optionkey = APP.util.getDataSet(e, 'optionkey');
 
       // 选中添加颜色，没选中的去掉颜色
       spec.options.forEach((option, key) => {

@@ -38,14 +38,16 @@ Component({
     } else {
       APP.ajax({
         url: APP.api.addressRegions,
-        success:(res)=> {
-          wx.setStorageSync('citys', res.data)
-          this.setData({
-            cityData: res.data
-          }, () => {
-            this.init(this);
-          })
-        }
+      }).then(res=>{
+        wx.setStorageSync('citys', res.data)
+        this.setData({
+          cityData: res.data
+        }, () => {
+          this.init(this);
+        })
+      }).catch(err=>{
+        APP.util.toast('地址获取失败')
+        console.warn(err)
       })
     }
   },

@@ -87,7 +87,7 @@ Page({
   },
   // 减满选择
   selectFull(e) {
-    let index = APP.utils.getDataSet(e, 'index')
+    let index = APP.util.getDataSet(e, 'index')
     let full = this.data.activities.full[index]
     let text = `满${full.full_money}减${full.reduce_money}元`
     this.setData({

@@ -78,7 +78,7 @@
 </view>
 
 <view class="wancll-padded-5">
-  <button class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
+  <button loading='{{isLoading}}' disabled='{{isLoading}}' class="wancll-bg-info wancll-text-white" catchtap='submit'>提交订单</button>
 </view>
 
 <!-- 地址选择 -->

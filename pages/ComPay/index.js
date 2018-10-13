@@ -9,7 +9,7 @@ Page({
     showPopup: false,
     orderNo: '',
     orderMoney: '',
-    password: "",
+    password: '',
     payType: '1',
     loading: false,
   },
@@ -18,6 +18,12 @@ Page({
       orderNo: options.orderNo,
       orderMoney: options.orderMoney
     })
+  },
+  cancelPay(){
+    this.setData({
+      showPopup: !this.data.showPopup,
+      password: '',
+    });
   },
   // 数据绑定
   passwordInput(e) {

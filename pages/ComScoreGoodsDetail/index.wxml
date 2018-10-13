@@ -1,4 +1,3 @@
-<!--pages/ComDetail/index.wxml-->
 <view class='content'>
   <swiper class='detail-swiper' indicator-dots="{{bannerConfig.indicatorDots}}" autoplay="{{bannerConfig.autoplay}}" interval="{{bannerConfig.interval}}" duration="{{bannerConfig.duration}}">
     <block wx:for="{{goods.goods_info.imgs}}" wx:key="key">
@@ -9,7 +8,7 @@
   </swiper>
   <view class='detail-info'>
     <view class='price'>
-      <text class="sell-price"></text>积分 {{tools.beautyPrice(goods.score)}}
+      <text class="sell-price"></text>积分 {{goods.score}}
     </view>
     <view class='name'>{{goods.goods_info.name}}</view>
     <view class='intro'>{{goods.goods_info.intro}}</view>

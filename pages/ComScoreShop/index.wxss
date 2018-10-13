@@ -39,7 +39,7 @@
 .user .info {
   flex: 56%;
   color: #fff;
-  padding: 80rpx 0;
+  padding: 60rpx 0;
 }
 
 .user .info .icon {

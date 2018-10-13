@@ -87,10 +87,10 @@
       <zan-panel>
         <view class='title'>请输入支付密码</view>
       </zan-panel>
-      <input bindinput='liscenInput' data-type="password" type='password'></input>
+      <input bindinput='liscenInput' value="{{password}}" data-type="password" type='password'></input>
       <view class='select'>
         <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
-        <zan-button class='no' catchtap="togglePopupPay"> 取消 </zan-button>
+        <zan-button class='no' catchtap="cancelPay"> 取消 </zan-button>
       </view>
     </view>
   </view>

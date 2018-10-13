@@ -63,6 +63,10 @@ const cardNameMapping = {
 }
 
 function getBankCardList(that) {
+  that.setData({
+    list: [],
+    page: 1,
+  })
   APP.ajax({
     url: APP.api.bankCardList,
     header: {

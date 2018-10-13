@@ -21,7 +21,7 @@ Page({
     passwordPopup: false,
     password: ''
   },
-  onLoad(options) {
+  onShow(){
     getBankCardList(this)
   },
   // 选择银行卡
@@ -46,7 +46,7 @@ Page({
   },
   addBank() {
     wx.navigateTo({
-      url: `/pages/UserCardEidt/index?id=new`,
+      url: `/pages/UserBankCardEdit/index?id=new`,
     })
   },
   // 提交

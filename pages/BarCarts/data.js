@@ -11,8 +11,12 @@ function getList(that) {
     let list = APP.util.arrayToUnique(that.data.list.concat(res.data.filter(item => {
       return Boolean(item.goods_info)
     })))
-    list.forEach(item => {
-      item.isSelected = false
+    list.forEach(cart => {
+      cart.isSelected = false
+      cart.goods_info.spec_group_info = cart.goods_info.spec_group_info.map((item) => {
+        item.spec_option_group = item.spec_option_group.split('_').sort().toString()
+        return item
+      })
     })
     that.setData({
       list: list,

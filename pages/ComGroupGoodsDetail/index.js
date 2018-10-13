@@ -17,10 +17,8 @@ Page({
       nextMargin: 0,
     },
     userAvatar: APP.imgs.avatar, // 默认头像
-
     user: wx.getStorageSync('user'),
     groupParams: {}, // 积分相关参数
-
     // 数据
     goods: {
       goods_info: {
@@ -30,10 +28,8 @@ Page({
       spec_group_info: {}
     },
     selectedSku: {}, // 点击后筛选出的sku
-
     teams: [], // 团队
     timeDowns: [], // 倒计时
-
     // tab组件参数
     tabList: [{
       id: 1,
@@ -53,7 +49,6 @@ Page({
     if (options.parent_mobile && !this.data.user) {
       APP.globalData.parent_mobile = options.parent_mobile
     }
-
     getGroupParams(this)
     // 请求商品数据
     APP.ajax({
@@ -61,22 +56,21 @@ Page({
       data: {
         id: options.id
       },
-      success: res => {
-        let data = res.data
-        // 转化具体规格格式，为了选中规格时匹配
-        data.spec_group_info = data.spec_group_info.map(item => {
-          item.spec_option_group = item.spec_option_group.split('_').sort().toString()
-          return item
-        })
-        // 图片富文本替换为宽度100%
-        res.data.goods_info.desc = data.goods_info.desc.replace(/\<img/gi, '<img style="max-width:100%height:autodisplay:block"')
-        // 保存商品数据
-        this.setData({
-          goods: data,
-        })
-        this.getTeams()
-      }
-    })
+    }).then(res => {
+      let data = res.data
+      // 转化具体规格格式，为了选中规格时匹配
+      data.spec_group_info = data.spec_group_info.map(item => {
+        item.spec_option_group = item.spec_option_group.split('_').sort().toString()
+        return item
+      })
+      // 图片富文本替换为宽度100%
+      res.data.goods_info.desc = data.goods_info.desc.replace(/\<img/gi, '<img style="max-width:100%height:autodisplay:block"')
+      // 保存商品数据
+      this.setData({
+        goods: data,
+      })
+      this.getTeams()
+    }).catch(err => {})
   },
   // 获取团队信息
   getTeams() {
@@ -90,7 +84,7 @@ Page({
         return team.end_time_stamp * 1000
       })
       setInterval(() => {
-        APP.util.timeDowns(this, endTimeStamps)
+        APP.util.timeDown(this, endTimeStamps)
       }, 1000)
       this.setData({
         teams: res.data
@@ -128,7 +122,6 @@ Page({
       }, 1000)
       return false
     }
-
     if (!this.data.groupParams.is_open) {
       wx.showToast({
         title: "团购专区未开放",
@@ -136,7 +129,6 @@ Page({
       })
       return false
     }
-
     return true
   },
   // 拼团购买

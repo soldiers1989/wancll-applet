@@ -2,7 +2,7 @@
   <!-- 搜索 -->
   <view class='search_box' bindtap='goSearchPage'>
     <view class='search_input'>
-      <i class="iconfont icon-sousou"></i>
+      <i class="icon iconfont icon-sousuo"></i>
       <view class='input'>搜索商品</view>
     </view>
   </view>
@@ -35,8 +35,8 @@
     </view>
   </view>
   <!--限时折扣 -->
-  <view class='discount' wx:if="{{discountActivities.length>0}}">
-    <zan-cell is-link>
+  <view class='discount' wx:if="{{discountActivities.length>0 && discountActivities[0].rule_info.length > 0}}">
+    <zan-cell>
       <text style="color: #df0303;">限时折扣</text> {{discountActivities[0].name}} {{timeDown}}
     </zan-cell>
     <scroll-view class='scroll-items' scroll-x="true">

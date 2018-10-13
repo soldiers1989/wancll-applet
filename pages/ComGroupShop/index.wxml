@@ -56,13 +56,9 @@
     </zan-cell-group>
   </zan-panel>
 </view>
-
-
-
 <!-- 团购商品 -->
-
 <view class="goods-list-new">
-  <view class="goods" wx:for="{{goodsList}}" wx:key="index">
+  <view class="goods" wx:for="{{list}}" wx:key="index">
     <view class="left">
       <image mode="widthFix" src="{{item.goods_info.thum}}"></image>
     </view>
@@ -74,9 +70,9 @@
         <view class="price">
           <view class="sell-price-box">
             单买价：
-            <text class="sell-price">￥{{tools.beautyPrice(item.goods_info.sell_price)}}</text>
+            <text class="sell-price">￥{{item.goods_info.sell_price}}</text>
           </view>
-          <view class="group-price">￥{{tools.beautyPrice(item.money)}}</view>
+          <view class="group-price">￥{{item.money}}</view>
         </view>
         <view class="buy" bindtap="goGoodsDetail" data-id="{{item.id}}" data-goods-id="{{item.goods_id}}">
           去拼团

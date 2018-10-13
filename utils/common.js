@@ -160,6 +160,7 @@ function handleWechatPay(orderNo) {
         }).then(res => {
           // 支付成功 resolve
           res.data.success = resolve
+          res.data.fail = reject
           wx.requestPayment(res.data)
         }).catch(err => {
           reject(err)

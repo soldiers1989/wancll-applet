@@ -9,7 +9,7 @@ function getGoods(that, id) {
     }
   }).then(res => {
     res.data.desc = res.data.desc.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block;')
-    res.data.spec_group_info = res.data.spec_group_info.map(function(item) {
+    res.data.spec_group_info = res.data.spec_group_info.map((item) => {
       item.spec_option_group = item.spec_option_group.split('_').sort().toString()
       return item
     })

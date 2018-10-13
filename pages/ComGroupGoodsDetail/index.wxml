@@ -11,14 +11,14 @@
     <view class='name'>{{goods.goods_info.name}}</view>
     <view class='intro'>{{goods.goods_info.intro}}</view>
     <view class='price'>
-      <text class="sell-price">￥</text> {{tools.beautyPrice(goods.money)}}
+      <text class="sell-price">￥</text> {{goods.money}}
       <text class="market-price">￥{{tools.beautyPrice(goods.goods_info.sell_price)}}</text>
       <text class="sales-number">销量：{{goods.goods_info.sell_num}}</text>
     </view>
   </view>
   <view class='select-sku'>
     <zan-panel>
-      <!-- <block wx:if="{{goods.spec_group_info.length}}">
+      <!-- <block wx:if="{{goods.goods_info.spec_info.length}}">
         <zan-panel>
           <view class='go-select' bindtap='openSkuPopup'>
             <view class="left">选择商品规格</view>
@@ -87,11 +87,11 @@
   <zan-panel>
     <view class="buy-buttons">
       <view class="add-cart" data-id="{{goods.goods_id}}" bindtap="goBuyOnly">
-        <view>￥{{tools.beautyPrice(goods.goods_info.sell_price)}}</view>
+        <view>￥{{goods.goods_info.sell_price}}</view>
         <view>单独购买</view>
       </view>
       <view class="buy-now" data-type="buy" bindtap="groupBuy" data-type="create" data-pid="0">
-        <view>￥{{tools.beautyPrice(goods.money)}}</view>
+        <view>￥{{goods.money}}</view>
         <view>{{goods.person_num}} 人团</view>
       </view>
     </view>
