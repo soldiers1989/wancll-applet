@@ -18,13 +18,15 @@ function getGroupParams(that) {
     that.setData({
       groupParams: res.data
     })
+    getList(that)
   }).catch(err => {})
 }
 
 // 获取列表
 function getList(that) {
+  let router = that.data.groupParams.type == 1 ? APP.api.groupSystemList : APP.api.groupGoodsList
   APP.ajax({
-    url: APP.api.groupGoodsList,
+    url: router,
     header: {
       'page-num': that.data.page,
       'page-limit': 10,

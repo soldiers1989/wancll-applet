@@ -29,8 +29,8 @@ Page({
   },
   // 改变商品数量
   changeNum(e) {
-    let index = APP.utils.getDataSet(e, 'index');
-    let type = APP.utils.getDataSet(e, 'type');
+    let index = APP.util.getDataSet(e, 'index');
+    let type = APP.util.getDataSet(e, 'type');
     let num = type == 'plus' ? 1 : -1;
     let goods = this.data.goodsList[index];
     if (type == 'minus' && goods.num < 2) {

@@ -59,6 +59,10 @@ Page({
               showAddress: showAddress,
             })
           }).catch(err => {})
+        }else {
+          this.setData({
+            isNeedCompleteUserInfo: false
+          })
         }
       })
     }).catch(err => {})

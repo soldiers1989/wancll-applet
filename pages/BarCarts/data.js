@@ -52,7 +52,7 @@ function cartColleSave(that) {
   let ids = that.data.list.filter(item => {
     return item.isSelected
   }).map(item => {
-    return item.id
+    return item.goods_id
   })
   APP.ajax({
     url: APP.api.cartColleSave,

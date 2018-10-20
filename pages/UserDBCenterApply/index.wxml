@@ -8,7 +8,7 @@
   </view>
   <view class='buttons'>
     <view class='button'>
-      <zan-button type="danger" bindbtnclick="payWallet">到账钱包</zan-button>    
+      <zan-button type="danger" bindbtnclick="payWallet">到账钱包</zan-button>
     </view>
     <view class='button'>
       <zan-button type="primary" bindbtnclick="payWx">到账微信</zan-button>

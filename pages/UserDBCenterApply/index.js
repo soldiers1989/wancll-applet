@@ -86,7 +86,7 @@ Page({
     queryIsSetPayPassword().then(() => {
       this.setData({
         payType: 'wechat',
-        hidden: true,
+        hidden: false,
       })
     }).catch((err => {}))
   },
@@ -94,7 +94,7 @@ Page({
     queryIsSetPayPassword().then(() => {
       this.setData({
         payType: 'ali',
-        hidden: true,
+        hidden: false,
       })
     }).catch((err => {}))
   },

@@ -33,7 +33,7 @@
         <view class='other'>{{drpData.order_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Detail">
-        <i class="icon icon-r  iconfont icon-icon_gongzimingxin"></i>
+        <i class="icon icon-r  iconfont icon-icon_gongzimingxi"></i>
         <view class='text'>佣金明细</view>
         <view class='other'>佣金明细</view>
       </view>

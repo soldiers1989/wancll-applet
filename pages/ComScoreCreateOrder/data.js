@@ -39,9 +39,6 @@ function orderView(that) {
 }
 // 提交订单
 function submit(that) {
-  that.setData({
-    loading: true,
-  })
   APP.ajax({
     url: APP.api.scoreOrderSave,
     data: {
@@ -66,6 +63,9 @@ function submit(that) {
 }
 // 校验密码
 function checkPassword(that) {
+  that.setData({
+    loading: true,
+  })
   APP.ajax({
     url: APP.api.checkPayPassword,
     data: {
@@ -73,7 +73,11 @@ function checkPassword(that) {
     },
   }).then(res => {
     submit(that);
-  }).catch(err => {})
+  }).catch(err => {
+    that.setData({
+      loading: false,
+    })
+  })
 }
 
 export {

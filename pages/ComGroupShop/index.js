@@ -2,6 +2,7 @@ const APP = getApp()
 import {
   getGroupOrdersCount,
   getList,
+  getGroupParams,
 } from './data.js'
 
 Page({
@@ -19,6 +20,7 @@ Page({
     page: 1,
     haveNoData: false,
     noContentImg: APP.imgs.noContentImg,
+    groupParams: {}
   },
   onLoad() {},
   onShow() {
@@ -26,7 +28,7 @@ Page({
       page: 1,
       list: [],
     })
-    getList(this)
+    getGroupParams(this)
     getGroupOrdersCount(this)
   },
   onPullDownRefresh() {
@@ -34,12 +36,12 @@ Page({
       page: 1,
       list: [],
     })
-    getList(this)
+    getGroupParams(this)
     getGroupOrdersCount(this)
     wx.stopPullDownRefresh()
   },
   onReachBottom() {
-    getList(this)
+    getGroupParams(this)
   },
   goOrderList(e) {
     let target = APP.util.getDataSet(e, 'target')

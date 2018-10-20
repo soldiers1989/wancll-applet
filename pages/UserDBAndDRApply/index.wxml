@@ -1,4 +1,4 @@
-<zan-panel>
+<zan-panel wx:if="{{isNeedCompleteUserInfo}}">
   <view class='plant'>
     <view class='title'>昵称</view>
     <input class='context' value='{{name}}' bindinput='nameInput' type="text" placeholder='请输入昵称' />

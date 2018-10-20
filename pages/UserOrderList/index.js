@@ -36,6 +36,12 @@ Page({
         title: '售后服务',
       })
     }
+  },
+  onShow(){
+    this.setData({
+      page: 1,
+      list: [],
+    })
     this.getList()
   },
   getList() {

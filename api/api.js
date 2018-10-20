@@ -158,6 +158,7 @@ export const api = {
   // 团购商城
   groupOrderCount: `/api_query/orders/group_shop_count`,
   groupGoodsList: `/api_group_buy/group_buy_user_goods/lists`,
+  groupSystemList: `/api_group_buy/group_buy_system_goods/lists`,
   groupParams: `/api_group_buy/rules/index`,
   groupGoodsDetail: `/api_group_buy/group_buy_user_goods/read`,
   groupTeams: `/api_group_buy/group_buy_user_teams/lists`,
