@@ -5,6 +5,7 @@ function updateUserInfo(that, data) {
     url: APP.api.userUpdate,
     data: data,
   }).then(resp => {
+    resp.data.avatar = resp.data.avatar ? resp.data.avatar : APP.imgs.avatar
     that.setData({
       user: resp.data,
     })
