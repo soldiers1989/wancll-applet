@@ -9,7 +9,8 @@ Page({
     userKeywordsList: [],
     hotKeywordsList: [],
   },
-  onLoad(options) {
+  onLoad(options) {},
+  onShow(){
     getKeywords(this);
   },
   // 搜索输入框监听
@@ -20,7 +21,7 @@ Page({
   },
   // 搜索商品
   search(e) {
-    let keywords = APP.util.getDataSet(e, 'keywords').trim()
+    let keywords = this.data.keywords
     if (keywords) {
       let paramStr = APP.util.paramStringify({
         keywords: keywords

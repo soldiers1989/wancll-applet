@@ -10,7 +10,9 @@
     </zan-panel>
     <zan-cell-group>
       <zan-cell class="cell" title="昵称">
-        <input slot="footer" type="text" bindblur='changeName' placeholder="请输入昵称" value="{{user.nick_name || '匿名用户'}}" />
+        <view slot="footer">
+          <input slot="footer" type="text" bindblur='changeName' placeholder="请输入昵称" value="{{user.nick_name || '匿名用户'}}" />
+        </view>
       </zan-cell>
       <zan-cell title="性别">
         <view slot="footer" bindtap='selectGender'>{{genderList[user.gender]}}</view>
@@ -35,7 +37,9 @@
 <view class='panel'>
   <zan-panel>
     <zan-cell-group>
-      <zan-cell title="帮助与反馈" value="点击发表" is-link bindtap="goHelpAndOption"></zan-cell>
+      <zan-cell title="帮助与反馈" is-link >
+        <view slot="footer" bindtap="goHelpAndOption">点击发表</view>
+      </zan-cell>
       <zan-cell title="wancllshop" value="v1.4.0"></zan-cell>
     </zan-cell-group>
   </zan-panel>
