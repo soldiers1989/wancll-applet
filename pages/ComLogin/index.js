@@ -4,7 +4,7 @@ import {
 } from '../../utils/common.js'
 Page({
   data: {
-    logo: APP.imgs.logo,
+    logo: '',
     mobile: '',
     password: ''
   },
@@ -14,6 +14,18 @@ Page({
     this.setData({
       mobile: e.detail.value
     })
+  },
+  onShow() {
+    APP.ajax({
+      url: APP.api.systemParams,
+      data: {
+        type: 'basic'
+      }
+    }).then(res => {
+      this.setData({
+        logo: res.data.wap_login_logo || APP.imgs.logo
+      })
+    }).catch(err => {})
   },
   // 密码监听
   passwordInput(e) {

@@ -5,6 +5,7 @@ export const api = {
   indexAnnouncement: `/api_articles/annoncements/lists`,
   indexAdvertisements: `/api_articles/advertisements/lists`,
   indexWapIndex: `/api_query/configs/wap_index`,
+  indexTags: `/api_goods/goods_tags/index`,
   // 营销活动
   activities: `/api_query/market/activity`,
   // 内容相关
@@ -170,5 +171,8 @@ export const api = {
   groupTeamDetail: `/api_group_buy/group_buy_user_teams/read`,
 
   // 公告列表
-  announcementList: '/api_articles/annoncements/lists'
+  announcementList: '/api_articles/annoncements/lists',
+
+  // 系统参数
+  systemParams: `api_systems/params/getParams`,
 }

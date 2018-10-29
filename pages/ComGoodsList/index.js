@@ -19,7 +19,8 @@ Page({
     } else if (options.keywords) {
       data.keyword = options.keywords
     } else if (options.tag) {
-      data.tag = options.tag
+      // data.tag = options.tag
+      data.custom_tag = options.tag
     } else if (options.distribution) {
       data.system_type = 'drp'
     } else if (options.bonus) {

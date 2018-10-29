@@ -2,7 +2,7 @@ const APP = getApp()
 Page({
   data: {
     type: 1,
-    logo: APP.imgs.logo,
+    logo: '',
     parentMobile: '',
     mobile: '',
     code: '',
@@ -34,6 +34,18 @@ Page({
         is_open_drp: resp.data.is_open_drp,
       })
     }).catch(err => {})
+  },
+  onShow() {
+    APP.ajax({
+      url: APP.api.systemParams,
+      data: {
+        type: 'basic'
+      }
+    }).then(res => {
+      this.setData({
+        logo: res.data.wap_login_logo || APP.imgs.logo
+      })
+    }).catch(err => { })
   },
   parentMobileInput(e) {
     this.setData({

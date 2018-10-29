@@ -16,16 +16,8 @@ function getData(that) {
     }
   })
   // 获取促销列表
-  let tagsPromise = new Promise((resolve) => {
-    let titles = ['新品', '精品', '热销', '折扣', '清仓']
-    let tagImgs = APP.imgs.tagImgs
-    let tags = titles.map((item, index) => {
-      return {
-        title: item,
-        img: tagImgs[index]
-      }
-    })
-    resolve(tags)
+  let tagsPromise = APP.ajax({
+    url: APP.api.indexTags,
   })
   // 获取限时折扣
   let activitiesPromise = APP.ajax({
@@ -42,7 +34,7 @@ function getData(that) {
     that.setData({
       banners: values[0].data,
       announcements: values[1].data,
-      tags: values[2],
+      tags: values[2].data,
       discountActivities: values[3].data.discount ? values[3].data.discount : [],
       ready: true
     }, () => {

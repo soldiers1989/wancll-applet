@@ -21,11 +21,11 @@
   </view>
   <!-- 标签 -->
   <view class='banner-list'>
-    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.title}}" bindtap='goTagGoods'>
+    <view class='list' wx:for="{{tags}}" wx:key="index" data-tag="{{item.name}}" bindtap='goTagGoods'>
       <view class='img'>
-        <image mode="widthFix" src='{{item.img}}'></image>
+        <image mode="widthFix" src='{{item.thum}}'></image>
       </view>
-      <view class='text'>{{item.title}}</view>
+      <view class='text'>{{item.name}}</view>
     </view>
   </view>
   <!-- 首页公告 -->
@@ -87,7 +87,7 @@
         </view>
         <image wx:if="{{item.stock == 0}}" class="no-stock" src="{{noStockImg}}" mode='widthFix'></image>
         <view class='info wancll-bg-white'>
-          <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
+          <view style="height: 2.1rem;" class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.name}}</view>
           <view class='wancll-padded-10 wancll-text-price'>
             <text class="wancll-font-size-10">￥</text>{{item.sell_price}}</view>
         </view>

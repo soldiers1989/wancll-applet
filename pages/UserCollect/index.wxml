@@ -5,7 +5,7 @@
         <image mode="widthFix" class="wancll-col-xs-12" src='{{item.goods_info.thum}}'></image>
       </view>
       <view class='info wancll-bg-white'>
-        <view class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.goods_info.name}}</view>
+        <view style="height: 2.1rem;" class='wancll-padded-t-10 wancll-padded-r-10 wancll-padded-l-10 wancll-ellipsis-2'>{{item.goods_info.name}}</view>
         <view class='wancll-padded-10 wancll-text-price'>
           <text class="wancll-fl wancll-font-size-10">￥</text>{{item.goods_info.sell_price}}
           <i class='iconfont icon-shanchu wancll-fr wancll-text-pray' catchtap='collectionDelete' data-index="{{index}}" data-id='{{item.id}}'></i>

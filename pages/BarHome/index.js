@@ -5,6 +5,7 @@ import {
 } from './data.js';
 Page({
   data: {
+    title: '',
     // 分页参数
     page: 1,
     // 轮播参数
@@ -37,6 +38,18 @@ Page({
     })
     getData(this)
     getGoodsList(this)
+  },
+  onShow() {
+    APP.ajax({
+      url: APP.api.systemParams,
+      data: {
+        type: 'basic'
+      }
+    }).then(res => {
+      wx.setNavigationBarTitle({
+        title: res.data.system_title,
+      })
+    }).catch(err => { })
   },
   // 下拉刷新事件
   onPullDownRefresh() {
