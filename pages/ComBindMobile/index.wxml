@@ -11,10 +11,10 @@
     <input bindinput='bindMobile' placeholder='请输入手机号码'></input>
     <view class='right'>
       <block wx:if="{{status}}">
-        <button class="wancll-text-white" style="background-color:#ff0000" bindtap="sendCode">发送验证码</button>
+        <button class="wancll-text-white" style="background-color:#ff0000;" bindtap="sendCode">发送验证码</button>
       </block>
       <block wx:else="{{status}}">
-        <zan-button>{{countDown}} 再次发送</zan-button>
+        <zan-button style="background-color: rgb(105, 105, 105)">{{countDown}} 再次发送</zan-button>
       </block>
     </view>
   </view>

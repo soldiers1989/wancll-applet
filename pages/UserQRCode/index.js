@@ -61,14 +61,14 @@ Page({
     });
   },
   onShareAppMessage: function() {
-    let path = `/pages/BarHome/index`;
-    if (this.data.user) {
-      path += '?parent_mobile=' + this.data.user.mobile;
-    }
-    return {
-      title: '爱买优品：坚持经营高性价比产品，爱买优选任你挑～',
-      path: path,
-      imageUrl: this.data.shareImg
-    }
+    // let path = `/pages/BarHome/index`;
+    // if (this.data.user) {
+    //   path += '?parent_mobile=' + this.data.user.mobile;
+    // }
+    // return {
+    //   title: '爱买优品：坚持经营高性价比产品，爱买优选任你挑～',
+    //   path: path,
+    //   imageUrl: this.data.shareImg
+    // }
   }
 })

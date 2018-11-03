@@ -2,7 +2,7 @@
 
 <!-- 金币掉落 -->
 
-<image wx:if="{{isShowGold}}" class="gold" mode="widthFix" animation="{{animationData}}" src="../../static/images/gold.png"></image>
+<image  class="gold" mode="widthFix" animation="{{animationData}}" src="../../static/images/gold.png"></image>
 
 <view class='panel'>
   <zan-panel>
@@ -161,3 +161,11 @@
     </zan-cell-group>
   </zan-panel>
 </view>
+
+<button 
+      class="service-button"
+      type="primary" 
+      size="40"
+      session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}"
+      open-type="contact"
+></button>

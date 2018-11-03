@@ -207,6 +207,9 @@ Page({
       submitButtonStatus: false,
     });
     this.dealCoupon();
+    wx.setStorageSync('paySelectGoodsList', [{
+      goods_info: this.data.goodsList,
+    }])
     submit(this);
   },
   // 处理新人优惠券

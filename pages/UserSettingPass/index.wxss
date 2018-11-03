@@ -34,3 +34,16 @@
   background-color: #f00;
   letter-spacing: 0.2rem;
 }
+
+.panle .right{
+  margin-left: 10px;
+  flex: 250rpx 0 0;
+  font-size:0rpx;
+}
+
+.panle .right button{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  color: #fff;
+}

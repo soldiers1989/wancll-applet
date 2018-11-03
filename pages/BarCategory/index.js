@@ -22,6 +22,7 @@ Page({
     },
     // 售罄
     noStockImage: APP.imgs.noStock,
+    id: '',
   },
   onLoad(options) {
     Paging.init({
@@ -71,10 +72,16 @@ Page({
   // 小分类的点击
   changeSubNav(e) {
     let id = e.currentTarget.dataset.id;
+
     // 相同点击 禁止
     if (this.data.id == id) {
       return;
     }
+
+    this.setData({
+      id:id
+    })
+
     // 更新数据
     // this.setData({
     //   tabSelectedId: id,

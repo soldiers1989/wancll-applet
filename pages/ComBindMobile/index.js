@@ -47,7 +47,7 @@ Page({
         mobile: this.data.mobile,
         type: 2
       },
-      success(res) {
+      success: res => {
         wx.showToast({
           title: res.msg,
           icon: 'none',

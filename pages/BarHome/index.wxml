@@ -16,6 +16,8 @@
     </view>
   </view>
 
+    
+
   <!-- 轮播图 -->
   <view class='banner'>
     <swiper class='banner_swiper' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -183,3 +185,5 @@
     </view>
   </view>
 </view>
+
+    

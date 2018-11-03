@@ -23,9 +23,12 @@ Page({
 
     animation: {},
     isShowGold: false, // 金币掉落
+    animationData:'',
   },
   onLoad() {
     // this.doGoldMusic();
+    //this.doGold()
+    
   },
   doGoldMusic() {
     wx.playVoice({
@@ -47,17 +50,22 @@ Page({
       timingFunction: "ease",
       delay: 0
     });
-    this.animation = animation;
+    console.log(1);
+    //this.animation = animation;
     animation.translateY(1600);
-    this.setData({
-      animationData: animation.export()
-    });
+    // this.setData({
+    //   animationData: animation.export()
+    // });
+    animation.translate(30).step()
     setTimeout(function() {
-      animation.translate(30).step()
       this.setData({
         animationData: animation.export()
       })
     }.bind(this), 1000)
+    setTimeout(function () {
+      console.log(this.data.animationData)
+    }.bind(this), 1000)
+     
   },
   // 判断是否金卡会员
   checkIsMember() {
@@ -298,6 +306,7 @@ Page({
   },
   onPullDownRefresh() {
     getUserData(this);
+    this.doGold();
     wx.stopPullDownRefresh();
   },
   onShareAppMessage() {

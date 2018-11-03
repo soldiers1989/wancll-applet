@@ -7,6 +7,7 @@ import {
 } from '../../api/config.js';
 Page({
   data: {
+    goodsList:[],
     showPopup: false,
     orderNo: '',
     orderMoney: '',
@@ -17,12 +18,15 @@ Page({
     iscClickPayButton: false, // 是否点击了确认按钮
   },
   onLoad: function(options) {
+    let goodsList = wx.getStorageSync('paySelectGoodsList');
     this.setData({
+      goodsList: goodsList,
       orderNo: options.orderNo,
       orderMoney: options.orderMoney,
       orderId: options.orderId,
       type: options.type
     })
+
   },
   // 数据绑定
   passwordInput(e) {
@@ -106,6 +110,9 @@ Page({
                 })
               }, 1000)
             } else {
+              wx.setStorageSync('PayWaitingGoodsList', [{
+                goodsList: that.data.goodsList,
+              }]);
               setTimeout(() => {
                 wx.redirectTo({
                   url: `/pages/ComMoneyPayWaiting/index?id=${that.data.orderId}&type=${that.data.type}`

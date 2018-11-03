@@ -53,8 +53,6 @@ Page({
     }, //  商品信息 read:res.data
     selectedSku: {}, // 点击后筛选出的sku
     isCollect: 0, //  默认是否收藏
-
-
     comments: [], // comments:res.data
     // 分页功能
     FPage: {
@@ -448,6 +446,7 @@ Page({
     if (this.data.user) {
       path += '&parent_mobile=' + this.data.user.mobile;
     }
+    console.log(path);
     return {
       title: this.data.goodsInfo.name,
       path: path
