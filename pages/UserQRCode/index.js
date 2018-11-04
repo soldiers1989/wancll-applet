@@ -4,7 +4,7 @@ var config = require("../../api/config.js")
 
 Page({
   data: {
-    bgImg: APP.imgs.myEwmCode,
+    share_img: '',
   },
   canvasId: "canvas",
   onLoad(options) {
@@ -20,6 +20,27 @@ Page({
       colorDark: "#000000",
       colorLight: "#ffffff",
     })
+  },
+  onShow() {
+    // 加载背景图
+    APP.ajax({
+      url: APP.api.systemParams,
+      data: {
+        type: 'basic'
+      }
+    }).then(res => {
+      this.setData({
+        share_img: res.data.share_img || APP.imgs.myEwmCode
+      })
+    }).catch(err => {})
+    APP.ajax({
+      url: APP.api.shareQrcode,
+      data: {
+        path: 'pages/ComRegister/index',
+      }
+    }).then(res => {
+
+    }).catch(err => {})
   },
   onShareAppMessage() {
     return {

@@ -15,6 +15,7 @@ Page({
       is_open_bonus: false,
       is_open_drp: false,
     },
+    loading: false,
   },
   onLoad(options) {},
   onShow() {
@@ -44,11 +45,21 @@ Page({
   },
   // 检查分销
   checkDRPage() {
-    checkDRPage()
+    if (!this.data.loading) {
+      this.setData({
+        loading: true,
+      })
+      checkDRPage(this)
+    }
   },
   // 检查分红
   checkDBPage() {
-    checkDBPage()
+    if (!this.data.loading) {
+      this.setData({
+        loading: true,
+      })
+      checkDBPage(this)
+    }
   },
   // 跳转到购物车页面
   goCarts(e) {

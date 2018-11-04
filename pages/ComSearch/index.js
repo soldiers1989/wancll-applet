@@ -19,6 +19,17 @@ Page({
       keywords: e.detail.value
     })
   },
+  searchClick(e){
+    let keywords = APP.util.getDataSet(e, 'keywords')
+    if (keywords) {
+      let paramStr = APP.util.paramStringify({
+        keywords: keywords
+      })
+      wx.navigateTo({
+        url: `/pages/ComGoodsList/index?${paramStr}`,
+      })
+    }
+  },
   // 搜索商品
   search(e) {
     let keywords = this.data.keywords

@@ -12,7 +12,7 @@
     <view class='intro'>{{goods.goods_info.intro}}</view>
     <view class='price'>
       <text class="sell-price">￥</text> {{goods.money}}
-      <text class="market-price">￥{{tools.beautyPrice(goods.goods_info.sell_price)}}</text>
+      <text class="market-price">￥{{goods.goods_info.sell_price}}</text>
       <text class="sales-number">销量：{{goods.goods_info.sell_num}}</text>
     </view>
   </view>

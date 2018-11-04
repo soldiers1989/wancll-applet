@@ -1,35 +1,32 @@
 <view class='address-list'>
   <view class='item' wx:for="{{list}}" wx:key="key">
-    <zan-panel>
-      <zan-cell-group>
-        <zan-cell class="top">
-          <view data-id="{{item.id}}" data-address="{{item}}" bindtap="selectAddress">
-            <view class='line'>
-              <view class='name'>{{item.consignee_name}}</view>
-              <view class='number'>{{item.mobile}}</view>
-            </view>
-            <view class='line'>{{item.address_info}}</view>
+    <zan-panel >
+      <view class="address-item">
+        <view data-id="{{item.id}}" data-address="{{item}}" bindtap="selectAddress">
+          <view class='line'>
+            <view class='name'>{{item.consignee_name}}</view>
+            <view class='number'>{{item.mobile}}</view>
           </view>
-        </zan-cell>
-        <zan-cell>
-          <view class='bottom'>
-            <view class='default-address' data-id='{{item.id}}' data-index="{{index}}" catchtap='setDefaultAddress'>
-              <zan-icon style="color:#358cff" type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
-              <text> 默认地址</text>
-            </view>
-            <view class='click-button'>
-              <zan-button type="info" class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
-                <zan-icon type="edit"></zan-icon>
-                <text> 编辑</text>
-              </zan-button>
-              <zan-button class='zan-button' bindbtnclick="deleteAddress" data-id='{{item.id}}' data-index="{{index}}" size="small" type="danger">
-                <zan-icon type="delete"></zan-icon>
-                <text> 删除</text>
-              </zan-button>
-            </view>
+          <view class='line'>{{item.address_info}}</view>
+        </view>
+        <view class='bottom'>
+          <view class='default-address' data-id='{{item.id}}' data-index="{{index}}" catchtap='setDefaultAddress'>
+            <zan-icon style="color:#358cff" type="{{item.is_default == 1 ? 'checked':'check'}}"></zan-icon>
+            <text> 默认地址</text>
           </view>
-        </zan-cell>
-      </zan-cell-group>
+          <view class='click-button'>
+            <zan-button type="info" class='zan-button' bindbtnclick="editAddress" data-id='{{item.id}}' size="small">
+              <zan-icon type="edit"></zan-icon>
+              <text> 编辑</text>
+            </zan-button>
+            <zan-button class='zan-button' bindbtnclick="deleteAddress" data-id='{{item.id}}' data-index="{{index}}" size="small" type="danger">
+              <zan-icon type="delete"></zan-icon>
+              <text> 删除</text>
+            </zan-button>
+          </view>
+        </view>
+      </view>
+
     </zan-panel>
   </view>
   <view wx:if="{{haveNoData}}" style="text-align: center;margin-top: 20%;">

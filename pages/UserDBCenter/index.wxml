@@ -24,12 +24,12 @@
     <view class='selects-subpage'>
       <view class='subpage' bindtap="goSubPage" data-target="Wallet">
         <i class="icon iconfont icon-r icon-qianbao1"></i>
-        <view class='text'>分红佣金</view>
+        <view class='text'>分销佣金</view>
         <view class='other'>{{bonusData.total_money}}</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Order">
         <i class="icon iconfont icon-r icon-chengjiaodingdan"></i>
-        <view class='text'>分红订单</view>
+        <view class='text'>分销订单</view>
         <view class='other'>{{bonusData.order_num}}个</view>
       </view>
       <view class='subpage' bindtap="goSubPage" data-target="Detail">

@@ -66,4 +66,7 @@ Page({
       url: `/pages/ComScoreGoodsDetail/index?id=${id}`,
     })
   },
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+  }
 })

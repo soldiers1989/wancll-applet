@@ -72,8 +72,13 @@
   flex: 1;
 }
 
+.banner-list .img{
+  padding: 0 30rpx;
+}
+
 .banner-list image {
-  width: 88rpx;
+  width: 100%;
+  max-height: 110rpx;
 }
 
 .notice {

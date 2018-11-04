@@ -35,9 +35,10 @@
             <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
               <text class="wancll-font-size-10">￥</text>{{item.select_spec_group_info.sell_price?item.select_spec_group_info.sell_price:item.goods_info.sell_price}}
             </view>
-            <view class='count wancll-flex'>
+            <view class='count wancll-flex' style="margin-left: 30rpx;">
               <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num - 1}}"></i>
-              <text class="wancll-padded-5"> {{item.num}} </text>
+              <!-- <text class="wancll-padded-5"> {{item.num}} </text> -->
+              <input style="text-align:center;" data-index="{{index}}" data-num="{{item.num}}" value='{{item.num}}' type="number" bindinput='numInputChange'></input>
               <i class="iconfont icon-jia wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-num="{{item.num + 1}}"></i>
             </view>
           </view>

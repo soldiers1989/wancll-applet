@@ -1,6 +1,9 @@
 .address-list{
   padding-bottom: 90rpx;
 }
+.address-item {
+  padding: 12px 15px;
+}
 .add-address{
   padding: 20rpx;
   position: fixed;

@@ -181,5 +181,8 @@ Page({
       title: this.data.goodsInfo.name,
       path: `${this.route}?id=${this.data.goodsId}`
     }
+  },
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
   }
 })

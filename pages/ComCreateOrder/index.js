@@ -40,6 +40,22 @@ Page({
   onShow() {
     this.selectComponent("#address").refresh()
   },
+  numInputChange(e){
+    let index = APP.util.getDataSet(e, 'index')
+    let num = e.detail.value
+    if (!num) {
+      return
+    }
+    this.setData({
+      goodsList: this.data.goodsList.map((item, i) => {
+        if (i == index) {
+          item.num = Number(num)
+        }
+        return item
+      })
+    })
+    orderView(this)
+  },
   // 点击地址刷新数据 然后关闭弹窗
   getClickId(e) {
     this.setData({

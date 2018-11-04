@@ -6,7 +6,7 @@
   <zan-panel>
     <view class='plant'>
       <view class='title'>联系电话：</view>
-      <input class='context' bindinput='enterMobile' value='{{enterMobile}}' placeholder='输入联系电话'></input>
+      <input class='context' type="number" bindinput='enterMobile' value='{{enterMobile}}' placeholder='输入联系电话'></input>
     </view>
   </zan-panel>
   <view class="plant">

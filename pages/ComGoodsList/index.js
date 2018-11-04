@@ -41,6 +41,7 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh() {
+    wx.stopPullDownRefresh()
     this.setData({
       page: 1
     })

@@ -64,6 +64,7 @@ Page({
   togglePopupPay() {
     this.setData({
       showPopPay: !this.data.showPopPay,
+      hasPopup: !this.data.hasPopup
     })
   },
   // 点击地址刷新数据 然后关闭弹窗
@@ -104,6 +105,7 @@ Page({
   cancelPay(){
     this.setData({
       showPopPay: !this.data.showPopPay,
+      hasPopup: !this.data.hasPopup,
       password: '',
     })
   },
@@ -112,6 +114,7 @@ Page({
     queryIsSetPayPassword().then(() => {
       this.setData({
         showPopPay: true,
+        hasPopup: !this.data.hasPopup
       })
     }).catch(err => {
       console.warn(err)

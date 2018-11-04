@@ -31,7 +31,7 @@
           </view>
           <view class='price-warpper'>
             <view class='price wancll-text-price' style="{{isDiscountGoods?'text-decoration: line-through':''}}">
-            积分 {{item.select_spec_group_info.score}}
+              积分 {{item.select_spec_group_info.score}}
             </view>
             <view class='count wancll-flex'>
               <i class="iconfont icon-jian wancll-font-size-18 wancll-text-info" data-index="{{index}}" bindtap="changeNum" data-type="minus"></i>
@@ -81,17 +81,19 @@
 </zan-popup>
 
 <!-- 支付密码 -->
-<zan-popup show="{{ showPopPay }}" bindclose="togglePopupPay">
-  <view class="zan-btns">
-    <view class='popup-warpper'>
-      <zan-panel>
-        <view class='title'>请输入支付密码</view>
-      </zan-panel>
-      <input bindinput='liscenInput' value="{{password}}" data-type="password" type='password'></input>
-      <view class='select'>
-        <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
-        <zan-button class='no' catchtap="cancelPay"> 取消 </zan-button>
+<cover-view>
+  <zan-popup show="{{ showPopPay }}" bindclose="togglePopupPay">
+    <view class="zan-btns">
+      <view class='popup-warpper'>
+        <zan-panel>
+          <view class='title'>请输入支付密码</view>
+        </zan-panel>
+        <input bindinput='liscenInput' value="{{password}}" data-type="password" type='password'></input>
+        <view class='select'>
+          <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
+          <zan-button class='no' catchtap="cancelPay"> 取消 </zan-button>
+        </view>
       </view>
     </view>
-  </view>
-</zan-popup>
+  </zan-popup>
+</cover-view>

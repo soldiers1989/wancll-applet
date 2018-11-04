@@ -174,5 +174,7 @@ export const api = {
   announcementList: '/api_articles/annoncements/lists',
 
   // 系统参数
-  systemParams: `api_systems/params/getParams`,
+  systemParams: `/api_systems/params/getParams`,
+  // 小程序码 
+  shareQrcode: `/api_systems/applet/share_qrcode`
 }

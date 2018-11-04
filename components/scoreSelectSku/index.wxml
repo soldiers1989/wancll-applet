@@ -34,13 +34,13 @@
 <template name="selectedSkuPrice">
   <view class='price-warpper'>
     <view class='price'>
-      <text style="font-size: 30rpx;"></text>积分{{tools.beautyPrice(score)}}</view>
+      <text style="font-size: 30rpx;"></text>积分{{score}}</view>
   </view>
 </template>
 
 <template name="defaultPrice">
   <view class='price-warpper'>
     <view class='price wancll-text-price'>
-      <text style="font-size: 30rpx;"></text>积分{{tools.beautyPrice(score)}}</view>
+      <text style="font-size: 30rpx;"></text>积分{{score}}</view>
   </view>
 </template>

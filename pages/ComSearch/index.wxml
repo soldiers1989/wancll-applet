@@ -11,13 +11,13 @@
       <i class="iconfont icon-shanchu wancll-fr" bindtap="deleteKeywords"></i>
     </view>
     <view class="search-div" wx-if="{{userKeywordsList.length != 0}}">
-      <view class="search-key wancll-font-size-12" wx:for="{{userKeywordsList}}" wx:key="{{item.id}}" data-keywords="{{item}}" bindtap='search'>{{item}}</view>
+      <view class="search-key wancll-font-size-12" wx:for="{{userKeywordsList}}" wx:key="{{item.id}}" data-keywords="{{item}}" bindtap='searchClick'>{{item}}</view>
     </view>
     <view class="wancll-text-pray wancll-padded-t-10">
       <span class="wancll-font-size-14">热门搜索</span>
     </view>
     <view class="search-div">
-      <text class="search-key wancll-font-size-12" wx:for="{{hotKeywordsList}}" wx:key="{{index}}" data-keywords="{{item.keyword}}" bindtap='search'>{{item.keyword}}</text>
+      <text class="search-key wancll-font-size-12" wx:for="{{hotKeywordsList}}" wx:key="{{index}}" data-keywords="{{item.keyword}}" bindtap='searchClick'>{{item.keyword}}</text>
     </view>
   </view>
 </view>

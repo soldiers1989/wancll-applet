@@ -15,6 +15,11 @@ Page({
       mobile: e.detail.value
     })
   },
+  clickImg(){
+    wx.reLaunch({
+      url: '/pages/BarHome/index',
+    })
+  },
   onShow() {
     APP.ajax({
       url: APP.api.systemParams,

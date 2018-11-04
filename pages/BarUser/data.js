@@ -67,7 +67,7 @@ function queryAuthStatus(that) {
   }).catch(err => {})
 }
 // 检查分销
-function checkDRPage() {
+function checkDRPage(that) {
   APP.ajax({
     url: APP.api.drpCenter,
   }).then(infoResp => {
@@ -82,6 +82,7 @@ function checkDRPage() {
           APP.ajax({
             url: APP.api.drpApplyRead,
           }).then(applyResp => {
+            setLoadingFalse(that)
             if (!applyResp.data.status) {
               wx.navigateTo({
                 url: `/pages/UserDBAndDRApply/index?type=distribution`,
@@ -96,12 +97,17 @@ function checkDRPage() {
                 })
               }, 800)
             }
-          }).catch(err => {})
+          }).catch(err => {
+            setLoadingFalse(that)
+          })
         } else if (value == 'order_num') {
+          setLoadingFalse(that)
           APP.util.toast(`成为分销商需完成${becomeInfoResp.data.become_distributor_value}笔订单`)
         } else if (value == 'order_money') {
+          setLoadingFalse(that)
           APP.util.toast(`成为分销商订单金额需达到${becomeInfoResp.data.become_distributor_value}元`)
         } else if (value == 'goods') {
+          setLoadingFalse(that)
           APP.util.toast('成为分销商需购买商品')
           setTimeout(() => {
             wx.navigateTo({
@@ -115,6 +121,7 @@ function checkDRPage() {
           APP.ajax({
             url: APP.api.userCompleteInfo,
           }).then(completeResp => {
+            setLoadingFalse(that)
             if (completeResp.data.is_complete) {
               wx.navigateTo({
                 url: `/pages/UserDRCenter/index`,
@@ -124,18 +131,31 @@ function checkDRPage() {
                 url: `/pages/UserInfoComplete/index`,
               })
             }
-          }).catch(err => {})
+          }).catch(err => {
+            setLoadingFalse(that)
+          })
         } else {
+          setLoadingFalse(that)
           wx.navigateTo({
             url: `/pages/UserDRCenter/index`,
           })
         }
       }
-    }).catch(err => {})
-  }).catch(err => {})
+    }).catch(err => {
+      setLoadingFalse(that)
+    })
+  }).catch(err => {
+    setLoadingFalse(that)
+  })
+}
+
+function setLoadingFalse(that) {
+  that.setData({
+    loading: false
+  })
 }
 // 检查分红
-function checkDBPage() {
+function checkDBPage(that) {
   APP.ajax({
     url: APP.api.bonusCenter,
   }).then(infoResp => {
@@ -149,6 +169,7 @@ function checkDBPage() {
           APP.ajax({
             url: APP.api.bonusApplyRead,
           }).then(applyResp => {
+            setLoadingFalse(that)
             if (!applyResp.data.status) {
               wx.navigateTo({
                 url: `/pages/UserDBAndDRApply/index?type=bonus`,
@@ -163,12 +184,17 @@ function checkDBPage() {
                 })
               }, 800)
             }
-          }).catch(err => {})
+          }).catch(err => {
+            setLoadingFalse(that)
+          })
         } else if (value == 'order_num') {
+          setLoadingFalse(that)
           APP.util.toast(`成为分红商需完成${becomeInfoResp.data.become_bonus_value}笔订单`)
         } else if (value == 'order_money') {
+          setLoadingFalse(that)
           APP.util.toast(`成为分红商订单金额需达到${becomeInfoResp.data.become_bonus_value}元`)
         } else if (value == 'goods') {
+          setLoadingFalse(that)
           APP.util.toast('成为分红商需购买商品')
           setTimeout(() => {
             wx.navigateTo({
@@ -182,6 +208,7 @@ function checkDBPage() {
           APP.ajax({
             url: APP.api.userCompleteInfo,
           }).then(completeResp => {
+            setLoadingFalse(that)
             if (completeResp.data.is_complete) {
               wx.navigateTo({
                 url: `/pages/UserDBCenter/index`,
@@ -191,15 +218,22 @@ function checkDBPage() {
                 url: `/pages/UserInfoComplete/index`,
               })
             }
-          }).catch(err => {})
+          }).catch(err => {
+            setLoadingFalse(that)
+          })
         } else {
+          setLoadingFalse(that)
           wx.navigateTo({
             url: `/pages/UserDBCenter/index`,
           })
         }
       }
-    }).catch(err => {})
-  }).catch(err => {})
+    }).catch(err => {
+      setLoadingFalse(that)
+    })
+  }).catch(err => {
+    setLoadingFalse(that)
+  })
 }
 
 export {
