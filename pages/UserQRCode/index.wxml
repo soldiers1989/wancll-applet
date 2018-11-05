@@ -3,7 +3,8 @@
   <view class='ewm-box'>
     <!-- 二维码生成待定 -->
     <view class='ewm-border'>
-      <canvas style='width:150px' class='canvas' canvas-id='canvas'></canvas>
+      <!-- <canvas style='width:150px' class='canvas' canvas-id='canvas'></canvas> -->
+      <image mode="widthFix" src="{{qrcodeImg}}"></image>
     </view>
   </view>
 </view>
