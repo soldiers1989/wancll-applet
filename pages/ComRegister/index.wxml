@@ -6,10 +6,10 @@
     <text>请注册绑定手机号,下次可直接用第三方账号登录</text>
   </view>
   <view class='panle' wx:if="{{is_open_bonus || is_open_drp}}">
-    <input bindinput='parentMobileInput' placeholder='请输入推荐人手机号码(选填)'></input>  
+    <input value="{{parentMobile}}" type="number" disabled='{{disabledChangeParentMobile}}' bindinput='parentMobileInput' placeholder='请输入推荐人手机号码(选填)'></input>  
   </view>
   <view class='panle'>
-    <input bindinput='mobileInput' placeholder='请输入手机号码'></input>
+    <input type="number" bindinput='mobileInput' placeholder='请输入手机号码'></input>
     <view class='right'>
       <block wx:if="{{time == 90}}">
         <button class="wancll-bg-info wancll-text-white" bindtap="sendCode">{{timeMsg}}</button>
@@ -20,7 +20,7 @@
     </view>
   </view>
   <view class='panle'>
-    <input bindinput="codeInput" placeholder="输入验证码" class="" />
+    <input type="number" bindinput="codeInput" placeholder="输入验证码" class="" />
   </view>
   <view class='panle'>
     <input bindinput="passwordInput" password placeholder="输入密码" class="" />

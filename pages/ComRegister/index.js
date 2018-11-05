@@ -4,6 +4,7 @@ Page({
     type: 1,
     logo: '',
     parentMobile: '',
+    disabledChangeParentMobile: false,
     mobile: '',
     code: '',
     password: '',
@@ -26,6 +27,12 @@ Page({
       nick_name: options.nick_name,
       real_openid: options.real_openid,
     })
+    if (options.parent_mobile) {
+      this.setData({
+        parentMobile: options.parent_mobile,
+        canChangeParentMobile: true,
+      })
+    }
     APP.ajax({
       url: APP.api.systemInfo,
     }).then(resp => {
@@ -45,7 +52,7 @@ Page({
       this.setData({
         logo: res.data.wap_login_logo || APP.imgs.logo
       })
-    }).catch(err => { })
+    }).catch(err => {})
   },
   parentMobileInput(e) {
     this.setData({
