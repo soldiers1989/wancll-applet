@@ -1,11 +1,11 @@
 <view>
   <view class='search_box'>
     <view class='search_input'>
-      <i class="icon iconfont icon-sousuo" bindtap='search'></i>
       <input class='input' placeholder='搜索商品' bindinput='keywordsInput' type="text" confirm-type="search" bindconfirm='search'></input>
+      <i class="icon iconfont icon-sousuo" bindtap='search'></i>
     </view>
   </view>
-  <view class="wancll-content wancll-bg-white wancll-padded-t-10" style="padding: 0 1.5rem;">
+  <view class="wancll-content wancll-bg-white" style="padding: .5rem 1.5rem 0 1.5rem;">
     <view class="wancll-text-pray" wx-if="{{userKeywordsList.length != 0}}">
       <span class="wancll-font-size-14">历史搜索</span>
       <i class="iconfont icon-shanchu wancll-fr" bindtap="deleteKeywords"></i>

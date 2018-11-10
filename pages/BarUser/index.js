@@ -15,6 +15,7 @@ Page({
       is_open_bonus: false,
       is_open_drp: false,
     },
+    systemParams: {},
     loading: false,
   },
   onLoad(options) {},
@@ -27,6 +28,22 @@ Page({
     } else {
       getData(this)
     }
+    APP.ajax({
+      url: APP.api.systemParams,
+      data: {
+        type: 'basic'
+      }
+    }).then(res => {
+      this.setData({
+        systemParams: res.data
+      })
+    }).catch(err => {})
+  },
+  // 拨打客服电话
+  call(){
+    wx.makePhoneCall({
+      phoneNumber: this.data.systemParams.customer_telephone,
+    })
   },
   // 跳转到订单状态页面
   goOrderList(e) {

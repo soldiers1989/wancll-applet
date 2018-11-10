@@ -48,6 +48,7 @@ Page({
   },
   onPullDownRefresh() {
     getKeywords(this);
+    wx.stopPullDownRefresh()
   },
   onShareAppMessage() {
 

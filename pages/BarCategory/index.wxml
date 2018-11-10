@@ -1,7 +1,7 @@
 <view>
   <zan-tab id="tab" list="{{ cates }}" selected-id="{{ tabSelectedId }}" scroll="{{ tabScroll }}" height="{{ tabHeight }}" bind:tabChange="tabChange" />
   <!-- 弹出的 -->
-  <view class='popup-nav'>
+  <view class='popup-nav' wx:if="{{childCates.length > 0}}">
     <view class='list' wx:for="{{childCates}}" wx:key="{{index}}" bindtap='childCateClick' data-id='{{item.id}}'>
       <view class='image'>
         <image mode='widthFix' src="{{item.thum}}"></image>
@@ -9,10 +9,17 @@
       <view class='text'>{{item.name}}</view>
     </view>
   </view>
-
-  <view class='goods-list wancll-padded-3 wancll-bg-pray'>
+  <!-- 筛选 -->
+  <view class="filter">
+    <view bindtap='changeFilter' data-id="{{item.id}}" class="{{'item ' +(activeTab == item.id ? 'active' : '')}}" wx:for="{{navHeaders}}" wx:key="{{item.id}}">
+      {{item[item.flag]['name']}}
+      <i wx:if="{{index != 0}}" class="{{'iconfont icon-xiangzuo1 filter-icon ' + (item.flag ? 'down':'up')}}"></i>
+    </view>
+  </view>
+  <!-- 商品列表 -->
+  <view class='goods-list wancll-bg-pray' style="padding: 0 6rpx;">
     <view class='goods wancll-bg-pray' bindtap='goDetail' data-id='{{item.id}}' wx:for="{{goodsList}}" wx:key="index">
-      <view class='wancll-padded-3 wancll-bg-pray'>
+      <view class='wancll-bg-pray' style="padding: 0 6rpx;">
         <view class='image'>
           <image mode="widthFix" class="wancll-col-xs-12" src='{{item.thum}}'></image>
         </view>

@@ -129,7 +129,6 @@
             <i class="iconfont icon color-r icon-daohangtuangou"></i>
             <view class='text'>团购商城</view>
           </view>
-
         </view>
       </zan-panel>
       <zan-panel wx:if="{{systemInfo.is_open_bonus||systemInfo.is_open_drp}}">
@@ -153,6 +152,10 @@
           <view class='pending' catchtap='goSubPages' data-target="UserQRCode" wx:if="{{user.is_bonus||user.is_distributor}}">
             <i class="iconfont icon color-r icon-qr-code"></i>
             <view class='text'>我的二维码</view>
+          </view>
+          <view class='pending' catchtap='call' wx:if="{{systemParams.customer_telephone}}" >
+            <i class="iconfont icon color-r icon-custom-service"></i>
+            <view class='text'>电话客服</view>
           </view>
         </view>
       </zan-panel>

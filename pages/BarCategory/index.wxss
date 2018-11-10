@@ -1,24 +1,63 @@
-.popup-nav{
+.popup-nav {
   display: flex;
   width: 100%;
-  padding-bottom:20rpx; 
-  padding-top:20rpx; 
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
   background: #fff;
 }
-.popup-nav .list{
+
+.popup-nav .list {
   margin: 0 0 0 10px;
   text-align: center;
 }
-.popup-nav .list .image{
+
+.popup-nav .list .image {
   width: 100%;
   height: 100rpx;
-  text-align: center
+  text-align: center;
 }
-.popup-nav .list .image image{
+
+.popup-nav .list .image image {
   width: 100rpx;
   height: 100rpx;
 }
 
-.zan-tab__item--selected .zan-tab__title{
+.zan-tab__item--selected .zan-tab__title {
   color: #358cff !important;
+}
+
+.filter {
+  justify-content: space-between;
+  display: flex;
+  padding: 20rpx 16rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter .item {
+  width: 50%;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+.filter .item.active {
+  border-bottom: 4rpx solid #358cff;
+  color: #358cff;
+}
+
+.filter .item .filter-icon {
+  display: inline-block;
+  text-align: center;
+  width: 40rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  transition: all .3s;
+}
+
+.filter .item .filter-icon.down {
+  transform: rotate(-90deg);
+}
+
+.filter .item .filter-icon.up {
+  transform: rotate(90deg);
 }

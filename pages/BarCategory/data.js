@@ -20,11 +20,16 @@ function catesTreesGet(that) {
 }
 // 商品列表
 function goodsListGet(that) {
+  let data = {
+    goods_cate_id: that.data.goodsCateId,
+  }
+  let key = ''
+  for (key in that.data.other) {
+    data[key] = that.data.other[key]
+  }
   APP.ajax({
     url: APP.api.goodsList,
-    data: {
-      goods_cate_id: that.data.goodsCateId,
-    },
+    data: data,
     header: {
       'page-num': that.data.page,
       'page-limit': 10,
@@ -39,7 +44,78 @@ function goodsListGet(that) {
   }).catch(err => {})
 }
 
+let navHeaders = [{
+  id: 0,
+  flag: true,
+  true: {
+    name: '综合排序',
+    data: {
+      'sort_by': 'all',
+      'sort_type': 'desc'
+    }
+  },
+  false: {
+    name: '综合排序',
+    data: {
+      'sort_by': 'all',
+      'sort_type': 'asc'
+    }
+  },
+}, {
+  id: 1,
+  flag: true,
+  true: {
+    name: '价格',
+    data: {
+      'sort_by': 'sell_price',
+      'sort_type': 'desc'
+    }
+  },
+  false: {
+    name: '价格',
+    data: {
+      'sort_by': 'sell_price',
+      'sort_type': 'asc'
+    }
+  },
+}, {
+  id: 2,
+  flag: true,
+  true: {
+    name: '销量',
+    data: {
+      'sort_by': 'sell_num',
+      'sort_type': 'desc'
+    }
+  },
+  false: {
+    name: '销量',
+    data: {
+      'sort_by': 'sell_num',
+      'sort_type': 'asc'
+    }
+  },
+}, {
+  id: 3,
+  flag: true,
+  true: {
+    name: '新品',
+    data: {
+      'sort_by': 'new_goods',
+      'sort_type': 'desc'
+    }
+  },
+  false: {
+    name: '新品',
+    data: {
+      'sort_by': 'new_goods',
+      'sort_type': 'asc'
+    }
+  },
+}]
+
 export {
   catesTreesGet,
   goodsListGet,
+  navHeaders,
 }

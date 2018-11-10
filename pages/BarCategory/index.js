@@ -1,7 +1,8 @@
 const APP = getApp()
 import {
   catesTreesGet,
-  goodsListGet
+  goodsListGet,
+  navHeaders,
 } from './data.js'
 Page({
   data: {
@@ -18,10 +19,34 @@ Page({
     haveNoData: false,
     noStockImg: APP.imgs.noStockImg,
     noContentImg: APP.imgs.noContentImg,
+    navHeaders: navHeaders,
+    activeTab: 0,
+    other: {}
   },
   onLoad(options) {
     catesTreesGet(this)
     goodsListGet(this)
+  },
+  changeFilter(e) {
+    let id = APP.util.getDataSet(e, 'id')
+    let navHeaders = this.data.navHeaders
+    navHeaders.map(h => {
+      if (h.id == id) {
+        h.flag = !h.flag
+        this.setData({
+          activeTab: h.id,
+          other: h[h.flag]['data'],
+          page: 1,
+          goodsList: []
+        }, () => {
+          goodsListGet(this)
+        })
+      }
+      return h
+    })
+    this.setData({
+      navHeaders: navHeaders,
+    })
   },
   // 小分类的点击
   childCateClick(e) {
