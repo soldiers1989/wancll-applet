@@ -63,9 +63,6 @@ function submit(that) {
 }
 // 校验密码
 function checkPassword(that) {
-  that.setData({
-    loading: true,
-  })
   APP.ajax({
     url: APP.api.checkPayPassword,
     data: {

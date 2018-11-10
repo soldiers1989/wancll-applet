@@ -81,19 +81,17 @@
 </zan-popup>
 
 <!-- 支付密码 -->
-<cover-view>
-  <zan-popup show="{{ showPopPay }}" bindclose="togglePopupPay">
-    <view class="zan-btns">
-      <view class='popup-warpper'>
-        <zan-panel>
-          <view class='title'>请输入支付密码</view>
-        </zan-panel>
-        <input bindinput='liscenInput' value="{{password}}" data-type="password" type='password'></input>
-        <view class='select'>
-          <zan-button class='yes' catchtap='confirmPassword'> 确定 </zan-button>
-          <zan-button class='no' catchtap="cancelPay"> 取消 </zan-button>
-        </view>
+<zan-popup show="{{ showPopPay }}" bindclose="togglePopupPay">
+  <view class="zan-btns">
+    <view class='popup-warpper'>
+      <zan-panel>
+        <view class='title'>请输入支付密码</view>
+      </zan-panel>
+      <input bindinput='liscenInput' value="{{password}}" data-type="password" type='password'></input>
+      <view class='select'>
+        <zan-button loading='{{loading}}' disabled='{{loading}}' class='yes' catchtap='confirmPassword'> 确定 </zan-button>
+        <zan-button class='no' catchtap="cancelPay"> 取消 </zan-button>
       </view>
     </view>
-  </zan-popup>
-</cover-view>
+  </view>
+</zan-popup>

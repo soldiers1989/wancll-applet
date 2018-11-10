@@ -100,9 +100,15 @@ Page({
   },
   // 输入密码确认
   confirmPassword() {
-    checkPassword(this)
+    if (!this.data.loading) {
+      this.setData({
+        loading: true
+      }, () => {
+        checkPassword(this)
+      })
+    }
   },
-  cancelPay(){
+  cancelPay() {
     this.setData({
       showPopPay: !this.data.showPopPay,
       hasPopup: !this.data.hasPopup,
